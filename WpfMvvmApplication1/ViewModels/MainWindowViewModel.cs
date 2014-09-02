@@ -1,5 +1,7 @@
 using System;
+using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.Windows.Documents;
 using System.Windows.Input;
 using WpfMvvmApplication1.Helpers;
 using WpfMvvmApplication1.Models;
@@ -62,6 +64,15 @@ namespace WpfMvvmApplication1.ViewModels
             }
         }
 
+        #endregion
+
+        #region ListSexes
+        public List<Sexes> ListSexes
+        {
+            get { return listSexes; }
+        }
+
+        private readonly List<Sexes> listSexes = new List<Sexes> { new Sexes { Id = 1, Value = "Homme" }, new Sexes { Id = 2, Value = "Femme" } };
         #endregion
 
         #endregion
