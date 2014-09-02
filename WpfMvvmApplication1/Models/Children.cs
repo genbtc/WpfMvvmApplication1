@@ -7,6 +7,20 @@ namespace WpfMvvmApplication1.Models
     public class Children : NotificationObject
     {
      #region Ctor
+
+        public Children(int id,
+                        string lastname,
+                        string firstname,
+                        DateTime birthDate,
+                        int sexId)
+        {
+            Id = id;
+            Lastname = lastname;
+            Firstname = firstname;
+            BirthDate = birthDate;
+            SexId = sexId;            
+        }
+
         public Children(int id,
                         string lastname, 
                         string firstname, 

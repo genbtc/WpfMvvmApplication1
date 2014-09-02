@@ -1,21 +1,9 @@
 ﻿//using System;
 //using System.Collections.Generic;
-//using System.Linq;
-//using System.Text;
-//using System.Threading.Tasks;
 //using System.Windows;
 //using System.Windows.Controls;
-//using System.Windows.Data;
 //using System.Windows.Documents;
-//using System.Windows.Input;
-//using System.Windows.Media;
-//using System.Windows.Media.Imaging;
-//using System.Windows.Navigation;
-//using System.Windows.Shapes;
-//using System.Collections;
-//using System.ComponentModel;
 //using System.Data;
-//using System.Drawing;
 //using Npgsql;
 
 
@@ -66,102 +54,7 @@
 //            this.cbSexe.SelectedValuePath = "Id";
 //        }
 
-//        public string sConnection = "SERVER=localhost;DATABASE=ags;UID=ags;PASSWORD=Fadila1980;";
 //        int iEnfantSelect = 0;
-
-//        public DataTable LoadCombobox(string sSQL)
-//        {
-//            //string sSQL = @"SELECT ""ID"", ""NOM"" FROM ""FAMILLES""; ";
-
-//            NpgsqlConnection Connection = new NpgsqlConnection(sConnection);
-//            Connection.Open();
-//            NpgsqlCommand cmd = new NpgsqlCommand(sSQL, Connection);
-
-//            DataTable dt = new DataTable();
-
-//            dt.Load(cmd.ExecuteReader());
-//            Connection.Close();
-
-//            DataRow row = dt.NewRow();
-//            row["ID"] = 0;
-//            row["NOM"] = ""; //insert a blank row - you can even write something lile  = "Please select bellow...";
-//            dt.Rows.InsertAt(row, 0); //insert new to to index 0 (on top=
-
-//            return dt;
-
-//        }
-
-//        public void UpdateFields(string sTable, string sField, object sValue, int iId)
-//        {
-//            string uSQL = string.Format(@"UPDATE ""{0}"" SET ""{1}""=@Value WHERE ""ID"" = {2}; ", sTable, sField, iId);
-
-//            NpgsqlConnection Connection = new NpgsqlConnection(sConnection);
-//            NpgsqlCommand command = Connection.CreateCommand();
-//            command.CommandText = uSQL;
-//            command.Parameters.AddWithValue("@Value", sValue);
-//            Connection.Open();
-//            command.ExecuteNonQuery();
-//            Connection.Close();
-//        }
-
-
-
-
-//        public void listEnfant()
-//        {
-//            lvEnfants.Items.Clear();
-
-//            NpgsqlConnection Connection = new NpgsqlConnection(sConnection);
-//            Connection.Open();
-//            string sSQL = @"SELECT ""ID"", ""NOM"", ""PRENOM"", ""DATENAISSANCE"", ""SEXEID"" FROM ""ENFANTS"" ORDER BY ""ID"";";
-
-//            NpgsqlCommand cmd = new NpgsqlCommand(sSQL, Connection);
-//            NpgsqlDataReader reader = cmd.ExecuteReader();
-//            while (reader.Read())
-//            {
-
-//                int sId = int.Parse(reader["ID"].ToString());
-//                string sNom = reader["NOM"].ToString();
-//                string sPrenom = reader["PRENOM"].ToString();
-//                string sDateNaissance = String.Format("{0:MM/dd/yyyy}", reader["DATENAISSANCE"]);
-//                string sSexe = reader["SEXEID"].ToString();
-
-//                this.lvEnfants.Items.Add(new MyItem { Id = sId, Nom = sNom, Prenom = sPrenom, DateNaissance = sDateNaissance, Sexe = sSexe });
-
-//            }
-//            Connection.Close();
-
-
-//        }
-
-
-//        public void listFamille()
-//        {
-//            NpgsqlConnection Connection = new NpgsqlConnection(sConnection);
-//            List<Famille> lstFamille = new List<Famille>();
-
-//            Connection.Open();
-//            string sSQL = "";
-//            sSQL = @"SELECT ""ID"", ""NOM"" FROM ""FAMILLES""; "; // FROM ""ENFANTS"" WHERE ""ID""=" + iEnfant + "; ";
-
-//            NpgsqlCommand cmdFamille = new NpgsqlCommand(sSQL, Connection);
-//            NpgsqlDataReader readerFamille = cmdFamille.ExecuteReader();
-//            while (readerFamille.Read())
-//            {
-//                int iId = int.Parse(readerFamille["ID"].ToString());
-//                string sNom = readerFamille["NOM"].ToString();
-
-//                lstFamille.Add(new Famille { Id = iId, Nom = sNom });
-//            }
-//            Connection.Close();
-
-
-//            this.cbFamille.ItemsSource = lstFamille;
-//            this.cbFamille.DisplayMemberPath = "Nom"; // affiche la valeur de la propriété Name de chaque élément
-//            this.cbFamille.SelectedValuePath = "Id";
-
-//        }
-
 
 
 //        public void ChargeEnfant(long iEnfant)
@@ -260,17 +153,6 @@
 
 //        }
 
-
-
-//        private void label2_Click(object sender, EventArgs e)
-//        {
-
-//        }
-
-//        private void checkBox3_CheckedChanged(object sender, EventArgs e)
-//        {
-
-//        }
 
 //        private void Enfants_Load(object sender, EventArgs e)
 //        {
