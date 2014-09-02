@@ -20,7 +20,8 @@
 
     </Window.Resources>
 
-    <Grid DataContext="{StaticResource Windows1ViewModel}" Margin="0,0,0,-1" Width="1367" Height="801">
+    <Viewbox VerticalAlignment="Top">
+        <Grid DataContext="{StaticResource Windows1ViewModel}" Margin="0,0,0,-1" Width="1367" Height="801">
         <StackPanel Orientation="Vertical"
                    Margin="11,51,394,0"
                    HorizontalAlignment="Center"
@@ -52,14 +53,14 @@
 
         </StackPanel>
         <Label Content="Nom :" HorizontalAlignment="Left" Margin="34,378,0,0" VerticalAlignment="Top" RenderTransformOrigin="16.526,8.692" Width="48" Height="26"/>
-        <ComboBox x:Name="cbSexe" Style="{StaticResource ResourceKey=ComboBoxFlatStyle}" HorizontalAlignment="Left" Margin="1196,373,0,0" VerticalAlignment="Top" Width="161" BorderBrush="#FF080808" Height="26" SelectionChanged="cbSexe_SelectionChanged"/>
-        <TextBox x:Name="tbNom" Style="{StaticResource ResourceKey=flatTextBox}" HorizontalAlignment="Left" Height="26" Margin="87,378,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="256" SelectionChanged="tbNom_SelectionChanged"   />
+        <ComboBox x:Name="cbSexe" Style="{StaticResource ResourceKey=ComboBoxFlatStyle}" HorizontalAlignment="Left" Margin="1196,373,0,0" VerticalAlignment="Top" Width="161" BorderBrush="#FF080808" Height="26" />
+        <TextBox x:Name="tbNom" Style="{StaticResource ResourceKey=flatTextBox}" HorizontalAlignment="Left" Height="26" Margin="87,378,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="256" />
         <Label Content="Prénom :" HorizontalAlignment="Left" Margin="455,378,0,0" VerticalAlignment="Top" Height="26"/>
         <TextBox x:Name="tbPrenom" Style="{StaticResource ResourceKey=flatTextBox}" HorizontalAlignment="Left" Height="26" Margin="518,378,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="285"/>
         <DatePicker x:Name="dtpNaissance" HorizontalAlignment="Left" Height="26" Margin="949,379,0,0" VerticalAlignment="Top" Width="158"/>
         <Label Content="Date de Naissance :" HorizontalAlignment="Left" Margin="828,378,0,0" VerticalAlignment="Top"/>
         <Label Content="Sexe :" HorizontalAlignment="Left" Margin="1146,378,0,0" VerticalAlignment="Top"/>
-        <ComboBox x:Name="cbFamille" Style="{StaticResource ResourceKey=ComboBoxFlatStyle}" HorizontalAlignment="Left" Margin="87,432,0,0" VerticalAlignment="Top" Width="256" Height="26" SelectionChanged="cbFamille_SelectionChanged"/>
+        <ComboBox x:Name="cbFamille" Style="{StaticResource ResourceKey=ComboBoxFlatStyle}" HorizontalAlignment="Left" Margin="87,432,0,0" VerticalAlignment="Top" Width="256" Height="26" />
         <Label Content="Famille :" HorizontalAlignment="Left" Margin="29,432,0,0" VerticalAlignment="Top"/>
         <Label Content="Adresse :" HorizontalAlignment="Left" Margin="455,432,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.5,0.538"/>
         <TextBox x:Name="tbAdresse" Style="{StaticResource ResourceKey=flatTextBox}" HorizontalAlignment="Left" Height="50" Margin="518,432,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="589" IsEnabled="False"/>
@@ -99,11 +100,11 @@
             </TabItem>
             <TabItem Header="Régimes" HorizontalAlignment="Left" Height="20" VerticalAlignment="Top" Width="62" Margin="0,0,-5,0">
                 <Grid Background="White">
-                    <CheckBox Content="Sans Oeuf" HorizontalAlignment="Left" Margin="40,85,0,0" VerticalAlignment="Top"/>
-                    <CheckBox Content="Sans Poisson" HorizontalAlignment="Left" Margin="40,121,0,0" VerticalAlignment="Top"/>
-                    <CheckBox Content="Sans Gluten" HorizontalAlignment="Left" Margin="40,50,0,0" VerticalAlignment="Top"/>
-                    <CheckBox Content="Sans Porc" HorizontalAlignment="Left" Margin="40,161,0,0" VerticalAlignment="Top"/>
-                    <CheckBox Content="Sans Viande" HorizontalAlignment="Left" Margin="40,199,0,0" VerticalAlignment="Top"/>
+                    <CheckBox Content="Sans Gluten" HorizontalAlignment="Left" Margin="28,15,0,0" VerticalAlignment="Top"/>
+                    <CheckBox Content="Sans Oeuf" HorizontalAlignment="Left" Margin="28,55,0,0" VerticalAlignment="Top"/>
+                    <CheckBox Content="Sans Poisson" HorizontalAlignment="Left" Margin="28,95,0,0" VerticalAlignment="Top"/>
+                    <CheckBox Content="Sans Porc" HorizontalAlignment="Left" Margin="28,135,0,0" VerticalAlignment="Top"/>
+                    <CheckBox Content="Sans Viande" HorizontalAlignment="Left" Margin="28,175,0,0" VerticalAlignment="Top"/>
                     <TextBox HorizontalAlignment="Left" Height="140" Margin="365,51,0,0" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="485"/>
                     <Label Content="Régime Particuliers :" HorizontalAlignment="Left" Margin="243,45,0,0" VerticalAlignment="Top"/>
                 </Grid>
@@ -115,10 +116,12 @@
         <TextBox HorizontalAlignment="Left" Height="23" Margin="87,18,0,0" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="716"/>
         <Label Content="Recherche :" HorizontalAlignment="Left" Margin="10,16,0,0" VerticalAlignment="Top"/>
 
+        
 
 
 
     </Grid>
+    </Viewbox>
 
 </Window>
     
