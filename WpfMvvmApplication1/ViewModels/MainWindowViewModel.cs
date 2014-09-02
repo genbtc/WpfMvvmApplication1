@@ -111,6 +111,7 @@ namespace WpfMvvmApplication1.ViewModels
             for (var i = 0; i < 10; i++)
             {
                 ChildrensCollection.Add(new Children(
+                    RandomHelper.RandomInt(1, 3),
                     RandomHelper.RandomString(10, true),
                     RandomHelper.RandomString(10, true),
                     RandomHelper.RandomDate(new DateTime(1980, 1, 1), DateTime.Now),
