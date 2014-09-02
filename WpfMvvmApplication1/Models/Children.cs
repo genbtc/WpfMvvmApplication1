@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Windows.Media;
 using WpfMvvmApplication1.Helpers;
 
 namespace WpfMvvmApplication1.Models
@@ -12,13 +11,17 @@ namespace WpfMvvmApplication1.Models
                         string lastname,
                         string firstname,
                         DateTime birthDate,
-                        int sexId)
+                        int sexId,
+                        int familyId = -1 //default if none specified (like in listChildren())  but when
+                                            // ChargeEnfant is called, it is used
+                        )
         {
             Id = id;
             Lastname = lastname;
             Firstname = firstname;
             BirthDate = birthDate;
-            SexId = sexId;            
+            SexId = sexId;
+            FamilyId = familyId;
         }
 
         public Children(int id,
@@ -56,8 +59,12 @@ namespace WpfMvvmApplication1.Models
             Swim = swim;
             BikeOutings = bikeOutings;
             BoatOutings = boatOutings;
+
+            GenderName = Gender.IDtoValue(_sexId);
         }
         #endregion
+
+        
 
         #region Id
 
@@ -381,6 +388,23 @@ namespace WpfMvvmApplication1.Models
             }
         }
 
+
+        #endregion
+
+        #region GenderName
+        private string _gendername;
+        public string GenderName
+        {
+            get { return _gendername; }
+            set
+            {
+                if (_gendername != value)
+                {
+                    _gendername = value;
+                    RaisePropertyChanged(() => GenderName);
+                }
+            }
+        }
         #endregion
 
     }

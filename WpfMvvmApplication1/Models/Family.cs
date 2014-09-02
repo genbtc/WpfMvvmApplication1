@@ -64,7 +64,6 @@ namespace WpfMvvmApplication1.Models
         }
         #endregion
 
-
         #region LastName
 
         private string _lastname;

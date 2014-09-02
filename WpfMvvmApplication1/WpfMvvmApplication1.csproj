@@ -87,9 +87,11 @@
     </Compile>
     <Compile Include="Class1.cs" />
     <Compile Include="Converters\IsBiggerThanConverter.cs" />
+    <Compile Include="Helpers\CollectiontoList.cs" />
     <Compile Include="Helpers\DelegateCommand.cs" />
     <Compile Include="Helpers\NotificationObject.cs" />
     <Compile Include="Helpers\RandomHelper.cs" />
+    <Compile Include="Models\Address.cs" />
     <Compile Include="Models\Children.cs" />
     <Compile Include="Models\Gender.cs" />
     <Compile Include="Models\Family.cs" />
@@ -119,6 +121,7 @@
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
     </EmbeddedResource>
     <None Include="packages.config" />
     <None Include="Properties\Settings.settings">
