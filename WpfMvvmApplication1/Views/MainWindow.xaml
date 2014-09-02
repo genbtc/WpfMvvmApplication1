@@ -98,10 +98,10 @@
             </TabControl>
             <Grid Height="128" HorizontalAlignment="Left" Margin="1,319,0,0" VerticalAlignment="Top" Width="1153">
                 <Label Content="Nom :" HorizontalAlignment="Left" Margin="14,10,0,0" VerticalAlignment="Top" RenderTransformOrigin="16.526,8.692" Width="48" Height="26" />
-                <TextBox x:Name="tbNom" Style="{StaticResource ResourceKey=flatTextBox}" HorizontalAlignment="Left" Height="26" Margin="67,10,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="225" Text="{Binding ElementName=MainDataGrid,Path=SelectedItem.Lastname}" />
+                <TextBox x:Name="tbLastName" Style="{StaticResource ResourceKey=flatTextBox}" HorizontalAlignment="Left" Height="26" Margin="67,10,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="225" Text="{Binding ElementName=MainDataGrid,Path=SelectedItem.Lastname}" />
                 <Label Content="Prénom :" HorizontalAlignment="Left" Margin="4,46,0,0" VerticalAlignment="Top" Height="26" />
-                <TextBox x:Name="tbPrenom" Style="{StaticResource ResourceKey=flatTextBox}" HorizontalAlignment="Left" Height="26" Margin="67,46,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="285" Text="{Binding ElementName=MainDataGrid,Path=SelectedItem.Firstname}" />
-                <ComboBox x:Name="cbFamille" Style="{StaticResource ResourceKey=ComboBoxFlatStyle}" HorizontalAlignment="Left" Margin="67,80,0,0" VerticalAlignment="Top" Width="256" Height="26" ItemsSource="{Binding Path=ListFamilies}" DisplayMemberPath="Nom" SelectedValuePath="Id" IsEditable="True" />
+                <TextBox x:Name="tbFirstName" Style="{StaticResource ResourceKey=flatTextBox}" HorizontalAlignment="Left" Height="26" Margin="67,46,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="285" Text="{Binding ElementName=MainDataGrid,Path=SelectedItem.Firstname}" />
+                <ComboBox x:Name="cbFamily" Style="{StaticResource ResourceKey=ComboBoxFlatStyle}" HorizontalAlignment="Left" Margin="67,80,0,0" VerticalAlignment="Top" Width="256" Height="26" ItemsSource="{Binding Path=ListFamilies}" DisplayMemberPath="LastName" SelectedValuePath="Id" IsEditable="True" />
                 <Label Content="Famille :" HorizontalAlignment="Left" Margin="9,80,0,0" VerticalAlignment="Top" />
                 <TextBox x:Name="tbAdresse" Style="{StaticResource ResourceKey=flatTextBox}" HorizontalAlignment="Left" Height="50" Margin="399,7,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="427" IsEnabled="True" />
                 <TextBox x:Name="tbCp" Style="{StaticResource ResourceKey=flatTextBox}" HorizontalAlignment="Left" Height="23" Margin="399,62,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" IsEnabled="True" />
