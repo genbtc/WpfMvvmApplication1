@@ -7,7 +7,8 @@ namespace WpfMvvmApplication1.Models
     public class Children : NotificationObject
     {
      #region Ctor
-        public Children(string lastname, 
+        public Children(int id,
+                        string lastname, 
                         string firstname, 
                         DateTime birthDate,
                         int sexId, 
@@ -24,6 +25,7 @@ namespace WpfMvvmApplication1.Models
                         bool bikeOutings,
                         bool boatOutings)
         {
+            Id = id;
             Lastname = lastname;
             Firstname = firstname;
             BirthDate = birthDate;
@@ -41,6 +43,24 @@ namespace WpfMvvmApplication1.Models
             BikeOutings = bikeOutings;
             BoatOutings = boatOutings;
         }
+        #endregion
+
+        #region Id
+
+        private int _id;
+        public int Id
+        {
+            get { return _id; }
+            set
+            {
+                if (_id != value)
+                {
+                    _id = value;
+                    RaisePropertyChanged(() => Id);
+                }
+            }
+        }
+
         #endregion
 
         #region LastName
