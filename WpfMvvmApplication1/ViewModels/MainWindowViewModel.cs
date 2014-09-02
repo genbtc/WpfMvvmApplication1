@@ -65,7 +65,28 @@ namespace WpfMvvmApplication1.ViewModels
 
         #endregion
 
+        #region FamilyCollection
+
+        private ObservableCollection<Family> _familyCollection;
+        public ObservableCollection<Family> FamilyCollection
+        {
+            get { return _familyCollection; }
+            set
+            {
+                if (_familyCollection != value)
+                {
+                    _familyCollection = value;
+                    RaisePropertyChanged(() => FamilyCollection);
+                }
+            }
+        }
+
+        #endregion
+
         #region ListGenders
+        /// <summary>
+        /// for initially populate checkbox with possible values
+        /// </summary>
         public List<Gender> ListGenders
         {
             get { return listGenders; }
@@ -74,7 +95,7 @@ namespace WpfMvvmApplication1.ViewModels
         private readonly List<Gender> listGenders = new List<Gender> { new Gender { Id = 1, Value = "Homme" }, new Gender { Id = 2, Value = "Femme" } };
         #endregion
 
-        public List<Family> ListFamilies
+        public ObservableCollection<Family> ListFamilies
         {
             get { return SQL.listFamilies(); }
         }
@@ -89,10 +110,13 @@ namespace WpfMvvmApplication1.ViewModels
 
         #endregion
 
-        #region Ctor
+        #region Constructor
         public MainWindowViewModel()
         {
+//eventually comment random out.
             RandomizeData();
+//            ChildrensCollection = SQL.listChildren();
+//            FamilyCollection = SQL.listFamilies();
         }
         #endregion
 
