@@ -61,7 +61,7 @@
             <DatePicker x:Name="dtpNaissance" HorizontalAlignment="Left" Height="26" Margin="949,332,0,0" VerticalAlignment="Top" Width="158"/>
             <Label Content="Date de Naissance :" HorizontalAlignment="Left" Margin="828,331,0,0" VerticalAlignment="Top"/>
             <Label Content="Sexe :" HorizontalAlignment="Left" Margin="1146,331,0,0" VerticalAlignment="Top"/>
-            <ComboBox x:Name="cbFamille" Style="{StaticResource ResourceKey=ComboBoxFlatStyle}" HorizontalAlignment="Left" Margin="87,385,0,0" VerticalAlignment="Top" Width="256" Height="26" />
+            <ComboBox x:Name="cbFamille" Style="{StaticResource ResourceKey=ComboBoxFlatStyle}" HorizontalAlignment="Left" Margin="87,385,0,0" VerticalAlignment="Top" Width="256" Height="26" DataContext="{Binding Path=ListFamilies/Lastname}" />
             <Label Content="Famille :" HorizontalAlignment="Left" Margin="29,385,0,0" VerticalAlignment="Top"/>
             <Label Content="Adresse :" HorizontalAlignment="Left" Margin="455,385,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.5,0.538"/>
             <TextBox x:Name="tbAdresse" Style="{StaticResource ResourceKey=flatTextBox}" HorizontalAlignment="Left" Height="50" Margin="518,385,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="589" IsEnabled="False"/>

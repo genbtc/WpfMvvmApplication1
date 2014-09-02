@@ -74,6 +74,11 @@ namespace WpfMvvmApplication1.ViewModels
         private readonly List<Gender> listGenders = new List<Gender> { new Gender { Id = 1, Value = "Homme" }, new Gender { Id = 2, Value = "Femme" } };
         #endregion
 
+        public List<Family> ListFamilies
+        {
+            get { return SQL.listFamilies(); }
+        }
+
         #endregion
 
         #region Commands
