@@ -17,20 +17,8 @@ namespace WpfMvvmApplication1.Models
             Id = id;
             Lastname = lastname;
             Firstname = firstname;
-            BirthDate = birthDate;
-            SexId = sexId;
-            FamilyId = familyId;
-            MedecineId = medecineId;
-            Samu = samu;
-            Hospital = hospital;
-            Clinic = clinic;
-            ClinicId = clinicId;
-            BePhotography = bePhotography;
-            PublicationPhotography = publicationPhotography;
-            OffOutputsStructure = offOutputsStructure;
-            Swim = swim;
-            BikeOutings = bikeOutings;
-            BoatOutings = boatOutings;
+            Adress = adress;
+            CityId = cityid;
         }
         #endregion
 
@@ -88,275 +76,42 @@ namespace WpfMvvmApplication1.Models
 
         #endregion
 
-        #region BirthDate
+        #region Adress
 
-        private DateTime _birthDate;
-        public DateTime BirthDate
+        private string _adress;
+        public string Adress
         {
-            get { return _birthDate; }
+            get { return _adress; }
             set
             {
-                if (_birthDate != value)
+                if (_adress != value)
                 {
-                    _birthDate = value;
-                    RaisePropertyChanged(() => BirthDate);
+                    _adress = value;
+                    RaisePropertyChanged(() => Adress);
                 }
             }
         }
 
         #endregion
 
-        #region Samu
+        #region CityId
 
-        private bool _samu;
-        public bool Samu
+        private string _cityId;
+        public string CityId
         {
-            get { return _samu; }
+            get { return _cityId; }
             set
             {
-                if (_samu != value)
+                if (_cityId != value)
                 {
-                    _samu = value;
-                    RaisePropertyChanged(() => Samu);
+                    _cityId = value;
+                    RaisePropertyChanged(() => CityId);
                 }
             }
         }
 
         #endregion
 
-        #region Hospital
-
-        private bool _hospital;
-        public bool Hospital
-        {
-            get { return _hospital; }
-            set
-            {
-                if (_hospital != value)
-                {
-                    _hospital = value;
-                    RaisePropertyChanged(() => Hospital);
-                }
-            }
-        }
-
-        #endregion
-
-        #region Clinic
-
-        private bool _clinic;
-        public bool Clinic
-        {
-            get { return _clinic; }
-            set
-            {
-                if (_clinic != value)
-                {
-                    _clinic = value;
-                    RaisePropertyChanged(() => Clinic);
-                }
-            }
-        }
-
-        #endregion
-
-        #region ClinicId
-
-        private int _clinicId;
-        public int ClinicId
-        {
-            get { return _clinicId; }
-            set
-            {
-                if (_clinicId != value)
-                {
-                    _clinicId = value;
-                    RaisePropertyChanged(() => ClinicId);
-                }
-            }
-        }
-
-        #endregion
-
-        #region BePhotography
-
-        private bool _bePhotography;
-        public bool BePhotography
-        {
-            get { return _bePhotography; }
-            set
-            {
-                if (_bePhotography != value)
-                {
-                    _bePhotography = value;
-                    RaisePropertyChanged(() => BePhotography);
-                }
-            }
-        }
-
-        #endregion
-
-        #region PublicationPhotography
-
-        private bool _publicationPhotography;
-        public bool PublicationPhotography
-        {
-            get { return _publicationPhotography; }
-            set
-            {
-                if (_publicationPhotography != value)
-                {
-                    _publicationPhotography = value;
-                    RaisePropertyChanged(() => PublicationPhotography);
-                }
-            }
-        }
-
-        #endregion
-
-        #region OffOutputsStructure
-
-        private bool _offOutputsStructure;
-        public bool OffOutputsStructure
-        {
-            get { return _offOutputsStructure; }
-            set
-            {
-                if (_offOutputsStructure != value)
-                {
-                    _offOutputsStructure = value;
-                    RaisePropertyChanged(() => OffOutputsStructure);
-                }
-            }
-        }
-
-        #endregion
-
-        #region Swim
-
-        private bool _swim;
-        public bool Swim
-        {
-            get { return _swim; }
-            set
-            {
-                if (_swim != value)
-                {
-                    _swim = value;
-                    RaisePropertyChanged(() => Swim);
-                }
-            }
-        }
-
-        #endregion
-
-        #region BikeOutings
-
-        private bool _bikeOutings;
-        public bool BikeOutings
-        {
-            get { return _bikeOutings; }
-            set
-            {
-                if (_bikeOutings != value)
-                {
-                    _bikeOutings = value;
-                    RaisePropertyChanged(() => BikeOutings);
-                }
-            }
-        }
-
-        #endregion
-
-        #region BoatOuttings
-
-        private bool _boatOutings;
-        public bool BoatOutings
-        {
-            get { return _boatOutings; }
-            set
-            {
-                if (_boatOutings != value)
-                {
-                    _boatOutings = value;
-                    RaisePropertyChanged(() => BoatOutings);
-                }
-            }
-        }
-
-        #endregion
-
-        #region Age
-
-        private int _age;
-        public int Age
-        {
-            get { return _age; }
-            set
-            {
-                if (_age != value)
-                {
-                    _age = value;
-                    RaisePropertyChanged(() => Age);
-                }
-            }
-        }
-
-        #endregion
-
-        #region SexId
-
-        private int _sexId;
-        public int SexId
-        {
-            get { return _sexId; }
-            set
-            {
-                if (_sexId != value)
-                {
-                    _sexId = value;
-                    RaisePropertyChanged(() => SexId);
-                }
-            }
-        }
-
-        #endregion
-
-        #region FamilyId
-
-        private int _familyId;
-        public int FamilyId
-        {
-            get { return _familyId; }
-            set
-            {
-                if (_familyId != value)
-                {
-                    _familyId = value;
-                    RaisePropertyChanged(() => FamilyId);
-                }
-            }
-        }
-
-        #endregion
-
-        #region MedecineId
-
-        private int _medecineId;
-        public int MedecineId
-        {
-            get { return _medecineId; }
-            set
-            {
-                if (_medecineId != value)
-                {
-                    _medecineId = value;
-                    RaisePropertyChanged(() => MedecineId);
-                }
-            }
-        }
-
-        #endregion
 
     }
 }
