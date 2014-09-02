@@ -19,6 +19,7 @@
 
 
     </Window.Resources>
+ 
 
     <Viewbox VerticalAlignment="Top">
         <Grid DataContext="{StaticResource Windows1ViewModel}" Margin="0,0,0,-1" Width="1367" Height="742">
