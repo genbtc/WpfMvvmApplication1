@@ -1,6 +1,4 @@
-﻿using System;
-using System.Windows.Media;
-using WpfMvvmApplication1.Helpers;
+﻿using WpfMvvmApplication1.Helpers;
 
 namespace WpfMvvmApplication1.Models
 {
@@ -8,30 +6,50 @@ namespace WpfMvvmApplication1.Models
     {
         #region Ctor
 
-        public Family(int id, string nom)
+        public Family(int id,
+            string lastName,
+            string address,
+            string cp,
+            string commune,
+            string tel1,
+            string tel2,
+            string tel3
+            )
         {
             Id = id;
-            Nom = nom;
+            LastName = lastName;
+            AddressProperty = address;
+            Cp = cp;
+            Commune = commune;
+            Tel1 = tel1;
+            Tel2 = tel2;
+            Tel3 = tel3;
         }
 
-        public Family(int id,
-                      string lastname,
-                      string firstname,
-                      string address,
-                      string cityid                        
-                      )
-        {
-            Id = id;
-            Lastname = lastname;
-            Firstname = firstname;
-            Address = address;
-            CityId = cityid;
-        }
         #endregion
 
-        #region Id
+        #region Ctor
 
+        public Family(int id,
+            string lastName
+            )
+        {
+            Id = id;
+            LastName = lastName;
+        }
+
+        #endregion
+
+        private string _address;
+        private string _cityId;
+        private string _commune;
+        private string _cp;
         private int _id;
+        private string _lastName;
+        private string _tel1;
+        private string _tel2;
+        private string _tel3;
+
         public int Id
         {
             get { return _id; }
@@ -45,65 +63,20 @@ namespace WpfMvvmApplication1.Models
             }
         }
 
-        #endregion
-        
-        #region nom
-
-        private string _nom;
-        public string Nom
+        public string LastName
         {
-            get { return _nom; }
+            get { return _lastName; }
             set
             {
-                if (_nom != value)
+                if (_lastName != value)
                 {
-                    _nom = value;
-                    RaisePropertyChanged(() => Nom);
-                }
-            }
-        }
-        #endregion
-
-        #region LastName
-
-        private string _lastname;
-        public string Lastname
-        {
-            get { return _lastname; }
-            set
-            {
-                if (_lastname != value)
-                {
-                    _lastname = value;
-                    RaisePropertyChanged(() => Lastname);
+                    _lastName = value;
+                    RaisePropertyChanged(() => LastName);
                 }
             }
         }
 
-        #endregion
-
-        #region FirstName
-
-        private string _firstname;
-        public string Firstname
-        {
-            get { return _firstname; }
-            set
-            {
-                if (_firstname != value)
-                {
-                    _firstname = value;
-                    RaisePropertyChanged(() => Firstname);
-                }
-            }
-        }
-
-        #endregion
-
-        #region Address
-
-        private string _address;
-        public string Address
+        public string AddressProperty
         {
             get { return _address; }
             set
@@ -111,16 +84,36 @@ namespace WpfMvvmApplication1.Models
                 if (_address != value)
                 {
                     _address = value;
-                    RaisePropertyChanged(() => Address);
+                    RaisePropertyChanged(() => AddressProperty);
                 }
             }
         }
 
-        #endregion
+        public string Cp
+        {
+            get { return _cp; }
+            set
+            {
+                if (_cp != value)
+                {
+                    _cp = value;
+                    RaisePropertyChanged(() => Cp);
+                }
+            }
+        }
 
-        #region CityId
-
-        private string _cityId;
+        public string Commune
+        {
+            get { return _commune; }
+            set
+            {
+                if (_cityId != value)
+                {
+                    _cityId = value;
+                    RaisePropertyChanged(() => Commune);
+                }
+            }
+        }
 
 
         public string CityId
@@ -136,8 +129,43 @@ namespace WpfMvvmApplication1.Models
             }
         }
 
-        #endregion
+        public string Tel1
+        {
+            get { return _tel1; }
+            set
+            {
+                if (_tel1 != value)
+                {
+                    _tel1 = value;
+                    RaisePropertyChanged(() => Tel1);
+                }
+            }
+        }
 
+        public string Tel2
+        {
+            get { return _tel2; }
+            set
+            {
+                if (_tel2 != value)
+                {
+                    _tel2 = value;
+                    RaisePropertyChanged(() => Tel2);
+                }
+            }
+        }
 
+        public string Tel3
+        {
+            get { return _tel3; }
+            set
+            {
+                if (_tel3 != value)
+                {
+                    _tel3 = value;
+                    RaisePropertyChanged(() => Tel3);
+                }
+            }
+        }
     }
 }

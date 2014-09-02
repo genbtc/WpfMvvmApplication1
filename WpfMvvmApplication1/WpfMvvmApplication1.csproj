@@ -91,7 +91,6 @@
     <Compile Include="Helpers\DelegateCommand.cs" />
     <Compile Include="Helpers\NotificationObject.cs" />
     <Compile Include="Helpers\RandomHelper.cs" />
-    <Compile Include="Models\Address.cs" />
     <Compile Include="Models\Children.cs" />
     <Compile Include="Models\Gender.cs" />
     <Compile Include="Models\Family.cs" />
