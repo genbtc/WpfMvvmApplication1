@@ -7,17 +7,24 @@ namespace WpfMvvmApplication1.Models
     public class Family : NotificationObject
     {
         #region Ctor
+
+        public Family(int id, string nom)
+        {
+            Id = id;
+            Nom = nom;
+        }
+
         public Family(int id,
                       string lastname,
                       string firstname,
-                      string adress,
+                      string address,
                       string cityid                        
                       )
         {
             Id = id;
             Lastname = lastname;
             Firstname = firstname;
-            Adress = adress;
+            Address = address;
             CityId = cityid;
         }
         #endregion
@@ -39,6 +46,24 @@ namespace WpfMvvmApplication1.Models
         }
 
         #endregion
+        
+        #region nom
+
+        private string _nom;
+        public string Nom
+        {
+            get { return _nom; }
+            set
+            {
+                if (_nom != value)
+                {
+                    _nom = value;
+                    RaisePropertyChanged(() => Nom);
+                }
+            }
+        }
+        #endregion
+
 
         #region LastName
 
@@ -76,18 +101,18 @@ namespace WpfMvvmApplication1.Models
 
         #endregion
 
-        #region Adress
+        #region Address
 
-        private string _adress;
-        public string Adress
+        private string _address;
+        public string Address
         {
-            get { return _adress; }
+            get { return _address; }
             set
             {
-                if (_adress != value)
+                if (_address != value)
                 {
-                    _adress = value;
-                    RaisePropertyChanged(() => Adress);
+                    _address = value;
+                    RaisePropertyChanged(() => Address);
                 }
             }
         }
@@ -97,6 +122,8 @@ namespace WpfMvvmApplication1.Models
         #region CityId
 
         private string _cityId;
+
+
         public string CityId
         {
             get { return _cityId; }
