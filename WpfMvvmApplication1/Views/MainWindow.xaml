@@ -9,20 +9,16 @@
        Title="MainWindow" Height="873.164" Width="1412" WindowStartupLocation="Manual" WindowState="Maximized">
 
     <Window.Resources>
-        <viewModels:MainWindowViewModel x:Key="Windows1ViewModel" />
-        <converters:IsBiggerThanConverter x:Key="IsBiggerThanConverter" />
-        <ResourceDictionary x:Key="ResourceDict">
+        <ResourceDictionary>
+            <viewModels:MainWindowViewModel x:Key="Windows1ViewModel" />
+            <converters:IsBiggerThanConverter x:Key="IsBiggerThanConverter" />
             <ResourceDictionary.MergedDictionaries>
-                <ResourceDictionary Source="Resources/Dictionary1.xaml" />
-                <ResourceDictionary Source="Resources/Dictionary2.xaml" />
-
+                <ResourceDictionary Source="../Resources/Dictionary1.xaml" />
             </ResourceDictionary.MergedDictionaries>
         </ResourceDictionary>
 
+
     </Window.Resources>
-
-
-
 
     <Grid DataContext="{StaticResource Windows1ViewModel}" Margin="0,0,0,-1" Width="1367" Height="801">
         <StackPanel Orientation="Vertical"
@@ -55,7 +51,6 @@
             </DataGrid>
 
         </StackPanel>
-
         <Label Content="Nom :" HorizontalAlignment="Left" Margin="34,378,0,0" VerticalAlignment="Top" RenderTransformOrigin="16.526,8.692" Width="48" Height="26"/>
         <ComboBox x:Name="cbSexe" Style="{StaticResource ResourceKey=ComboBoxFlatStyle}" HorizontalAlignment="Left" Margin="1196,373,0,0" VerticalAlignment="Top" Width="161" BorderBrush="#FF080808" Height="26" SelectionChanged="cbSexe_SelectionChanged"/>
         <TextBox x:Name="tbNom" Style="{StaticResource ResourceKey=flatTextBox}" HorizontalAlignment="Left" Height="26" Margin="87,378,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="256" SelectionChanged="tbNom_SelectionChanged"   />
@@ -124,5 +119,6 @@
 
 
     </Grid>
+
 </Window>
     
