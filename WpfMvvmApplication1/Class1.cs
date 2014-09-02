@@ -13,29 +13,6 @@
 //    public partial class Enfants : Window
 //    {
 
-//        public class MyItem
-//        {
-//            public int Id { get; set; }
-//            public string Nom { get; set; }
-//            public string Prenom { get; set; }
-//            public string DateNaissance { get; set; }
-//            public string Sexe { get; set; }
-//        }
-
-
-//        public class Famille
-//        {
-//            public int Id { get; set; }
-//            public string Nom { get; set; }
-//        }
-
-//        public class Sexe
-//        {
-//            public int Id { get; set; }
-//            public string Value { get; set; }
-//        }
-
-
 //        public Enfants()
 //        {
 //            InitializeComponent();
@@ -44,115 +21,7 @@
 //            listSexe();
 //        }
 
-//        public void listSexe()
-//        {
-//            List<Sexe> lstSexes = new List<Sexe>();
-//            lstSexes.Add(new Sexe { Id = 1, Value = "Homme" });
-//            lstSexes.Add(new Sexe { Id = 2, Value = "Femme" });
-//            this.cbSexe.ItemsSource = lstSexes;
-//            this.cbSexe.DisplayMemberPath = "Value";
-//            this.cbSexe.SelectedValuePath = "Id";
-//        }
-
 //        int iEnfantSelect = 0;
-
-
-//        public void ChargeEnfant(long iEnfant)
-//        {
-
-//            NpgsqlConnection Connection = new NpgsqlConnection(sConnection);
-
-//            // Charge la liste des familles : cbFamille
-//            //this.cbFamille.ItemsSource = LoadCombobox(@"SELECT ""ID"", ""NOM"" FROM ""FAMILLES""; ").DefaultView;
-//            //this.cbFamille.DisplayMemberPath = "NOM";
-
-
-//            // Charge les informations de l'enfant
-
-//            Connection.Open();
-//            string sSQLenfant = @"SELECT ""ID"", 
-//                                         ""NOM"", 
-//                                         ""PRENOM"", 
-//                                         ""DATENAISSANCE"", 
-//                                         ""SEXEID"", 
-//                                         ""FAMILLEID"" 
-//                                  FROM ""ENFANTS"" 
-//                                  WHERE ""ID""=" + iEnfant + "; ";
-
-//            NpgsqlCommand cmd = new NpgsqlCommand(sSQLenfant, Connection);
-//            NpgsqlDataReader reader = cmd.ExecuteReader();
-//            while (reader.Read())
-//            {
-//                string sNom = reader["NOM"].ToString();
-//                string sPrenom = reader["PRENOM"].ToString();
-//                DateTime dtNaissance = Convert.ToDateTime(reader["DATENAISSANCE"]);
-//                int iSexe = int.Parse(reader["SEXEID"].ToString());
-//                int iFamille = int.Parse(reader["FAMILLEID"].ToString());
-
-//                tbNom.Text = sNom;
-//                tbPrenom.Text = sPrenom;
-//                dtpNaissance.Text = dtNaissance.ToString();
-
-//                // Famille de l'enfant
-//                this.cbFamille.SelectedValue = iFamille;
-//                ChargeEnfantFamille(iFamille);
-
-//                // Sexe de l'enfant
-//                this.cbSexe.SelectedValue = iSexe;
-
-//            }
-//            Connection.Close();
-
-//        }
-
-//        // Charge les informations de la famille de l'enfant
-//        public void ChargeEnfantFamille(long iFamille)
-//        {
-//            string sAdresse = "";
-//            string sCp = "";
-//            string sCommune = "";
-//            string sTel1 = "";
-//            string sTel2 = "";
-//            string sTel3 = "";
-
-//            NpgsqlConnection Connection = new NpgsqlConnection(sConnection);
-//            Connection.Open();
-//            string sSQL = @"SELECT ""FAMILLES"".""ID"", 
-//                                   ""FAMILLES"".""NOM"", 
-//                                   ""FAMILLES"".""ADRESSE"", 
-//                                   ""FAMILLES"".""COMMUNEID"",
-//                                   ""FAMILLES"".""TEL1"",
-//                                   ""FAMILLES"".""TEL2"", 
-//                                   ""FAMILLES"".""TEL3"",
-//                                   ""COMMUNES"".""CP"", 
-//                                   ""COMMUNES"".""COMMUNE"" 
-//                            FROM   ""FAMILLES"", ""COMMUNES"" 
-//                            WHERE  ""FAMILLES"".""COMMUNEID""=""COMMUNES"".""ID"" 
-//                              AND  ""FAMILLES"".""ID""=" + iFamille + "; ";
-
-//            NpgsqlCommand cmd = new NpgsqlCommand(sSQL, Connection);
-//            NpgsqlDataReader reader = cmd.ExecuteReader();
-//            while (reader.Read())
-//            {
-//                sAdresse = reader["ADRESSE"].ToString();
-//                sCp = reader["CP"].ToString();
-//                sCommune = reader["COMMUNE"].ToString();
-//                sTel1 = reader["TEL1"].ToString();
-//                sTel2 = reader["TEL2"].ToString();
-//                sTel3 = reader["TEL3"].ToString();
-//            }
-//            reader.Close();
-//            Connection.Close();
-
-//            this.tbAdresse.Text = sAdresse;
-//            this.tbCp.Text = sCp;
-//            this.tbCommune.Text = sCommune;
-//            this.tbTel1.Text = sTel1;
-//            this.tbTel2.Text = sTel2;
-//            this.tbTel3.Text = sTel3;
-
-//        }
-
 
 //        private void Enfants_Load(object sender, EventArgs e)
 //        {

@@ -88,6 +88,9 @@ namespace WpfMvvmApplication1.Models
         }
 
 
+        /// <summary>
+        /// Load One Child
+        /// </summary>
         public Children ChargeEnfant(int iEnfant)
         {
             // ???????????????????????????????????????????????
@@ -145,7 +148,7 @@ namespace WpfMvvmApplication1.Models
         }
 
         /// <summary>
-        /// Charge les informations de la famille de l'enfant
+        /// Load one Family. (Charge les informations de la famille de l'enfant)
         /// </summary>
         public Address ChargeEnfantFamille(int iFamille)
         {

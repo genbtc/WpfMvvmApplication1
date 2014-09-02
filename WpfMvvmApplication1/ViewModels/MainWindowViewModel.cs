@@ -89,10 +89,10 @@ namespace WpfMvvmApplication1.ViewModels
         /// </summary>
         public List<Gender> ListGenders
         {
-            get { return listGenders; }
+            get { return Gender.listGenders; }
         }
 
-        private readonly List<Gender> listGenders = new List<Gender> { new Gender { Id = 1, Value = "Homme" }, new Gender { Id = 2, Value = "Femme" } };
+        
         #endregion
 
         public ObservableCollection<Family> ListFamilies

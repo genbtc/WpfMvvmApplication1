@@ -59,8 +59,12 @@ namespace WpfMvvmApplication1.Models
             Swim = swim;
             BikeOutings = bikeOutings;
             BoatOutings = boatOutings;
+
+            GenderName = Gender.IDtoValue(_sexId);
         }
         #endregion
+
+        
 
         #region Id
 
@@ -384,6 +388,23 @@ namespace WpfMvvmApplication1.Models
             }
         }
 
+
+        #endregion
+
+        #region GenderName
+        private string _gendername;
+        public string GenderName
+        {
+            get { return _gendername; }
+            set
+            {
+                if (_gendername != value)
+                {
+                    _gendername = value;
+                    RaisePropertyChanged(() => GenderName);
+                }
+            }
+        }
         #endregion
 
     }
