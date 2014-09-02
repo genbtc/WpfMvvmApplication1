@@ -48,8 +48,8 @@ namespace WpfMvvmApplication1.ViewModels
 
         #region ChildrensCollection
 
-        private ObservableCollection<Person> _childrensCollection;
-        public ObservableCollection<Person> ChildrensCollection
+        private ObservableCollection<Children> _childrensCollection;
+        public ObservableCollection<Children> ChildrensCollection
         {
             get { return _childrensCollection; }
             set
@@ -106,17 +106,27 @@ namespace WpfMvvmApplication1.ViewModels
 
         private void RandomizeData()
         {
-            PersonsCollection = new ObservableCollection<Person>();
+            ChildrensCollection = new ObservableCollection<Children>();
 
             for (var i = 0; i < 10; i++)
             {
-                PersonsCollection.Add(new Person(
+                ChildrensCollection.Add(new Children(
                     RandomHelper.RandomString(10, true),
-                    RandomHelper.RandomInt(1, 43),
-                    RandomHelper.RandomBool(),
-                    RandomHelper.RandomNumber(50, 180, 1),
+                    RandomHelper.RandomString(10, true),
                     RandomHelper.RandomDate(new DateTime(1980, 1, 1), DateTime.Now),
-                    RandomHelper.RandomColor()
+                    RandomHelper.RandomInt(1, 3),
+                    RandomHelper.RandomInt(1, 50),
+                    RandomHelper.RandomInt(1, 10),
+                    RandomHelper.RandomBool(),
+                    RandomHelper.RandomBool(),
+                    RandomHelper.RandomBool(),
+                    RandomHelper.RandomInt(1, 10),
+                    RandomHelper.RandomBool(),
+                    RandomHelper.RandomBool(),
+                    RandomHelper.RandomBool(),
+                    RandomHelper.RandomBool(),
+                    RandomHelper.RandomBool(),
+                    RandomHelper.RandomBool()
                     ));
             }
         }

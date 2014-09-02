@@ -28,56 +28,20 @@
                     HorizontalAlignment="Left"
                     Margin="0 20 0 0"
                     Command="{Binding RefreshPersonsCommand}" />
-            <DataGrid ItemsSource="{Binding PersonsCollection}"
+            <DataGrid ItemsSource="{Binding ChildrensCollection}"
                       AutoGenerateColumns="False"
                       CanUserAddRows="False">
                 <DataGrid.Columns>
-                    <DataGridTextColumn Binding="{Binding Name, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
-                                        Header="Name (string)" />
-                    <DataGridTextColumn Binding="{Binding Age}"
-                                        IsReadOnly="True"
-                                        Header="Age (int)" />
-                    <DataGridTemplateColumn Header="Age &gt; 16"
-                                            IsReadOnly="True">
-                        <DataGridTemplateColumn.CellTemplate>
-                            <DataTemplate>
-                                <Grid>
-                                    <Image Source="{StaticResource SampleSmileyIcon}"
-                                           Width="16"
-                                           Height="16">
-                                        <Image.Style>
-                                            <Style TargetType="{x:Type Image}">
-                                                <Setter Property="Visibility"
-                                                        Value="Collapsed" />
-                                                <Style.Triggers>
-                                                    <DataTrigger Binding="{Binding Age, ConverterParameter=18, Converter={StaticResource IsBiggerThanConverter}}"
-                                                                 Value="True">
-                                                        <Setter Property="Visibility"
-                                                                Value="Visible" />
-                                                    </DataTrigger>
-                                                </Style.Triggers>
-                                            </Style>
-                                        </Image.Style>
-                                    </Image>
-                                </Grid>
-                            </DataTemplate>
-                        </DataGridTemplateColumn.CellTemplate>
-                    </DataGridTemplateColumn>
-                    <DataGridCheckBoxColumn Binding="{Binding IsMarried, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
-                                            Header="IsMarried (bool)" />
-                    <DataGridTextColumn Binding="{Binding Height, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
-                                        Header="Height (double)" />
+                    <DataGridTextColumn Binding="{Binding Id, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                                        Header="Id (int)" />
+                    <DataGridTextColumn Binding="{Binding LastName}"
+                                        Header="LastName (string)" />
+                    <DataGridTextColumn Binding="{Binding FirstName}"
+                                        Header="FirstName (string)" />
                     <DataGridTextColumn Binding="{Binding BirthDate}"
-                                        IsReadOnly="True"
-                                        Header="BirthDate (DateTime)" />
-                    <DataGridTemplateColumn Header="FavoriteColor (SolidColorBrush)"
-                                            IsReadOnly="True">
-                        <DataGridTemplateColumn.CellTemplate>
-                            <DataTemplate>
-                                <Grid Background="{Binding FavoriteColor}" />
-                            </DataTemplate>
-                        </DataGridTemplateColumn.CellTemplate>
-                    </DataGridTemplateColumn>
+                                        Header="BirthDate (datetime)" />
+                    <DataGridTextColumn Binding="{Binding Gender}"
+                                        Header="Gendere (datetime)" />
                 </DataGrid.Columns>
             </DataGrid>
 
