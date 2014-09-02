@@ -20,7 +20,8 @@
 
     </Window.Resources>
 
-    <Grid DataContext="{StaticResource Windows1ViewModel}" Margin="0,0,0,-1" Width="1367" Height="801">
+    <Viewbox VerticalAlignment="Top">
+        <Grid DataContext="{StaticResource Windows1ViewModel}" Margin="0,0,0,-1" Width="1367" Height="801">
         <StackPanel Orientation="Vertical"
                    Margin="11,51,394,0"
                    HorizontalAlignment="Center"
@@ -99,11 +100,11 @@
             </TabItem>
             <TabItem Header="Régimes" HorizontalAlignment="Left" Height="20" VerticalAlignment="Top" Width="62" Margin="0,0,-5,0">
                 <Grid Background="White">
-                    <CheckBox Content="Sans Oeuf" HorizontalAlignment="Left" Margin="40,85,0,0" VerticalAlignment="Top"/>
-                    <CheckBox Content="Sans Poisson" HorizontalAlignment="Left" Margin="40,121,0,0" VerticalAlignment="Top"/>
-                    <CheckBox Content="Sans Gluten" HorizontalAlignment="Left" Margin="40,50,0,0" VerticalAlignment="Top"/>
-                    <CheckBox Content="Sans Porc" HorizontalAlignment="Left" Margin="40,161,0,0" VerticalAlignment="Top"/>
-                    <CheckBox Content="Sans Viande" HorizontalAlignment="Left" Margin="40,199,0,0" VerticalAlignment="Top"/>
+                    <CheckBox Content="Sans Gluten" HorizontalAlignment="Left" Margin="28,15,0,0" VerticalAlignment="Top"/>
+                    <CheckBox Content="Sans Oeuf" HorizontalAlignment="Left" Margin="28,55,0,0" VerticalAlignment="Top"/>
+                    <CheckBox Content="Sans Poisson" HorizontalAlignment="Left" Margin="28,95,0,0" VerticalAlignment="Top"/>
+                    <CheckBox Content="Sans Porc" HorizontalAlignment="Left" Margin="28,135,0,0" VerticalAlignment="Top"/>
+                    <CheckBox Content="Sans Viande" HorizontalAlignment="Left" Margin="28,175,0,0" VerticalAlignment="Top"/>
                     <TextBox HorizontalAlignment="Left" Height="140" Margin="365,51,0,0" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="485"/>
                     <Label Content="Régime Particuliers :" HorizontalAlignment="Left" Margin="243,45,0,0" VerticalAlignment="Top"/>
                 </Grid>
@@ -120,6 +121,7 @@
 
 
     </Grid>
+    </Viewbox>
 
 </Window>
     
