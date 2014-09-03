@@ -1,5 +1,4 @@
-﻿
-<Window x:Class="WpfMvvmApplication1.Views.MainWindow"
+﻿<Window x:Class="WpfMvvmApplication1.Views.MainWindow"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:viewModels="clr-namespace:WpfMvvmApplication1.ViewModels"
@@ -26,37 +25,49 @@
                 <Grid Height="241">
                     <DataGrid Name="MainDataGrid" 
                         ItemsSource="{Binding Path=ChildrensCollection.Collection}"
-                        AutoGenerateColumns="False" ColumnWidth="152" Margin="10,10,12,0" VerticalAlignment="Top" FontSize="10" Height="221" FontFamily="Arial" BorderThickness="1,2,1,1" FontWeight="Light" Background="{StaticResource ResourceKey=GenBtcColorBrush}" BorderBrush="#FF889BB1" RowBackground="Snow">
+                        AutoGenerateColumns="False" ColumnWidth="152" Margin="10,10,12,0" VerticalAlignment="Top" FontSize="10" Height="221" FontFamily="Arial" BorderThickness="1,2,1,1" FontWeight="Light" Background="{StaticResource ResourceKey=GenBtcColorBrush}" BorderBrush="#FF889BB1" RowBackground="Snow" HeadersVisibility="Column">
                         <DataGrid.Columns>
                             <DataGridTextColumn Binding="{Binding Path=Lastname}" Header="Nom" />
                             <DataGridTextColumn Binding="{Binding Path=Firstname}" Header="Prénom" />
-                            <DataGridTextColumn Binding="{Binding Path=BirthDate}" Header="Date de Naissance" />
-                            <DataGridTextColumn Binding="{Binding Path=GenderName}" Header="Gender" />
-                            <DataGridTextColumn Binding="{Binding Path=FamilyId}" Header="FamilyID" /><!--CanUserReorder="False" CanUserResize="False" CanUserSort="False"-->
-                            <DataGridComboBoxColumn Header="Gender Box"
-                                            SelectedValuePath="Id"
-                                            DisplayMemberPath="Value"
-                                            ItemsSource="{Binding Path=ListGenders, Source={StaticResource Windows1ViewModel}}"
-                                            SelectedValueBinding="{Binding Path=GenderId, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"        />
-                            <DataGridTemplateColumn Header="Example 9">
+
+                            <DataGridTemplateColumn Header="Date Naissance">
+                                <DataGridTemplateColumn.CellTemplate>
+                                    <DataTemplate>
+                                        <DatePicker Name="dtpNaissance" Height="20" HorizontalAlignment="Left" Margin="1,0,0,0" VerticalAlignment="Top" Width="151" 
+                                                    SelectedDate="{Binding Path=BirthDate, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" FontSize="10" />
+                                    </DataTemplate>
+                                </DataGridTemplateColumn.CellTemplate>
+                            </DataGridTemplateColumn>
+
+                            <DataGridTextColumn Binding="{Binding Path=Age}" Header="Age" />
+
+                            <DataGridTemplateColumn Header="Gender">
                                 <DataGridTemplateColumn.CellTemplate>
                                     <DataTemplate>
                                         <ComboBox Name="cbGender" HorizontalAlignment="Left" Height="20" VerticalAlignment="Top" Width="165"
-                                                  ItemsSource="{Binding Path=ListGenders, Source={StaticResource Windows1ViewModel}}"
+                                                  ItemsSource="{Binding Path=ListGenders, Source={StaticResource Windows1ViewModel}}" Style="{StaticResource ResourceKey=ComboBoxFlatStyle}"
                                                   DisplayMemberPath="Value" SelectedValuePath="Id" SelectedIndex="{Binding Path=GenderId, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" FontSize="10" />
                                     </DataTemplate>
                                 </DataGridTemplateColumn.CellTemplate>
                             </DataGridTemplateColumn>
+
+                            <DataGridTemplateColumn Header="Gender">
+                                <DataGridTemplateColumn.CellTemplate>
+                                    <DataTemplate>
+                                        <ComboBox Name="cbFamily" HorizontalAlignment="Left" Height="20" VerticalAlignment="Top" Width="165"
+                                                  ItemsSource="{Binding Path=FamilyCollection, Source={StaticResource Windows1ViewModel}}" Style="{StaticResource ResourceKey=ComboBoxFlatStyle}"
+                                                  DisplayMemberPath="LastName" SelectedValuePath="Id" SelectedIndex="{Binding Path=FamilyId, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" FontSize="10" />
+                                    </DataTemplate>
+                                </DataGridTemplateColumn.CellTemplate>
+                            </DataGridTemplateColumn>
+
                         </DataGrid.Columns>
+
                     </DataGrid>
                 </Grid>
 
             </StackPanel>
             <Grid Height="128" HorizontalAlignment="Left" Margin="11,271,0,0" VerticalAlignment="Top" Width="1132">
-                <TextBox Name="tbLastName" Style="{StaticResource ResourceKey=flatTextBox}" HorizontalAlignment="Left" Height="20" Margin="111,12,0,0" VerticalAlignment="Top" Width="248" FontSize="10" Text="{Binding ElementName=MainDataGrid, Path=SelectedItem.Lastname, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
-                <TextBox Name="tbFirstName" Style="{StaticResource ResourceKey=flatTextBox}" HorizontalAlignment="Left" Height="20" Margin="111,37,0,0" VerticalAlignment="Top" Width="248" FontSize="10" Text="{Binding ElementName=MainDataGrid, Path=SelectedItem.Firstname, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
-                <Label Content="Nom :" HorizontalAlignment="Left" Margin="70,12,0,0" VerticalAlignment="Top" RenderTransformOrigin="16.526,8.692" Width="36" Height="22" FontSize="10" />
-                <Label Content="Prénom :" HorizontalAlignment="Left" Margin="57,37,0,0" VerticalAlignment="Top" Height="22" FontSize="10" />
                 <ComboBox Name="cbFamily" Style="{StaticResource ResourceKey=ComboBoxFlatStyle}" HorizontalAlignment="Left" Margin="466,12,0,0" VerticalAlignment="Top" Width="427" Height="20" ItemsSource="{Binding Path=FamilyCollection}" DisplayMemberPath="LastName" SelectedValuePath="Id" SelectedIndex="{Binding ElementName=MainDataGrid,Path=SelectedItem.FamilyId}" IsEditable="False" />
                 <Label Content="Famille :" HorizontalAlignment="Left" Margin="415,12,0,0" VerticalAlignment="Top" FontSize="10" Height="22" />
                 <TextBox Name="tbAdress" Style="{StaticResource ResourceKey=flatTextBox}" HorizontalAlignment="Left" Height="45" Margin="466,37,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="427" IsEnabled="True" Text="{Binding ElementName=cbFamily,Path=SelectedItem.Address}" />
@@ -67,10 +78,6 @@
                 <TextBox Name="tbTel3" Style="{StaticResource ResourceKey=flatTextBox}" HorizontalAlignment="Left" Height="20" Margin="981,61,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="138" IsEnabled="True" Text="{Binding ElementName=cbFamily,Path=SelectedItem.Tel3}" />
                 <Label Content="Adresse :" HorizontalAlignment="Left" Margin="411,37,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.5,0.538" FontSize="10" Height="22" />
                 <Label Content="Tél. :" HorizontalAlignment="Left" Margin="942,11,0,0" VerticalAlignment="Top" Height="23" />
-                <ComboBox Name="cbGender" Style="{StaticResource ResourceKey=ComboBoxFlatStyle}" HorizontalAlignment="Left" Height="20" Margin="111,62,0,0" VerticalAlignment="Top" Width="248" BorderBrush="#FF080808" ItemsSource="{Binding Path=ListGenders}" DisplayMemberPath="Value" SelectedValuePath="Id" SelectedIndex="{Binding ElementName=MainDataGrid,Path=SelectedItem.GenderId}" FontSize="10" />
-                <DatePicker Name="dtpNaissance" Height="20" HorizontalAlignment="Left" Margin="111,87,0,0" VerticalAlignment="Top" Width="248" SelectedDate="{Binding Path=SelectedItem.BirthDate, ElementName=MainDataGrid}" FontSize="10" />
-                <Label Content="Date de Naissance :" HorizontalAlignment="Left" Margin="10,87,0,0" VerticalAlignment="Top" FontSize="10" IsManipulationEnabled="True" Height="22" />
-                <Label Content="Sexe :" HorizontalAlignment="Left" Margin="71,62,0,44" Height="22" FontSize="10" />
             </Grid>
 
             <TabControl Height="173" Margin="10,417,0,0" VerticalAlignment="Top" HorizontalAlignment="Left" Width="1134" SelectionChanged="TabControl_SelectionChanged">
@@ -114,6 +121,9 @@
                         <Label Content="Régime Particuliers :" HorizontalAlignment="Left" Margin="34,54,0,0" VerticalAlignment="Top"/>
                         <TextBox Style="{StaticResource ResourceKey=flatTextBox}" HorizontalAlignment="Left" Height="60" Margin="156,54,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="812"/>
                     </Grid>
+                </TabItem>
+                <TabItem Header="TabItem" HorizontalAlignment="Left" Height="20" VerticalAlignment="Top" Width="57">
+                    <Grid Background="#FFE5E5E5"/>
                 </TabItem>
             </TabControl>
 

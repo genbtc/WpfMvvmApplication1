@@ -119,6 +119,8 @@ namespace WpfMvvmApplication1.Models
                     if (_birthDate != null)
                         SQL.UpdateFields("CHILDRENS", "BIRTHDATE", value, _id);
                     _birthDate = value;
+                    Age = ToAge.Age(_birthDate);
+                    RaisePropertyChanged(() => Age);
                     RaisePropertyChanged(() => BirthDate);
                 }
             }
