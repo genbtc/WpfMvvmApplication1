@@ -10,37 +10,37 @@ namespace WpfMvvmApplication1.Models
         //string constants, for use on SQL connections, SQL children read, SQL families read
         private const string sConnection = "SERVER=localhost;DATABASE=ags;UID=ags;PASSWORD=Fadila1980;";
 
-        private const string sSQLchildren = @"SELECT ""ID"", 
-                                                     ""LASTNAME"", 
-                                                     ""FIRSTNAME"", 
-                                                     ""BIRTHDATE"", 
-                                                     ""GENDERID"",
-                                                     ""FAMILYID"",
-                                                     ""MEDECINEID"",
-                                                     ""EMT"",
-                                                     ""HOSPITAL"",
-                                                     ""CLINIC"",
-                                                     ""CLINICID"",
-                                                     ""BEPHOTOGRAPHY"",
-                                                     ""PUBLICATIONPHOTOGRAPHY"",
-                                                     ""OFFOUTPUTSSTRUCTURE"",
-                                                     ""SWIM"",
-                                                     ""BIKEOUTINGS"",
-                                                     ""BOATOUTINGS""
-                                              FROM ""CHILDRENS"" ORDER BY ""ID"";";
+        private const string sSQLchildren = @"SELECT ""ID"",
+                                                    ""LASTNAME"",
+                                                    ""FIRSTNAME"",
+                                                    ""BIRTHDATE"",
+                                                    ""GENDERID"",
+                                                    ""FAMILYID"",
+                                                    ""MEDECINEID"",
+                                                    ""EMT"",
+                                                    ""HOSPITAL"",
+                                                    ""CLINIC"",
+                                                    ""CLINICID"",
+                                                    ""BEPHOTOGRAPHY"",
+                                                    ""PUBLICATIONPHOTOGRAPHY"",
+                                                    ""OFFOUTPUTSSTRUCTURE"",
+                                                    ""SWIM"",
+                                                    ""BIKEOUTINGS"",
+                                                    ""BOATOUTINGS""
+                                             FROM ""CHILDRENS"" ORDER BY ""ID"";";
 
-        private const string sSQLfamilies = @"SELECT ""FAMILIES"".""ID"", 
-                                                     ""FAMILIES"".""LASTNAME"", 
-                                                     ""FAMILIES"".""FIRSTNAME"", 
-                                                     ""FAMILIES"".""ADRESS"", 
-                                                     ""FAMILIES"".""CITYID"",
-                                                     ""CITIES"".""CP"", 
-                                                     ""CITIES"".""CITY"",
-                                                     ""FAMILIES"".""TEL1"",
-                                                     ""FAMILIES"".""TEL2"", 
-                                                     ""FAMILIES"".""TEL3""
-                                              FROM   ""FAMILIES"", ""CITIES"" 
-                                              WHERE  ""FAMILIES"".""CITYID""=""CITIES"".""ID""; ";
+        private const string sSQLfamilies = @"SELECT ""FAMILIES"".""ID"",
+                                                    ""FAMILIES"".""LASTNAME"",
+                                                    ""FAMILIES"".""FIRSTNAME"",
+                                                    ""FAMILIES"".""ADRESS"",
+                                                    ""FAMILIES"".""CITYID"",
+                                                    ""CITIES"".""CP"",
+                                                    ""CITIES"".""CITY"",
+                                                    ""FAMILIES"".""TEL1"",
+                                                    ""FAMILIES"".""TEL2"",
+                                                    ""FAMILIES"".""TEL3""
+                                             FROM   ""FAMILIES"", ""CITIES""
+                                             WHERE  ""FAMILIES"".""CITYID""=""CITIES"".""ID""; ";
 
         //SQL reader
         private static DataTable readSQL(string sSQLstring)
@@ -78,8 +78,8 @@ namespace WpfMvvmApplication1.Models
         {
             ObservableCollection<Children> allChildren = new ObservableCollection<Children>();
             var reader = readSQL(sSQLchildren);
-            foreach(DataRow row in reader.Rows)
-            { 
+            foreach (DataRow row in reader.Rows)
+            {
                 int sId = int.Parse(row["ID"].ToString());
                 string sLastName = row["LASTNAME"].ToString();
                 string sFirstName = row["FIRSTNAME"].ToString();
@@ -142,32 +142,32 @@ namespace WpfMvvmApplication1.Models
                 string sTel2 = row["TEL2"].ToString();
                 string sTel3 = row["TEL3"].ToString();
 
-                //allFamily.Add(new Family(
-                //    iId,
-                //    sLastName,
-                //    sFirstName,
-                //    sAdress,
-                //    iCity,
-                //    sCity,
-                //    sCP,
-                //    sTel1,
-                //    sTel2,
-                //    sTel3
-                //    ));
-                var one = new Family
-                {
-                    Id = iId,
-                    LastName = sLastName,
-                    FirstName = sFirstName,
-                    Address = sAdress,
-                    CityId = iCity,
-                    City = sCity,
-                    Cp = sCP,
-                    Tel1 = sTel1,
-                    Tel2 = sTel2,
-                    Tel3 = sTel3
-                };
-                allFamily.Add(one);
+                allFamily.Add(new Family(
+                    iId,
+                    sLastName,
+                    sFirstName,
+                    sAdress,
+                    iCity,
+                    sCity,
+                    sCP,
+                    sTel1,
+                    sTel2,
+                    sTel3
+                    ));
+                //var one = new Family
+                //{
+                //    Id = iId,
+                //    LastName = sLastName,
+                //    FirstName = sFirstName,
+                //    Address = sAdress,
+                //    CityId = iCity,
+                //    City = sCity,
+                //    Cp = sCP,
+                //    Tel1 = sTel1,
+                //    Tel2 = sTel2,
+                //    Tel3 = sTel3
+                //};
+                //allFamily.Add(one);
             }
             return allFamily;
         }
@@ -181,7 +181,7 @@ namespace WpfMvvmApplication1.Models
         //    ObservableCollection<Family> listFamilies = new ObservableCollection<Family>();
         //    var reader = readSQL(sSQLfamilies);
         //    foreach(DataRow row in reader.Rows)
-        //    { 
+        //    {
         //        int iId = int.Parse(row["ID"].ToString());
         //        string sNom = row["LASTNAME"].ToString();
 
@@ -205,28 +205,28 @@ namespace WpfMvvmApplication1.Models
             Children oneChild = null;
 
             // Charge les informations de l'enfant
-            string sSQLchildren = @"SELECT ""ID"", 
-                                         ""LASTNAME"", 
-                                         ""FIRSTNAME"", 
-                                         ""BIRTHDATE"", 
-                                         ""GENDERID"", 
-                                         ""FAMILYID"",
-                                         ""MEDECINEID"",
-                                         ""EMT"",
-                                         ""HOSPITAL"",
-                                         ""CLINIC"",
-                                         ""CLINICID"",
-                                         ""BEPHOTOGRAPHY"",
-                                         ""PUBLICATIONPHOTOGRAPHY"",
-                                         ""OFFOUTPUTSSTRUCTURE"",
-                                         ""SWIM"",
-                                         ""BIKEOUTINGS"",
-                                         ""BOATOUTINGS""
-                                  FROM ""CHILDRENS"" 
-                                  WHERE ""ID""=" + iChildren + "; ";
+            string sSQLchildren = @"SELECT ""ID"",
+                                        ""LASTNAME"",
+                                        ""FIRSTNAME"",
+                                        ""BIRTHDATE"",
+                                        ""GENDERID"",
+                                        ""FAMILYID"",
+                                        ""MEDECINEID"",
+                                        ""EMT"",
+                                        ""HOSPITAL"",
+                                        ""CLINIC"",
+                                        ""CLINICID"",
+                                        ""BEPHOTOGRAPHY"",
+                                        ""PUBLICATIONPHOTOGRAPHY"",
+                                        ""OFFOUTPUTSSTRUCTURE"",
+                                        ""SWIM"",
+                                        ""BIKEOUTINGS"",
+                                        ""BOATOUTINGS""
+                                 FROM ""CHILDRENS""
+                                 WHERE ""ID""=" + iChildren + "; ";
             var reader = readSQL(sSQLchildren);
-            foreach(DataRow row in reader.Rows)
-            { 
+            foreach (DataRow row in reader.Rows)
+            {
                 string sLastName = row["LASTNAME"].ToString();
                 string sFirstName = row["FIRSTNAME"].ToString();
                 DateTime dtBirthDate = Convert.ToDateTime(row["BIRTHDATE"]);
@@ -265,8 +265,8 @@ namespace WpfMvvmApplication1.Models
                                 );
             }
             //
-            //  NOT ACTIVE YET 
-            // 
+            //  NOT ACTIVE YET
+            //
             //tbNom.Text = sNom;
             //tbPrenom.Text = sPrenom;
             //dtpNaissance.Text = dtNaissance.ToString();
@@ -287,23 +287,23 @@ namespace WpfMvvmApplication1.Models
         {
             Family oneFamily = null;
 
-            string sSQLChargeEnfant = @"SELECT ""FAMILIES"".""ID"", 
-                                           ""FAMILIES"".""LASTNAME"", 
-                                           ""FAMILIES"".""FIRSTNAME"", 
-                                           ""FAMILIES"".""ADRESS"", 
-                                           ""FAMILIES"".""CITYID"",
-                                           ""CITIES"".""CP"", 
-                                           ""CITIES"".""CITY"",
-                                           ""FAMILIES"".""TEL1"",
-                                           ""FAMILIES"".""TEL2"", 
-                                           ""FAMILIES"".""TEL3""
-                                    FROM   ""FAMILIES"", ""CITIES"" 
-                                    WHERE  ""FAMILIES"".""CITYID""=""CITIES"".""ID"" 
-                                      AND  ""FAMILIES"".""ID""=" + iFamily + "; ";
+            string sSQLChargeEnfant = @"SELECT ""FAMILIES"".""ID"",
+                                          ""FAMILIES"".""LASTNAME"",
+                                          ""FAMILIES"".""FIRSTNAME"",
+                                          ""FAMILIES"".""ADRESS"",
+                                          ""FAMILIES"".""CITYID"",
+                                          ""CITIES"".""CP"",
+                                          ""CITIES"".""CITY"",
+                                          ""FAMILIES"".""TEL1"",
+                                          ""FAMILIES"".""TEL2"",
+                                          ""FAMILIES"".""TEL3""
+                                   FROM   ""FAMILIES"", ""CITIES""
+                                   WHERE  ""FAMILIES"".""CITYID""=""CITIES"".""ID""
+                                     AND  ""FAMILIES"".""ID""=" + iFamily + "; ";
 
             var reader = readSQL(sSQLChargeEnfant);
-            foreach(DataRow row in reader.Rows)
-            { 
+            foreach (DataRow row in reader.Rows)
+            {
                 string sLastName = row["LASTNAME"].ToString();
                 string sFirstName = row["FIRSTNAME"].ToString();
                 string sAdress = row["ADRESS"].ToString();
