@@ -7,31 +7,52 @@ namespace WpfMvvmApplication1.Models
     {
      #region Ctor
 
-        public Children(int id,
-                        string lastname,
-                        string firstname,
-                        DateTime birthDate,
-                        int sexId,
-                        int familyId = -1 //default if none specified (like in listChildren())  but when
-                                            // ChargeEnfant is called, it is used
-                        )
-        {
-            Id = id;
-            Lastname = lastname;
-            Firstname = firstname;
-            BirthDate = birthDate;
-            SexId = sexId;
-            FamilyId = familyId;
-        }
+        //public Children(int id,
+        //                string lastname,
+        //                string firstname,
+        //                DateTime birthDate,
+        //                int genderId,
+        //                int familyId, // = 1 //default if none specified (like in listChildren())  but when
+        //                int medecineId,
+        //                bool emt,
+        //                bool hospital,
+        //                bool clinic,
+        //                int clinicId,
+        //                bool bePhotography,
+        //                bool publicationPhotography,
+        //                bool offOutputsStructure,
+        //                bool swim,
+        //                bool bikeOutings,
+        //                bool boatOutings
+        //                )
+        //{
+        //    Id = id;
+        //    Lastname = lastname;
+        //    Firstname = firstname;
+        //    BirthDate = birthDate;
+        //    GenderId = genderId;
+        //    FamilyId = familyId;
+        //    MedecineId = medecineId;
+        //    Emt = emt;
+        //    Hospital = hospital;
+        //    Clinic = clinic;
+        //    ClinicId = ClinicId;
+        //    BePhotography = bePhotography;
+        //    PublicationPhotography = publicationPhotography;
+        //    OffOutputsStructure = offOutputsStructure;
+        //    Swim = swim;
+        //    BikeOutings = bikeOutings;
+        //    BoatOutings = boatOutings;
+        //}
 
         public Children(int id,
                         string lastname, 
                         string firstname, 
                         DateTime birthDate,
-                        int sexId, 
+                        int genderId, 
                         int familyId, 
                         int medecineId,
-                        bool samu, 
+                        bool emt, 
                         bool hospital, 
                         bool clinic, 
                         int clinicId, 
@@ -46,10 +67,10 @@ namespace WpfMvvmApplication1.Models
             Lastname = lastname;
             Firstname = firstname;
             BirthDate = birthDate;
-            SexId = sexId;
+            GenderId = genderId;
             FamilyId = familyId;
             MedecineId = medecineId;
-            Samu = samu;
+            Emt = emt;
             Hospital = hospital;
             Clinic = clinic;
             ClinicId = clinicId;
@@ -60,7 +81,7 @@ namespace WpfMvvmApplication1.Models
             BikeOutings = bikeOutings;
             BoatOutings = boatOutings;
 
-            GenderName = Gender.IDtoValue(_sexId);
+            GenderName = Gender.IDtoValue(_genderId);
         }
         #endregion
 
@@ -138,18 +159,18 @@ namespace WpfMvvmApplication1.Models
 
         #endregion
 
-        #region Samu
+        #region Emt
 
-        private bool _samu;
-        public bool Samu
+        private bool _emt;
+        public bool Emt
         {
-            get { return _samu; }
+            get { return _emt; }
             set
             {
-                if (_samu != value)
+                if (_emt != value)
                 {
-                    _samu = value;
-                    RaisePropertyChanged(() => Samu);
+                    _emt = value;
+                    RaisePropertyChanged(() => Emt);
                 }
             }
         }
@@ -336,18 +357,18 @@ namespace WpfMvvmApplication1.Models
 
         #endregion
 
-        #region SexId
+        #region GenderId
 
-        private int _sexId;
-        public int SexId
+        private int _genderId;
+        public int GenderId
         {
-            get { return _sexId; }
+            get { return _genderId; }
             set
             {
-                if (_sexId != value)
+                if (_genderId != value)
                 {
-                    _sexId = value;
-                    RaisePropertyChanged(() => SexId);
+                    _genderId = value;
+                    RaisePropertyChanged(() => GenderId);
                 }
             }
         }

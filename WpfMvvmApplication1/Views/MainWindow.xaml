@@ -6,7 +6,7 @@
        mc:Ignorable="d"
                 xmlns:viewModels="clr-namespace:WpfMvvmApplication1.ViewModels"
        xmlns:converters="clr-namespace:WpfMvvmApplication1.Converters"
-       Title="MainWindow" Height="900" Width="1600" WindowStartupLocation="Manual" WindowState="Maximized">
+       Title="MainWindow" Height="868.5" Width="1600" WindowStartupLocation="Manual" WindowState="Maximized">
 
     <Window.Resources>
         <ResourceDictionary>
@@ -19,104 +19,101 @@
 
 
     </Window.Resources>
- 
+
 
     <Viewbox VerticalAlignment="Top" Margin="0,8,0,8">
-        <Grid DataContext="{StaticResource Windows1ViewModel}" Margin="0,0,0,-1" Width="1153" Height="689">
-            <StackPanel Orientation="Vertical" HorizontalAlignment="Left" VerticalAlignment="Top" Height="315" Width="1154">
+        <Grid DataContext="{StaticResource Windows1ViewModel}" Margin="0,0,0,-1" Width="1153" Height="599">
+            <StackPanel Orientation="Vertical" HorizontalAlignment="Left" VerticalAlignment="Top" Height="271" Width="1154" Margin="0,0,-1,0">
                 <StackPanel Orientation="Horizontal" Height="28" Width="1120"  HorizontalAlignment="Left">
                     <Label Content="Recherche :" />
                     <TextBox Height="23" TextWrapping="Wrap" Text="TextBox" Width="716" />
                 </StackPanel>
-                <Button Content="Randomize Grid Data" Margin="0 6 0 6"
-                   Command="{Binding RefreshPersonsCommand}" Width="149" HorizontalAlignment="Left" />
-                <DataGrid x:Name="MainDataGrid" ItemsSource="{Binding Path=ChildrensCollection}"
+
+                <Grid Height="241">
+                    <Button Content="+" Margin="1118,10,10,207"/>
+                    <DataGrid x:Name="MainDataGrid" ItemsSource="{Binding Path=ChildrensCollection}"
                      AutoGenerateColumns="False"
-                     CanUserAddRows="False"
-                     IsReadOnly="True" Width="1150" Height="258" ColumnWidth="166">
-                    <DataGrid.Columns>
-                        <DataGridTextColumn Binding="{Binding Lastname, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Header="LastName" IsReadOnly="True" />
-                        <DataGridTextColumn Binding="{Binding Firstname, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
-                                       Header="FirstName" IsReadOnly="True" />
-                        <DataGridTextColumn Binding="{Binding BirthDate, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
-                                           Header="BirthDate" IsReadOnly="True" />
-                        <DataGridTextColumn Binding="{Binding GenderName, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
-                                           Header="Gender" IsReadOnly="True" />
-                        <DataGridTextColumn Binding="{Binding FamilyId, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
-                                       Header="FamilyID" IsReadOnly="True" />
-                        <DataGridTextColumn Binding="{Binding MedecineId, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
-                                       Header="MedicineID" IsReadOnly="True" />
-                    </DataGrid.Columns>
-                </DataGrid>
+                     CanUserAddRows="True"
+                     ColumnWidth="166" Margin="10,10,41,0" CanUserResizeRows="False" VerticalAlignment="Top" FontSize="10" Height="221" FontFamily="Arial" BorderThickness="1,4,1,1" FontWeight="Light">
+                        <DataGrid.Columns>
+                            <DataGridTextColumn Binding="{Binding Lastname, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Header="Nom" IsReadOnly="True" />
+                            <DataGridTextColumn Binding="{Binding Firstname, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Header="Prénom" IsReadOnly="True" />
+                            <DataGridTextColumn Binding="{Binding BirthDate, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Header="Date de Naissance" IsReadOnly="True" />
+                            <DataGridTextColumn Binding="{Binding GenderName, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Header="Genre" IsReadOnly="True" />
+                            <DataGridTextColumn Binding="{Binding FamilyId, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Header="FamilyID" IsReadOnly="True" />
+                        </DataGrid.Columns>
+                    </DataGrid>
+                </Grid>
 
             </StackPanel>
-            <TabControl Height="239" Margin="26,448,0,0" VerticalAlignment="Top" HorizontalAlignment="Left" Width="1109">
-                <TabItem Header="Consignes">
+            <Grid Height="128" HorizontalAlignment="Left" Margin="11,271,-1,0" VerticalAlignment="Top" Width="1143">
+                <Label Content="Nom :" HorizontalAlignment="Left" Margin="70,12,0,0" VerticalAlignment="Top" RenderTransformOrigin="16.526,8.692" Width="36" Height="22" FontSize="10" />
+                <TextBox x:Name="tbLastName" Style="{StaticResource ResourceKey=flatTextBox}" HorizontalAlignment="Left" Height="20" Margin="111,12,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="248" Text="{Binding ElementName=MainDataGrid,Path=SelectedItem.Lastname, Mode=TwoWay}" FontSize="10" />
+                <Label Content="Prénom :" HorizontalAlignment="Left" Margin="57,37,0,0" VerticalAlignment="Top" Height="22" FontSize="10" />
+                <TextBox x:Name="tbFirstName" Style="{StaticResource ResourceKey=flatTextBox}" HorizontalAlignment="Left" Height="20" Margin="111,37,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="248" Text="{Binding ElementName=MainDataGrid,Path=SelectedItem.Firstname}" FontSize="10" />
+                <ComboBox x:Name="cbFamily" Style="{StaticResource ResourceKey=ComboBoxFlatStyle}" HorizontalAlignment="Left" Margin="466,12,0,0" VerticalAlignment="Top" Width="427" Height="20" ItemsSource="{Binding Path=FamilyCollection}" DisplayMemberPath="LastName" SelectedValuePath="Id" SelectedIndex="{Binding ElementName=MainDataGrid,Path=SelectedItem.FamilyId}" IsEditable="True" />
+                <Label Content="Famille :" HorizontalAlignment="Left" Margin="415,12,0,0" VerticalAlignment="Top" FontSize="10" Height="22" />
+                <TextBox x:Name="tbAdress" Style="{StaticResource ResourceKey=flatTextBox}" HorizontalAlignment="Left" Height="45" Margin="466,37,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="427" IsEnabled="True" Text="{Binding ElementName=cbFamily,Path=SelectedItem.Adress}" IsReadOnly="True"/>
+                <TextBox x:Name="tbCp" Style="{StaticResource ResourceKey=flatTextBox}" HorizontalAlignment="Left" Height="20" Margin="466,87,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" IsEnabled="True" Text="{Binding ElementName=cbFamily,Path=SelectedItem.Cp}" IsReadOnly="True"/>
+                <TextBox x:Name="tbCity" Style="{StaticResource ResourceKey=flatTextBox}" HorizontalAlignment="Left" Height="20" Margin="591,87,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="302" IsEnabled="True" Text="{Binding ElementName=cbFamily,Path=SelectedItem.City}" IsReadOnly="True"/>
+                <TextBox x:Name="tbTel1" Style="{StaticResource ResourceKey=flatTextBox}" HorizontalAlignment="Left" Height="20" Margin="985,32,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="138" IsEnabled="True" Text="{Binding ElementName=cbFamily,Path=SelectedItem.Tel1}" IsReadOnly="True"/>
+                <TextBox x:Name="tbTel2" Style="{StaticResource ResourceKey=flatTextBox}" HorizontalAlignment="Left" Height="20" Margin="985,57,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="138" IsEnabled="True" Text="{Binding ElementName=cbFamily,Path=SelectedItem.Tel2}" IsReadOnly="True"/>
+                <TextBox x:Name="tbTel3" Style="{StaticResource ResourceKey=flatTextBox}" HorizontalAlignment="Left" Height="20" Margin="985,82,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="138" IsEnabled="True" Text="{Binding ElementName=cbFamily,Path=SelectedItem.Tel3}" IsReadOnly="True"/>
+                <Label Content="Adresse :" HorizontalAlignment="Left" Margin="411,37,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.5,0.538" FontSize="10" Height="22" />
+                <Label Content="Tél. :" HorizontalAlignment="Left" Margin="946,32,0,0" VerticalAlignment="Top" Height="23" />
+                <ComboBox x:Name="cbGender" Style="{StaticResource ResourceKey=ComboBoxFlatStyle}" HorizontalAlignment="Left" Height="20" Margin="111,62,0,0" VerticalAlignment="Top" Width="248" BorderBrush="#FF080808" ItemsSource="{Binding Path=ListGenders}" DisplayMemberPath="Value" SelectedValuePath="Id" SelectedIndex="{Binding ElementName=MainDataGrid,Path=SelectedItem.FamilyId}" FontSize="10" />
+                <DatePicker Name="dtpNaissance" Height="20" HorizontalAlignment="Left" Margin="111,87,0,0" VerticalAlignment="Top" Width="248" SelectedDate="{Binding Path=SelectedItem.BirthDate, ElementName=MainDataGrid}" FontSize="10" />
+                <Label Content="Date de Naissance :" HorizontalAlignment="Left" Margin="10,87,0,0" VerticalAlignment="Top" FontSize="10" IsManipulationEnabled="True" Height="22" />
+                <Label Content="Sexe :" HorizontalAlignment="Left" Margin="71,62,0,44" Height="22" FontSize="10" />
+            </Grid>
+
+            <TabControl Height="173" Margin="10,417,0,-37" VerticalAlignment="Top" HorizontalAlignment="Left" Width="1109" SelectionChanged="TabControl_SelectionChanged">
+                <TabItem Header="Consignes" FontSize="10">
                     <Grid Background="WhiteSmoke">
-                        <Label Content="Médecin :" HorizontalAlignment="Left" Margin="18,28,0,0" VerticalAlignment="Top"/>
-                        <TextBox x:Name="tbTel" Style="{StaticResource ResourceKey=flatTextBox}" HorizontalAlignment="Left" Height="23" Margin="444,26,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="185"/>
-                        <ComboBox x:Name="cbMedecin" Style="{StaticResource ResourceKey=ComboBoxFlatStyle}"  HorizontalAlignment="Left" Margin="85,26,0,0" VerticalAlignment="Top" Width="283" Height="23" IsEditable="True" />
-                        <Label Content="Tél. :" HorizontalAlignment="Left" Margin="405,27,0,0" VerticalAlignment="Top"/>
-                        <TextBox x:Name="tbAllergies" Style="{StaticResource ResourceKey=flatTextBox}" HorizontalAlignment="Left" Height="93" Margin="85,87,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="544"/>
-                        <Label Content="Allergies :" HorizontalAlignment="Left" Margin="19,85,0,0" VerticalAlignment="Top"/>
+                        <Label Content="Médecin :" HorizontalAlignment="Left" Margin="9,10,0,0" VerticalAlignment="Top"/>
+                        <TextBox x:Name="tbTel" Style="{StaticResource ResourceKey=flatTextBox}" HorizontalAlignment="Left" Height="23" Margin="421,10,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="130"/>
+                        <ComboBox x:Name="cbMedecin" Style="{StaticResource ResourceKey=ComboBoxFlatStyle}"  HorizontalAlignment="Left" Margin="76,10,0,0" VerticalAlignment="Top" Width="283" Height="23" IsEditable="True" />
+                        <Label Content="Tél. :" HorizontalAlignment="Left" Margin="382,10,0,0" VerticalAlignment="Top"/>
+                        <TextBox x:Name="tbAllergies" Style="{StaticResource ResourceKey=flatTextBox}" HorizontalAlignment="Left" Height="60" Margin="76,41,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="475"/>
+                        <Label Content="Allergies :" HorizontalAlignment="Left" Margin="10,41,0,0" VerticalAlignment="Top"/>
+                        <CheckBox x:Name="chkHospital" Content="Hôpital" Margin="582,15,310,113" IsChecked="{Binding SelectedItem.Hospital, ElementName=MainDataGrid}" />
+                        <CheckBox x:Name="chkEMT" Content="S.A.M.U" Margin="582,40,310,88" />
+                        <CheckBox x:Name="chkClinic" Content="Clinique" Margin="582,65,458,63" IsChecked="{Binding SelectedItem.Clinic, ElementName=MainDataGrid}" />
+                        <CheckBox Content="Être Photographié" Margin="582,90,366,38" IsChecked="{Binding SelectedItem.BePhotography, ElementName=MainDataGrid}" />
+                        <CheckBox Content="Publication de l'image" Margin="582,115,366,13"  IsChecked="{Binding SelectedItem.Clinic, ElementName=MainDataGrid}" />
+                        <CheckBox Content="Sorties Hors Structure" Margin="848,90,100,38" IsChecked="{Binding SelectedItem.OffOutput, ElementName=MainDataGrid}" />
+                        <CheckBox Content="Baignade" Margin="848,15,100,113" IsChecked="{Binding SelectedItem.Swim, ElementName=MainDataGrid}" />
+                        <CheckBox Content="Sorties Vélo" Margin="848,40,100,88" IsChecked="{Binding SelectedItem.BikeOutings, ElementName=MainDataGrid}" />
+                        <CheckBox Content="Sorties Bâteau" Margin="848,65,100,63" IsChecked="{Binding SelectedItem.BoatOutings, ElementName=MainDataGrid}" />
+
                     </Grid>
                 </TabItem>
-                <TabItem Header="Droits">
+                <TabItem Header="Droits" FontSize="10">
                     <Grid Background="White"/>
                 </TabItem>
-                <TabItem Header="Autorisations" HorizontalAlignment="Left" Height="20" VerticalAlignment="Top" Width="82" Margin="0,0,-25,0">
+                <TabItem Header="Autorisations" HorizontalAlignment="Left" Height="20" VerticalAlignment="Top" Width="82" Margin="0,0,-25,0" FontSize="10">
                     <Grid Background="White">
-                        <StackPanel Height="192" HorizontalAlignment="Left" Margin="15,14,0,0" Name="stackPanelAutorisations1" VerticalAlignment="Top" Width="194">
-                            <CheckBox Content="Hôpital" Margin="0,8" />
-                            <CheckBox Content="Clinique" Margin="0,8,0,2" />
-                            <ComboBox Width="186" HorizontalAlignment="Left" Margin="0,0,0,0" />
-                            <CheckBox Content="Être Photographié" Margin="0,8" />
-                            <CheckBox Content="Publication de l'image" Margin="0,8"  />
-                            <CheckBox Content="S.A.M.U" Margin="0,8" />
-                        </StackPanel>
-                        <StackPanel Height="191" HorizontalAlignment="Left" Margin="236,14,0,0" Name="stackPanelAutorisations2" VerticalAlignment="Top" Width="151">
-                            <CheckBox Content="Sorties Hors Structure" Margin="0,8" />
-                            <CheckBox Content="Baignade" Margin="0,8" />
-                            <CheckBox Content="Sorties Vélo" Margin="0,8"/>
-                            <CheckBox Content="Sorties Bâteau" Margin="0,8" />
-                        </StackPanel>
+                        <StackPanel Height="101" HorizontalAlignment="Left" Margin="15,14,0,0" Name="stackPanelAutorisations1" VerticalAlignment="Top" Width="217"/>
+                        <StackPanel Height="99" HorizontalAlignment="Left" Margin="707,16,0,0" Name="stackPanelAutorisations2" VerticalAlignment="Top" Width="151"/>
+
+                        <StackPanel Height="99" HorizontalAlignment="Left" Margin="350,16,0,0" Name="stackPanelAutorisations3" VerticalAlignment="Top" Width="151"/>
+                        <ComboBox Width="111" HorizontalAlignment="Left" Margin="82,81,0,74" />
                     </Grid>
                 </TabItem>
-                <TabItem Header="Régimes" HorizontalAlignment="Left" Height="20" VerticalAlignment="Top" Width="62" Margin="0,0,-5,0">
+                <TabItem Header="Régimes" Height="20" VerticalAlignment="Top" Width="62" Margin="0" FontSize="10">
                     <Grid Background="White">
-                        <StackPanel Height="196" HorizontalAlignment="Left" Margin="10,8,0,0" Name="stackPanelRegimes" VerticalAlignment="Top" Width="155">
-                            <CheckBox Content="Sans Gluten" Margin="0,8" />
-                            <CheckBox Content="Sans Oeuf" Margin="0,8" />
-                            <CheckBox Content="Sans Poisson" Margin="0,8" />
-                            <CheckBox Content="Sans Porc" Margin="0,8" />
-                            <CheckBox Content="Sans Viande" Margin="0,8" />
-                        </StackPanel>
-                        <TextBox HorizontalAlignment="Left" Height="140" Margin="373,17,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="485"/>
-                        <Label Content="Régime Particuliers :" HorizontalAlignment="Left" Margin="251,11,0,0" VerticalAlignment="Top"/>                        
+                        <CheckBox Content="Sans Gluten" Margin="34,10,937,116" />
+                        <CheckBox Content="Sans Oeuf" Margin="167,10,777,116" />
+                        <CheckBox Content="Sans Poisson" Margin="290,10,654,116" />
+                        <CheckBox Content="Sans Porc" Margin="445,10,499,116" />
+                        <CheckBox Content="Sans Viande" Margin="600,10,344,116" />
+
+                        <TextBox HorizontalAlignment="Left" Height="60" Margin="156,54,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="812"/>
+                        <Label Content="Régime Particuliers :" HorizontalAlignment="Left" Margin="34,54,0,0" VerticalAlignment="Top"/>
                     </Grid>
                 </TabItem>
             </TabControl>
-            <Grid Height="128" HorizontalAlignment="Left" Margin="1,319,0,0" VerticalAlignment="Top" Width="1153">
-                <Label Content="Nom :" HorizontalAlignment="Left" Margin="14,10,0,0" VerticalAlignment="Top" RenderTransformOrigin="16.526,8.692" Width="48" Height="26" />
-                <TextBox x:Name="tbLastName" Style="{StaticResource ResourceKey=flatTextBox}" HorizontalAlignment="Left" Height="26" Margin="67,10,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="225" Text="{Binding ElementName=MainDataGrid,Path=SelectedItem.Lastname}" />
-                <Label Content="Prénom :" HorizontalAlignment="Left" Margin="4,46,0,0" VerticalAlignment="Top" Height="26" />
-                <TextBox x:Name="tbFirstName" Style="{StaticResource ResourceKey=flatTextBox}" HorizontalAlignment="Left" Height="26" Margin="67,46,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="285" Text="{Binding ElementName=MainDataGrid,Path=SelectedItem.Firstname}" />
-                <ComboBox x:Name="cbFamily" Style="{StaticResource ResourceKey=ComboBoxFlatStyle}" HorizontalAlignment="Left" Margin="67,80,0,0" VerticalAlignment="Top" Width="256" Height="26" ItemsSource="{Binding Path=ListFamilies}" DisplayMemberPath="LastName" SelectedValuePath="Id" IsEditable="True" />
-                <Label Content="Famille :" HorizontalAlignment="Left" Margin="9,80,0,0" VerticalAlignment="Top" />
-                <TextBox x:Name="tbAdresse" Style="{StaticResource ResourceKey=flatTextBox}" HorizontalAlignment="Left" Height="50" Margin="399,7,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="427" IsEnabled="True" />
-                <TextBox x:Name="tbCp" Style="{StaticResource ResourceKey=flatTextBox}" HorizontalAlignment="Left" Height="23" Margin="399,62,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" IsEnabled="True" />
-                <TextBox x:Name="tbCommune" Style="{StaticResource ResourceKey=flatTextBox}" HorizontalAlignment="Left" Height="23" Margin="526,62,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="426" IsEnabled="True" />
-                <TextBox x:Name="tbTel1" Style="{StaticResource ResourceKey=flatTextBox}" HorizontalAlignment="Left" Height="23" Margin="398,91,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="161" IsEnabled="True" />
-                <TextBox x:Name="tbTel2" Style="{StaticResource ResourceKey=flatTextBox}" HorizontalAlignment="Left" Height="23" Margin="570,91,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="161" IsEnabled="True" />
-                <TextBox x:Name="tbTel3" Style="{StaticResource ResourceKey=flatTextBox}" HorizontalAlignment="Left" Height="23" Margin="747,91,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="163" IsEnabled="True" />
-                <Label Content="Adresse :" HorizontalAlignment="Left" Margin="339,17,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.5,0.538" />
-                <Label Content="Tél. :" HorizontalAlignment="Left" Margin="362,92,0,0" VerticalAlignment="Top" Height="23" />
-                <ComboBox x:Name="cbGender" Style="{StaticResource ResourceKey=ComboBoxFlatStyle}" HorizontalAlignment="Left" Height="26" Margin="963,5,0,0" VerticalAlignment="Top" Width="161" BorderBrush="#FF080808" ItemsSource="{Binding Path=ListGenders}" DisplayMemberPath="Value" SelectedValuePath="Id" />
-                <DatePicker Name="dtpNaissance" Height="26" HorizontalAlignment="Left" Margin="963,35,0,0" VerticalAlignment="Top" Width="158" SelectedDate="{Binding Path=SelectedItem.BirthDate, ElementName=MainDataGrid}" />
-                <Label Content="Date de Naissance :" HorizontalAlignment="Left" Margin="843,33,0,0" VerticalAlignment="Top" />
-                <Label Content="Sexe :" HorizontalAlignment="Left" Margin="914,6,0,96" />
-            </Grid>
-            
+
         </Grid>
     </Viewbox>
 
