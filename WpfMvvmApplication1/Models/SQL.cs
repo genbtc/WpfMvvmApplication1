@@ -70,6 +70,7 @@ namespace WpfMvvmApplication1.Models
             Connection.Close();
         }
 
+
         /// <summary>
         /// query SQL, return all children in an ObservableCollection for use by ViewModel
         /// </summary>
@@ -134,25 +135,39 @@ namespace WpfMvvmApplication1.Models
                 string sLastName = row["LASTNAME"].ToString();
                 string sFirstName = row["FIRSTNAME"].ToString();
                 string sAdress = row["ADRESS"].ToString();
-                int iCity = int.Parse(row["CITYID"].ToString());                
+                int iCity = int.Parse(row["CITYID"].ToString());
                 string sCP = row["CP"].ToString();
                 string sCity = row["CITY"].ToString();
                 string sTel1 = row["TEL1"].ToString();
                 string sTel2 = row["TEL2"].ToString();
                 string sTel3 = row["TEL3"].ToString();
 
-                allFamily.Add(new Family(
-                    iId,
-                    sLastName,
-                    sFirstName,
-                    sAdress,
-                    iCity,
-                    sCity,
-                    sCP,
-                    sTel1,
-                    sTel2,
-                    sTel3
-                    ));
+                //allFamily.Add(new Family(
+                //    iId,
+                //    sLastName,
+                //    sFirstName,
+                //    sAdress,
+                //    iCity,
+                //    sCity,
+                //    sCP,
+                //    sTel1,
+                //    sTel2,
+                //    sTel3
+                //    ));
+                var one = new Family
+                {
+                    Id = iId,
+                    LastName = sLastName,
+                    FirstName = sFirstName,
+                    Address = sAdress,
+                    CityId = iCity,
+                    City = sCity,
+                    Cp = sCP,
+                    Tel1 = sTel1,
+                    Tel2 = sTel2,
+                    Tel3 = sTel3
+                };
+                allFamily.Add(one);
             }
             return allFamily;
         }
