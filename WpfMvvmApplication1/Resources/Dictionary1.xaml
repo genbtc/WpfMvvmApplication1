@@ -10,7 +10,7 @@
                 <ControlTemplate TargetType="{x:Type TextBox}">
                     <Grid>
                         <Rectangle  Stroke="{StaticResource ResourceKey=detailMarkBrush}" StrokeThickness="1"/>
-                        <TextBox Margin="1" Text="{TemplateBinding Text}" BorderThickness="0"/>
+                        <TextBox Text="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=Text, UpdateSourceTrigger=PropertyChanged}" Margin="1" BorderThickness="0"/>
                     </Grid>
                 </ControlTemplate>
             </Setter.Value>
