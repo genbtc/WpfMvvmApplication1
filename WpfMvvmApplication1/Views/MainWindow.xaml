@@ -24,7 +24,7 @@
                 </StackPanel>
 
                 <Grid Height="241">
-                    <DataGrid Name="MainDataGrid" IsReadOnly="True"
+                    <DataGrid Name="MainDataGrid" 
                         ItemsSource="{Binding Path=ChildrensCollection.Collection}"
                         AutoGenerateColumns="False" ColumnWidth="166" Margin="10,10,12,0" VerticalAlignment="Top" FontSize="10" Height="221" FontFamily="Arial" BorderThickness="1,2,1,1" FontWeight="Light" Background="{StaticResource ResourceKey=GenBtcColorBrush}" BorderBrush="#FF889BB1" RowBackground="Snow">
                         <DataGrid.Columns>
