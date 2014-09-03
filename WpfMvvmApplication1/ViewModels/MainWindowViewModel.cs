@@ -48,9 +48,9 @@ namespace WpfMvvmApplication1.ViewModels
         /// <summary>
         /// for initially populate checkbox with possible values
         /// </summary>
-        public List<Gender> ListGenders
+        public ObservableCollection<Gender> ListGenders
         {
-            get { return Gender.listGenders; }
+            get { return Gender.listGenders.ToObservableCollection(); }
         }
 
         
