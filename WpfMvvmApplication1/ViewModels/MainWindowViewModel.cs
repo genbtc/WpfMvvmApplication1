@@ -95,10 +95,10 @@ namespace WpfMvvmApplication1.ViewModels
         
         #endregion
 
-        public ObservableCollection<Family> ListFamilies
-        {
-            get { return SQL.listFamilies(); }
-        }
+        //public ObservableCollection<Family> ListFamilies
+        //{
+        //    get { return SQL.listFamilies(); }
+        //}
 
         #endregion
 
@@ -114,9 +114,9 @@ namespace WpfMvvmApplication1.ViewModels
         public MainWindowViewModel()
         {
 //eventually comment random out.
-            RandomizeData();
-//            ChildrensCollection = SQL.listChildren();
-//            FamilyCollection = SQL.listFamilies();
+//            RandomizeData();
+            ChildrensCollection = SQL.listChildren();
+            FamilyCollection = SQL.listFamilies();
         }
         #endregion
 
@@ -155,7 +155,7 @@ namespace WpfMvvmApplication1.ViewModels
                     RandomHelper.RandomString(10, true),
                     RandomHelper.RandomDate(new DateTime(1980, 1, 1), DateTime.Now),
                     RandomHelper.RandomInt(1, 3),
-                    RandomHelper.RandomInt(1, 50),
+                    RandomHelper.RandomInt(1, 2),
                     RandomHelper.RandomInt(1, 10),
                     RandomHelper.RandomBool(),
                     RandomHelper.RandomBool(),
@@ -169,6 +169,24 @@ namespace WpfMvvmApplication1.ViewModels
                     RandomHelper.RandomBool()
                     ));
             }
+
+            /*FamilyCollection = new ObservableCollection<Family>();
+
+            for (var i = 0; i < 10; i++)
+            {
+                FamilyCollection.Add(new Family(
+                    RandomHelper.RandomInt(1, 3),
+                    RandomHelper.RandomString(10, true),
+                    RandomHelper.RandomString(10, true),
+                    RandomHelper.RandomString(10, true),
+                    RandomHelper.RandomString(10, true),
+                    RandomHelper.RandomString(10, true),
+                    RandomHelper.RandomString(10, true),
+                    RandomHelper.RandomString(10, true)
+                    ));
+            }*/
+
+
         }
     }
 }
