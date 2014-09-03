@@ -26,13 +26,27 @@
                 <Grid Height="241">
                     <DataGrid Name="MainDataGrid" 
                         ItemsSource="{Binding Path=ChildrensCollection.Collection}"
-                        AutoGenerateColumns="False" ColumnWidth="166" Margin="10,10,12,0" VerticalAlignment="Top" FontSize="10" Height="221" FontFamily="Arial" BorderThickness="1,2,1,1" FontWeight="Light" Background="{StaticResource ResourceKey=GenBtcColorBrush}" BorderBrush="#FF889BB1" RowBackground="Snow">
+                        AutoGenerateColumns="False" ColumnWidth="152" Margin="10,10,12,0" VerticalAlignment="Top" FontSize="10" Height="221" FontFamily="Arial" BorderThickness="1,2,1,1" FontWeight="Light" Background="{StaticResource ResourceKey=GenBtcColorBrush}" BorderBrush="#FF889BB1" RowBackground="Snow">
                         <DataGrid.Columns>
                             <DataGridTextColumn Binding="{Binding Path=Lastname}" Header="Nom" />
                             <DataGridTextColumn Binding="{Binding Path=Firstname}" Header="Prénom" />
                             <DataGridTextColumn Binding="{Binding Path=BirthDate}" Header="Date de Naissance" />
                             <DataGridTextColumn Binding="{Binding Path=GenderName}" Header="Gender" />
                             <DataGridTextColumn Binding="{Binding Path=FamilyId}" Header="FamilyID" /><!--CanUserReorder="False" CanUserResize="False" CanUserSort="False"-->
+                            <DataGridComboBoxColumn Header="Gender Box"
+                                            SelectedValuePath="Id"
+                                            DisplayMemberPath="Value"
+                                            ItemsSource="{Binding Path=ListGenders, Source={StaticResource Windows1ViewModel}}"
+                                            SelectedValueBinding="{Binding Path=GenderId, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"        />
+                            <DataGridTemplateColumn Header="Example 9">
+                                <DataGridTemplateColumn.CellTemplate>
+                                    <DataTemplate>
+                                        <ComboBox Name="cbGender" HorizontalAlignment="Left" Height="20" VerticalAlignment="Top" Width="165"
+                                                  ItemsSource="{Binding Path=ListGenders, Source={StaticResource Windows1ViewModel}}"
+                                                  DisplayMemberPath="Value" SelectedValuePath="Id" SelectedIndex="{Binding Path=GenderId, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" FontSize="10" />
+                                    </DataTemplate>
+                                </DataGridTemplateColumn.CellTemplate>
+                            </DataGridTemplateColumn>
                         </DataGrid.Columns>
                     </DataGrid>
                 </Grid>
