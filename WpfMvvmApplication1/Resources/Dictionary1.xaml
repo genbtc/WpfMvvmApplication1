@@ -1,6 +1,12 @@
 ﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
                     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
     
+<!--My Example of How you Make a Color and how you make a Brush. Some things use Colors, some use Brushes. This is used for window background,text box background,etc. Better to set it once if you re-use Colors. -->
+    <Color x:Key="GenBtcColor">#FFEAF0FF</Color>
+    <SolidColorBrush x:Key="GenBtcColorBrush" Color="{StaticResource ResourceKey=GenBtcColor}" />
+
+    
+    
     <Color x:Key="detailMark">#FFA1A9B3</Color>
     <SolidColorBrush x:Key="detailMarkBrush" Color="{StaticResource ResourceKey=detailMark}" />
 
@@ -9,20 +15,24 @@
             <Setter.Value>
                 <ControlTemplate TargetType="{x:Type TextBox}">
                     <Grid>
-                        <Rectangle  Stroke="{StaticResource ResourceKey=detailMarkBrush}" StrokeThickness="1"/>
-                        <TextBox Margin="1" Text="{TemplateBinding Text}" BorderThickness="0"/>
+                        <Rectangle Stroke="{StaticResource ResourceKey=detailMarkBrush}" StrokeThickness="1"/>
+                        <TextBox Text="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=Text, UpdateSourceTrigger=PropertyChanged}" Margin="1" BorderThickness="0" Background="{StaticResource ResourceKey=GenBtcColorBrush}" />
                     </Grid>
                 </ControlTemplate>
             </Setter.Value>
         </Setter>
     </Style>
 
+    
+    
     <SolidColorBrush x:Key="ComboBoxNormalBorderBrush" Color="#FFA1A9B3" />
-    <SolidColorBrush x:Key="ComboBoxNormalBackgroundBrush" Color="#fff" />
+    <SolidColorBrush x:Key="ComboBoxNormalBackgroundBrush" Color="{StaticResource ResourceKey=GenBtcColor}" />
     <SolidColorBrush x:Key="ComboBoxDisabledForegroundBrush" Color="#888" />
     <SolidColorBrush x:Key="ComboBoxDisabledBackgroundBrush" Color="#eee" />
     <SolidColorBrush x:Key="ComboBoxDisabledBorderBrush" Color="#888" />
 
+    
+    
     <ControlTemplate TargetType="ToggleButton" x:Key="ComboBoxToggleButtonTemplate">
         <Grid>
             <Grid.ColumnDefinitions>
@@ -60,6 +70,8 @@
         </ControlTemplate.Triggers>
     </ControlTemplate>
 
+    
+    
     <Style x:Key="ComboBoxFlatStyle"  TargetType="{x:Type ComboBox}">
         <Setter Property="UIElement.SnapsToDevicePixels" Value="True"/>
         <Setter Property="FrameworkElement.OverridesDefaultStyle" Value="True"/>
@@ -95,13 +107,13 @@
                         </TextBox>
                         <!-- Popup showing items -->
                         <Popup Name="Popup" Placement="Bottom"
-                Focusable="False" AllowsTransparency="True"
+                Focusable="False" AllowsTransparency="False"
                 IsOpen="{TemplateBinding ComboBox.IsDropDownOpen}"
                 PopupAnimation="Slide">
                             <Grid Name="DropDown" SnapsToDevicePixels="True"
                 MinWidth="{TemplateBinding FrameworkElement.ActualWidth}"
                 MaxHeight="{TemplateBinding ComboBox.MaxDropDownHeight}">
-                                <Border Name="DropDownBorder" Background="White" Margin="0, 1, 0, 0"
+                                <Border Name="DropDownBorder" Background="#FFEAF0F4" Margin="0, 1, 0, 0"
                     CornerRadius="0" BorderThickness="1,1,1,1" 
                     BorderBrush="{StaticResource ComboBoxNormalBorderBrush}"/>
                                 <ScrollViewer Margin="4" SnapsToDevicePixels="True">

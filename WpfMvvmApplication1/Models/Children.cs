@@ -5,45 +5,8 @@ namespace WpfMvvmApplication1.Models
 {
     public class Children : NotificationObject
     {
-     #region Ctor
 
-        //public Children(int id,
-        //                string lastname,
-        //                string firstname,
-        //                DateTime birthDate,
-        //                int genderId,
-        //                int familyId, // = 1 //default if none specified (like in listChildren())  but when
-        //                int medecineId,
-        //                bool emt,
-        //                bool hospital,
-        //                bool clinic,
-        //                int clinicId,
-        //                bool bePhotography,
-        //                bool publicationPhotography,
-        //                bool offOutputsStructure,
-        //                bool swim,
-        //                bool bikeOutings,
-        //                bool boatOutings
-        //                )
-        //{
-        //    Id = id;
-        //    Lastname = lastname;
-        //    Firstname = firstname;
-        //    BirthDate = birthDate;
-        //    GenderId = genderId;
-        //    FamilyId = familyId;
-        //    MedecineId = medecineId;
-        //    Emt = emt;
-        //    Hospital = hospital;
-        //    Clinic = clinic;
-        //    ClinicId = ClinicId;
-        //    BePhotography = bePhotography;
-        //    PublicationPhotography = publicationPhotography;
-        //    OffOutputsStructure = offOutputsStructure;
-        //    Swim = swim;
-        //    BikeOutings = bikeOutings;
-        //    BoatOutings = boatOutings;
-        //}
+        #region Constructor
 
         public Children(int id,
                         string lastname, 
@@ -83,9 +46,8 @@ namespace WpfMvvmApplication1.Models
 
             GenderName = Gender.IDtoValue(_genderId);
         }
-        #endregion
 
-        
+        #endregion
 
         #region Id
 
@@ -113,11 +75,8 @@ namespace WpfMvvmApplication1.Models
             get { return _lastname; }
             set
             {
-                if (_lastname != value)
-                {
-                    _lastname = value;
-                    RaisePropertyChanged(() => Lastname);
-                }
+                _lastname = value;
+                RaisePropertyChanged(() => Lastname);
             }
         }
 
@@ -131,11 +90,8 @@ namespace WpfMvvmApplication1.Models
             get { return _firstname; }
             set
             {
-                if (_firstname != value)
-                {
-                    _firstname = value;
-                    RaisePropertyChanged(() => Firstname);
-                }
+                _firstname = value;
+                RaisePropertyChanged(() => Firstname);
             }
         }
 
@@ -368,6 +324,7 @@ namespace WpfMvvmApplication1.Models
                 if (_genderId != value)
                 {
                     _genderId = value;
+                    GenderName = Gender.IDtoValue(_genderId);
                     RaisePropertyChanged(() => GenderId);
                 }
             }
@@ -405,6 +362,7 @@ namespace WpfMvvmApplication1.Models
                 {
                     _medecineId = value;
                     RaisePropertyChanged(() => MedecineId);
+
                 }
             }
         }
