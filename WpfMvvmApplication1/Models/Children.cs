@@ -5,23 +5,22 @@ namespace WpfMvvmApplication1.Models
 {
     public class Children : NotificationObject
     {
-
         #region Constructor
 
         public Children(int id,
-                        string lastname, 
-                        string firstname, 
+                        string lastname,
+                        string firstname,
                         DateTime birthDate,
-                        int genderId, 
-                        int familyId, 
+                        int genderId,
+                        int familyId,
                         int medecineId,
-                        bool emt, 
-                        bool hospital, 
-                        bool clinic, 
-                        int clinicId, 
-                        bool bePhotography, 
-                        bool publicationPhotography, 
-                        bool offOutputsStructure, 
+                        bool emt,
+                        bool hospital,
+                        bool clinic,
+                        int clinicId,
+                        bool bePhotography,
+                        bool publicationPhotography,
+                        bool offOutputsStructure,
                         bool swim,
                         bool bikeOutings,
                         bool boatOutings)
@@ -52,6 +51,7 @@ namespace WpfMvvmApplication1.Models
         #region Id
 
         private int _id;
+
         public int Id
         {
             get { return _id; }
@@ -59,6 +59,8 @@ namespace WpfMvvmApplication1.Models
             {
                 if (_id != value)
                 {
+                    if (_id != null)
+                        SQL.UpdateFields("CHILDRENS", "ID", value, _id);
                     _id = value;
                     RaisePropertyChanged(() => Id);
                 }
@@ -70,11 +72,14 @@ namespace WpfMvvmApplication1.Models
         #region LastName
 
         private string _lastname;
+
         public string Lastname
         {
             get { return _lastname; }
             set
             {
+                if (_lastname != null)
+                    SQL.UpdateFields("CHILDRENS", "LASTNAME", value, _id);
                 _lastname = value;
                 RaisePropertyChanged(() => Lastname);
             }
@@ -85,11 +90,14 @@ namespace WpfMvvmApplication1.Models
         #region FirstName
 
         private string _firstname;
+
         public string Firstname
         {
             get { return _firstname; }
             set
             {
+                if (_firstname != null)
+                    SQL.UpdateFields("CHILDRENS", "FIRSTNAME", value, _id);
                 _firstname = value;
                 RaisePropertyChanged(() => Firstname);
             }
@@ -100,6 +108,7 @@ namespace WpfMvvmApplication1.Models
         #region BirthDate
 
         private DateTime _birthDate;
+
         public DateTime BirthDate
         {
             get { return _birthDate; }
@@ -107,6 +116,8 @@ namespace WpfMvvmApplication1.Models
             {
                 if (_birthDate != value)
                 {
+                    if (_birthDate != null)
+                        SQL.UpdateFields("CHILDRENS", "BIRTHDATE", value, _id);
                     _birthDate = value;
                     RaisePropertyChanged(() => BirthDate);
                 }
@@ -118,6 +129,7 @@ namespace WpfMvvmApplication1.Models
         #region Emt
 
         private bool _emt;
+
         public bool Emt
         {
             get { return _emt; }
@@ -125,6 +137,8 @@ namespace WpfMvvmApplication1.Models
             {
                 if (_emt != value)
                 {
+                    if (_emt != null)
+                        SQL.UpdateFields("CHILDRENS", "EMT", value, _id);
                     _emt = value;
                     RaisePropertyChanged(() => Emt);
                 }
@@ -136,6 +150,7 @@ namespace WpfMvvmApplication1.Models
         #region Hospital
 
         private bool _hospital;
+
         public bool Hospital
         {
             get { return _hospital; }
@@ -143,6 +158,8 @@ namespace WpfMvvmApplication1.Models
             {
                 if (_hospital != value)
                 {
+                    if (_hospital != null)
+                        SQL.UpdateFields("CHILDRENS", "HOSPITAL", value, _id);
                     _hospital = value;
                     RaisePropertyChanged(() => Hospital);
                 }
@@ -154,6 +171,7 @@ namespace WpfMvvmApplication1.Models
         #region Clinic
 
         private bool _clinic;
+
         public bool Clinic
         {
             get { return _clinic; }
@@ -161,6 +179,8 @@ namespace WpfMvvmApplication1.Models
             {
                 if (_clinic != value)
                 {
+                    if (_clinic != null)
+                        SQL.UpdateFields("CHILDRENS", "CLINIC", value, _id);
                     _clinic = value;
                     RaisePropertyChanged(() => Clinic);
                 }
@@ -172,6 +192,7 @@ namespace WpfMvvmApplication1.Models
         #region ClinicId
 
         private int _clinicId;
+
         public int ClinicId
         {
             get { return _clinicId; }
@@ -179,6 +200,8 @@ namespace WpfMvvmApplication1.Models
             {
                 if (_clinicId != value)
                 {
+                    if (_clinicId != null)
+                        SQL.UpdateFields("CHILDRENS", "CLINICID", value, _id);
                     _clinicId = value;
                     RaisePropertyChanged(() => ClinicId);
                 }
@@ -190,6 +213,7 @@ namespace WpfMvvmApplication1.Models
         #region BePhotography
 
         private bool _bePhotography;
+
         public bool BePhotography
         {
             get { return _bePhotography; }
@@ -197,6 +221,8 @@ namespace WpfMvvmApplication1.Models
             {
                 if (_bePhotography != value)
                 {
+                    if (_bePhotography != null)
+                        SQL.UpdateFields("CHILDRENS", "BEPHOTOGRAPHY", value, _id);
                     _bePhotography = value;
                     RaisePropertyChanged(() => BePhotography);
                 }
@@ -208,6 +234,7 @@ namespace WpfMvvmApplication1.Models
         #region PublicationPhotography
 
         private bool _publicationPhotography;
+
         public bool PublicationPhotography
         {
             get { return _publicationPhotography; }
@@ -215,6 +242,8 @@ namespace WpfMvvmApplication1.Models
             {
                 if (_publicationPhotography != value)
                 {
+                    if (_publicationPhotography != null)
+                        SQL.UpdateFields("CHILDRENS", "PUBLICATIONPHOTOGRAPHY", value, _id);
                     _publicationPhotography = value;
                     RaisePropertyChanged(() => PublicationPhotography);
                 }
@@ -226,6 +255,7 @@ namespace WpfMvvmApplication1.Models
         #region OffOutputsStructure
 
         private bool _offOutputsStructure;
+
         public bool OffOutputsStructure
         {
             get { return _offOutputsStructure; }
@@ -233,6 +263,8 @@ namespace WpfMvvmApplication1.Models
             {
                 if (_offOutputsStructure != value)
                 {
+                    if (_offOutputsStructure != null)
+                        SQL.UpdateFields("CHILDRENS", "OFFOUTPUTSSTRUCTURE", value, _id);
                     _offOutputsStructure = value;
                     RaisePropertyChanged(() => OffOutputsStructure);
                 }
@@ -244,6 +276,7 @@ namespace WpfMvvmApplication1.Models
         #region Swim
 
         private bool _swim;
+
         public bool Swim
         {
             get { return _swim; }
@@ -251,6 +284,8 @@ namespace WpfMvvmApplication1.Models
             {
                 if (_swim != value)
                 {
+                    if (_swim != null)
+                        SQL.UpdateFields("CHILDRENS", "SWIM", value, _id);
                     _swim = value;
                     RaisePropertyChanged(() => Swim);
                 }
@@ -262,6 +297,7 @@ namespace WpfMvvmApplication1.Models
         #region BikeOutings
 
         private bool _bikeOutings;
+
         public bool BikeOutings
         {
             get { return _bikeOutings; }
@@ -269,6 +305,8 @@ namespace WpfMvvmApplication1.Models
             {
                 if (_bikeOutings != value)
                 {
+                    if (_bikeOutings != null)
+                        SQL.UpdateFields("CHILDRENS", "BIKEOUTINGS", value, _id);
                     _bikeOutings = value;
                     RaisePropertyChanged(() => BikeOutings);
                 }
@@ -280,6 +318,7 @@ namespace WpfMvvmApplication1.Models
         #region BoatOuttings
 
         private bool _boatOutings;
+
         public bool BoatOutings
         {
             get { return _boatOutings; }
@@ -287,6 +326,8 @@ namespace WpfMvvmApplication1.Models
             {
                 if (_boatOutings != value)
                 {
+                    if (_boatOutings != null)
+                        SQL.UpdateFields("CHILDRENS", "BOATOUTINGS", value, _id);
                     _boatOutings = value;
                     RaisePropertyChanged(() => BoatOutings);
                 }
@@ -298,6 +339,7 @@ namespace WpfMvvmApplication1.Models
         #region Age
 
         private int _age;
+
         public int Age
         {
             get { return _age; }
@@ -305,6 +347,8 @@ namespace WpfMvvmApplication1.Models
             {
                 if (_age != value)
                 {
+                    //if (_age != null)
+                    //    SQL.UpdateFields("CHILDRENS", , value, _id);
                     _age = value;
                     RaisePropertyChanged(() => Age);
                 }
@@ -316,6 +360,7 @@ namespace WpfMvvmApplication1.Models
         #region GenderId
 
         private int _genderId;
+
         public int GenderId
         {
             get { return _genderId; }
@@ -323,6 +368,8 @@ namespace WpfMvvmApplication1.Models
             {
                 if (_genderId != value)
                 {
+                    if (_genderId != null)
+                        SQL.UpdateFields("CHILDRENS", "GENDERID", value, _id);
                     _genderId = value;
                     GenderName = Gender.IDtoValue(_genderId);
                     RaisePropertyChanged(() => GenderId);
@@ -335,6 +382,7 @@ namespace WpfMvvmApplication1.Models
         #region FamilyId
 
         private int _familyId;
+
         public int FamilyId
         {
             get { return _familyId; }
@@ -342,6 +390,8 @@ namespace WpfMvvmApplication1.Models
             {
                 if (_familyId != value)
                 {
+                    if (_familyId != null)
+                        SQL.UpdateFields("CHILDRENS", "FAMILYID", value, _id);
                     _familyId = value;
                     RaisePropertyChanged(() => FamilyId);
                 }
@@ -353,6 +403,7 @@ namespace WpfMvvmApplication1.Models
         #region MedecineId
 
         private int _medecineId;
+
         public int MedecineId
         {
             get { return _medecineId; }
@@ -360,18 +411,20 @@ namespace WpfMvvmApplication1.Models
             {
                 if (_medecineId != value)
                 {
+                    if (_medecineId != null)
+                        SQL.UpdateFields("CHILDRENS", "MEDECINEID", value, _id);
                     _medecineId = value;
                     RaisePropertyChanged(() => MedecineId);
-
                 }
             }
         }
 
-
         #endregion
 
         #region GenderName
+
         private string _gendername;
+
         public string GenderName
         {
             get { return _gendername; }
@@ -379,12 +432,14 @@ namespace WpfMvvmApplication1.Models
             {
                 if (_gendername != value)
                 {
+                    //if (_gendername != null)
+                    //    SQL.UpdateFields("CHILDRENS", , value, _id);
                     _gendername = value;
                     RaisePropertyChanged(() => GenderName);
                 }
             }
         }
-        #endregion
 
+        #endregion
     }
 }
