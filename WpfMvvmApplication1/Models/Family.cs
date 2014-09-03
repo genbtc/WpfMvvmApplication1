@@ -58,8 +58,6 @@ namespace WpfMvvmApplication1.Models
             {
                 if (_id != value)
                 {
-                    //if (_id != null)
-                    //    SQL.UpdateFields("FAMILIES", "ID", value, _id);
                     _id = value;
                     RaisePropertyChanged(() => Id);
                 }
@@ -73,8 +71,6 @@ namespace WpfMvvmApplication1.Models
             {
                 if (_lastName != value)
                 {
-                    if (_lastName != null)
-                        SQL.UpdateFields("FAMILIES", "ADRESS", value, _id);
                     _lastName = value;
                     RaisePropertyChanged(() => LastName);
                 }
@@ -88,8 +84,6 @@ namespace WpfMvvmApplication1.Models
             {
                 if (_firstName != value)
                 {
-                    if (_firstName != null)
-                        SQL.UpdateFields("FAMILIES", "CITYID", value, _id);
                     _firstName = value;
                     RaisePropertyChanged(() => FirstName);
                 }
@@ -103,8 +97,6 @@ namespace WpfMvvmApplication1.Models
             {
                 if (_address != value)
                 {
-                    if (_address != null)
-                        SQL.UpdateFields("FAMILIES", "ADRESS", value, _id);
                     _address = value;
                     RaisePropertyChanged(() => Address);
                 }
@@ -118,8 +110,6 @@ namespace WpfMvvmApplication1.Models
             {
                 if (_cityId != value)
                 {
-                    if (_cityId != null)
-                        SQL.UpdateFields("FAMILIES", "CITYID", value, _id);
                     _cityId = value;
                     RaisePropertyChanged(() => CityId);
                 }
@@ -133,8 +123,6 @@ namespace WpfMvvmApplication1.Models
             {
                 if (_cp != value)
                 {
-                    if (_cp != null)
-                        SQL.UpdateFields("FAMILIES", "CP", value, _id);
                     _cp = value;
                     RaisePropertyChanged(() => Cp);
                 }
@@ -148,8 +136,6 @@ namespace WpfMvvmApplication1.Models
             {
                 if (_city != value)
                 {
-                    if (_city != null)
-                        SQL.UpdateFields("FAMILIES", "CITY", value, _id);
                     _city = value;
                     RaisePropertyChanged(() => City);
                 }
@@ -166,8 +152,6 @@ namespace WpfMvvmApplication1.Models
             {
                 if (_tel1 != value)
                 {
-                    if (_tel1 != null)
-                        SQL.UpdateFields("FAMILIES", "TEL1", value, _id);
                     _tel1 = value;
                     RaisePropertyChanged(() => Tel1);
                 }
@@ -181,8 +165,6 @@ namespace WpfMvvmApplication1.Models
             {
                 if (_tel2 != value)
                 {
-                    if (_tel2 != null)
-                        SQL.UpdateFields("FAMILIES", "TEL2", value, _id);
                     _tel2 = value;
                     RaisePropertyChanged(() => Tel2);
                 }
@@ -196,8 +178,6 @@ namespace WpfMvvmApplication1.Models
             {
                 if (_tel3 != value)
                 {
-                    if (_tel3 != null)
-                        SQL.UpdateFields("FAMILIES", "TEL3", value, _id);
                     _tel3 = value;
                     RaisePropertyChanged(() => Tel3);
                 }
