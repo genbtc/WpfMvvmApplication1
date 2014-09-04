@@ -1,0 +1,30 @@
+﻿<Window x:Class="WpfMvvmApplication1.Views.Window1"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="Gestion des Familles" Height="868.5" Width="1600" WindowStartupLocation="Manual" WindowState="Maximized" Background="{StaticResource ResourceKey=GenBtcColorBrush}">
+    <Grid>
+        <DataGrid HorizontalAlignment="Left" Height="401" Margin="10,45,0,0" VerticalAlignment="Top" Width="1572"/>
+        <Label Content="Recherche :" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top" Height="30" Width="80"/>
+        <TextBox HorizontalAlignment="Left" Height="30" Margin="90,10,0,0" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="875"/>
+        <TabControl HorizontalAlignment="Left" Height="348" Margin="10,480,0,0" VerticalAlignment="Top" Width="1572">
+            <TabItem Header="Famille">
+                <Grid Background="#FFFFFDFD">
+                    <ComboBox HorizontalAlignment="Left" Margin="91,39,0,0" VerticalAlignment="Top" Width="69"/>
+                    <Label Content="Civilité :" HorizontalAlignment="Left" Margin="35,39,0,0" VerticalAlignment="Top"/>
+                    <Label Content="Nom :" HorizontalAlignment="Left" Margin="44,80,0,0" VerticalAlignment="Top"/>
+                    <TextBox HorizontalAlignment="Left" Height="26" Margin="91,80,0,0" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="175"/>
+                </Grid>
+            </TabItem>
+            <TabItem Header="Droits">
+                <Grid Background="#FFE5E5E5"/>
+            </TabItem>
+            <TabItem Header="Conjoint" HorizontalAlignment="Left" Height="20" VerticalAlignment="Top" Width="57">
+                <Grid Background="#FFE5E5E5"/>
+            </TabItem>
+            <TabItem Header="Payeur" HorizontalAlignment="Left" Height="20" VerticalAlignment="Top" Width="57">
+                <Grid Background="#FFE5E5E5"/>
+            </TabItem>
+        </TabControl>
+
+    </Grid>
+</Window>
