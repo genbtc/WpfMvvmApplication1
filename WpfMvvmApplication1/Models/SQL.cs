@@ -337,7 +337,7 @@ namespace WpfMvvmApplication1.Models
             string uSQL = @"UPDATE ""CHILDRENS""
                             SET ""LASTNAME""                  =  @lastName,
                                 ""FIRSTNAME""                 =  @firstName,
-                                ""BIRTHDATE""                 =  @birdthDate,
+                                ""BIRTHDATE""                 =  @birthDate,
                                 ""GENDERID""                  =  @genderId,
                                 ""FAMILYID""                  =  @familyId,
                                 ""MEDECINEID""                =  @medecineId,

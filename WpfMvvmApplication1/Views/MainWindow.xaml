@@ -46,7 +46,7 @@
                             <DataGridTemplateColumn Header="Gender">
                                 <DataGridTemplateColumn.CellTemplate>
                                     <DataTemplate>
-                                        <ComboBox Name="cbGender" HorizontalAlignment="Left" Height="20" VerticalAlignment="Top" Width="165"
+                                        <ComboBox Name="cbGender" HorizontalAlignment="Left" Height="20" VerticalAlignment="Top" Width="151"
                                                   ItemsSource="{Binding Path=ListGenders, Source={StaticResource Windows1ViewModel}}" Style="{StaticResource ResourceKey=ComboBoxFlatStyle}"
                                                   DisplayMemberPath="Value" SelectedValuePath="Id" SelectedIndex="{Binding Path=GenderId, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" FontSize="10" />
                                     </DataTemplate>
@@ -56,7 +56,7 @@
                             <DataGridTemplateColumn Header="Family">
                                 <DataGridTemplateColumn.CellTemplate>
                                     <DataTemplate>
-                                        <ComboBox Name="cbFamily" HorizontalAlignment="Left" Height="20" VerticalAlignment="Top" Width="165"
+                                        <ComboBox Name="cbFamily" HorizontalAlignment="Left" Height="20" VerticalAlignment="Top" Width="151"
                                                   ItemsSource="{Binding Path=FamilyCollection, Source={StaticResource Windows1ViewModel}}" Style="{StaticResource ResourceKey=ComboBoxFlatStyle}"
                                                   DisplayMemberPath="LastName" SelectedValuePath="Id" SelectedIndex="{Binding Path=FamilyId, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" FontSize="10" />
                                     </DataTemplate>
@@ -70,7 +70,7 @@
 
             </StackPanel>
 
-            <TabControl Height="212" Margin="12,380,0,0" VerticalAlignment="Top" HorizontalAlignment="Left" Width="1134" SelectionChanged="TabControl_SelectionChanged">
+            <TabControl Height="212" Margin="12,380,0,0" VerticalAlignment="Top" HorizontalAlignment="Left" Width="1134">
                 <TabItem Header="Adresse" HorizontalAlignment="Left" Height="20" VerticalAlignment="Top" Width="57" FontSize="10">
                     <Grid Background="Snow">
                         <Label Content="Famille :" HorizontalAlignment="Left" Margin="413,10,0,0" VerticalAlignment="Top" FontSize="10" Height="22" />
@@ -128,7 +128,7 @@
                 </TabItem>
 
             </TabControl>
-            <Button x:Name="btnSubmit" Content="Update!" HorizontalAlignment="Left" Height="30" Margin="1040,368,0,0" VerticalAlignment="Top" Width="102" Click="btnSubmit_Click" />
+            <Button x:Name="btnSubmit" Content="Update!" HorizontalAlignment="Left" Height="30" Margin="1040,368,0,0" VerticalAlignment="Top" Width="102" Command="{Binding UpdateDB}"/>
         </Grid>
     </Viewbox>
 

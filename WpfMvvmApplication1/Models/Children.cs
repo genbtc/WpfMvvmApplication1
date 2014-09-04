@@ -7,6 +7,7 @@ namespace WpfMvvmApplication1.Models
     {
 
         #region Constructor
+        public Children(){}
 
         public Children(int id,
                         string lastname,

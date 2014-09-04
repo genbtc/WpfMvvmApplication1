@@ -26,5 +26,6 @@ namespace WpfMvvmApplication1.Models
                 RaisePropertyChanged(() => SelectedItem);
             }            
         }
+
     }
 }
