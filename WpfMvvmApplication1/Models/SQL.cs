@@ -83,7 +83,8 @@ namespace WpfMvvmApplication1.Models
                 int sId = int.Parse(row["ID"].ToString());
                 string sLastName = row["LASTNAME"].ToString();
                 string sFirstName = row["FIRSTNAME"].ToString();
-                DateTime dtBirthDate = DateTime.Parse(String.Format("{0:MM/dd/yyyy}", row["BIRTHDATE"]));
+                DateTime dtBirthDate = DateTime.Parse(row["BIRTHDATE"].ToString());
+                //DateTime dtBirthDate = DateTime.Now;]
                 int iSexe = int.Parse(row["GENDERID"].ToString());
                 int iFamily = int.Parse(row["FAMILYID"].ToString());
                 int iMedecine = int.Parse(row["MEDECINEID"].ToString());
@@ -329,6 +330,54 @@ namespace WpfMvvmApplication1.Models
             }
             return oneFamily;
         }
+
+
+        public static void UpdateDBChild(Children row)
+        {
+            string uSQL = @"UPDATE ""CHILDRENS""
+                            SET ""LASTNAME""                  =  @lastName,
+                                ""FIRSTNAME""                 =  @firstName,
+                                ""BIRTHDATE""                 =  @birdthDate,
+                                ""GENDERID""                  =  @genderId,
+                                ""FAMILYID""                  =  @familyId,
+                                ""MEDECINEID""                =  @medecineId,
+                                ""EMT""                       =  @emt,
+                                ""HOSPITAL""                  =  @hospital,
+                                ""CLINIC""                    =  @clinic,
+                                ""CLINICID""                  =  @clinicId,
+                                ""BEPHOTOGRAPHY""             =  @bePhotography,
+                                ""PUBLICATIONPHOTOGRAPHY""    =  @publicationPhotography,
+                                ""OFFOUTPUTSSTRUCTURE""       =  @offOutputsStructure,
+                                ""SWIM""                      =  @swim,
+                                ""BIKEOUTINGS""               =  @bikeOutings,
+                                ""BOATOUTINGS""               =  @boatOutings
+                            WHERE ""ID"" = " + row.Id + ";";
+
+            NpgsqlConnection Connection = new NpgsqlConnection(sConnection);
+            NpgsqlCommand command = Connection.CreateCommand();
+            command.CommandText = uSQL;
+            command.Parameters.AddWithValue("@lastName", row.Lastname);
+            command.Parameters.AddWithValue("@firstName", row.Firstname);
+            command.Parameters.AddWithValue("@birthDate", row.BirthDate);
+            command.Parameters.AddWithValue("@genderId", row.GenderId);
+            command.Parameters.AddWithValue("@familyId", row.FamilyId);
+            command.Parameters.AddWithValue("@medecineId", row.MedecineId);
+            command.Parameters.AddWithValue("@emt", row.Emt);
+            command.Parameters.AddWithValue("@hospital", row.Hospital);
+            command.Parameters.AddWithValue("@clinic", row.Clinic);
+            command.Parameters.AddWithValue("@clinicId", row.ClinicId);
+            command.Parameters.AddWithValue("@bePhotography", row.BePhotography);
+            command.Parameters.AddWithValue("@publicationPhotography", row.PublicationPhotography);
+            command.Parameters.AddWithValue("@offOutputsStructure", row.OffOutputsStructure);
+            command.Parameters.AddWithValue("@swim", row.Swim);
+            command.Parameters.AddWithValue("@bikeOutings", row.BikeOutings);
+            command.Parameters.AddWithValue("@boatOutings", row.BoatOutings);
+            Connection.Open();
+            command.ExecuteNonQuery();
+            Connection.Close();
+
+        }
+
 
     }
 }
