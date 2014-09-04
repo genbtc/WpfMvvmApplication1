@@ -378,6 +378,75 @@ namespace WpfMvvmApplication1.Models
 
         }
 
+        public static int InsertDBChild(Children row)
+        {
+            string uSQL = @"INSERT INTO ""CHILDRENS""(""LASTNAME"",
+                                                     ""FIRSTNAME"",
+                                                     ""BIRTHDATE"",
+                                                     ""GENDERID"",
+                                                     ""FAMILYID"",
+                                                     ""MEDECINEID"",
+                                                     ""EMT"",
+                                                     ""HOSPITAL"",
+                                                     ""CLINIC"",
+                                                     ""CLINICID"",
+                                                     ""BEPHOTOGRAPHY"",
+                                                     ""PUBLICATIONPHOTOGRAPHY"",
+                                                     ""OFFOUTPUTSSTRUCTURE"",
+                                                     ""SWIM"",
+                                                     ""BIKEOUTINGS"",
+                                                     ""BOATOUTINGS"")
+                                              VALUES(@lastName,
+                                                     @firstName,
+                                                     @birthDate,
+                                                     @genderId,
+                                                     @familyId,
+                                                     @medecineId,
+                                                     @emt,
+                                                     @hospital,
+                                                     @clinic,
+                                                     @clinicId,
+                                                     @bePhotography,
+                                                     @publicationPhotography,
+                                                     @offOutputsStructure,
+                                                     @swim,
+                                                     @bikeOutings,
+                                                     @boatOutings)
+                                                RETURNING ""ID""; ";
 
+
+            NpgsqlConnection Connection = new NpgsqlConnection(sConnection);
+            NpgsqlCommand command = Connection.CreateCommand();
+            command.CommandText = uSQL;
+            command.Parameters.AddWithValue("@lastName", row.Lastname);
+            command.Parameters.AddWithValue("@firstName", row.Firstname);
+            command.Parameters.AddWithValue("@birthDate", row.BirthDate);
+            command.Parameters.AddWithValue("@genderId", row.GenderId);
+            command.Parameters.AddWithValue("@familyId", row.FamilyId);
+            command.Parameters.AddWithValue("@medecineId", row.MedecineId);
+            command.Parameters.AddWithValue("@emt", row.Emt);
+            command.Parameters.AddWithValue("@hospital", row.Hospital);
+            command.Parameters.AddWithValue("@clinic", row.Clinic);
+            command.Parameters.AddWithValue("@clinicId", row.ClinicId);
+            command.Parameters.AddWithValue("@bePhotography", row.BePhotography);
+            command.Parameters.AddWithValue("@publicationPhotography", row.PublicationPhotography);
+            command.Parameters.AddWithValue("@offOutputsStructure", row.OffOutputsStructure);
+            command.Parameters.AddWithValue("@swim", row.Swim);
+            command.Parameters.AddWithValue("@bikeOutings", row.BikeOutings);
+            command.Parameters.AddWithValue("@boatOutings", row.BoatOutings);
+            Connection.Open();
+            Int32 newId = (Int32)command.ExecuteScalar();
+            //NpgsqlCommand getID = Connection.CreateCommand();
+            //getID.CommandText = @"SELECT IDENT_CURRENT(""CHILDRENS"")";
+            //var result = new DataTable();
+            //result.Load(getID.ExecuteReader());
+            //int returnvar=0;
+            //foreach (var resultrow in result.Rows)
+            //{
+            //    returnvar = Convert.ToInt32(resultrow);
+            //}
+            Connection.Close();
+            return newId;
+        }
     }
 }

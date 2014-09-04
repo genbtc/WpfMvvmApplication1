@@ -62,7 +62,12 @@ namespace WpfMvvmApplication1.ViewModels
         {
             foreach (Children row in ChildrensCollection.Collection)
             {
-                SQL.UpdateDBChild(row);
+                if (row.Id > 0)
+                    SQL.UpdateDBChild(row);
+                else
+                {
+                    row.Id = SQL.InsertDBChild(row);
+                }
             }
         }
         
