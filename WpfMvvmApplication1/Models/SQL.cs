@@ -8,7 +8,7 @@ namespace WpfMvvmApplication1.Models
     class SQL
     {
         //string constants, for use on SQL connections, SQL children read, SQL families read
-        private const string sConnection = "SERVER=localhost;DATABASE=ags;UID=ags;PASSWORD=Fadila1980;";
+        internal const string sConnection = "SERVER=localhost;DATABASE=ags;UID=ags;PASSWORD=Fadila1980;";
 
         private const string sSQLchildren = @"SELECT ""ID"",
                                                     ""LASTNAME"",
@@ -331,10 +331,7 @@ namespace WpfMvvmApplication1.Models
             return oneFamily;
         }
 
-
-        public static void UpdateDBChild(Children row)
-        {
-            string uSQL = @"UPDATE ""CHILDRENS""
+        private const string updateChildstring = @"UPDATE ""CHILDRENS""
                             SET ""LASTNAME""                  =  @lastName,
                                 ""FIRSTNAME""                 =  @firstName,
                                 ""BIRTHDATE""                 =  @birthDate,
@@ -351,11 +348,12 @@ namespace WpfMvvmApplication1.Models
                                 ""SWIM""                      =  @swim,
                                 ""BIKEOUTINGS""               =  @bikeOutings,
                                 ""BOATOUTINGS""               =  @boatOutings
-                            WHERE ""ID"" = " + row.Id + ";";
+                            WHERE ""ID"" = ";
 
-            NpgsqlConnection Connection = new NpgsqlConnection(sConnection);
-            NpgsqlCommand command = Connection.CreateCommand();
-            command.CommandText = uSQL;
+        public static void UpdateDBChild(NpgsqlCommand command, Children row)
+        {
+            command.CommandText = updateChildstring + row.Id + ";";
+
             command.Parameters.AddWithValue("@lastName", row.Lastname);
             command.Parameters.AddWithValue("@firstName", row.Firstname);
             command.Parameters.AddWithValue("@birthDate", row.BirthDate);
@@ -372,15 +370,13 @@ namespace WpfMvvmApplication1.Models
             command.Parameters.AddWithValue("@swim", row.Swim);
             command.Parameters.AddWithValue("@bikeOutings", row.BikeOutings);
             command.Parameters.AddWithValue("@boatOutings", row.BoatOutings);
-            Connection.Open();
+
             command.ExecuteNonQuery();
-            Connection.Close();
+
 
         }
 
-        public static int InsertDBChild(Children row)
-        {
-            string uSQL = @"INSERT INTO ""CHILDRENS""(""LASTNAME"",
+        private const string insertChildstring = @"INSERT INTO ""CHILDRENS""(""LASTNAME"",
                                                      ""FIRSTNAME"",
                                                      ""BIRTHDATE"",
                                                      ""GENDERID"",
@@ -414,10 +410,11 @@ namespace WpfMvvmApplication1.Models
                                                      @boatOutings)
                                                 RETURNING ""ID""; ";
 
+        public static int InsertDBChild(NpgsqlCommand command, Children row)
+        {
 
-            NpgsqlConnection Connection = new NpgsqlConnection(sConnection);
-            NpgsqlCommand command = Connection.CreateCommand();
-            command.CommandText = uSQL;
+            command.CommandText = insertChildstring;
+
             command.Parameters.AddWithValue("@lastName", row.Lastname);
             command.Parameters.AddWithValue("@firstName", row.Firstname);
             command.Parameters.AddWithValue("@birthDate", row.BirthDate);
@@ -434,19 +431,9 @@ namespace WpfMvvmApplication1.Models
             command.Parameters.AddWithValue("@swim", row.Swim);
             command.Parameters.AddWithValue("@bikeOutings", row.BikeOutings);
             command.Parameters.AddWithValue("@boatOutings", row.BoatOutings);
-            Connection.Open();
-            Int32 newId = (Int32)command.ExecuteScalar();
-            //NpgsqlCommand getID = Connection.CreateCommand();
-            //getID.CommandText = @"SELECT IDENT_CURRENT(""CHILDRENS"")";
-            //var result = new DataTable();
-            //result.Load(getID.ExecuteReader());
-            //int returnvar=0;
-            //foreach (var resultrow in result.Rows)
-            //{
-            //    returnvar = Convert.ToInt32(resultrow);
-            //}
-            Connection.Close();
-            return newId;
+
+            return (Int32)command.ExecuteScalar();
+
         }
     }
 }
