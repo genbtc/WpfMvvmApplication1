@@ -58,11 +58,20 @@ namespace WpfMvvmApplication1.ViewModels
 
         #endregion
 
+        private void UpdateSqlrow()
+        {
+            foreach (Children row in ChildrensCollection.Collection)
+            {
+                SQL.UpdateDBChild(row);
+            }
+        }
+        
         #region Constructor
 
         public MainWindowViewModel()
         {
-            //            RandomizeData();
+            //RandomizeData();
+            //ChildrensCollection = new ChildrenCollection();
             ChildrensCollection = new ChildrenCollection {Collection = SQL.listChildren()};
             FamilyCollection = SQL.listFamilies();
         }
@@ -72,18 +81,14 @@ namespace WpfMvvmApplication1.ViewModels
 
         public ICommand DoNothingCommand { get { return new DelegateCommand(OnDoNothing, CanExecuteDoNothing); } }
 
+        public ICommand UpdateDB { get { return new DelegateCommand(UpdateSqlrow); } }
+
         #endregion
 
         #region Command Handlers
 
-        private void OnDoNothing()
-        {
-        }
-
-        private bool CanExecuteDoNothing()
-        {
-            return false;
-        }
+        private void OnDoNothing(){}
+        private bool CanExecuteDoNothing(){return false;}
 
         #endregion
 
@@ -114,21 +119,23 @@ namespace WpfMvvmApplication1.ViewModels
                     ));
             }
 
-            /*FamilyCollection = new ObservableCollection<Family>();
+            FamilyCollection = new ObservableCollection<Family>();
 
-            for (var i = 0; i < 10; i++)
+            for (var i = 0; i < 2; i++)
             {
                 FamilyCollection.Add(new Family(
+                    RandomHelper.RandomInt(1, 15),
+                    RandomHelper.RandomString(10, true),
+                    RandomHelper.RandomString(10, true),
+                    RandomHelper.RandomString(10, true),
                     RandomHelper.RandomInt(1, 3),
-                    RandomHelper.RandomString(10, true),
-                    RandomHelper.RandomString(10, true),
                     RandomHelper.RandomString(10, true),
                     RandomHelper.RandomString(10, true),
                     RandomHelper.RandomString(10, true),
                     RandomHelper.RandomString(10, true),
                     RandomHelper.RandomString(10, true)
                     ));
-            }*/
+            }
 
 
         }
