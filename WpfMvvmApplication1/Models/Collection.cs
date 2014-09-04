@@ -16,6 +16,11 @@ namespace WpfMvvmApplication1.Models
             }
         }
 
+        public int Count
+        {
+            get { return _collection.Count; }
+        }
+
         private Children _selectedItem;
         public Children SelectedItem
         {

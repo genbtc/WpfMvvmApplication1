@@ -8,7 +8,7 @@ namespace WpfMvvmApplication1.Models
     class SQL
     {
         //string constants, for use on SQL connections, SQL children read, SQL families read
-        private const string sConnection = "SERVER=localhost;DATABASE=ags;UID=ags;PASSWORD=Fadila1980;";
+        internal const string sConnection = "SERVER=localhost;DATABASE=ags;UID=ags;PASSWORD=Fadila1980;";
 
         private const string sSQLchildren = @"SELECT ""ID"",
                                                     ""LASTNAME"",
@@ -331,10 +331,7 @@ namespace WpfMvvmApplication1.Models
             return oneFamily;
         }
 
-
-        public static void UpdateDBChild(Children row)
-        {
-            string uSQL = @"UPDATE ""CHILDRENS""
+        private const string updateChildstring = @"UPDATE ""CHILDRENS""
                             SET ""LASTNAME""                  =  @lastName,
                                 ""FIRSTNAME""                 =  @firstName,
                                 ""BIRTHDATE""                 =  @birthDate,
@@ -351,11 +348,12 @@ namespace WpfMvvmApplication1.Models
                                 ""SWIM""                      =  @swim,
                                 ""BIKEOUTINGS""               =  @bikeOutings,
                                 ""BOATOUTINGS""               =  @boatOutings
-                            WHERE ""ID"" = " + row.Id + ";";
+                            WHERE ""ID"" = ";
 
-            NpgsqlConnection Connection = new NpgsqlConnection(sConnection);
-            NpgsqlCommand command = Connection.CreateCommand();
-            command.CommandText = uSQL;
+        public static void UpdateDBChild(NpgsqlCommand command, Children row)
+        {
+            command.CommandText = updateChildstring + row.Id + ";";
+
             command.Parameters.AddWithValue("@lastName", row.Lastname);
             command.Parameters.AddWithValue("@firstName", row.Firstname);
             command.Parameters.AddWithValue("@birthDate", row.BirthDate);
@@ -372,12 +370,70 @@ namespace WpfMvvmApplication1.Models
             command.Parameters.AddWithValue("@swim", row.Swim);
             command.Parameters.AddWithValue("@bikeOutings", row.BikeOutings);
             command.Parameters.AddWithValue("@boatOutings", row.BoatOutings);
-            Connection.Open();
+
             command.ExecuteNonQuery();
-            Connection.Close();
+
 
         }
 
+        private const string insertChildstring = @"INSERT INTO ""CHILDRENS""(""LASTNAME"",
+                                                     ""FIRSTNAME"",
+                                                     ""BIRTHDATE"",
+                                                     ""GENDERID"",
+                                                     ""FAMILYID"",
+                                                     ""MEDECINEID"",
+                                                     ""EMT"",
+                                                     ""HOSPITAL"",
+                                                     ""CLINIC"",
+                                                     ""CLINICID"",
+                                                     ""BEPHOTOGRAPHY"",
+                                                     ""PUBLICATIONPHOTOGRAPHY"",
+                                                     ""OFFOUTPUTSSTRUCTURE"",
+                                                     ""SWIM"",
+                                                     ""BIKEOUTINGS"",
+                                                     ""BOATOUTINGS"")
+                                              VALUES(@lastName,
+                                                     @firstName,
+                                                     @birthDate,
+                                                     @genderId,
+                                                     @familyId,
+                                                     @medecineId,
+                                                     @emt,
+                                                     @hospital,
+                                                     @clinic,
+                                                     @clinicId,
+                                                     @bePhotography,
+                                                     @publicationPhotography,
+                                                     @offOutputsStructure,
+                                                     @swim,
+                                                     @bikeOutings,
+                                                     @boatOutings)
+                                                RETURNING ""ID""; ";
 
+        public static int InsertDBChild(NpgsqlCommand command, Children row)
+        {
+
+            command.CommandText = insertChildstring;
+
+            command.Parameters.AddWithValue("@lastName", row.Lastname);
+            command.Parameters.AddWithValue("@firstName", row.Firstname);
+            command.Parameters.AddWithValue("@birthDate", row.BirthDate);
+            command.Parameters.AddWithValue("@genderId", row.GenderId);
+            command.Parameters.AddWithValue("@familyId", row.FamilyId);
+            command.Parameters.AddWithValue("@medecineId", row.MedecineId);
+            command.Parameters.AddWithValue("@emt", row.Emt);
+            command.Parameters.AddWithValue("@hospital", row.Hospital);
+            command.Parameters.AddWithValue("@clinic", row.Clinic);
+            command.Parameters.AddWithValue("@clinicId", row.ClinicId);
+            command.Parameters.AddWithValue("@bePhotography", row.BePhotography);
+            command.Parameters.AddWithValue("@publicationPhotography", row.PublicationPhotography);
+            command.Parameters.AddWithValue("@offOutputsStructure", row.OffOutputsStructure);
+            command.Parameters.AddWithValue("@swim", row.Swim);
+            command.Parameters.AddWithValue("@bikeOutings", row.BikeOutings);
+            command.Parameters.AddWithValue("@boatOutings", row.BoatOutings);
+
+            return (Int32)command.ExecuteScalar();
+
+        }
     }
 }

@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Windows.Input;
+using Npgsql;
 using WpfMvvmApplication1.Helpers;
 using WpfMvvmApplication1.Models;
 
@@ -60,10 +61,24 @@ namespace WpfMvvmApplication1.ViewModels
 
         private void UpdateSqlrow()
         {
+            //connection string
+            NpgsqlConnection Connection = new NpgsqlConnection(SQL.sConnection);
+            
+            //open connection once.
+            Connection.Open();
+            
+            //issue many commands
             foreach (Children row in ChildrensCollection.Collection)
             {
-                SQL.UpdateDBChild(row);
+                NpgsqlCommand command = Connection.CreateCommand();
+                if (row.Id > 0) //if row exist
+                    SQL.UpdateDBChild(command, row);
+                else            //or not exist, do insert
+                    row.Id = SQL.InsertDBChild(command,row);
             }
+
+            //close
+            Connection.Close();
         }
         
         #region Constructor
