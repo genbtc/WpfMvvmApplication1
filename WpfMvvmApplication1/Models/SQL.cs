@@ -83,7 +83,8 @@ namespace WpfMvvmApplication1.Models
                 int sId = int.Parse(row["ID"].ToString());
                 string sLastName = row["LASTNAME"].ToString();
                 string sFirstName = row["FIRSTNAME"].ToString();
-                DateTime dtBirthDate = DateTime.Parse(String.Format("{0:MM/dd/yyyy}", row["BIRTHDATE"]));
+                DateTime dtBirthDate = DateTime.Parse(row["BIRTHDATE"].ToString());
+                //DateTime dtBirthDate = DateTime.Now;]
                 int iSexe = int.Parse(row["GENDERID"].ToString());
                 int iFamily = int.Parse(row["FAMILYID"].ToString());
                 int iMedecine = int.Parse(row["MEDECINEID"].ToString());
