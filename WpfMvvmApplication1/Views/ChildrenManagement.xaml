@@ -4,7 +4,7 @@
         xmlns:xctk="http://schemas.xceed.com/wpf/xaml/toolkit"        
         xmlns:viewModels="clr-namespace:WpfMvvmApplication1.ViewModels"
         xmlns:converters="clr-namespace:WpfMvvmApplication1.Converters"
-        Title="MainWindow" Height="868.5" Width="1600" WindowStartupLocation="Manual" WindowState="Maximized" Background="{StaticResource ResourceKey=GenBtcColorBrush}">
+        Title="Gestion des Enfants" Height="868.5" Width="1600" WindowStartupLocation="Manual" WindowState="Maximized" Background="{StaticResource ResourceKey=GenBtcColorBrush}">
 
     <Window.Resources>
         <ResourceDictionary>
@@ -28,6 +28,7 @@
                         ItemsSource="{Binding Path=ChildrensCollection.Collection}"
                         AutoGenerateColumns="False" ColumnWidth="152" Margin="10,10,12,0" VerticalAlignment="Top" FontSize="10" Height="326" FontFamily="Arial" BorderThickness="1,2,1,1" FontWeight="Light" Background="{StaticResource ResourceKey=GenBtcColorBrush}" BorderBrush="#FF889BB1" RowBackground="Snow" HeadersVisibility="Column">
                         <DataGrid.Columns>
+                            <DataGridTextColumn Binding="{Binding Path=Id}" Header="Id" />
                             <DataGridTextColumn Binding="{Binding Path=Lastname}" Header="Nom" />
                             <DataGridTextColumn Binding="{Binding Path=Firstname}" Header="Prénom" />
 
