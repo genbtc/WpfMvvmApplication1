@@ -7,16 +7,16 @@ using System.Text;
 
 namespace WpfMvvmApplication1.Models
 {
-    class EFTest : DbContext
+    class ChildrenContext : DbContext
     {
-        public DbSet<Children> Artists { get; set; }
-        public DbSet<Family> Albums { get; set; }
+        public DbSet<Children> Children { get; set; }
+        public DbSet<Family> Family { get; set; }
 
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
             // Map to the correct Chinook Database tables
-            modelBuilder.Entity<Children>().ToTable("Children", "public");
-            modelBuilder.Entity<Family>().ToTable("Family", "public");
+            modelBuilder.Entity<Children>().ToTable("CHILDREN", "public");
+            modelBuilder.Entity<Family>().ToTable("FAMILIES", "public");
         }
     }
 }

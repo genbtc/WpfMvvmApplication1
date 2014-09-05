@@ -91,7 +91,6 @@ namespace WpfMvvmApplication1.ViewModels
             //ChildrensCollection = new ChildrenCollection();
             ChildrensCollection = new ChildrenCollection {Collection = SQL.listChildren()};
             FamilyCollection = SQL.listFamilies();
-            //TestEntity();
         }
 
         private void TestChildNames()
@@ -99,7 +98,7 @@ namespace WpfMvvmApplication1.ViewModels
             //using (var db = new agsEntities())
             //{
             //    IQueryable<CHILDREN> childQuery = from product in db.CHILDRENS
-            //                                        select product;
+            //                                      select product;
 
             //    Console.WriteLine("Children Names:");
             //    foreach (var child in childQuery)
@@ -107,11 +106,23 @@ namespace WpfMvvmApplication1.ViewModels
             //        Console.WriteLine(child.FIRSTNAME + child.LASTNAME);
             //    }
             //}
-            using (agsEntities Context = new agsEntities())
+            //using (agsEntities Context = new agsEntities())
+            //{
+            //    foreach (CHILDREN blog in Context.CHILDRENS)
+            //    {
+            //        Console.WriteLine(blog.FIRSTNAME + " " + blog.LASTNAME);
+            //    }
+            //}
+            using (var db = new ChildrenContext())
             {
-                foreach (CHILDREN blog in Context.CHILDRENS)
+                var children = from a in db.Children
+                              where a.Lastname.StartsWith("M")
+                              orderby a.Lastname
+                              select a;
+
+                foreach (var child in children)
                 {
-                    Console.WriteLine(blog.FIRSTNAME + " " + blog.LASTNAME);
+                    Console.WriteLine(child.Firstname + child.Lastname);
                 }
             }
         }
