@@ -1,0 +1,188 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="2.0" xmlns:edmx="http://schemas.microsoft.com/ado/2008/10/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="agsModel.Store" Alias="Self" Provider="Npgsql" ProviderManifestToken="9.3.5" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/02/edm/ssdl">
+        <EntityContainer Name="agsModelStoreContainer">
+          <EntitySet Name="CHILDRENS" EntityType="agsModel.Store.CHILDRENS" store:Type="Tables" Schema="public" />
+          <EntitySet Name="CITIES" EntityType="agsModel.Store.CITIES" store:Type="Tables" Schema="public" />
+          <EntitySet Name="FAMILIES" EntityType="agsModel.Store.FAMILIES" store:Type="Tables" Schema="public" />
+        </EntityContainer>
+        <EntityType Name="CHILDRENS">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int4" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="LASTNAME" Type="text" />
+          <Property Name="FIRSTNAME" Type="text" />
+          <Property Name="BIRTHDATE" Type="date" />
+          <Property Name="FAMILYID" Type="int4" />
+          <Property Name="GENDERID" Type="int4" />
+          <Property Name="EMT" Type="bool" />
+          <Property Name="HOSPITAL" Type="bool" />
+          <Property Name="CLINIC" Type="bool" />
+          <Property Name="CLINICID" Type="int4" />
+          <Property Name="BEPHOTOGRAPHY" Type="bool" />
+          <Property Name="PUBLICATIONPHOTOGRAPHY" Type="bool" />
+          <Property Name="OFFOUTPUTSSTRUCTURE" Type="bool" />
+          <Property Name="SWIM" Type="bool" />
+          <Property Name="BIKEOUTINGS" Type="bool" />
+          <Property Name="BOATOUTINGS" Type="bool" />
+          <Property Name="MEDECINEID" Type="int4" />
+        </EntityType>
+        <EntityType Name="CITIES">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int4" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="CITY" Type="text" />
+          <Property Name="CP" Type="text" />
+        </EntityType>
+        <EntityType Name="FAMILIES">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int4" Nullable="false" />
+          <Property Name="LASTNAME" Type="text" />
+          <Property Name="FIRSTNAME" Type="text" />
+          <Property Name="ADRESS" Type="text" />
+          <Property Name="CITYID" Type="int4" />
+          <Property Name="TEL1" Type="text" />
+          <Property Name="TEL2" Type="text" />
+          <Property Name="TEL3" Type="text" />
+        </EntityType>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="agsModel" Alias="Self" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns="http://schemas.microsoft.com/ado/2008/09/edm">
+        <EntityContainer Name="agsEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="CHILDRENS" EntityType="agsModel.CHILDREN" />
+          <EntitySet Name="CITIES" EntityType="agsModel.CITY" />
+          <EntitySet Name="FAMILIES" EntityType="agsModel.FAMILY" />
+        </EntityContainer>
+        <EntityType Name="CHILDREN">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="LASTNAME" Type="String" MaxLength="Max" Unicode="true" FixedLength="false" />
+          <Property Name="FIRSTNAME" Type="String" MaxLength="Max" Unicode="true" FixedLength="false" />
+          <Property Name="BIRTHDATE" Type="DateTime" Precision="0" />
+          <Property Name="FAMILYID" Type="Int32" />
+          <Property Name="GENDERID" Type="Int32" />
+          <Property Name="EMT" Type="Boolean" />
+          <Property Name="HOSPITAL" Type="Boolean" />
+          <Property Name="CLINIC" Type="Boolean" />
+          <Property Name="CLINICID" Type="Int32" />
+          <Property Name="BEPHOTOGRAPHY" Type="Boolean" />
+          <Property Name="PUBLICATIONPHOTOGRAPHY" Type="Boolean" />
+          <Property Name="OFFOUTPUTSSTRUCTURE" Type="Boolean" />
+          <Property Name="SWIM" Type="Boolean" />
+          <Property Name="BIKEOUTINGS" Type="Boolean" />
+          <Property Name="BOATOUTINGS" Type="Boolean" />
+          <Property Name="MEDECINEID" Type="Int32" />
+        </EntityType>
+        <EntityType Name="CITY">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="CITY1" Type="String" MaxLength="Max" Unicode="true" FixedLength="false" />
+          <Property Name="CP" Type="String" MaxLength="Max" Unicode="true" FixedLength="false" />
+        </EntityType>
+        <EntityType Name="FAMILY">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" />
+          <Property Name="LASTNAME" Type="String" MaxLength="Max" Unicode="true" FixedLength="false" />
+          <Property Name="FIRSTNAME" Type="String" MaxLength="Max" Unicode="true" FixedLength="false" />
+          <Property Name="ADRESS" Type="String" MaxLength="Max" Unicode="true" FixedLength="false" />
+          <Property Name="CITYID" Type="Int32" />
+          <Property Name="TEL1" Type="String" MaxLength="Max" Unicode="true" FixedLength="false" />
+          <Property Name="TEL2" Type="String" MaxLength="Max" Unicode="true" FixedLength="false" />
+          <Property Name="TEL3" Type="String" MaxLength="Max" Unicode="true" FixedLength="false" />
+        </EntityType>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2008/09/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="agsModelStoreContainer" CdmEntityContainer="agsEntities">
+          <EntitySetMapping Name="CHILDRENS">
+            <EntityTypeMapping TypeName="agsModel.CHILDREN">
+              <MappingFragment StoreEntitySet="CHILDRENS">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="LASTNAME" ColumnName="LASTNAME" />
+                <ScalarProperty Name="FIRSTNAME" ColumnName="FIRSTNAME" />
+                <ScalarProperty Name="BIRTHDATE" ColumnName="BIRTHDATE" />
+                <ScalarProperty Name="FAMILYID" ColumnName="FAMILYID" />
+                <ScalarProperty Name="GENDERID" ColumnName="GENDERID" />
+                <ScalarProperty Name="EMT" ColumnName="EMT" />
+                <ScalarProperty Name="HOSPITAL" ColumnName="HOSPITAL" />
+                <ScalarProperty Name="CLINIC" ColumnName="CLINIC" />
+                <ScalarProperty Name="CLINICID" ColumnName="CLINICID" />
+                <ScalarProperty Name="BEPHOTOGRAPHY" ColumnName="BEPHOTOGRAPHY" />
+                <ScalarProperty Name="PUBLICATIONPHOTOGRAPHY" ColumnName="PUBLICATIONPHOTOGRAPHY" />
+                <ScalarProperty Name="OFFOUTPUTSSTRUCTURE" ColumnName="OFFOUTPUTSSTRUCTURE" />
+                <ScalarProperty Name="SWIM" ColumnName="SWIM" />
+                <ScalarProperty Name="BIKEOUTINGS" ColumnName="BIKEOUTINGS" />
+                <ScalarProperty Name="BOATOUTINGS" ColumnName="BOATOUTINGS" />
+                <ScalarProperty Name="MEDECINEID" ColumnName="MEDECINEID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="CITIES">
+            <EntityTypeMapping TypeName="agsModel.CITY">
+              <MappingFragment StoreEntitySet="CITIES">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="CITY1" ColumnName="CITY" />
+                <ScalarProperty Name="CP" ColumnName="CP" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="FAMILIES">
+            <EntityTypeMapping TypeName="agsModel.FAMILY">
+              <MappingFragment StoreEntitySet="FAMILIES">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="LASTNAME" ColumnName="LASTNAME" />
+                <ScalarProperty Name="FIRSTNAME" ColumnName="FIRSTNAME" />
+                <ScalarProperty Name="ADRESS" ColumnName="ADRESS" />
+                <ScalarProperty Name="CITYID" ColumnName="CITYID" />
+                <ScalarProperty Name="TEL1" ColumnName="TEL1" />
+                <ScalarProperty Name="TEL2" ColumnName="TEL2" />
+                <ScalarProperty Name="TEL3" ColumnName="TEL3" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2008/10/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="True" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="True" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams>
+      <Diagram Name="Model1">
+        <EntityTypeShape EntityType="agsModel.CHILDREN" Width="1.5" PointX="0.75" PointY="0.75" Height="4.2879036458333326" IsExpanded="true" />
+        <EntityTypeShape EntityType="agsModel.CITY" Width="1.5" PointX="2.75" PointY="0.75" Height="1.5956835937499996" IsExpanded="true" />
+        <EntityTypeShape EntityType="agsModel.FAMILY" Width="1.5" PointX="2.75" PointY="3.75" Height="2.5571907552083335" IsExpanded="true" />
+      </Diagram>
+    </Diagrams>
+  </Designer>
+</edmx:Edmx>

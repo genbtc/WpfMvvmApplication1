@@ -1,6 +1,8 @@
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.IO;
+using System.Linq;
 using System.Windows.Input;
 using Npgsql;
 using WpfMvvmApplication1.Helpers;
@@ -89,14 +91,40 @@ namespace WpfMvvmApplication1.ViewModels
             //ChildrensCollection = new ChildrenCollection();
             ChildrensCollection = new ChildrenCollection {Collection = SQL.listChildren()};
             FamilyCollection = SQL.listFamilies();
+            //TestEntity();
         }
+
+        private void TestChildNames()
+        {
+            //using (var db = new agsEntities())
+            //{
+            //    IQueryable<CHILDREN> childQuery = from product in db.CHILDRENS
+            //                                        select product;
+
+            //    Console.WriteLine("Children Names:");
+            //    foreach (var child in childQuery)
+            //    {
+            //        Console.WriteLine(child.FIRSTNAME + child.LASTNAME);
+            //    }
+            //}
+            using (agsEntities Context = new agsEntities())
+            {
+                foreach (CHILDREN blog in Context.CHILDRENS)
+                {
+                    Console.WriteLine(blog.FIRSTNAME + " " + blog.LASTNAME);
+                }
+            }
+        }
+
         #endregion
 
         #region Commands
 
         public ICommand DoNothingCommand { get { return new DelegateCommand(OnDoNothing, CanExecuteDoNothing); } }
-
+        
         public ICommand UpdateDB { get { return new DelegateCommand(UpdateSqlrow); } }
+
+        public ICommand TestEntity { get { return new DelegateCommand(TestChildNames); } }
 
         #endregion
 
