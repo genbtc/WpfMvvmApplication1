@@ -14,7 +14,7 @@ namespace WpfMvvmApplication1.Models
 
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
-            // Map to the correct Chinook Database tables
+            // Map to the correct Database tables
             modelBuilder.Entity<ChildrenDB>().ToTable("CHILDRENS", "public");
             modelBuilder.Entity<FamilyDB>().ToTable("FAMILIES", "public");
         }

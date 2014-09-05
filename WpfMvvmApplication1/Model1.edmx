@@ -180,7 +180,7 @@
     <Diagrams>
       <Diagram Name="Model1">
         <EntityTypeShape EntityType="agsModel.CHILDREN" Width="1.5" PointX="0.75" PointY="0.75" Height="4.2879036458333326" IsExpanded="true" />
-        <EntityTypeShape EntityType="agsModel.CITY" Width="1.5" PointX="2.75" PointY="0.75" Height="1.5956835937499996" IsExpanded="true" />
+        <EntityTypeShape EntityType="agsModel.CITY" Width="1.5" PointX="2.75" PointY="0.75" Height="1.59568359375" IsExpanded="true" />
         <EntityTypeShape EntityType="agsModel.FAMILY" Width="1.5" PointX="2.75" PointY="3.75" Height="2.5571907552083335" IsExpanded="true" />
       </Diagram>
     </Diagrams>

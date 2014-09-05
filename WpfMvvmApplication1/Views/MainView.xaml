@@ -6,6 +6,7 @@
         xmlns:shell="http://schemas.microsoft.com/winfx/2006/xaml/presentation/shell"
         xmlns:ccl="clr-namespace:CustomChromeLibrary;assembly=CustomChromeLibrary"        
         xmlns:viewModels="clr-namespace:WpfMvvmApplication1.ViewModels"
+        xmlns:efTest="clr-namespace:WpfMvvmApplication1.Models"
         xmlns:converters="clr-namespace:WpfMvvmApplication1.Converters"
         Title="Gestion des Enfants" Height="868" Width="1600" WindowStartupLocation="Manual" WindowState="Maximized" Background="{StaticResource ResourceKey=GenBtcColorBrush}">
 
@@ -20,6 +21,7 @@
 
     <Window.Resources>
         <ResourceDictionary>
+            <efTest:ChildrenDB x:Key="ChildrenDb" />
             <converters:CaptionButtonRectToMarginConverter x:Key="CaptionButtonMarginConverter"/>
             <viewModels:MainWindowViewModel x:Key="Windows1ViewModel" />
             <converters:DebugConverter x:Key="debugConverter" />
@@ -59,7 +61,7 @@
 
 
         <!--Content-->
-        <Viewbox DataContext="{Binding Source={StaticResource Windows1ViewModel}}" Grid.ColumnSpan="2">
+        <Viewbox DataContext="{Binding Source={StaticResource Windows1ViewModel}}" Grid.ColumnSpan="2" Loaded="Viewbox_Loaded">
             <TabControl Height="778">
                 <!--Children Tab-->
                 <TabItem Header="Enfants">
@@ -180,7 +182,13 @@
                 <!--Family Tab-->
                 <TabItem Header="Famille">
                     <Grid Height="784" Width="1550">
-                        <DataGrid HorizontalAlignment="Left" Height="468" Margin="10,36,0,0" VerticalAlignment="Top" Width="1528"/>
+                        <DataGrid HorizontalAlignment="Left" Height="468" Margin="10,36,0,0" VerticalAlignment="Top" Width="1528" ItemsSource="{Binding Path=childrenOC, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}">
+                            <DataGrid.Columns>
+                                <DataGridTextColumn Binding="{Binding Path=ID, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Header="Id" Width="30" />
+                                <DataGridTextColumn Binding="{Binding Path=LASTNAME, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Header="Nom" Width="300"/>
+                                <DataGridTextColumn Binding="{Binding Path=FIRSTNAME, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Header="Prénom" Width="300" />
+                            </DataGrid.Columns>
+                        </DataGrid>
                         <Label Content="Recherche :" HorizontalAlignment="Left" Margin="11,2,0,0" VerticalAlignment="Top" Height="30" Width="80"/>
                         <TextBox Style="{StaticResource ResourceKey=flatTextBox}" HorizontalAlignment="Left" Height="24" Margin="82,4,0,0" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="875"/>
                         <TabControl HorizontalAlignment="Left" Height="260" Margin="10,520,0,0" VerticalAlignment="Top" Width="1529">
@@ -202,10 +210,12 @@
                                 <Grid></Grid>
                             </TabItem>
                         </TabControl>
+                        <Button Content="Test Put Children Family Grid" Height="23" HorizontalAlignment="Left" Name="buttonFam" VerticalAlignment="Top" Width="223" Command="{Binding FamilyButton}" Margin="1298,506,0,0" />
                     </Grid>
                 </TabItem>
             </TabControl>
         </Viewbox>  
         <ccl:CaptionButtons Grid.ColumnSpan="2" HorizontalAlignment="Right" Margin="0,8,0,0" Width="115" />
+        
     </Grid>
 </ccl:CustomChromeWindow>

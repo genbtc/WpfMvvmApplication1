@@ -13,5 +13,10 @@ namespace WpfMvvmApplication1.Views
             InitializeComponent();
         }
 
+        private void Viewbox_Loaded(object sender, RoutedEventArgs e)
+        {
+            
+        }
+
     }
 }
