@@ -31,8 +31,8 @@ namespace WpfMvvmApplication1.ViewModels
 
         #region FamilyCollection
 
-        private ObservableCollection<Family> _familyCollection;
-        public ObservableCollection<Family> FamilyCollection
+        private ObservableCollection<FamilyDB> _familyCollection;
+        public ObservableCollection<FamilyDB> FamilyCollection
         {
             get { return _familyCollection; }
             set
@@ -116,13 +116,13 @@ namespace WpfMvvmApplication1.ViewModels
             using (var db = new ChildrenContext())
             {
                 var children = from a in db.Children
-                              where a.Lastname.StartsWith("M")
-                              orderby a.Lastname
+                               where a.LASTNAME.StartsWith("M")
+                               orderby a.LASTNAME
                               select a;
 
                 foreach (var child in children)
                 {
-                    Console.WriteLine(child.Firstname + child.Lastname);
+                    Console.WriteLine(child.FIRSTNAME + child.LASTNAME);
                 }
             }
         }
@@ -173,11 +173,11 @@ namespace WpfMvvmApplication1.ViewModels
                     ));
             }
 
-            FamilyCollection = new ObservableCollection<Family>();
+            FamilyCollection = new ObservableCollection<FamilyDB>();
 
             for (var i = 0; i < 2; i++)
             {
-                FamilyCollection.Add(new Family(
+                FamilyCollection.Add(new FamilyDB(
                     RandomHelper.RandomInt(1, 15),
                     RandomHelper.RandomString(10, true),
                     RandomHelper.RandomString(10, true),

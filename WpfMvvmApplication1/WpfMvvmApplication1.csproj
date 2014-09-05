@@ -140,9 +140,11 @@
     </Compile>
     <Compile Include="Models\Children.cs" />
     <Compile Include="Models\Collection.cs" />
+    <Compile Include="Models\ChildrenDB.cs" />
+    <Compile Include="Models\Family.cs" />
     <Compile Include="Models\EFTest.cs" />
     <Compile Include="Models\Gender.cs" />
-    <Compile Include="Models\Family.cs" />
+    <Compile Include="Models\FamilyDB.cs" />
     <Compile Include="Models\SQL.cs" />
     <Compile Include="ViewModels\MainWindowViewModel.cs" />
     <Compile Include="Views\MainView.xaml.cs">

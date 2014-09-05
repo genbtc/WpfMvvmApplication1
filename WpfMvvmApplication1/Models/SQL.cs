@@ -126,9 +126,9 @@ namespace WpfMvvmApplication1.Models
         /// <summary>
         /// query SQL, return all children in an ObservableCollection for use by ViewModel
         /// </summary>
-        public static ObservableCollection<Family> listFamilies()
+        public static ObservableCollection<FamilyDB> listFamilies()
         {
-            ObservableCollection<Family> allFamily = new ObservableCollection<Family>();
+            ObservableCollection<FamilyDB> allFamily = new ObservableCollection<FamilyDB>();
             var reader = readSQL(sSQLfamilies);
             foreach (DataRow row in reader.Rows)
             {
@@ -143,7 +143,7 @@ namespace WpfMvvmApplication1.Models
                 string sTel2 = row["TEL2"].ToString();
                 string sTel3 = row["TEL3"].ToString();
 
-                allFamily.Add(new Family(
+                allFamily.Add(new FamilyDB(
                     iId,
                     sLastName,
                     sFirstName,
@@ -284,9 +284,9 @@ namespace WpfMvvmApplication1.Models
         /// <summary>
         /// Load one Family. (Charge les informations de la famille de l'enfant)
         /// </summary>
-        public Family LoadChildrenFamily(int iFamily)
+        public FamilyDB LoadChildrenFamily(int iFamily)
         {
-            Family oneFamily = null;
+            FamilyDB oneFamily = null;
 
             string sSQLChargeEnfant = @"SELECT ""FAMILIES"".""ID"",
                                           ""FAMILIES"".""LASTNAME"",
@@ -315,7 +315,7 @@ namespace WpfMvvmApplication1.Models
                 string sTel2 = row["TEL2"].ToString();
                 string sTel3 = row["TEL3"].ToString();
 
-                oneFamily = new Family(
+                oneFamily = new FamilyDB(
                     iFamily,   //id#
                     sLastName,
                     sFirstName,

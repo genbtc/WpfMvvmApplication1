@@ -9,14 +9,14 @@ namespace WpfMvvmApplication1.Models
 {
     class ChildrenContext : DbContext
     {
-        public DbSet<Children> Children { get; set; }
-        public DbSet<Family> Family { get; set; }
+        public DbSet<ChildrenDB> Children { get; set; }
+        public DbSet<FamilyDB> Family { get; set; }
 
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
             // Map to the correct Chinook Database tables
-            modelBuilder.Entity<Children>().ToTable("CHILDREN", "public");
-            modelBuilder.Entity<Family>().ToTable("FAMILIES", "public");
+            modelBuilder.Entity<ChildrenDB>().ToTable("CHILDRENS", "public");
+            modelBuilder.Entity<FamilyDB>().ToTable("FAMILIES", "public");
         }
     }
 }
