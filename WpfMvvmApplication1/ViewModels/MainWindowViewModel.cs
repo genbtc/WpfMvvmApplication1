@@ -1,8 +1,5 @@
 using System;
-using System.Collections.Generic;
 using System.Collections.ObjectModel;
-using System.Data.Entity;
-using System.IO;
 using System.Linq;
 using System.Windows.Input;
 using Npgsql;
@@ -33,8 +30,6 @@ namespace WpfMvvmApplication1.ViewModels
         #region FamilyCollection
 
         private ObservableCollection<FamilyDB> _familyCollection;
-        private ObservableCollection<ChildrenDB> CHILDREN_OC;
-        private ChildrenContext CHILDREN_EF;
 
         public ObservableCollection<FamilyDB> FamilyCollection
         {
@@ -52,6 +47,7 @@ namespace WpfMvvmApplication1.ViewModels
         #endregion
 
         #region ListGenders
+
         /// <summary>
         /// for initially populate checkbox with possible values
         /// </summary>
@@ -60,123 +56,63 @@ namespace WpfMvvmApplication1.ViewModels
             get { return Gender.listGenders.ToObservableCollection(); }
         }
 
-        
         #endregion
 
         #endregion
 
-        private void UpdateSqlrow()
-        {
-            //connection string
-            NpgsqlConnection Connection = new NpgsqlConnection(SQL.sConnection);
-            
-            //open connection once.
-            Connection.Open();
-            
-            //issue many commands
-            foreach (Children row in ChildrensCollection.Collection)
-            {
-                NpgsqlCommand command = Connection.CreateCommand();
-                if (row.Id > 0) //if row exist
-                    SQL.UpdateDBChild(command, row);
-                else            //or not exist, do insert
-                    row.Id = SQL.InsertDBChild(command,row);
-            }
-
-            //close
-            Connection.Close();
-        }
-        
         #region Constructor
 
         public MainWindowViewModel()
         {
             //RandomizeData();
-            //ChildrensCollection = new ChildrenCollection();
             ChildrensCollection = new ChildrenCollection {Collection = SQL.listChildren()};
             FamilyCollection = SQL.listFamilies();
-            //childrenEF = new ChildrenContext();
-            //childrenEF.Children.Load();
-            //childrenOC = childrenEF.Children.ToObservableCollection();
         }
+        
+        #endregion
 
-        public ObservableCollection<ChildrenDB> childrenOC
-        {
-            get { return CHILDREN_OC; }
-            set
-            {
-                if (CHILDREN_OC != value)
-                {
-                    CHILDREN_OC = value;
-                    RaisePropertyChanged(() => childrenOC);
-                }
-            }
-        }
-
-        public ChildrenContext childrenEF
-        {
-            get { return CHILDREN_EF; }
-            set { CHILDREN_EF = value; }
-        }
+        #region Commands
 
         private void TestChildNames()
         {
             using (var db = new agsEntities())
             {
                 IQueryable<CHILDREN> childQuery = from product in db.CHILDRENS
-                                                  select product;
+                    select product;
 
                 Console.WriteLine("Children Names:");
                 foreach (var child in childQuery)
-                {
                     Console.WriteLine(child.FIRSTNAME + child.LASTNAME);
-                }
             }
-            using (agsEntities Context = new agsEntities())
+            using (var Context = new agsEntities())
             {
                 foreach (CHILDREN blog in Context.CHILDRENS)
-                {
                     Console.WriteLine(blog.FIRSTNAME + " " + blog.LASTNAME);
-                }
             }
+        }
 
-            using (var db = new ChildrenContext())
+        //old way
+        private void UpdateSqlrow()
+        {
+            //connection string
+            var Connection = new NpgsqlConnection(SQL.sConnection);
+
+            //open connection once.
+            Connection.Open();
+
+            //issue many commands
+            foreach (Children row in ChildrensCollection.Collection)
             {
-                var children = from a in db.Children
-                               where a.LASTNAME.StartsWith("M")
-                               orderby a.LASTNAME
-                               select a;
-
-                foreach (var child in children)
-                {
-                    Console.WriteLine(child.FIRSTNAME + child.LASTNAME);
-                }
+                NpgsqlCommand command = Connection.CreateCommand();
+                if (row.Id > 0) //if row exist
+                    SQL.UpdateDBChild(command, row);
+                else //or not exist, do insert
+                    row.Id = SQL.InsertDBChild(command, row);
             }
+
+            //close
+            Connection.Close();
         }
-        private void TestFamilyDataGrid(){
-            childrenEF = new ChildrenContext();
-            childrenOC = childrenEF.Children.ToObservableCollection();
-        }
-        #endregion
-
-        #region Commands
-
-        public ICommand DoNothingCommand { get { return new DelegateCommand(OnDoNothing, CanExecuteDoNothing); } }
-        
-        public ICommand UpdateDB { get { return new DelegateCommand(UpdateSqlrow); } }
-
-        public ICommand TestEntity { get { return new DelegateCommand(TestChildNames); } }
-
-        public ICommand FamilyButton { get { return new DelegateCommand(TestFamilyDataGrid); } }
-
-        #endregion
-
-        #region Command Handlers
-
-        private void OnDoNothing(){}
-        private bool CanExecuteDoNothing(){return false;}
-
-        #endregion
 
         private void RandomizeData()
         {
@@ -222,8 +158,35 @@ namespace WpfMvvmApplication1.ViewModels
                     RandomHelper.RandomString(10, true)
                     ));
             }
-
-
         }
+
+        private bool CanExecuteDoNothing()
+        {
+            return false;
+        }
+
+        private void OnDoNothing()
+        {}
+
+        #endregion
+
+        #region Command Handlers
+
+        public ICommand UpdateDB
+        {
+            get { return new DelegateCommand(UpdateSqlrow); }
+        }
+
+        public ICommand TestEntity
+        {
+            get { return new DelegateCommand(TestChildNames); }
+        }
+
+        public ICommand DoNothingCommand
+        {
+            get { return new DelegateCommand(OnDoNothing, CanExecuteDoNothing); }
+        }
+
+        #endregion
     }
 }

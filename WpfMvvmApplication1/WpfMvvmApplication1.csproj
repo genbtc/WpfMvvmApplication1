@@ -140,11 +140,8 @@
     </Compile>
     <Compile Include="Models\Children.cs" />
     <Compile Include="Models\Collection.cs" />
-    <Compile Include="Models\ChildrenDB.cs" />
     <Compile Include="Models\Family.cs" />
-    <Compile Include="Models\EFTest.cs" />
     <Compile Include="Models\Gender.cs" />
-    <Compile Include="Models\FamilyDB.cs" />
     <Compile Include="Models\SQL.cs" />
     <Compile Include="ViewModels\MainWindowViewModel.cs" />
     <Compile Include="Views\MainView.xaml.cs">
@@ -179,6 +176,7 @@
       <LastGenOutput>Model1.Designer.cs</LastGenOutput>
     </EntityDeploy>
     <None Include="packages.config" />
+    <None Include="Properties\DataSources\agsEntities.datasource" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
@@ -206,6 +204,9 @@
       <ProductName>Windows Installer 3.1</ProductName>
       <Install>true</Install>
     </BootstrapperPackage>
+  </ItemGroup>
+  <ItemGroup>
+    <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
