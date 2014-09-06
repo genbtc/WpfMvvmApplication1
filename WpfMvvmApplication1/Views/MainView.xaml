@@ -99,8 +99,8 @@
                                 <DataGridTemplateColumn.CellTemplate>
                                     <DataTemplate>
                                             <ComboBox Name="cbFamilygrid" HorizontalAlignment="Left" VerticalAlignment="Top" Height="20" Width="181" Style="{StaticResource ResourceKey=ComboBoxFlatStyle}" 
-                                                      DisplayMemberPath="LASTNAME" SelectedValuePath="{Binding Path=FAMILYID, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
-                                                      ItemsSource="{Binding RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type Window}}, Path=DataContext.FamiliesViewSource.View}" 
+                                                      DisplayMemberPath="LASTNAME" SelectedValuePath="ID"
+                                                      ItemsSource="{Binding RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type Window}}, Path=DataContext.FamilyCollection}" 
                                                       SelectedIndex="{Binding Path=FAMILYID, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
                                         </DataTemplate>
                                 </DataGridTemplateColumn.CellTemplate>
@@ -111,8 +111,8 @@
                         <TabItem Header="Adresse" >
                             <Grid Background="Snow" VerticalAlignment="Bottom">
                                 <Label Content="Famille :" Margin="410,28,1105,127" />
-                                <!--<ComboBox x:Name="cbFamily" Style="{StaticResource ResourceKey=ComboBoxFlatStyle}" Margin="466,28,644,127"  IsEditable="False" 
-                                          ItemsSource="{Binding Path=FamiliesViewSource.View}" DisplayMemberPath="LASTNAME" SelectedValuePath="ID" SelectedIndex="{Binding SelectedItem.FAMILYID, ElementName=MainDataGrid}" />-->
+                                <ComboBox x:Name="cbFamily" Style="{StaticResource ResourceKey=ComboBoxFlatStyle}" Margin="466,28,644,127"  IsEditable="False" 
+                                          ItemsSource="{Binding Path=FamiliesViewSource.View}" DisplayMemberPath="LASTNAME" SelectedValuePath="ID" SelectedIndex="{Binding SelectedItem.FAMILYID, ElementName=MainDataGrid}" />
                                 <TextBox x:Name="tbAdress" Style="{StaticResource ResourceKey=flatTextBox}" Margin="466,55,644,67" TextWrapping="Wrap" IsEnabled="True" Text="{Binding SelectedItem.ADRESS, ElementName=cbFamily}" />
                                 <!--<TextBox x:Name="tbCp" Style="{StaticResource ResourceKey=flatTextBox}" Margin="466,116,951,39" TextWrapping="Wrap" IsEnabled="True" Text="{Binding SelectedItem.CP, ElementName=cbFamily}" />
                                 <TextBox x:Name="tbCity" Style="{StaticResource ResourceKey=flatTextBox}" Margin="623,116,644,39" TextWrapping="Wrap" IsEnabled="True" Text="{Binding SelectedItem.CITY, ElementName=cbFamily}" />-->
