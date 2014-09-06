@@ -15,6 +15,7 @@ using System.Data.Objects.DataClasses;
 using System.Linq;
 using System.Runtime.Serialization;
 using System.Xml.Serialization;
+using WpfMvvmApplication1.ViewModels;
 
 [assembly: EdmSchemaAttribute()]
 namespace WpfMvvmApplication1
@@ -56,7 +57,7 @@ namespace WpfMvvmApplication1
         }
     
         #endregion
-    
+
         #region Partial Methods
     
         partial void OnContextCreated();
@@ -587,7 +588,6 @@ namespace WpfMvvmApplication1
 
         #endregion
 
-    
     }
     
     /// <summary>

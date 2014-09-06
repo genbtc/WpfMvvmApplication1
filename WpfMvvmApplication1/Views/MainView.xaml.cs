@@ -10,7 +10,7 @@ namespace WpfMvvmApplication1.Views
         public MainWindow()
         {
             InitializeComponent();
-            DataContext = new MainWindowViewModel();
+            //DataContext = new MainWindowViewModel();
         }
     }
 }

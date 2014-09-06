@@ -20,20 +20,23 @@
             CaptionHeight="16" CornerRadius="15,15,10,10" />
     </shell:WindowChrome.WindowChrome>
 
-    <Window.Resources>
+    <ccl:CustomChromeWindow.Resources>
         <ResourceDictionary>
-            <converters:CaptionButtonRectToMarginConverter x:Key="CaptionButtonMarginConverter" />
             <models:Gender x:Key="Gender" />
+            <!--<viewModels:MainWindowViewModel x:Key="MainWindowViewModel" />-->
             <converters:DebugConverter x:Key="debugConverter" />
         </ResourceDictionary>
-    </Window.Resources>
+    </ccl:CustomChromeWindow.Resources>
+    <Window.DataContext>
+        <viewModels:MainWindowViewModel x:Name="datacontextviewmodel" />
+    </Window.DataContext>
     <Grid>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="1462*"/>
             <ColumnDefinition Width="116*" />
         </Grid.ColumnDefinitions>
         <!--provide the background for the entire form.  In practice, this appears as the window's resize border, because the title and window content obscure the rest-->
-        <Border CornerRadius="15,15,10,10" BorderThickness="3" BorderBrush="LightSteelBlue" Grid.ColumnSpan="2">
+        <Border CornerRadius="15,15,10,10" BorderThickness="3" BorderBrush="LightSteelBlue" Grid.ColumnSpan="2" >
             <Border.Background>
                 <LinearGradientBrush StartPoint="0.5,0" EndPoint="0.5,1">
                     <GradientStop Color="#99bbbbff" Offset="0" />
@@ -43,7 +46,7 @@
         </Border>
 
         <!--title bar-->
-        <Border BorderThickness="3,3,3,1" BorderBrush="LightSteelBlue" Grid.ColumnSpan="2">
+        <Border BorderThickness="3,3,3,1" BorderBrush="LightSteelBlue" Grid.ColumnSpan="2" >
             <Border.Background>
                 <LinearGradientBrush StartPoint="0.5,0" EndPoint="0.5,1">
                     <GradientStop Color="#ffbbbbff" Offset="0" />
@@ -61,14 +64,14 @@
             <!--Children Tab-->
             <TabItem Header="Enfants">
                 <Grid Height="791" VerticalAlignment="Center" >
-                    <Button x:Name="savechildren" Content="Update!" Margin="1471,565,11,202" Command="{Binding Path=SaveChildren}" />
+                    <Button x:Name="savechildren" Content="Update!" Margin="1474,565,8,202" Command="{Binding Path=SaveChildren}" />
                     <StackPanel Orientation="Horizontal" Height="28" VerticalAlignment="Top" Margin="10,2,1,0">
                         <Label Content="Recherche :" />
                         <TextBox Name="Recherche" Style="{StaticResource ResourceKey=flatTextBox}" Height="23" TextWrapping="Wrap" Text="TextBox" Width="716" />
                         <Separator Height="6" Name="separator1" Width="716" Visibility="Hidden" />
                         <Button Content="+" Width="30" />
                     </StackPanel>
-                    <DataGrid Name="MainDataGrid" ItemsSource="{Binding ChildrenViewSource.View}" AutoGenerateColumns="False" ColumnWidth="152" Margin="10,36,12,0" VerticalAlignment="Top" Height="522" 
+                    <DataGrid Name="MainDataGrid" ItemsSource="{Binding Path=ChildrenViewSource.View}" AutoGenerateColumns="False" ColumnWidth="152" Margin="10,36,9,0" VerticalAlignment="Top" Height="522" 
                               BorderThickness="1,2,1,1" Background="{StaticResource ResourceKey=GenBtcColorBrush}" BorderBrush="#FF889BB1" RowBackground="Snow" HeadersVisibility="Column">
                         <DataGrid.Columns>
                             <DataGridTextColumn Binding="{Binding Path=ID}" Header="Id" Width="30" />
@@ -78,25 +81,28 @@
                                 <DataGridTemplateColumn.CellTemplate>
                                     <DataTemplate>
                                         <xctk:DateTimePicker Name="dtpNaissance" Height="20" HorizontalAlignment="Left" Margin="1,0,0,0" VerticalAlignment="Top" Width="101" Format="ShortDate" 
-                                                             AllowDrop="False" IsManipulationEnabled="True" ShowButtonSpinner="True" TimePickerVisibility="Hidden" Background="Snow" Value="{Binding Path=BIRTHDATE, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
+                                                                AllowDrop="False" IsManipulationEnabled="True" ShowButtonSpinner="True" TimePickerVisibility="Hidden" Background="Snow" Value="{Binding Path=BIRTHDATE, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
                                     </DataTemplate>
                                 </DataGridTemplateColumn.CellTemplate>
                             </DataGridTemplateColumn>
-                            <DataGridTextColumn Binding="{Binding Path=FAMILYID}" Header="Age" Width="40" />
+                            <DataGridTextColumn Binding="{Binding Path=BIRTHDATE}" Header="Age" Width="40" />
                             <DataGridTemplateColumn Header="Gender">
                                 <DataGridTemplateColumn.CellTemplate>
                                     <DataTemplate>
                                         <ComboBox Name="cbGender" HorizontalAlignment="Left" Height="20" VerticalAlignment="Top" Width="111" Style="{StaticResource ResourceKey=ComboBoxFlatStyle}"
-                                                  ItemsSource="{Binding Source={StaticResource Gender}, Path=ListGenders}"  DisplayMemberPath="Value" SelectedValuePath="Id" SelectedIndex="{Binding Path=GENDERID, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
+                                                    ItemsSource="{Binding Source={StaticResource Gender}, Path=ListGenders}"  DisplayMemberPath="Value" SelectedValuePath="Id" SelectedIndex="{Binding Path=GENDERID, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
                                     </DataTemplate>
                                 </DataGridTemplateColumn.CellTemplate>
                             </DataGridTemplateColumn>
+                                <DataGridTextColumn Binding="{Binding Path=FAMILYID, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Header="FAMILYID" Width="40" />
                             <DataGridTemplateColumn Header="Family" Width="184">
                                 <DataGridTemplateColumn.CellTemplate>
                                     <DataTemplate>
-                                        <ComboBox Name="cbFamily" HorizontalAlignment="Left" VerticalAlignment="Top" Height="20" Width="181" Style="{StaticResource ResourceKey=ComboBoxFlatStyle}" 
-                                                  SelectedIndex="{Binding Path=FAMILYID, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" DisplayMemberPath="LASTNAME" SelectedValuePath="ID" ItemsSource="{Binding FamiliesViewSource.View}" />
-                                    </DataTemplate>
+                                            <ComboBox Name="cbFamilygrid" HorizontalAlignment="Left" VerticalAlignment="Top" Height="20" Width="181" Style="{StaticResource ResourceKey=ComboBoxFlatStyle}" 
+                                                      DisplayMemberPath="LASTNAME" SelectedValuePath="{Binding Path=FAMILYID, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                                                      ItemsSource="{Binding RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type Window}}, Path=DataContext.FamiliesViewSource.View}" 
+                                                      SelectedIndex="{Binding Path=FAMILYID, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
+                                        </DataTemplate>
                                 </DataGridTemplateColumn.CellTemplate>
                             </DataGridTemplateColumn>
                         </DataGrid.Columns>
@@ -105,11 +111,11 @@
                         <TabItem Header="Adresse" >
                             <Grid Background="Snow" VerticalAlignment="Bottom">
                                 <Label Content="Famille :" Margin="410,28,1105,127" />
-                                <ComboBox x:Name="cbFamily" Style="{StaticResource ResourceKey=ComboBoxFlatStyle}" Margin="466,28,644,127"  IsEditable="False" 
-                                          ItemsSource="{Binding FamiliesViewSource.View}" DisplayMemberPath="LASTNAME" SelectedValuePath="ID" SelectedIndex="{Binding SelectedItem.FAMILYID, ElementName=MainDataGrid}" />
+                                <!--<ComboBox x:Name="cbFamily" Style="{StaticResource ResourceKey=ComboBoxFlatStyle}" Margin="466,28,644,127"  IsEditable="False" 
+                                          ItemsSource="{Binding Path=FamiliesViewSource.View}" DisplayMemberPath="LASTNAME" SelectedValuePath="ID" SelectedIndex="{Binding SelectedItem.FAMILYID, ElementName=MainDataGrid}" />-->
                                 <TextBox x:Name="tbAdress" Style="{StaticResource ResourceKey=flatTextBox}" Margin="466,55,644,67" TextWrapping="Wrap" IsEnabled="True" Text="{Binding SelectedItem.ADRESS, ElementName=cbFamily}" />
-                                <TextBox x:Name="tbCp" Style="{StaticResource ResourceKey=flatTextBox}" Margin="466,116,951,39" TextWrapping="Wrap" IsEnabled="True" Text="{Binding SelectedItem.CP, ElementName=cbFamily}" />
-                                <TextBox x:Name="tbCity" Style="{StaticResource ResourceKey=flatTextBox}" Margin="623,116,644,39" TextWrapping="Wrap" IsEnabled="True" Text="{Binding SelectedItem.CITY, ElementName=cbFamily}" />
+                                <!--<TextBox x:Name="tbCp" Style="{StaticResource ResourceKey=flatTextBox}" Margin="466,116,951,39" TextWrapping="Wrap" IsEnabled="True" Text="{Binding SelectedItem.CP, ElementName=cbFamily}" />
+                                <TextBox x:Name="tbCity" Style="{StaticResource ResourceKey=flatTextBox}" Margin="623,116,644,39" TextWrapping="Wrap" IsEnabled="True" Text="{Binding SelectedItem.CITY, ElementName=cbFamily}" />-->
                                 <Label Content="Adresse :" Margin="407,55,1105,99" RenderTransformOrigin="0.5,0.538" />
                                 <TextBox x:Name="tbTel1" Style="{StaticResource ResourceKey=flatTextBox}" Margin="972,28,427,127" TextWrapping="Wrap" IsEnabled="True" Text="{Binding SelectedItem.TEL1, ElementName=cbFamily}" />
                                 <TextBox x:Name="tbTel2" Style="{StaticResource ResourceKey=flatTextBox}" Margin="972,57,427,98" TextWrapping="Wrap" IsEnabled="True" Text="{Binding SelectedItem.TEL2, ElementName=cbFamily}" />
@@ -164,14 +170,14 @@
             </TabItem>
             <!--Family Tab-->
             <TabItem Header="Famille">
-                <Grid VerticalAlignment="Bottom" Height="798" Width="1565">
+                <Grid VerticalAlignment="Bottom" Height="798" Width="1600">
                     <StackPanel Orientation="Horizontal" Height="28" VerticalAlignment="Top" Margin="10,2,0,0" HorizontalAlignment="Left" Width="1555">
                         <Label Content="Recherche :" />
                         <TextBox Name="RechercheFamille" Style="{StaticResource ResourceKey=flatTextBox}" Height="23" TextWrapping="Wrap" Text="TextBox" Width="716" />
                         <Separator Height="6" Name="separator2" Width="626" Visibility="Hidden" />
                     </StackPanel>
-                    <DataGrid HorizontalAlignment="Left" VerticalAlignment="Top" Height="468" Width="1546" Margin="10,36,0,0" AutoGenerateColumns="False" BorderThickness="1,2,1,1" 
-                              Background="{StaticResource ResourceKey=GenBtcColorBrush}" BorderBrush="#FF889BB1" RowBackground="Snow" ItemsSource="{Binding FamiliesViewSource.View}">
+                    <DataGrid HorizontalAlignment="Left" VerticalAlignment="Top" Height="468" Width="1579" Margin="10,36,0,0" AutoGenerateColumns="False" BorderThickness="1,2,1,1" 
+                              Background="{StaticResource ResourceKey=GenBtcColorBrush}" BorderBrush="#FF889BB1" RowBackground="Snow" ItemsSource="{Binding Path=FamiliesViewSource.View}" DataContext="{Binding}" HeadersVisibility="Column">
                         <DataGrid.Columns>
                             <DataGridTextColumn Binding="{Binding Path=ID, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Header="Id" Width="30" />
                             <DataGridTextColumn Binding="{Binding Path=LASTNAME, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Header="Nom" Width="200" />
@@ -202,7 +208,7 @@
                             <Grid></Grid>
                         </TabItem>
                     </TabControl>
-                    <Button Content="Update!" Margin="1475,511,10,264" Name="savefamily" Command="{Binding Path=SaveFamily}" />
+                    <Button Content="Update!" Margin="1474,511,11,264" Name="savefamily" Command="{Binding Path=SaveFamily}" />
                 </Grid>
             </TabItem>
         </TabControl>

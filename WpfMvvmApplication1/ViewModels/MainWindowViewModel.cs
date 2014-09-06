@@ -1,13 +1,8 @@
-using System;
 using System.Collections.ObjectModel;
 using System.Data.Objects;
-using System.Linq;
-using System.Windows;
 using System.Windows.Data;
 using System.Windows.Input;
-using Npgsql;
 using WpfMvvmApplication1.Helpers;
-using WpfMvvmApplication1.Models;
 
 namespace WpfMvvmApplication1.ViewModels
 {
@@ -36,15 +31,28 @@ namespace WpfMvvmApplication1.ViewModels
             }
         }
 
+        private ObservableCollection<FAMILY> _familyCollection = new ObservableCollection<FAMILY>();
+        public ObservableCollection<FAMILY> FamilyCollection
+        {
+            get { return _familyCollection; }
+            set
+            {
+                if (_familyCollection != value)
+                {
+                    _familyCollection = value;
+                    RaisePropertyChanged(() => FamilyCollection);
+                }
+            }
+        }
+        
         #endregion
 
         #region Constructor
 
-        public agsEntities agsEntities = new agsEntities();
+        public agsEntities agsEntities = new agsEntities("metadata=res://*/Model1.csdl|res://*/Model1.ssdl|res://*/Model1.msl;provider=Npgsql;provider connection string='PORT=5432;TIMEOUT=15;POOLING=True;MINPOOLSIZE=1;MAXPOOLSIZE=20;COMMANDTIMEOUT=20;COMPATIBLE=2.2.0.0;HOST=localhost;DATABASE=ags;USER ID=ags;PASSWORD=Fadila1980'");
 
         public MainWindowViewModel()
         {
-            //RandomizeData();
             //ChildrenCollection = new ChildrenCollection {Collection = SQL.listChildren()};
             //FamilyCollection = SQL.listFamilies();
         }
@@ -60,6 +68,10 @@ namespace WpfMvvmApplication1.ViewModels
             this._familiesViewSource = new CollectionViewSource();
             this._familiesViewSource.Source = this.FamiliesQuery.Execute(MergeOption.AppendOnly);
             this._familiesViewSource.View.Refresh();
+            //and into an observable collection
+            foreach (FAMILY thing in agsEntities.FAMILIES)
+                FamilyCollection.Add(thing);
+
         }
         private void GetChildrenViewSource()
         {
