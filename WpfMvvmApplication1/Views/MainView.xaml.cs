@@ -1,5 +1,7 @@
-﻿using System;
+﻿using System.Data.Objects;
 using System.Windows;
+using System.Windows.Data;
+using WpfMvvmApplication1.ViewModels;
 
 namespace WpfMvvmApplication1.Views
 {
@@ -8,35 +10,31 @@ namespace WpfMvvmApplication1.Views
     /// </summary>
     public partial class MainWindow
     {
-        private System.Windows.Data.CollectionViewSource fAMILIESViewSource;
-        private WpfMvvmApplication1.agsEntities agsEntities;
+        public MainWindowViewModel ViewModel;
+        private System.Data.Objects.ObjectQuery<FAMILY> fAMILIESQuery;
 
         public MainWindow()
         {
             InitializeComponent();
+            ViewModel = new MainWindowViewModel();
         }
 
-        private System.Data.Objects.ObjectQuery<FAMILY> GetFAMILIESQuery(agsEntities agsEntities)
-        {
-            // Auto generated code
-            System.Data.Objects.ObjectQuery<WpfMvvmApplication1.FAMILY> fAMILIESQuery = agsEntities.FAMILIES;
-            // Returns an ObjectQuery.
-            return fAMILIESQuery;
-        }
+
 
         private void CustomChromeWindow_Loaded(object sender, RoutedEventArgs e)
         {
-
-            this.agsEntities = new agsEntities();
+            
             // Load data into FAMILIES. You can modify this code as needed.
-            this.fAMILIESViewSource = ((System.Windows.Data.CollectionViewSource)(this.FindResource("fAMILIESViewSource")));
-            System.Data.Objects.ObjectQuery<FAMILY> fAMILIESQuery = this.GetFAMILIESQuery(agsEntities);
-            this.fAMILIESViewSource.Source = fAMILIESQuery.Execute(System.Data.Objects.MergeOption.AppendOnly);
+            ViewModel.FamiliesViewSource = ((CollectionViewSource)(this.FindResource("fAMILIESViewSource")));
+            this.fAMILIESQuery = ViewModel.GetFAMILIESQuery(ViewModel.agsEntities);
+            ViewModel.FamiliesViewSource.Source = fAMILIESQuery.Execute(System.Data.Objects.MergeOption.AppendOnly);
         }
 
         private void savefamily_Click(object sender, RoutedEventArgs e)
         {
-            this.agsEntities.SaveChanges();
+            ViewModel.agsEntities.SaveChanges();
+            ViewModel.agsEntities.Refresh(RefreshMode.StoreWins, this.fAMILIESQuery);
+
         }
 
     }

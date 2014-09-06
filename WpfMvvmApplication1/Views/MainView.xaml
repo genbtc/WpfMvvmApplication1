@@ -8,7 +8,7 @@
         xmlns:viewModels="clr-namespace:WpfMvvmApplication1.ViewModels"
         xmlns:efTest="clr-namespace:WpfMvvmApplication1.Models"
         xmlns:converters="clr-namespace:WpfMvvmApplication1.Converters"
-        Title="Gestion des Enfants" Height="868" Width="1600" WindowStartupLocation="Manual" WindowState="Maximized" Background="{StaticResource ResourceKey=GenBtcColorBrush}" mc:Ignorable="d" xmlns:d="http://schemas.microsoft.com/expression/blend/2008" xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" xmlns:my1="clr-namespace:WpfMvvmApplication1" Loaded="CustomChromeWindow_Loaded">
+        Title="Gestion des Enfants" Height="868" Width="1600" WindowStartupLocation="Manual" Background="{StaticResource ResourceKey=GenBtcColorBrush}" mc:Ignorable="d" xmlns:d="http://schemas.microsoft.com/expression/blend/2008" xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" xmlns:my1="clr-namespace:WpfMvvmApplication1" Loaded="CustomChromeWindow_Loaded">
 
     <shell:WindowChrome.WindowChrome>
         <shell:WindowChrome
@@ -21,7 +21,7 @@
 
     <Window.Resources>
         <ResourceDictionary>
-            <efTest:ChildrenDB x:Key="ChildrenDb" />
+            <!--<efTest:ChildrenDB x:Key="ChildrenDb" />-->
             <converters:CaptionButtonRectToMarginConverter x:Key="CaptionButtonMarginConverter"/>
             <viewModels:MainWindowViewModel x:Key="Windows1ViewModel" />
             <converters:DebugConverter x:Key="debugConverter" />
@@ -181,7 +181,7 @@
                     </Grid>
                 </TabItem>
                 <!--Family Tab-->
-                <TabItem Header="Famille">
+                <TabItem Header="Famille" HorizontalAlignment="Left" Width="53">
                     <Grid Height="784" Width="1550">
                         <DataGrid HorizontalAlignment="Left" Height="468" Margin="10,36,0,0" VerticalAlignment="Top" Width="1528" ItemsSource="{Binding Source={StaticResource fAMILIESViewSource}}"
                                    AutoGenerateColumns="False">

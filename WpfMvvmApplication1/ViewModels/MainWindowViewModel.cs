@@ -1,6 +1,7 @@
 using System;
 using System.Collections.ObjectModel;
 using System.Linq;
+using System.Windows.Data;
 using System.Windows.Input;
 using Npgsql;
 using WpfMvvmApplication1.Helpers;
@@ -8,7 +9,7 @@ using WpfMvvmApplication1.Models;
 
 namespace WpfMvvmApplication1.ViewModels
 {
-    internal class MainWindowViewModel : NotificationObject
+    public class MainWindowViewModel : NotificationObject
     {
         #region Properties
 
@@ -29,9 +30,9 @@ namespace WpfMvvmApplication1.ViewModels
 
         #region FamilyCollection
 
-        private ObservableCollection<FamilyDB> _familyCollection;
+        private ObservableCollection<Family> _familyCollection;
 
-        public ObservableCollection<FamilyDB> FamilyCollection
+        public ObservableCollection<Family> FamilyCollection
         {
             get { return _familyCollection; }
             set
@@ -67,10 +68,28 @@ namespace WpfMvvmApplication1.ViewModels
             //RandomizeData();
             ChildrensCollection = new ChildrenCollection {Collection = SQL.listChildren()};
             FamilyCollection = SQL.listFamilies();
+            loadEntity();
         }
-        
+
+        public CollectionViewSource FamiliesViewSource;
+        public agsEntities agsEntities;
+
+        private void loadEntity()
+        {
+            this.agsEntities = new agsEntities();
+        }
+
         #endregion
 
+        #region EF
+        public System.Data.Objects.ObjectQuery<FAMILY> GetFAMILIESQuery(agsEntities agsEntities)
+        {
+            // Auto generated code
+            System.Data.Objects.ObjectQuery<FAMILY> fAMILIESQuery = agsEntities.FAMILIES;
+            // Returns an ObjectQuery.
+            return fAMILIESQuery;
+        }
+        #endregion
         #region Commands
 
         private void TestChildNames()
@@ -141,11 +160,11 @@ namespace WpfMvvmApplication1.ViewModels
                     ));
             }
 
-            FamilyCollection = new ObservableCollection<FamilyDB>();
+            FamilyCollection = new ObservableCollection<Family>();
 
             for (var i = 0; i < 2; i++)
             {
-                FamilyCollection.Add(new FamilyDB(
+                FamilyCollection.Add(new Family(
                     RandomHelper.RandomInt(1, 15),
                     RandomHelper.RandomString(10, true),
                     RandomHelper.RandomString(10, true),
