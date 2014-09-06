@@ -1,6 +1,8 @@
 using System;
 using System.Collections.ObjectModel;
+using System.Data.Objects;
 using System.Linq;
+using System.Windows;
 using System.Windows.Data;
 using System.Windows.Input;
 using Npgsql;
@@ -12,171 +14,131 @@ namespace WpfMvvmApplication1.ViewModels
     public class MainWindowViewModel : NotificationObject
     {
         #region Properties
-
-        #region ChildrensCollection
-
-        private ChildrenCollection _childrensCollection;
-        public ChildrenCollection ChildrensCollection
+        private CollectionViewSource _familiesViewSource;
+        public CollectionViewSource FamiliesViewSource
         {
-            get { return _childrensCollection; }
-            set
+            get
             {
-                _childrensCollection = value;
-                RaisePropertyChanged(() => ChildrensCollection);
+                if (_familiesViewSource == null)
+                    GetFamilyViewSource();
+                return _familiesViewSource;
             }
         }
 
-        #endregion
-
-        #region FamilyCollection
-
-        private ObservableCollection<Family> _familyCollection;
-
-        public ObservableCollection<Family> FamilyCollection
+        private CollectionViewSource _childrenViewSource;
+        public CollectionViewSource ChildrenViewSource
         {
-            get { return _familyCollection; }
-            set
+            get
             {
-                if (_familyCollection != value)
-                {
-                    _familyCollection = value;
-                    RaisePropertyChanged(() => FamilyCollection);
-                }
+                if (_childrenViewSource == null)
+                    GetChildrenViewSource();
+                return _childrenViewSource;
             }
         }
-
-        #endregion
-
-        #region ListGenders
-
-        /// <summary>
-        /// for initially populate checkbox with possible values
-        /// </summary>
-        public ObservableCollection<Gender> ListGenders
-        {
-            get { return Gender.listGenders.ToObservableCollection(); }
-        }
-
-        #endregion
 
         #endregion
 
         #region Constructor
 
+        public agsEntities agsEntities = new agsEntities();
+
         public MainWindowViewModel()
         {
             //RandomizeData();
-            ChildrensCollection = new ChildrenCollection {Collection = SQL.listChildren()};
-            FamilyCollection = SQL.listFamilies();
-            loadEntity();
-        }
-
-        public CollectionViewSource FamiliesViewSource;
-        public agsEntities agsEntities;
-
-        private void loadEntity()
-        {
-            this.agsEntities = new agsEntities();
+            //ChildrenCollection = new ChildrenCollection {Collection = SQL.listChildren()};
+            //FamilyCollection = SQL.listFamilies();
         }
 
         #endregion
 
-        #region EF
-        public System.Data.Objects.ObjectQuery<FAMILY> GetFAMILIESQuery(agsEntities agsEntities)
+        #region EF Query
+
+        private void GetFamilyViewSource()
         {
-            // Auto generated code
-            System.Data.Objects.ObjectQuery<FAMILY> fAMILIESQuery = agsEntities.FAMILIES;
-            // Returns an ObjectQuery.
+            // Load data into FAMILIES
+            this.FamiliesQuery = this.GetFAMILIESQuery(this.agsEntities);
+            this._familiesViewSource = new CollectionViewSource();
+            this._familiesViewSource.Source = this.FamiliesQuery.Execute(MergeOption.AppendOnly);
+            this._familiesViewSource.View.Refresh();
+        }
+        private void GetChildrenViewSource()
+        {
+            // Load data into CHILDREN
+            this.ChildrenQuery = this.GetCHILDRENQuery(this.agsEntities);
+            this._childrenViewSource = new CollectionViewSource();
+            this._childrenViewSource.Source = this.ChildrenQuery.Execute(MergeOption.AppendOnly);
+            this._childrenViewSource.View.Refresh();
+        }
+
+        public ObjectQuery<FAMILY> FamiliesQuery;
+        public ObjectQuery<FAMILY> GetFAMILIESQuery(agsEntities agsEntities)
+        {
+            ObjectQuery<FAMILY> fAMILIESQuery = agsEntities.FAMILIES;
             return fAMILIESQuery;
         }
+
+        public ObjectQuery<CHILDREN> ChildrenQuery;
+        public ObjectQuery<CHILDREN> GetCHILDRENQuery(agsEntities agsEntities)
+        {
+            ObjectQuery<CHILDREN> CHILDRENQuery = agsEntities.CHILDRENS;
+            return CHILDRENQuery;
+        }
+
         #endregion
+
         #region Commands
 
-        private void TestChildNames()
-        {
-            using (var db = new agsEntities())
-            {
-                IQueryable<CHILDREN> childQuery = from product in db.CHILDRENS
-                    select product;
+        //private void TestChildNames()
+        //{
+        //    using (var db = new agsEntities())
+        //    {
+        //        IQueryable<CHILDREN> childQuery = from product in db.CHILDRENS
+        //            select product;
 
-                Console.WriteLine("Children Names:");
-                foreach (var child in childQuery)
-                    Console.WriteLine(child.FIRSTNAME + child.LASTNAME);
-            }
-            using (var Context = new agsEntities())
-            {
-                foreach (CHILDREN blog in Context.CHILDRENS)
-                    Console.WriteLine(blog.FIRSTNAME + " " + blog.LASTNAME);
-            }
+        //        Console.WriteLine("Children Names:");
+        //        foreach (var child in childQuery)
+        //            Console.WriteLine(child.FIRSTNAME + child.LASTNAME);
+        //    }
+        //    using (var Context = new agsEntities())
+        //    {
+        //        foreach (CHILDREN blog in Context.CHILDRENS)
+        //            Console.WriteLine(blog.FIRSTNAME + " " + blog.LASTNAME);
+        //    }
+        //}
+
+        ////old way
+        //private void UpdateSqlrow()
+        //{
+        //    //connection string
+        //    var Connection = new NpgsqlConnection(SQL.sConnection);
+
+        //    //open connection once.
+        //    Connection.Open();
+
+        //    //issue many commands
+        //    foreach (Children row in ChildrenCollection.Collection)
+        //    {
+        //        NpgsqlCommand command = Connection.CreateCommand();
+        //        if (row.Id > 0) //if row exist
+        //            SQL.UpdateDBChild(command, row);
+        //        else //or not exist, do insert
+        //            row.Id = SQL.InsertDBChild(command, row);
+        //    }
+
+        //    //close
+        //    Connection.Close();
+        //}
+
+        private void SaveChildrentoDB()
+        {
+            this.agsEntities.SaveChanges();
+            this.agsEntities.Refresh(RefreshMode.StoreWins, this.ChildrenQuery);
         }
 
-        //old way
-        private void UpdateSqlrow()
+        private void SaveFamilytoDB()
         {
-            //connection string
-            var Connection = new NpgsqlConnection(SQL.sConnection);
-
-            //open connection once.
-            Connection.Open();
-
-            //issue many commands
-            foreach (Children row in ChildrensCollection.Collection)
-            {
-                NpgsqlCommand command = Connection.CreateCommand();
-                if (row.Id > 0) //if row exist
-                    SQL.UpdateDBChild(command, row);
-                else //or not exist, do insert
-                    row.Id = SQL.InsertDBChild(command, row);
-            }
-
-            //close
-            Connection.Close();
-        }
-
-        private void RandomizeData()
-        {
-            ChildrensCollection.Collection = new ObservableCollection<Children>();
-
-            for (var i = 0; i < 10; i++)
-            {
-                ChildrensCollection.Collection.Add(new Children(
-                    RandomHelper.RandomInt(1, 3),
-                    RandomHelper.RandomString(10, true),
-                    RandomHelper.RandomString(10, true),
-                    RandomHelper.RandomDate(new DateTime(1980, 1, 1), DateTime.Now),
-                    RandomHelper.RandomInt(1, 3),
-                    RandomHelper.RandomInt(1, 15),
-                    RandomHelper.RandomInt(1, 10),
-                    RandomHelper.RandomBool(),
-                    RandomHelper.RandomBool(),
-                    RandomHelper.RandomBool(),
-                    RandomHelper.RandomInt(1, 10),
-                    RandomHelper.RandomBool(),
-                    RandomHelper.RandomBool(),
-                    RandomHelper.RandomBool(),
-                    RandomHelper.RandomBool(),
-                    RandomHelper.RandomBool(),
-                    RandomHelper.RandomBool()
-                    ));
-            }
-
-            FamilyCollection = new ObservableCollection<Family>();
-
-            for (var i = 0; i < 2; i++)
-            {
-                FamilyCollection.Add(new Family(
-                    RandomHelper.RandomInt(1, 15),
-                    RandomHelper.RandomString(10, true),
-                    RandomHelper.RandomString(10, true),
-                    RandomHelper.RandomString(10, true),
-                    RandomHelper.RandomInt(1, 3),
-                    RandomHelper.RandomString(10, true),
-                    RandomHelper.RandomString(10, true),
-                    RandomHelper.RandomString(10, true),
-                    RandomHelper.RandomString(10, true),
-                    RandomHelper.RandomString(10, true)
-                    ));
-            }
+            this.agsEntities.SaveChanges();
+            this.agsEntities.Refresh(RefreshMode.StoreWins, this.FamiliesQuery);
         }
 
         private bool CanExecuteDoNothing()
@@ -191,14 +153,14 @@ namespace WpfMvvmApplication1.ViewModels
 
         #region Command Handlers
 
-        public ICommand UpdateDB
+        public ICommand SaveFamily
         {
-            get { return new DelegateCommand(UpdateSqlrow); }
+            get { return new DelegateCommand(SaveFamilytoDB); }
         }
 
-        public ICommand TestEntity
+        public ICommand SaveChildren
         {
-            get { return new DelegateCommand(TestChildNames); }
+            get { return new DelegateCommand(SaveChildrentoDB); }
         }
 
         public ICommand DoNothingCommand

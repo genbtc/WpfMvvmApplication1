@@ -57,7 +57,7 @@
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="agsModel" Alias="Self" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns="http://schemas.microsoft.com/ado/2008/09/edm">
-        <EntityContainer Name="agsEntities" annotation:LazyLoadingEnabled="true">
+        <EntityContainer Name="agsEntities" annotation:LazyLoadingEnabled="false">
           <EntitySet Name="CHILDRENS" EntityType="agsModel.CHILDREN" />
           <EntitySet Name="CITIES" EntityType="agsModel.CITY" />
           <EntitySet Name="FAMILIES" EntityType="agsModel.FAMILY" />
