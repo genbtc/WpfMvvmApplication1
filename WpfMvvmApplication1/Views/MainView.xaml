@@ -99,8 +99,8 @@
                                 <DataGridTemplateColumn.CellTemplate>
                                     <DataTemplate>
                                             <ComboBox Name="cbFamilygrid" HorizontalAlignment="Left" VerticalAlignment="Top" Height="20" Width="181" Style="{StaticResource ResourceKey=ComboBoxFlatStyle}" 
-                                                      DisplayMemberPath="LASTNAME" SelectedValuePath="ID"
                                                       ItemsSource="{Binding RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type Window}}, Path=DataContext.FamilyCollection}" 
+                                                      DisplayMemberPath="LASTNAME" SelectedValuePath="ID"
                                                       SelectedIndex="{Binding Path=FAMILYID, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
                                         </DataTemplate>
                                 </DataGridTemplateColumn.CellTemplate>
