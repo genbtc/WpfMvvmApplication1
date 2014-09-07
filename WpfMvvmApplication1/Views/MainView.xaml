@@ -9,27 +9,42 @@
         mc:Ignorable="d" 
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+        xmlns:scm="clr-namespace:System.ComponentModel;assembly=WindowsBase"
+        xmlns:dat="clr-namespace:System.Windows.Data;assembly=PresentationFramework"
         xmlns:main="clr-namespace:WpfMvvmApplication1" 
         xmlns:models="clr-namespace:WpfMvvmApplication1.Models" 
         xmlns:viewModels="clr-namespace:WpfMvvmApplication1.ViewModels"
-        xmlns:converters="clr-namespace:WpfMvvmApplication1.Converters" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" WindowStyle="None">
+        xmlns:converters="clr-namespace:WpfMvvmApplication1.Converters" 
+    HorizontalContentAlignment="Center" VerticalContentAlignment="Center" WindowStyle="None">
 
-    <shell:WindowChrome.WindowChrome>
-        <shell:WindowChrome
-            ResizeBorderThickness="6" GlassFrameThickness="0"
-            CaptionHeight="16" CornerRadius="15,15,10,10" />
-    </shell:WindowChrome.WindowChrome>
-
+    <Window.DataContext>
+        <viewModels:MainWindowViewModel x:Name="datacontextviewmodel" />
+    </Window.DataContext>
+    
     <ccl:CustomChromeWindow.Resources>
         <ResourceDictionary>
+            <CollectionViewSource x:Key="famsorted" Source="{Binding Path=FamilyCollection}" >
+                <CollectionViewSource.SortDescriptions>
+                    <scm:SortDescription PropertyName="ID" />
+                </CollectionViewSource.SortDescriptions>
+            </CollectionViewSource>
+            <CollectionViewSource x:Key="childsorted" Source="{Binding Path=ChildrenCollection}" >
+                <CollectionViewSource.SortDescriptions>
+                    <scm:SortDescription PropertyName="ID" />
+                </CollectionViewSource.SortDescriptions>
+            </CollectionViewSource>
             <models:Gender x:Key="Gender" />
             <!--<viewModels:MainWindowViewModel x:Key="MainWindowViewModel" />-->
             <converters:DebugConverter x:Key="debugConverter" />
         </ResourceDictionary>
     </ccl:CustomChromeWindow.Resources>
-    <Window.DataContext>
-        <viewModels:MainWindowViewModel x:Name="datacontextviewmodel" />
-    </Window.DataContext>
+    
+    <shell:WindowChrome.WindowChrome>
+        <shell:WindowChrome
+            ResizeBorderThickness="6" GlassFrameThickness="0"
+            CaptionHeight="16" CornerRadius="15,15,10,10" />
+    </shell:WindowChrome.WindowChrome>
+                
     <Grid>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="1462*"/>
@@ -71,7 +86,7 @@
                         <Separator Height="6" Name="separator1" Width="716" Visibility="Hidden" />
                         <Button Content="+" Width="30" />
                     </StackPanel>
-                    <DataGrid Name="MainDataGrid" ItemsSource="{Binding Path=ChildrenViewSource.View}" AutoGenerateColumns="False" ColumnWidth="152" Margin="10,36,9,0" VerticalAlignment="Top" Height="522" 
+                        <DataGrid Name="MainDataGrid" ItemsSource="{Binding Source={StaticResource childsorted}}" AutoGenerateColumns="False" ColumnWidth="152" Margin="10,36,9,0" VerticalAlignment="Top" Height="522" 
                               BorderThickness="1,2,1,1" Background="{StaticResource ResourceKey=GenBtcColorBrush}" BorderBrush="#FF889BB1" RowBackground="Snow" HeadersVisibility="Column">
                         <DataGrid.Columns>
                             <DataGridTextColumn Binding="{Binding Path=ID}" Header="Id" Width="30" CanUserSort="True" />
@@ -100,7 +115,7 @@
                                     <DataTemplate>
                                             <ComboBox Name="cbFamilygrid" HorizontalAlignment="Left" VerticalAlignment="Top" Height="20" Width="181" Style="{StaticResource ResourceKey=ComboBoxFlatStyle}" 
                                                       ItemsSource="{Binding RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type Window}}, Path=DataContext.FamiliesComboBoxViewSource.Source}" 
-                                                      DisplayMemberPath="LASTNAME" SelectedValuePath="ID"
+                                                      DisplayMemberPath="LASTNAME" SelectedValuePath="ID" IsSynchronizedWithCurrentItem="False"
                                                       SelectedIndex="{Binding Path=FAMILYID, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
                                         </DataTemplate>
                                 </DataGridTemplateColumn.CellTemplate>
@@ -112,7 +127,7 @@
                             <Grid Background="Snow" VerticalAlignment="Bottom">
                                 <Label Content="Famille :" Margin="410,28,1105,127" />
                                     <ComboBox x:Name="cbFamily" Style="{StaticResource ResourceKey=ComboBoxFlatStyle}" Margin="466,28,644,127"  IsEditable="False" 
-                                            ItemsSource="{Binding Path=FamiliesComboBoxViewSource.Source}" DisplayMemberPath="LASTNAME" SelectedValuePath="ID" 
+                                            ItemsSource="{Binding Source={StaticResource famsorted}}" DisplayMemberPath="LASTNAME" SelectedValuePath="ID" IsSynchronizedWithCurrentItem="False"
                                             SelectedIndex="{Binding SelectedItem.FAMILYID, ElementName=MainDataGrid}" />
                                     <TextBox x:Name="tbAdress" Style="{StaticResource ResourceKey=flatTextBox}" Margin="466,55,644,67" TextWrapping="Wrap" IsEnabled="True" Text="{Binding SelectedItem.ADRESS, ElementName=cbFamily}" />
                                     <Label Content="City :" Margin="582,115,951,36" Width="37" />
@@ -182,7 +197,7 @@
                     </StackPanel>
                     <DataGrid Name="FamilyDataGrid" HorizontalAlignment="Left" VerticalAlignment="Top" Height="468" Width="1579" Margin="10,36,0,0" AutoGenerateColumns="False" BorderThickness="1,2,1,1" 
                               Background="{StaticResource ResourceKey=GenBtcColorBrush}" BorderBrush="#FF889BB1" RowBackground="Snow" 
-                              ItemsSource="{Binding Path=FamiliesViewSource.View}" HeadersVisibility="Column">
+                              ItemsSource="{Binding Source={StaticResource famsorted}}" HeadersVisibility="Column">
                         <DataGrid.Columns>
                                 <DataGridTextColumn Binding="{Binding Path=ID}" Header="Id" Width="30" CanUserSort="True"/>
                                 <DataGridTextColumn Binding="{Binding Path=LASTNAME, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Header="Nom" Width="200" CanUserSort="True" />

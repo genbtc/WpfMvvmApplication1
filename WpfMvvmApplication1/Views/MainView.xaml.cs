@@ -1,4 +1,6 @@
 ﻿
+using System.ComponentModel;
+
 namespace WpfMvvmApplication1.Views
 {
     /// <summary>
@@ -11,5 +13,6 @@ namespace WpfMvvmApplication1.Views
             InitializeComponent();
             //DataContext = new MainWindowViewModel();
         }
+
     }
 }

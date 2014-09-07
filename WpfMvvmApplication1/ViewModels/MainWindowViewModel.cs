@@ -1,5 +1,4 @@
 using System.Collections.ObjectModel;
-using System.ComponentModel;
 using System.Data.Objects;
 using System.Windows.Data;
 using System.Windows.Input;
@@ -68,17 +67,46 @@ namespace WpfMvvmApplication1.ViewModels
                 }
             }
         }
+
+        private ObservableCollection<CHILDREN> _childrenCollection = new ObservableCollection<CHILDREN>();
+        public ObservableCollection<CHILDREN> ChildrenCollection
+        {
+            get { return _childrenCollection; }
+            set
+            {
+                if (_childrenCollection != value)
+                {
+                    _childrenCollection = value;
+                    RaisePropertyChanged(() => ChildrenCollection);
+                }
+            }
+        }
+
+        private ObservableCollection<CITY> _cityCollection = new ObservableCollection<CITY>();
+        public ObservableCollection<CITY> CityCollection
+        {
+            get { return _cityCollection; }
+            set
+            {
+                if (_cityCollection != value)
+                {
+                    _cityCollection = value;
+                    RaisePropertyChanged(() => CityCollection);
+                }
+            }
+        }
         
         #endregion
 
         #region Constructor
 
-        public agsEntities agsEntities = new agsEntities("metadata=res://*/Model1.csdl|res://*/Model1.ssdl|res://*/Model1.msl;provider=Npgsql;provider connection string='PORT=5432;TIMEOUT=15;POOLING=True;MINPOOLSIZE=1;MAXPOOLSIZE=20;COMMANDTIMEOUT=20;COMPATIBLE=2.2.0.0;HOST=localhost;DATABASE=ags;USER ID=ags;PASSWORD=Fadila1980'");
+        private agsEntities agsEntities = new agsEntities("metadata=res://*/Model1.csdl|res://*/Model1.ssdl|res://*/Model1.msl;provider=Npgsql;provider connection string='PORT=5432;TIMEOUT=15;POOLING=True;MINPOOLSIZE=1;MAXPOOLSIZE=20;COMMANDTIMEOUT=20;COMPATIBLE=2.2.0.0;HOST=localhost;DATABASE=ags;USER ID=ags;PASSWORD=Fadila1980'");
 
         public MainWindowViewModel()
         {
             //ChildrenCollection = new ChildrenCollection {Collection = SQL.listChildren()};
             //FamilyCollection = SQL.listFamilies();
+            GetChildrenViewSource();
         }
 
         #endregion
@@ -87,59 +115,65 @@ namespace WpfMvvmApplication1.ViewModels
         private void GetCitiesViewSource()
         {
             // Load data into CHILDREN
-            this.CitiesQuery = this.GetCitiesQuery(this.agsEntities);
+            this.citiesQuery = this.GetCitiesQuery(this.agsEntities);
             this._citiesViewSource = new CollectionViewSource();
-            this._citiesViewSource.Source = this.CitiesQuery.Execute(MergeOption.AppendOnly);
+            this._citiesViewSource.Source = this.citiesQuery.Execute(MergeOption.AppendOnly);
             this._citiesViewSource.View.Refresh();
+            //and into an observable collection
+            foreach (CITY thing in agsEntities.CITIES)
+                CityCollection.Add(thing);
         }
 
         private void GetFamilyViewSource()
         {
             // Load data into FAMILIES
-            this.FamiliesQuery = this.GetFAMILIESQuery(this.agsEntities);
+            this.familiesQuery = this.GetFamiliesQuery(this.agsEntities);
 
             this._familiesViewSource = new CollectionViewSource();
             this._familiesComboBoxViewSource = new CollectionViewSource();
 
-            this._familiesViewSource.Source = this.FamiliesQuery.Execute(MergeOption.AppendOnly);
-            this._familiesViewSource.SortDescriptions.Add(new SortDescription("ID", ListSortDirection.Descending));
-            this._familiesComboBoxViewSource.Source = this.GetFAMILIESQuery(this.agsEntities).Execute(MergeOption.AppendOnly);
+            this._familiesViewSource.Source = this.familiesQuery.Execute(MergeOption.AppendOnly);
+            //this._familiesViewSource.SortDescriptions.Add(new SortDescription("ID", ListSortDirection.Descending));
+            this._familiesComboBoxViewSource.Source = this.GetFamiliesQuery(this.agsEntities).Execute(MergeOption.AppendOnly);
 
             this._familiesViewSource.View.Refresh();
             this._familiesComboBoxViewSource.View.Refresh();
             //and into an observable collection
-            //foreach (FAMILY thing in agsEntities.FAMILIES)
-            //    FamilyCollection.Add(thing);
+            foreach (FAMILY thing in agsEntities.FAMILIES)
+                FamilyCollection.Add(thing);
 
         }
         private void GetChildrenViewSource()
         {
             // Load data into CHILDREN
-            this.ChildrenQuery = this.GetCHILDRENQuery(this.agsEntities);
+            this.childrenQuery = this.GetChildrenQuery(this.agsEntities);
             this._childrenViewSource = new CollectionViewSource();
-            this._childrenViewSource.Source = this.ChildrenQuery.Execute(MergeOption.AppendOnly);
+            this._childrenViewSource.Source = this.childrenQuery.Execute(MergeOption.AppendOnly);
             this._childrenViewSource.View.Refresh();
+            //and into an observable collection
+            foreach (CHILDREN thing in agsEntities.CHILDRENS)
+                ChildrenCollection.Add(thing);
         }
 
-        public ObjectQuery<FAMILY> FamiliesQuery;
-        public ObjectQuery<FAMILY> GetFAMILIESQuery(agsEntities agsEntities)
+        private ObjectQuery<FAMILY> familiesQuery;
+        private ObjectQuery<FAMILY> GetFamiliesQuery(agsEntities agsEntitiesparam)
         {
-            ObjectQuery<FAMILY> fAMILIESQuery = agsEntities.FAMILIES;
-            return fAMILIESQuery;
+            familiesQuery = agsEntitiesparam.FAMILIES;
+            return familiesQuery;
         }
 
-        public ObjectQuery<CHILDREN> ChildrenQuery;
-        public ObjectQuery<CHILDREN> GetCHILDRENQuery(agsEntities agsEntities)
+        private ObjectQuery<CHILDREN> childrenQuery;
+        private ObjectQuery<CHILDREN> GetChildrenQuery(agsEntities agsEntitiesparam)
         {
-            ObjectQuery<CHILDREN> CHILDRENQuery = agsEntities.CHILDRENS;
-            return CHILDRENQuery;
+            childrenQuery = agsEntitiesparam.CHILDRENS;
+            return childrenQuery;
         }
 
-        public ObjectQuery<CITY> CitiesQuery;
-        public ObjectQuery<CITY> GetCitiesQuery(agsEntities agsEntities)
+        private ObjectQuery<CITY> citiesQuery;
+        private ObjectQuery<CITY> GetCitiesQuery(agsEntities agsEntitiesparam)
         {
-            ObjectQuery<CITY> CitiesQuery = agsEntities.CITIES;
-            return CitiesQuery;
+            citiesQuery = agsEntitiesparam.CITIES;
+            return citiesQuery;
         }
 
         #endregion
@@ -189,14 +223,32 @@ namespace WpfMvvmApplication1.ViewModels
 
         private void SaveChildrentoDB()
         {
+            //this.agsEntities.SaveChanges();
+            //this.agsEntities.Refresh(RefreshMode.StoreWins, this.childrenQuery);
+            foreach (CHILDREN some in this.ChildrenCollection)
+            {
+                if (some.ID == 0)
+                {
+                    this.agsEntities.CHILDRENS.AddObject(some);
+                }
+            }
+            //this.agsEntities.Refresh(RefreshMode.ClientWins, this.ChildrenCollection);
             this.agsEntities.SaveChanges();
-            this.agsEntities.Refresh(RefreshMode.StoreWins, this.ChildrenQuery);
         }
 
         private void SaveFamilytoDB()
         {
+            //this.agsEntities.SaveChanges();
+            //this.agsEntities.Refresh(RefreshMode.StoreWins, this.familiesQuery);
+            foreach (FAMILY some in this.FamilyCollection)
+            {
+                if (some.ID == 0)
+                {
+                    this.agsEntities.FAMILIES.AddObject(some);
+                }
+            }
+            //this.agsEntities.Refresh(RefreshMode.ClientWins, this.FamilyCollection);
             this.agsEntities.SaveChanges();
-            this.agsEntities.Refresh(RefreshMode.StoreWins, this.FamiliesQuery);
         }
 
         private bool CanExecuteDoNothing()
