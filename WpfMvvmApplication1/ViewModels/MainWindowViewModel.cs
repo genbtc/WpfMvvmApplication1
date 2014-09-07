@@ -1,4 +1,5 @@
 using System.Collections.ObjectModel;
+using System.ComponentModel;
 using System.Data.Objects;
 using System.Windows.Data;
 using System.Windows.Input;
@@ -107,6 +108,7 @@ namespace WpfMvvmApplication1.ViewModels
             //ChildrenCollection = new ChildrenCollection {Collection = SQL.listChildren()};
             //FamilyCollection = SQL.listFamilies();
             GetChildrenViewSource();
+            GetFamilyViewSource();
         }
 
         #endregion
@@ -133,14 +135,19 @@ namespace WpfMvvmApplication1.ViewModels
             this._familiesComboBoxViewSource = new CollectionViewSource();
 
             this._familiesViewSource.Source = this.familiesQuery.Execute(MergeOption.AppendOnly);
-            //this._familiesViewSource.SortDescriptions.Add(new SortDescription("ID", ListSortDirection.Descending));
-            this._familiesComboBoxViewSource.Source = this.GetFamiliesQuery(this.agsEntities).Execute(MergeOption.AppendOnly);
+            
+            //this._familiesComboBoxViewSource.Source = this.GetFamiliesQuery(this.agsEntities).Execute(MergeOption.AppendOnly);
 
-            this._familiesViewSource.View.Refresh();
-            this._familiesComboBoxViewSource.View.Refresh();
             //and into an observable collection
             foreach (FAMILY thing in agsEntities.FAMILIES)
                 FamilyCollection.Add(thing);
+
+            this._familiesViewSource.Source = FamilyCollection;
+            this._familiesViewSource.SortDescriptions.Add(new SortDescription("ID", ListSortDirection.Ascending));
+            this._familiesComboBoxViewSource.Source = FamilyCollection;
+            this._familiesComboBoxViewSource.SortDescriptions.Add(new SortDescription("ID", ListSortDirection.Ascending));
+            this._familiesViewSource.View.Refresh();
+            this._familiesComboBoxViewSource.View.Refresh();
 
         }
         private void GetChildrenViewSource()

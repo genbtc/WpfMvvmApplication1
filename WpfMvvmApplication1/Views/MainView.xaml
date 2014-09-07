@@ -114,7 +114,7 @@
                                 <DataGridTemplateColumn.CellTemplate>
                                     <DataTemplate>
                                             <ComboBox Name="cbFamilygrid" HorizontalAlignment="Left" VerticalAlignment="Top" Height="20" Width="181" Style="{StaticResource ResourceKey=ComboBoxFlatStyle}" 
-                                                      ItemsSource="{Binding RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type Window}}, Path=DataContext.FamiliesComboBoxViewSource.Source}" 
+                                                      ItemsSource="{Binding RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type Window}}, Path=DataContext.FamiliesViewSource.View}" 
                                                       DisplayMemberPath="LASTNAME" SelectedValuePath="ID" IsSynchronizedWithCurrentItem="False"
                                                       SelectedIndex="{Binding Path=FAMILYID, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
                                         </DataTemplate>
