@@ -137,6 +137,8 @@
     </Compile>
     <Compile Include="Class1.cs" />
     <Compile Include="Converters\CaptionButtonRectToMarginConverter.cs" />
+    <Compile Include="Converters\AddOne.cs" />
+    <Compile Include="Converters\DateConverter.cs" />
     <Compile Include="Converters\DebugConverter.cs" />
     <Compile Include="Helpers\ToAge.cs" />
     <Compile Include="Helpers\CollectiontoList.cs" />

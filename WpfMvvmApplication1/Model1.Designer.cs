@@ -922,19 +922,5 @@ namespace WpfMvvmApplication1
 
     #endregion
 
-    #region ComplexTypes
-    
-    /// <summary>
-    /// No Metadata Documentation available.
-    /// </summary>
-    [EdmComplexTypeAttribute(NamespaceName="agsModel", Name="ComplexType1")]
-    [DataContractAttribute(IsReference=true)]
-    [Serializable()]
-    public partial class ComplexType1 : ComplexObject
-    {
-    }
-
-    #endregion
-
     
 }

@@ -105,7 +105,6 @@
           <Property Name="TEL2" Type="String" MaxLength="Max" Unicode="true" FixedLength="false" />
           <Property Name="TEL3" Type="String" MaxLength="Max" Unicode="true" FixedLength="false" />
         </EntityType>
-        <ComplexType Name="ComplexType1" />
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -181,8 +180,8 @@
     <Diagrams>
       <Diagram Name="Model1" ZoomLevel="82" DisplayType="true">
         <EntityTypeShape EntityType="agsModel.CHILDREN" Width="1.5" PointX="0.75" PointY="0.75" Height="4.2879036458333326" IsExpanded="true" />
-        <EntityTypeShape EntityType="agsModel.CITY" Width="1.5" PointX="2.75" PointY="0.75" Height="1.59568359375" IsExpanded="true" />
-        <EntityTypeShape EntityType="agsModel.FAMILY" Width="1.5" PointX="2.75" PointY="3.75" Height="2.5571907552083335" IsExpanded="true" />
+        <EntityTypeShape EntityType="agsModel.CITY" Width="1.5" PointX="2.75" PointY="0.75" Height="1.787985026041667" IsExpanded="true" />
+        <EntityTypeShape EntityType="agsModel.FAMILY" Width="1.5" PointX="2.75" PointY="3.75" Height="2.5571907552083326" IsExpanded="true" />
       </Diagram>
     </Diagrams>
   </Designer>

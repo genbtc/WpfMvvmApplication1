@@ -35,7 +35,8 @@
             </CollectionViewSource>
             <models:Gender x:Key="Gender" />
             <!--<viewModels:MainWindowViewModel x:Key="MainWindowViewModel" />-->
-            <converters:DebugConverter x:Key="debugConverter" />
+            <converters:AddOne x:Key="addOne" />
+            <converters:DateConverter x:Key="dateConverter"/>
         </ResourceDictionary>
     </ccl:CustomChromeWindow.Resources>
     
@@ -88,23 +89,23 @@
                     </StackPanel>
                         <DataGrid Name="MainDataGrid" ItemsSource="{Binding Source={StaticResource childsorted}}" AutoGenerateColumns="False" ColumnWidth="152" Margin="10,36,9,0" VerticalAlignment="Top" Height="522" 
                               BorderThickness="1,2,1,1" Background="{StaticResource ResourceKey=GenBtcColorBrush}" BorderBrush="#FF889BB1" RowBackground="Snow" HeadersVisibility="Column">
-                        <DataGrid.Columns>
+                            <DataGrid.Columns>
                             <DataGridTextColumn Binding="{Binding Path=ID}" Header="Id" Width="30" CanUserSort="True" />
                             <DataGridTextColumn Binding="{Binding Path=LASTNAME}" Header="Nom" Width="300" CanUserSort="True" />
                                 <DataGridTextColumn Binding="{Binding Path=FIRSTNAME}" Header="Prénom" Width="300" CanUserSort="True" />
                                 <DataGridTemplateColumn Header="Date Naissance" CanUserSort="True">
                                 <DataGridTemplateColumn.CellTemplate>
                                     <DataTemplate>
-                                        <xctk:DateTimePicker Name="dtpNaissance" Height="20" HorizontalAlignment="Left" Margin="1,0,0,0" VerticalAlignment="Top" Width="101" Format="ShortDate" 
+                                        <xctk:DateTimePicker Name="dtpNaissance" Height="20" HorizontalAlignment="Center" Margin="1,0,0,0" Width="101" Format="ShortDate" 
                                                                 AllowDrop="False" IsManipulationEnabled="True" ShowButtonSpinner="True" TimePickerVisibility="Hidden" Background="Snow" Value="{Binding Path=BIRTHDATE, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
                                     </DataTemplate>
                                 </DataGridTemplateColumn.CellTemplate>
                             </DataGridTemplateColumn>
-                                <DataGridTextColumn Binding="{Binding Path=BIRTHDATE}" Header="Age" Width="40" CanUserSort="True" />
+                                <DataGridTextColumn Header="Age" Binding="{Binding Path=BIRTHDATE, Converter={StaticResource dateConverter}}" Width="40" CanUserSort="True" IsReadOnly="True" />
                                 <DataGridTemplateColumn Header="Gender" CanUserSort="True">
                                 <DataGridTemplateColumn.CellTemplate>
                                     <DataTemplate>
-                                        <ComboBox Name="cbGender" HorizontalAlignment="Left" Height="20" VerticalAlignment="Top" Width="111" Style="{StaticResource ResourceKey=ComboBoxFlatStyle}"
+                                        <ComboBox Name="cbGender" HorizontalAlignment="Center" Width="111" Style="{StaticResource ResourceKey=ComboBoxFlatStyle}"
                                                     ItemsSource="{Binding Source={StaticResource Gender}, Path=ListGenders}"  DisplayMemberPath="Value" SelectedValuePath="Id" SelectedIndex="{Binding Path=GENDERID, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
                                     </DataTemplate>
                                 </DataGridTemplateColumn.CellTemplate>
@@ -112,13 +113,19 @@
                                 <DataGridTextColumn Binding="{Binding Path=FAMILYID, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Header="FAMILYID" Width="40" CanUserSort="True" />
                                 <DataGridTemplateColumn Header="Family" Width="184" CanUserSort="True">
                                 <DataGridTemplateColumn.CellTemplate>
-                                    <DataTemplate>
-                                            <ComboBox Name="cbFamilygrid" HorizontalAlignment="Left" VerticalAlignment="Top" Height="20" Width="181" Style="{StaticResource ResourceKey=ComboBoxFlatStyle}" 
-                                                      ItemsSource="{Binding RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type Window}}, Path=DataContext.FamiliesViewSource.View}" 
+                                        <DataTemplate>
+                                            <ComboBox Name="cbFamilygrid" HorizontalAlignment="Stretch" Width="Auto" Style="{StaticResource ResourceKey=ComboBoxFlatStyle}"                                                       
                                                       DisplayMemberPath="LASTNAME" SelectedValuePath="ID" IsSynchronizedWithCurrentItem="False"
-                                                      SelectedIndex="{Binding Path=FAMILYID, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
+                                                      SelectedIndex="{Binding Path=FAMILYID, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" >
+                                                <ComboBox.ItemsSource>
+                                                    <CompositeCollection>
+                                                        <ComboBoxItem>None</ComboBoxItem>
+                                                        <CollectionContainer Collection="{Binding Source={StaticResource famsorted}}" />
+                                                    </CompositeCollection>
+                                                </ComboBox.ItemsSource>
+                                            </ComboBox>
                                         </DataTemplate>
-                                </DataGridTemplateColumn.CellTemplate>
+                                    </DataGridTemplateColumn.CellTemplate>
                             </DataGridTemplateColumn>
                         </DataGrid.Columns>
                     </DataGrid>
@@ -126,16 +133,25 @@
                         <TabItem Header="Adresse" >
                             <Grid Background="Snow" VerticalAlignment="Bottom">
                                 <Label Content="Famille :" Margin="410,28,1105,127" />
-                                    <ComboBox x:Name="cbFamily" Style="{StaticResource ResourceKey=ComboBoxFlatStyle}" Margin="466,28,644,127"  IsEditable="False" 
-                                            ItemsSource="{Binding Source={StaticResource famsorted}}" DisplayMemberPath="LASTNAME" SelectedValuePath="ID" IsSynchronizedWithCurrentItem="False"
-                                            SelectedIndex="{Binding SelectedItem.FAMILYID, ElementName=MainDataGrid}" />
-                                    <TextBox x:Name="tbAdress" Style="{StaticResource ResourceKey=flatTextBox}" Margin="466,55,644,67" TextWrapping="Wrap" IsEnabled="True" Text="{Binding SelectedItem.ADRESS, ElementName=cbFamily}" />
+                                    <!--ComboBox Family-->
+                                    <ComboBox x:Name="cbFamily" Style="{StaticResource ResourceKey=ComboBoxFlatStyle}" Margin="466,28,644,127"  IsEditable="False" HorizontalAlignment="Stretch"
+                                            DisplayMemberPath="LASTNAME" SelectedValuePath="ID" IsSynchronizedWithCurrentItem="False"
+                                            SelectedIndex="{Binding SelectedItem.FAMILYID, ElementName=MainDataGrid}" >
+                                        <ComboBox.ItemsSource>
+                                            <CompositeCollection>
+                                                <ComboBoxItem>None</ComboBoxItem>
+                                                <CollectionContainer Collection="{Binding Source={StaticResource famsorted}}" />
+                                            </CompositeCollection>
+                                        </ComboBox.ItemsSource>
+                                    </ComboBox>
+                                    <!--ComboBox City-->
+                                    <ComboBox x:Name="cbCity" Style="{StaticResource ResourceKey=ComboBoxFlatStyle}" Margin="623,116,644,39" IsEditable="False" 
+                                            ItemsSource="{Binding Path=CitiesViewSource.Source}" DisplayMemberPath="CITY1" SelectedValuePath="ID" IsSynchronizedWithCurrentItem="False"
+                                            SelectedIndex="{Binding SelectedItem.CITYID, ElementName=FamilyDataGrid, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
+                                
                                     <Label Content="City :" Margin="582,115,951,36" Width="37" />
-                                    <ComboBox x:Name="tbCity" Style="{StaticResource ResourceKey=ComboBoxFlatStyle}" Margin="623,116,644,39" IsEditable="False" 
-                                            ItemsSource="{Binding Path=CitiesViewSource.View}" DisplayMemberPath="CITY1" SelectedValuePath="ID"
-                                            SelectedIndex="{Binding SelectedItem.CITYID, ElementName=FamilyDataGrid}" 
-                                            />
-                                <Label Content="Adresse :" Margin="407,55,1105,99" RenderTransformOrigin="0.5,0.538" />
+                                    <Label Content="Adresse :" Margin="407,55,1105,99" RenderTransformOrigin="0.5,0.538" />
+                                    <TextBox x:Name="tbAdress" Style="{StaticResource ResourceKey=flatTextBox}" Margin="466,55,644,67" TextWrapping="Wrap" IsEnabled="True" Text="{Binding SelectedItem.ADRESS, ElementName=cbFamily}" />
                                 <TextBox x:Name="tbTel1" Style="{StaticResource ResourceKey=flatTextBox}" Margin="972,28,427,127" TextWrapping="Wrap" IsEnabled="True" Text="{Binding SelectedItem.TEL1, ElementName=cbFamily}" />
                                 <TextBox x:Name="tbTel2" Style="{StaticResource ResourceKey=flatTextBox}" Margin="972,57,427,98" TextWrapping="Wrap" IsEnabled="True" Text="{Binding SelectedItem.TEL2, ElementName=cbFamily}" />
                                 <TextBox x:Name="tbTel3" Style="{StaticResource ResourceKey=flatTextBox}" Margin="972,88,427,67" TextWrapping="Wrap" IsEnabled="True" Text="{Binding SelectedItem.TEL3, ElementName=cbFamily}" />
@@ -198,16 +214,18 @@
                     <DataGrid Name="FamilyDataGrid" HorizontalAlignment="Left" VerticalAlignment="Top" Height="468" Width="1579" Margin="10,36,0,0" AutoGenerateColumns="False" BorderThickness="1,2,1,1" 
                               Background="{StaticResource ResourceKey=GenBtcColorBrush}" BorderBrush="#FF889BB1" RowBackground="Snow" 
                               ItemsSource="{Binding Source={StaticResource famsorted}}" HeadersVisibility="Column">
-                        <DataGrid.Columns>
+                            <DataGrid.Columns><!--, Converter={StaticResource addOne}}-->
                                 <DataGridTextColumn Binding="{Binding Path=ID}" Header="Id" Width="30" CanUserSort="True"/>
                                 <DataGridTextColumn Binding="{Binding Path=LASTNAME, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Header="Nom" Width="200" CanUserSort="True" />
                                 <DataGridTextColumn Binding="{Binding Path=FIRSTNAME, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Header="Prénom" Width="200" CanUserSort="True" />
                                 <DataGridTextColumn Binding="{Binding Path=ADRESS, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Header="Adress" Width="200" CanUserSort="True" />
                                 <DataGridTextColumn Binding="{Binding Path=CITYID, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Header="CityID" Width="200" CanUserSort="True" />
+                                <DataGridTextColumn Binding="{Binding Path=CITYNAME, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Header="CITYNAME" Width="200" CanUserSort="True" />
                                 <DataGridTextColumn Binding="{Binding Path=TEL1, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Header="Tel1" Width="200" CanUserSort="True" />
                                 <DataGridTextColumn Binding="{Binding Path=TEL2, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Header="Tel2" Width="200" CanUserSort="True" />
                                 <DataGridTextColumn Binding="{Binding Path=TEL3, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Header="Tel3" Width="200" CanUserSort="True" />
-                        </DataGrid.Columns>
+                                
+                            </DataGrid.Columns>
                     </DataGrid>
                     <TabControl Margin="10,520,10,18">
                         <TabItem Header="Famille">
