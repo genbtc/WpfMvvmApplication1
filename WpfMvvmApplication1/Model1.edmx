@@ -4,12 +4,17 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-    <Schema Namespace="agsModel.Store" Provider="Npgsql" ProviderManifestToken="9.3.5" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/02/edm/ssdl">
+    <Schema Namespace="agsModel.Store" Alias="Self" Provider="Npgsql" ProviderManifestToken="9.3.5" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/02/edm/ssdl">
+        <EntityContainer Name="agsModelStoreContainer">
+          <EntitySet Name="CHILDRENS" EntityType="agsModel.Store.CHILDRENS" store:Type="Tables" Schema="public" />
+          <EntitySet Name="CITIES" EntityType="agsModel.Store.CITIES" store:Type="Tables" Schema="public" />
+          <EntitySet Name="FAMILIES" EntityType="agsModel.Store.FAMILIES" store:Type="Tables" Schema="public" />
+        </EntityContainer>
         <EntityType Name="CHILDRENS">
           <Key>
             <PropertyRef Name="ID" />
           </Key>
-          <Property Name="ID" Type="int4" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="ID" Type="int4" Nullable="false" StoreGeneratedPattern="Identity" />
           <Property Name="LASTNAME" Type="text" />
           <Property Name="FIRSTNAME" Type="text" />
           <Property Name="BIRTHDATE" Type="date" />
@@ -31,7 +36,7 @@
           <Key>
             <PropertyRef Name="ID" />
           </Key>
-          <Property Name="ID" Type="int4" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="ID" Type="int8" Nullable="false" StoreGeneratedPattern="Identity" />
           <Property Name="CITY" Type="text" />
           <Property Name="CP" Type="text" />
         </EntityType>
@@ -46,13 +51,8 @@
           <Property Name="TEL1" Type="text" />
           <Property Name="TEL2" Type="text" />
           <Property Name="TEL3" Type="text" />
-          <Property Name="ID" Type="int8" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="ID" Type="int8" Nullable="false" StoreGeneratedPattern="Identity" />
         </EntityType>
-        <EntityContainer Name="agsModelStoreContainer">
-          <EntitySet Name="CHILDRENS" EntityType="Self.CHILDRENS" Schema="public" store:Type="Tables" />
-          <EntitySet Name="CITIES" EntityType="Self.CITIES" Schema="public" store:Type="Tables" />
-          <EntitySet Name="FAMILIES" EntityType="Self.FAMILIES" Schema="public" store:Type="Tables" />
-        </EntityContainer>
       </Schema></edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
@@ -105,6 +105,7 @@
           <Property Name="TEL2" Type="String" MaxLength="Max" Unicode="true" FixedLength="false" />
           <Property Name="TEL3" Type="String" MaxLength="Max" Unicode="true" FixedLength="false" />
         </EntityType>
+        <ComplexType Name="ComplexType1" />
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -178,7 +179,7 @@
     </Options>
     <!-- Diagram content (shape and connector positions) -->
     <Diagrams>
-      <Diagram Name="Model1" ZoomLevel="82">
+      <Diagram Name="Model1" ZoomLevel="82" DisplayType="true">
         <EntityTypeShape EntityType="agsModel.CHILDREN" Width="1.5" PointX="0.75" PointY="0.75" Height="4.2879036458333326" IsExpanded="true" />
         <EntityTypeShape EntityType="agsModel.CITY" Width="1.5" PointX="2.75" PointY="0.75" Height="1.59568359375" IsExpanded="true" />
         <EntityTypeShape EntityType="agsModel.FAMILY" Width="1.5" PointX="2.75" PointY="3.75" Height="2.5571907552083335" IsExpanded="true" />

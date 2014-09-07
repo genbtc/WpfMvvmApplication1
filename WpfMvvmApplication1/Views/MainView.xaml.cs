@@ -1,5 +1,4 @@
-﻿using WpfMvvmApplication1.ViewModels;
-
+﻿
 namespace WpfMvvmApplication1.Views
 {
     /// <summary>

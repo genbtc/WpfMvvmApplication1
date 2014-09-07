@@ -1,4 +1,5 @@
 using System.Collections.ObjectModel;
+using System.ComponentModel;
 using System.Data.Objects;
 using System.Windows.Data;
 using System.Windows.Input;
@@ -19,6 +20,29 @@ namespace WpfMvvmApplication1.ViewModels
                 return _familiesViewSource;
             }
         }
+
+        private CollectionViewSource _familiesComboBoxViewSource;
+        public CollectionViewSource FamiliesComboBoxViewSource
+        {
+            get
+            {
+                if (_familiesComboBoxViewSource == null)
+                    GetFamilyViewSource();
+                return _familiesViewSource;
+            }
+        }
+
+        private CollectionViewSource _citiesViewSource;
+        public CollectionViewSource CitiesViewSource
+        {
+            get
+            {
+                if (_citiesViewSource == null)
+                    GetCitiesViewSource();
+                return _citiesViewSource;
+            }
+        }
+
 
         private CollectionViewSource _childrenViewSource;
         public CollectionViewSource ChildrenViewSource
@@ -60,17 +84,32 @@ namespace WpfMvvmApplication1.ViewModels
         #endregion
 
         #region EF Query
+        private void GetCitiesViewSource()
+        {
+            // Load data into CHILDREN
+            this.CitiesQuery = this.GetCitiesQuery(this.agsEntities);
+            this._citiesViewSource = new CollectionViewSource();
+            this._citiesViewSource.Source = this.CitiesQuery.Execute(MergeOption.AppendOnly);
+            this._citiesViewSource.View.Refresh();
+        }
 
         private void GetFamilyViewSource()
         {
             // Load data into FAMILIES
             this.FamiliesQuery = this.GetFAMILIESQuery(this.agsEntities);
+
             this._familiesViewSource = new CollectionViewSource();
+            this._familiesComboBoxViewSource = new CollectionViewSource();
+
             this._familiesViewSource.Source = this.FamiliesQuery.Execute(MergeOption.AppendOnly);
+            this._familiesViewSource.SortDescriptions.Add(new SortDescription("ID", ListSortDirection.Descending));
+            this._familiesComboBoxViewSource.Source = this.GetFAMILIESQuery(this.agsEntities).Execute(MergeOption.AppendOnly);
+
             this._familiesViewSource.View.Refresh();
+            this._familiesComboBoxViewSource.View.Refresh();
             //and into an observable collection
-            foreach (FAMILY thing in agsEntities.FAMILIES)
-                FamilyCollection.Add(thing);
+            //foreach (FAMILY thing in agsEntities.FAMILIES)
+            //    FamilyCollection.Add(thing);
 
         }
         private void GetChildrenViewSource()
@@ -94,6 +133,13 @@ namespace WpfMvvmApplication1.ViewModels
         {
             ObjectQuery<CHILDREN> CHILDRENQuery = agsEntities.CHILDRENS;
             return CHILDRENQuery;
+        }
+
+        public ObjectQuery<CITY> CitiesQuery;
+        public ObjectQuery<CITY> GetCitiesQuery(agsEntities agsEntities)
+        {
+            ObjectQuery<CITY> CitiesQuery = agsEntities.CITIES;
+            return CitiesQuery;
         }
 
         #endregion

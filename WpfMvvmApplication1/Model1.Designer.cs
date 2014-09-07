@@ -15,7 +15,6 @@ using System.Data.Objects.DataClasses;
 using System.Linq;
 using System.Runtime.Serialization;
 using System.Xml.Serialization;
-using WpfMvvmApplication1.ViewModels;
 
 [assembly: EdmSchemaAttribute()]
 namespace WpfMvvmApplication1
@@ -57,7 +56,7 @@ namespace WpfMvvmApplication1
         }
     
         #endregion
-
+    
         #region Partial Methods
     
         partial void OnContextCreated();
@@ -588,6 +587,7 @@ namespace WpfMvvmApplication1
 
         #endregion
 
+    
     }
     
     /// <summary>
@@ -918,6 +918,20 @@ namespace WpfMvvmApplication1
         #endregion
 
     
+    }
+
+    #endregion
+
+    #region ComplexTypes
+    
+    /// <summary>
+    /// No Metadata Documentation available.
+    /// </summary>
+    [EdmComplexTypeAttribute(NamespaceName="agsModel", Name="ComplexType1")]
+    [DataContractAttribute(IsReference=true)]
+    [Serializable()]
+    public partial class ComplexType1 : ComplexObject
+    {
     }
 
     #endregion
