@@ -1,5 +1,4 @@
 ﻿
-using System.ComponentModel;
 
 namespace WpfMvvmApplication1.Views
 {

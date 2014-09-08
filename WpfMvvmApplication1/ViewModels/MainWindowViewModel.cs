@@ -2,151 +2,136 @@ using System.Collections.ObjectModel;
 using System.Linq;
 using System.Windows.Input;
 using WpfMvvmApplication1.Helpers;
+using WpfMvvmApplication1.Models;
 
 namespace WpfMvvmApplication1.ViewModels
 {
     public class MainWindowViewModel : NotificationObject
     {
-        #region Properties
 
-        private ObservableCollection<FAMILIES> _familyCollection = new ObservableCollection<FAMILIES>();
-        public ObservableCollection<FAMILIES> FamilyCollection
+    #region Properties
+
+        private ObservableCollection<FAMILIES> _familiesCollection;
+        public ObservableCollection<FAMILIES> FamiliesCollection
         {
-            get { return _familyCollection; }
+            get { return _familiesCollection; }
             set
             {
-                if (_familyCollection != value)
-                {
-                    _familyCollection = value;
-                    RaisePropertyChanged(() => FamilyCollection);
-                }
+                if (_familiesCollection == value) return;
+                _familiesCollection = value;
+                RaisePropertyChanged(() => FamiliesCollection);
             }
         }
 
-        private ObservableCollection<CHILDRENS> _childrenCollection = new ObservableCollection<CHILDRENS>();
-        public ObservableCollection<CHILDRENS> ChildrenCollection
+        private ObservableCollection<CHILDRENS> _childrensCollection;
+        public ObservableCollection<CHILDRENS> ChildrensCollection
         {
-            get { return _childrenCollection; }
+            get { return _childrensCollection; }
             set
             {
-                if (_childrenCollection != value)
-                {
-                    _childrenCollection = value;
-                    RaisePropertyChanged(() => ChildrenCollection);
-                }
+                if (_childrensCollection == value) return;
+                _childrensCollection = value;
+                RaisePropertyChanged(() => ChildrensCollection);
             }
         }
 
-        private ObservableCollection<CITIES> _cityCollection = new ObservableCollection<CITIES>();
-        public ObservableCollection<CITIES> CityCollection
+        private ObservableCollection<CITIES> _citiesCollection;
+        public ObservableCollection<CITIES> CitiesCollection
         {
-            get { return _cityCollection; }
+            get { return _citiesCollection; }
             set
             {
-                if (_cityCollection != value)
-                {
-                    _cityCollection = value;
-                    RaisePropertyChanged(() => CityCollection);
-                }
+                if (_citiesCollection == value) return;
+                _citiesCollection = value;
+                RaisePropertyChanged(() => CitiesCollection);
             }
         }
 
-         #region FAMILYQUOTIENTS
-        private ObservableCollection<FAMILYQUOTIENTS> _FAMILYQUOTIENTSCollection = new ObservableCollection<FAMILYQUOTIENTS>();
+        private ObservableCollection<FAMILYQUOTIENTS> _familyquotientsCollection;
         public ObservableCollection<FAMILYQUOTIENTS> FAMILYQUOTIENTSCollection
         {
-            get { return _FAMILYQUOTIENTSCollection; }
+            get { return _familyquotientsCollection; }
             set
             {
-                if (_FAMILYQUOTIENTSCollection != value)
-                {
-                    _FAMILYQUOTIENTSCollection = value;
-                    RaisePropertyChanged(() => FAMILYQUOTIENTSCollection);
-                }
+                if (_familyquotientsCollection == value) return;
+                _familyquotientsCollection = value;
+                RaisePropertyChanged(() => FAMILYQUOTIENTSCollection);
             }
         }
-        #endregion
  
-        #region MedecinCollection
-        private ObservableCollection<MEDECINS> _medecinCollection = new ObservableCollection<MEDECINS>();
-        public ObservableCollection<MEDECINS> MedecinCollection
+        private ObservableCollection<MEDECINS> _medecinsCollection;
+        public ObservableCollection<MEDECINS> MedecinsCollection
         {
-            get { return _medecinCollection; }
+            get { return _medecinsCollection; }
             set
             {
-                if (_medecinCollection != value)
-                {
-                    _medecinCollection = value;
-                    RaisePropertyChanged(() => MedecinCollection);
-                }
+                if (_medecinsCollection == value) return;
+                _medecinsCollection = value;
+                RaisePropertyChanged(() => MedecinsCollection);
             }
         }
-        #endregion
- 
-        #region CIVILITIESCollection
-        private ObservableCollection<CIVILITIES> _CIVILITIESCollection = new ObservableCollection<CIVILITIES>();
+
+        private ObservableCollection<CIVILITIES> _civilitiesCollection;
         public ObservableCollection<CIVILITIES> CIVILITIESCollection
         {
-            get { return _CIVILITIESCollection; }
+            get { return _civilitiesCollection; }
             set
             {
-                if (_CIVILITIESCollection != value)
-                {
-                    _CIVILITIESCollection = value;
-                    RaisePropertyChanged(() => CIVILITIESCollection);
-                }
+                if (_civilitiesCollection == value) return;
+                _civilitiesCollection = value;
+                RaisePropertyChanged(() => CIVILITIESCollection);
             }
         }
-        #endregion
-        #endregion
-        
+
+    #endregion
 
         #region Constructor
 
-        private agsEntities agsEntities = new agsEntities("metadata=res://*/Model1.csdl|res://*/Model1.ssdl|res://*/Model1.msl;provider=Npgsql;provider connection string='PORT=5432;TIMEOUT=15;POOLING=True;MINPOOLSIZE=1;MAXPOOLSIZE=20;COMMANDTIMEOUT=20;COMPATIBLE=2.2.0.0;HOST=localhost;DATABASE=ags;USER ID=ags;PASSWORD=Fadila1980'");
+        private EF EF;
 
         public MainWindowViewModel()
         {
+            this.EF = new EF();
             GetCitiesCollection();
             GetFamilyCollection();
             GetChildrenCollection();
-            GetFAMILYQUOTIENTSCollection();
-            //GetMedecinCollection();
-            //GetCIVILITIESCollection();
+            GetFamilyquotientsCollection();
+            GetMedecinCollection();
+            GetCivilitiesCollection();
         }
 
         #endregion
 
         #region EF Query
 
-        private void GetCIVILITIESCollection()
+        private void GetCivilitiesCollection()
         {
-            CIVILITIESCollection = new ObservableCollection<CIVILITIES>(agsEntities.CIVILITIES);
+            CIVILITIESCollection = new ObservableCollection<CIVILITIES>(EF.agsEntities.CIVILITIES);
         }
 
         private void GetMedecinCollection()
         {
-            MedecinCollection = new ObservableCollection<MEDECINS>(agsEntities.MEDECINS);
+            MedecinsCollection = new ObservableCollection<MEDECINS>(EF.agsEntities.MEDECINS);
         }
 
-        private void GetFAMILYQUOTIENTSCollection()
+        private void GetFamilyquotientsCollection()
         {
-            FAMILYQUOTIENTSCollection = new ObservableCollection<FAMILYQUOTIENTS>(agsEntities.FAMILYQUOTIENTS);
+            FAMILYQUOTIENTSCollection = new ObservableCollection<FAMILYQUOTIENTS>(EF.agsEntities.FAMILYQUOTIENTS);
         }
 
         private void GetCitiesCollection()
         {
-            CityCollection = new ObservableCollection<CITIES>(agsEntities.CITIES);
+            CitiesCollection = new ObservableCollection<CITIES>(EF.agsEntities.CITIES);
         }
 
         private void GetFamilyCollection()
         {
-            FamilyCollection = new ObservableCollection<FAMILIES>(agsEntities.FAMILIES);
+            FamiliesCollection = new ObservableCollection<FAMILIES>(EF.agsEntities.FAMILIES);
         }
 
         private void GetChildrenCollection()
         {
-            ChildrenCollection = new ObservableCollection<CHILDRENS>(agsEntities.CHILDRENS);
+            ChildrensCollection = new ObservableCollection<CHILDRENS>(EF.agsEntities.CHILDRENS);
         }
 
         #endregion
@@ -172,7 +157,7 @@ namespace WpfMvvmApplication1.ViewModels
         //    return query4;        
         //}
 
-        #region Commands
+
 
         //private void TestChildNames()
         //{
@@ -215,51 +200,15 @@ namespace WpfMvvmApplication1.ViewModels
         //    Connection.Close();
         //}
 
-        private void SaveChildrentoDB()
-        {
-            foreach (CHILDRENS some in this.ChildrenCollection.Where(some => some.ID == 0))
-            {
-                this.agsEntities.CHILDRENS.AddObject(some);
-            }
-            this.agsEntities.SaveChanges();
-        }
-
-        private void SaveFamilytoDB()
-        {
-            foreach (FAMILIES some in this.FamilyCollection.Where(some => some.ID == 0))
-            {
-                this.agsEntities.FAMILIES.AddObject(some);
-            }
-            this.agsEntities.SaveChanges();
-        }
-
-        private bool CanExecuteDoNothing()
-        {
-            return false;
-        }
-
-        private void OnDoNothing()
-        {}
-
-        #endregion
-
         #region Command Handlers
-
-        public ICommand SaveFamily
-        {
-            get { return new DelegateCommand(SaveFamilytoDB); }
-        }
-
-        public ICommand SaveChildren
-        {
-            get { return new DelegateCommand(SaveChildrentoDB); }
-        }
-
-        public ICommand DoNothingCommand
-        {
-            get { return new DelegateCommand(OnDoNothing, CanExecuteDoNothing); }
-        }
-
+        public ICommand SaveFamily { get { return new DelegateCommand(SaveFamilytoDb); } }
+        public ICommand SaveChildren { get { return new DelegateCommand(SaveChildrentoDb); } }
         #endregion
+
+        #region Commands
+        private void SaveFamilytoDb() { EF.SaveChildrentoDB(ChildrensCollection); }
+        private void SaveChildrentoDb() { EF.SaveFamilytoDB(FamiliesCollection); }
+        #endregion
+        
     }
 }

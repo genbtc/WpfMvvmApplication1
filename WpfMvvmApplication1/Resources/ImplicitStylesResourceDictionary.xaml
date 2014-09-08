@@ -4,8 +4,6 @@
     <Style TargetType="{x:Type Button}">
         <Setter Property="FontWeight"
                 Value="Bold" />
-        <Setter Property="Padding"
-                Value="5 1" />
     </Style>
 
 </ResourceDictionary>

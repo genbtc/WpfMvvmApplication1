@@ -17,6 +17,13 @@ using System.Runtime.Serialization;
 using System.Xml.Serialization;
 
 [assembly: EdmSchemaAttribute()]
+#region EDM Relationship Metadata
+
+[assembly: EdmRelationshipAttribute("agsModel", "cityfk", "CITIES", System.Data.Metadata.Edm.RelationshipMultiplicity.ZeroOrOne, typeof(WpfMvvmApplication1.CITIES), "FAMILIES", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(WpfMvvmApplication1.FAMILIES), true)]
+[assembly: EdmRelationshipAttribute("agsModel", "famfk", "FAMILIES", System.Data.Metadata.Edm.RelationshipMultiplicity.ZeroOrOne, typeof(WpfMvvmApplication1.FAMILIES), "CHILDRENS", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(WpfMvvmApplication1.CHILDRENS), true)]
+
+#endregion
+
 namespace WpfMvvmApplication1
 {
     #region Contexts
@@ -100,22 +107,6 @@ namespace WpfMvvmApplication1
         /// <summary>
         /// No Metadata Documentation available.
         /// </summary>
-        public ObjectSet<CIVILITIES> CIVILITIES
-        {
-            get
-            {
-                if ((_CIVILITIES == null))
-                {
-                    _CIVILITIES = base.CreateObjectSet<CIVILITIES>("CIVILITIES");
-                }
-                return _CIVILITIES;
-            }
-        }
-        private ObjectSet<CIVILITIES> _CIVILITIES;
-    
-        /// <summary>
-        /// No Metadata Documentation available.
-        /// </summary>
         public ObjectSet<FAMILIES> FAMILIES
         {
             get
@@ -132,22 +123,6 @@ namespace WpfMvvmApplication1
         /// <summary>
         /// No Metadata Documentation available.
         /// </summary>
-        public ObjectSet<FAMILYQUOTIENTS> FAMILYQUOTIENTS
-        {
-            get
-            {
-                if ((_FAMILYQUOTIENTS == null))
-                {
-                    _FAMILYQUOTIENTS = base.CreateObjectSet<FAMILYQUOTIENTS>("FAMILYQUOTIENTS");
-                }
-                return _FAMILYQUOTIENTS;
-            }
-        }
-        private ObjectSet<FAMILYQUOTIENTS> _FAMILYQUOTIENTS;
-    
-        /// <summary>
-        /// No Metadata Documentation available.
-        /// </summary>
         public ObjectSet<MEDECINS> MEDECINS
         {
             get
@@ -160,6 +135,38 @@ namespace WpfMvvmApplication1
             }
         }
         private ObjectSet<MEDECINS> _MEDECINS;
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        public ObjectSet<CIVILITIES> CIVILITIES
+        {
+            get
+            {
+                if ((_CIVILITIES == null))
+                {
+                    _CIVILITIES = base.CreateObjectSet<CIVILITIES>("CIVILITIES");
+                }
+                return _CIVILITIES;
+            }
+        }
+        private ObjectSet<CIVILITIES> _CIVILITIES;
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        public ObjectSet<FAMILYQUOTIENTS> FAMILYQUOTIENTS
+        {
+            get
+            {
+                if ((_FAMILYQUOTIENTS == null))
+                {
+                    _FAMILYQUOTIENTS = base.CreateObjectSet<FAMILYQUOTIENTS>("FAMILYQUOTIENTS");
+                }
+                return _FAMILYQUOTIENTS;
+            }
+        }
+        private ObjectSet<FAMILYQUOTIENTS> _FAMILYQUOTIENTS;
 
         #endregion
 
@@ -182,14 +189,6 @@ namespace WpfMvvmApplication1
         }
     
         /// <summary>
-        /// Deprecated Method for adding a new object to the CIVILITIES EntitySet. Consider using the .Add method of the associated ObjectSet&lt;T&gt; property instead.
-        /// </summary>
-        public void AddToCIVILITIES(CIVILITIES cIVILITIES)
-        {
-            base.AddObject("CIVILITIES", cIVILITIES);
-        }
-    
-        /// <summary>
         /// Deprecated Method for adding a new object to the FAMILIES EntitySet. Consider using the .Add method of the associated ObjectSet&lt;T&gt; property instead.
         /// </summary>
         public void AddToFAMILIES(FAMILIES fAMILIES)
@@ -198,19 +197,27 @@ namespace WpfMvvmApplication1
         }
     
         /// <summary>
-        /// Deprecated Method for adding a new object to the FAMILYQUOTIENTS EntitySet. Consider using the .Add method of the associated ObjectSet&lt;T&gt; property instead.
-        /// </summary>
-        public void AddToFAMILYQUOTIENTS(FAMILYQUOTIENTS fAMILYQUOTIENTS)
-        {
-            base.AddObject("FAMILYQUOTIENTS", fAMILYQUOTIENTS);
-        }
-    
-        /// <summary>
         /// Deprecated Method for adding a new object to the MEDECINS EntitySet. Consider using the .Add method of the associated ObjectSet&lt;T&gt; property instead.
         /// </summary>
         public void AddToMEDECINS(MEDECINS mEDECINS)
         {
             base.AddObject("MEDECINS", mEDECINS);
+        }
+    
+        /// <summary>
+        /// Deprecated Method for adding a new object to the CIVILITIES EntitySet. Consider using the .Add method of the associated ObjectSet&lt;T&gt; property instead.
+        /// </summary>
+        public void AddToCIVILITIES(CIVILITIES cIVILITIES)
+        {
+            base.AddObject("CIVILITIES", cIVILITIES);
+        }
+    
+        /// <summary>
+        /// Deprecated Method for adding a new object to the FAMILYQUOTIENTS EntitySet. Consider using the .Add method of the associated ObjectSet&lt;T&gt; property instead.
+        /// </summary>
+        public void AddToFAMILYQUOTIENTS(FAMILYQUOTIENTS fAMILYQUOTIENTS)
+        {
+            base.AddObject("FAMILYQUOTIENTS", fAMILYQUOTIENTS);
         }
 
         #endregion
@@ -660,6 +667,48 @@ namespace WpfMvvmApplication1
         #endregion
 
     
+        #region Navigation Properties
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [XmlIgnoreAttribute()]
+        [SoapIgnoreAttribute()]
+        [DataMemberAttribute()]
+        [EdmRelationshipNavigationPropertyAttribute("agsModel", "famfk", "FAMILIES")]
+        public FAMILIES FAMILIES
+        {
+            get
+            {
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<FAMILIES>("agsModel.famfk", "FAMILIES").Value;
+            }
+            set
+            {
+                ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<FAMILIES>("agsModel.famfk", "FAMILIES").Value = value;
+            }
+        }
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [BrowsableAttribute(false)]
+        [DataMemberAttribute()]
+        public EntityReference<FAMILIES> FAMILIESReference
+        {
+            get
+            {
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<FAMILIES>("agsModel.famfk", "FAMILIES");
+            }
+            set
+            {
+                if ((value != null))
+                {
+                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedReference<FAMILIES>("agsModel.famfk", "FAMILIES", value);
+                }
+            }
+        }
+
+        #endregion
+
     }
     
     /// <summary>
@@ -765,6 +814,32 @@ namespace WpfMvvmApplication1
         #endregion
 
     
+        #region Navigation Properties
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [XmlIgnoreAttribute()]
+        [SoapIgnoreAttribute()]
+        [DataMemberAttribute()]
+        [EdmRelationshipNavigationPropertyAttribute("agsModel", "cityfk", "FAMILIES")]
+        public EntityCollection<FAMILIES> FAMILIES
+        {
+            get
+            {
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedCollection<FAMILIES>("agsModel.cityfk", "FAMILIES");
+            }
+            set
+            {
+                if ((value != null))
+                {
+                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedCollection<FAMILIES>("agsModel.cityfk", "FAMILIES", value);
+                }
+            }
+        }
+
+        #endregion
+
     }
     
     /// <summary>
@@ -1071,6 +1146,70 @@ namespace WpfMvvmApplication1
         #endregion
 
     
+        #region Navigation Properties
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [XmlIgnoreAttribute()]
+        [SoapIgnoreAttribute()]
+        [DataMemberAttribute()]
+        [EdmRelationshipNavigationPropertyAttribute("agsModel", "cityfk", "CITIES")]
+        public CITIES CITIES
+        {
+            get
+            {
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<CITIES>("agsModel.cityfk", "CITIES").Value;
+            }
+            set
+            {
+                ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<CITIES>("agsModel.cityfk", "CITIES").Value = value;
+            }
+        }
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [BrowsableAttribute(false)]
+        [DataMemberAttribute()]
+        public EntityReference<CITIES> CITIESReference
+        {
+            get
+            {
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<CITIES>("agsModel.cityfk", "CITIES");
+            }
+            set
+            {
+                if ((value != null))
+                {
+                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedReference<CITIES>("agsModel.cityfk", "CITIES", value);
+                }
+            }
+        }
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [XmlIgnoreAttribute()]
+        [SoapIgnoreAttribute()]
+        [DataMemberAttribute()]
+        [EdmRelationshipNavigationPropertyAttribute("agsModel", "famfk", "CHILDRENS")]
+        public EntityCollection<CHILDRENS> CHILDRENS
+        {
+            get
+            {
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedCollection<CHILDRENS>("agsModel.famfk", "CHILDRENS");
+            }
+            set
+            {
+                if ((value != null))
+                {
+                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedCollection<CHILDRENS>("agsModel.famfk", "CHILDRENS", value);
+                }
+            }
+        }
+
+        #endregion
+
     }
     
     /// <summary>

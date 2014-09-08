@@ -1,0 +1,117 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<xs:schema id="agsDataSet" targetNamespace="http://tempuri.org/agsDataSet.xsd" xmlns:mstns="http://tempuri.org/agsDataSet.xsd" xmlns="http://tempuri.org/agsDataSet.xsd" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata" xmlns:msprop="urn:schemas-microsoft-com:xml-msprop" attributeFormDefault="qualified" elementFormDefault="qualified">
+  <xs:annotation>
+    <xs:appinfo source="urn:schemas-microsoft-com:xml-msdatasource">
+      <DataSource DefaultConnectionIndex="0" FunctionsComponentName="QueriesTableAdapter" Modifier="AutoLayout, AnsiClass, Class, Public" SchemaSerializationMode="IncludeSchema" xmlns="urn:schemas-microsoft-com:xml-msdatasource">
+        <Connections>
+          <Connection AppSettingsObjectName="Settings" AppSettingsPropertyName="agsConnectionString" ConnectionStringObject="" IsAppSettingsProperty="true" Modifier="Assembly" Name="agsConnectionString (Settings)" PropertyReference="ApplicationSettings.WpfMvvmApplication1.Properties.Settings.GlobalReference.Default.agsConnectionString" Provider="Npgsql" />
+        </Connections>
+        <Tables />
+        <Sources />
+      </DataSource>
+    </xs:appinfo>
+  </xs:annotation>
+  <xs:element name="agsDataSet" msdata:IsDataSet="true" msdata:UseCurrentLocale="true" msprop:EnableTableAdapterManager="True" msprop:Generator_DataSetName="agsDataSet" msprop:Generator_UserDSName="agsDataSet">
+    <xs:complexType>
+      <xs:choice minOccurs="0" maxOccurs="unbounded">
+        <xs:element name="CHILDRENS">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="LASTNAME" type="xs:string" minOccurs="0" />
+              <xs:element name="FIRSTNAME" type="xs:string" minOccurs="0" />
+              <xs:element name="BIRTHDATE" type="xs:dateTime" minOccurs="0" />
+              <xs:element name="FAMILYID" type="xs:int" minOccurs="0" />
+              <xs:element name="GENDERID" type="xs:int" minOccurs="0" />
+              <xs:element name="EMT" type="xs:boolean" minOccurs="0" />
+              <xs:element name="HOSPITAL" type="xs:boolean" minOccurs="0" />
+              <xs:element name="CLINIC" type="xs:boolean" minOccurs="0" />
+              <xs:element name="CLINICID" type="xs:int" minOccurs="0" />
+              <xs:element name="BEPHOTOGRAPHY" type="xs:boolean" minOccurs="0" />
+              <xs:element name="PUBLICATIONPHOTOGRAPHY" type="xs:boolean" minOccurs="0" />
+              <xs:element name="OFFOUTPUTSSTRUCTURE" type="xs:boolean" minOccurs="0" />
+              <xs:element name="SWIM" type="xs:boolean" minOccurs="0" />
+              <xs:element name="BIKEOUTINGS" type="xs:boolean" minOccurs="0" />
+              <xs:element name="BOATOUTINGS" type="xs:boolean" minOccurs="0" />
+              <xs:element name="MEDECINEID" type="xs:int" minOccurs="0" />
+              <xs:element name="ID" msdata:AutoIncrement="true" msdata:AutoIncrementSeed="-1" msdata:AutoIncrementStep="-1" type="xs:int" />
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+        <xs:element name="CITIES">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="ID" msdata:AutoIncrement="true" msdata:AutoIncrementSeed="-1" msdata:AutoIncrementStep="-1" type="xs:int" />
+              <xs:element name="CITY" type="xs:string" minOccurs="0" />
+              <xs:element name="CP" type="xs:string" minOccurs="0" />
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+        <xs:element name="CIVILITIES">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="ID" msdata:AutoIncrement="true" msdata:AutoIncrementSeed="-1" msdata:AutoIncrementStep="-1" type="xs:long" />
+              <xs:element name="CIVILITY" type="xs:string" minOccurs="0" />
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+        <xs:element name="FAMILIES">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="LASTNAME" type="xs:string" minOccurs="0" />
+              <xs:element name="FIRSTNAME" type="xs:string" minOccurs="0" />
+              <xs:element name="ADRESS" type="xs:string" minOccurs="0" />
+              <xs:element name="CITYID" type="xs:int" minOccurs="0" />
+              <xs:element name="TEL1" type="xs:string" minOccurs="0" />
+              <xs:element name="TEL2" type="xs:string" minOccurs="0" />
+              <xs:element name="TEL3" type="xs:string" minOccurs="0" />
+              <xs:element name="ID" msdata:AutoIncrement="true" msdata:AutoIncrementSeed="-1" msdata:AutoIncrementStep="-1" type="xs:int" />
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+        <xs:element name="FAMILYQUOTIENTS">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="ID" msdata:AutoIncrement="true" msdata:AutoIncrementSeed="-1" msdata:AutoIncrementStep="-1" type="xs:long" />
+              <xs:element name="YEAR" type="xs:int" minOccurs="0" />
+              <xs:element name="FAMILYID" type="xs:int" minOccurs="0" />
+              <xs:element name="FAMILYQUOTIENT" type="xs:float" minOccurs="0" />
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+        <xs:element name="MEDECINS">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="ID" msdata:AutoIncrement="true" msdata:AutoIncrementSeed="-1" msdata:AutoIncrementStep="-1" type="xs:int" />
+              <xs:element name="FULLNAME" type="xs:string" minOccurs="0" />
+              <xs:element name="TEL" type="xs:string" minOccurs="0" />
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+      </xs:choice>
+    </xs:complexType>
+    <xs:unique name="Constraint1" msdata:PrimaryKey="true">
+      <xs:selector xpath=".//mstns:CHILDRENS" />
+      <xs:field xpath="mstns:ID" />
+    </xs:unique>
+    <xs:unique name="CITIES_Constraint1" msdata:ConstraintName="Constraint1" msdata:PrimaryKey="true">
+      <xs:selector xpath=".//mstns:CITIES" />
+      <xs:field xpath="mstns:ID" />
+    </xs:unique>
+    <xs:unique name="CIVILITIES_Constraint1" msdata:ConstraintName="Constraint1" msdata:PrimaryKey="true">
+      <xs:selector xpath=".//mstns:CIVILITIES" />
+      <xs:field xpath="mstns:ID" />
+    </xs:unique>
+    <xs:unique name="FAMILIES_Constraint1" msdata:ConstraintName="Constraint1" msdata:PrimaryKey="true">
+      <xs:selector xpath=".//mstns:FAMILIES" />
+      <xs:field xpath="mstns:ID" />
+    </xs:unique>
+    <xs:unique name="FAMILYQUOTIENTS_Constraint1" msdata:ConstraintName="Constraint1" msdata:PrimaryKey="true">
+      <xs:selector xpath=".//mstns:FAMILYQUOTIENTS" />
+      <xs:field xpath="mstns:ID" />
+    </xs:unique>
+    <xs:unique name="MEDECINS_Constraint1" msdata:ConstraintName="Constraint1" msdata:PrimaryKey="true">
+      <xs:selector xpath=".//mstns:MEDECINS" />
+      <xs:field xpath="mstns:ID" />
+    </xs:unique>
+  </xs:element>
+</xs:schema>

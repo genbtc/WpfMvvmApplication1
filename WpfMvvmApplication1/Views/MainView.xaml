@@ -23,12 +23,12 @@
 
     <ccl:CustomChromeWindow.Resources>
         <ResourceDictionary>
-            <CollectionViewSource x:Key="famsorted" Source="{Binding Path=FamilyCollection}" >
+            <CollectionViewSource x:Key="famsorted" Source="{Binding Path=FamiliesCollection}" >
                 <CollectionViewSource.SortDescriptions>
                     <scm:SortDescription PropertyName="ID" />
                 </CollectionViewSource.SortDescriptions>
             </CollectionViewSource>
-            <CollectionViewSource x:Key="childsorted" Source="{Binding Path=ChildrenCollection}" >
+            <CollectionViewSource x:Key="childsorted" Source="{Binding Path=ChildrensCollection}" >
                 <CollectionViewSource.SortDescriptions>
                     <scm:SortDescription PropertyName="ID" />
                 </CollectionViewSource.SortDescriptions>
@@ -75,24 +75,23 @@
         </Border>
         <ccl:CaptionButtons Grid.ColumnSpan="2" HorizontalAlignment="Right" Margin="0,8,0,0" Width="115" />
         <!--Content-->
-        <Viewbox Grid.ColumnSpan="2" Margin="0,6,0,0">
-            <TabControl Height="837"  HorizontalAlignment="Center" VerticalAlignment="Bottom" Margin="2,0,2,0" Grid.ColumnSpan="2" Width="1605">
+        <Viewbox Grid.ColumnSpan="2" Margin="0,20,0,0">
+            <TabControl Height="Auto"  HorizontalAlignment="Stretch" VerticalAlignment="Bottom" Margin="2,0,2,0" Grid.ColumnSpan="2" Width="Auto">
                 <!--Presence Tab-->
                 <TabItem Header="Presence">
-                    <Grid Height="791" VerticalAlignment="Center" >
-                        <Button x:Name="savechildren2" Content="Update!" Margin="1474,565,8,202" Command="{Binding Path=SaveChildren}" />
+                    <Grid VerticalAlignment="Bottom" Height="794">
                         <StackPanel Orientation="Horizontal" Height="28" VerticalAlignment="Top" Margin="10,2,1,0">
                             <Label Content="Recherche :" />
-                            <TextBox Name="Recherche2" Style="{StaticResource ResourceKey=flatTextBox}" Height="23" TextWrapping="Wrap" Width="716" />
+                            <TextBox Name="Recherche2" Style="{StaticResource ResourceKey=flatTextBox}" Height="24" TextWrapping="Wrap" Width="716" />
                             <Separator Height="6" Name="separator12" Width="716" Visibility="Hidden" />
                             <Button Content="+" Width="30" />
                         </StackPanel>
-                        <DataGrid Name="ChildrenDataGrid2" ItemsSource="{Binding Source={StaticResource childsorted}}" AutoGenerateColumns="False" ColumnWidth="152" Margin="10,36,9,0" VerticalAlignment="Top" Height="522"
+                        <DataGrid Name="PresenceDataGrid" ItemsSource="{Binding Source={StaticResource childsorted}}" AutoGenerateColumns="False" ColumnWidth="152" Margin="10,36,10,0" Width="1580" VerticalAlignment="Top" Height="477"
                              BorderThickness="1,2,1,1" Background="{StaticResource ResourceKey=GenBtcColorBrush}" BorderBrush="#FF889BB1" RowBackground="Snow" HeadersVisibility="Column">
                             <DataGrid.Columns>
                                 <DataGridTextColumn Binding="{Binding Path=ID}" Header="Id" Width="30" CanUserSort="True" />
-                                <DataGridTextColumn Binding="{Binding Path=LASTNAME}" Header="Nom" Width="300" CanUserSort="True" />
-                                <DataGridTextColumn Binding="{Binding Path=FIRSTNAME}" Header="Prénom" Width="300" CanUserSort="True" />
+                                <DataGridTextColumn Binding="{Binding Path=LASTNAME}" Header="Nom" Width="200" CanUserSort="True" />
+                                <DataGridTextColumn Binding="{Binding Path=FIRSTNAME}" Header="Prénom" Width="200" CanUserSort="True" />
                                 <DataGridTemplateColumn Header="Date Naissance" CanUserSort="True">
                                     <DataGridTemplateColumn.CellTemplate>
                                         <DataTemplate>
@@ -129,26 +128,24 @@
                             </DataGridTemplateColumn>
                             </DataGrid.Columns>
                         </DataGrid>
-
+                        <Button x:Name="savechildren2" Content="Update!" Command="{Binding Path=SaveChildren}" Margin="1489,525,27,243" Width="84" />
                     </Grid>
                 </TabItem>
                 <!--Children Tab-->
                 <TabItem Header="Enfants">
-                    <Grid Height="791" VerticalAlignment="Center" >
-                        <Button x:Name="savechildren" Content="Update!" Margin="1472,539,10,228" Command="{Binding Path=SaveChildren}" />
+                    <Grid VerticalAlignment="Bottom" Height="794">
                         <StackPanel Orientation="Horizontal" Height="28" VerticalAlignment="Top" Margin="10,2,1,0">
                             <Label Content="Recherche :" />
-                            <TextBox Name="Recherche" Style="{StaticResource ResourceKey=flatTextBox}" Height="23" TextWrapping="Wrap" Width="716" />
+                            <TextBox Name="Recherche" Style="{StaticResource ResourceKey=flatTextBox}" Height="24" TextWrapping="Wrap" Width="716" />
                             <Separator Height="6" Name="separator1" Width="716" Visibility="Hidden" />
                             <Button Content="+" Width="30" />
                         </StackPanel>
-                        <DataGrid Name="ChildrenDataGrid" ItemsSource="{Binding Source={StaticResource childsorted}}" AutoGenerateColumns="False" ColumnWidth="152" Margin="10,36,9,0" VerticalAlignment="Top" Height="498"
+                        <DataGrid Name="ChildrenDataGrid" ItemsSource="{Binding Source={StaticResource childsorted}}" AutoGenerateColumns="False" ColumnWidth="152" Margin="10,36,10,0" VerticalAlignment="Top"  Width="1580" Height="498"
                               BorderThickness="1,2,1,1" Background="{StaticResource ResourceKey=GenBtcColorBrush}" BorderBrush="#FF889BB1" RowBackground="Snow" HeadersVisibility="Column">
                             <DataGrid.Columns>
                                 <DataGridTextColumn Binding="{Binding Path=ID}" Header="Id" Width="30" CanUserSort="True" />
-                                <DataGridTextColumn Binding="{Binding Path=LASTNAME}" Header="Nom" Width="300" CanUserSort="True" />
-                                <DataGridTextColumn Binding="{Binding Path=FIRSTNAME}" Header="Prénom" Width="300" CanUserSort="True" />
-                                <DataGridTextColumn Binding="{Binding Path=FAMILYID}" Header="familyaddress" Width="300" CanUserSort="True" />
+                                <DataGridTextColumn Binding="{Binding Path=LASTNAME}" Header="Nom" Width="200" CanUserSort="True" />
+                                <DataGridTextColumn Binding="{Binding Path=FIRSTNAME}" Header="Prénom" Width="200" CanUserSort="True" />
                                 <DataGridTemplateColumn Header="Date Naissance" CanUserSort="True">
                                     <DataGridTemplateColumn.CellTemplate>
                                         <DataTemplate>
@@ -184,10 +181,12 @@
                                         </DataTemplate>
                                     </DataGridTemplateColumn.CellTemplate>
                                 </DataGridTemplateColumn>
+                                <DataGridTextColumn Binding="{Binding Path=FAMILIES.ADRESS}" Header="Family Address" Width="250" CanUserSort="True" />
+                                <DataGridTextColumn Binding="{Binding Path=FAMILIES.CITIES.CITY, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Header="CITYNAME" Width="120" CanUserSort="True" />
                             </DataGrid.Columns>
                         </DataGrid>
                         <!--BottomPart of ChildrenTab-->
-                        <TabControl Margin="5,568,10,10">
+                        <TabControl Margin="10,568,10,10">
                             <TabItem Header="Famille" >
                                 <Grid Background="Snow" VerticalAlignment="Bottom" Margin="-2,0,2,0" Height="187">
                                     <!--ComboBox Family-->
@@ -204,8 +203,8 @@
                                     </ComboBox>
                                     <!--ComboBox City-->
                                     <ComboBox x:Name="cbCity" Style="{StaticResource ResourceKey=ComboBoxFlatStyle}" Margin="190,92,1077,71" IsEditable="False" 
-                                            ItemsSource="{Binding Path=CityCollection}" DisplayMemberPath="CITY" SelectedValuePath="ID" IsSynchronizedWithCurrentItem="False"
-                                            SelectedIndex="{Binding SelectedItem.CITYID, ElementName=FamilyDataGrid, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Width="303" />
+                                            ItemsSource="{Binding Path=CitiesCollection}" DisplayMemberPath="CITY" SelectedValuePath="ID" IsSynchronizedWithCurrentItem="False"
+                                            SelectedIndex="{Binding ElementName=ChildrenDataGrid, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, Path=SelectedItem.FAMILIES.CITYID, Converter={StaticResource addOne}}" Width="303" />
                                     
                                     <TextBox x:Name="tbAdress" Style="{StaticResource ResourceKey=flatTextBox}" HorizontalAlignment="Left" Height="45" Margin="66,42,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="427" IsEnabled="True" Text="{Binding SelectedItem.ADRESS, ElementName=cbFamily}" />
                                     <TextBox x:Name="tbCp" Style="{StaticResource ResourceKey=flatTextBox}" HorizontalAlignment="Left" Height="24" Margin="66,92,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" IsEnabled="True" Text="{Binding SelectedItem.CITYID, ElementName=cbFamily}" />
@@ -247,17 +246,18 @@
                                 </Grid>
                             </TabItem>
                         </TabControl>
+                        <Button x:Name="savechildren" Content="Update!" Command="{Binding Path=SaveChildren}" Margin="1491,541,25,227" />
                     </Grid>
                 </TabItem>
                 <!--Family Tab-->
                 <TabItem Header="Famille">
-                    <Grid VerticalAlignment="Bottom" Height="798" Width="1600">
-                        <StackPanel Orientation="Horizontal" Height="28" VerticalAlignment="Top" Margin="10,2,0,0" HorizontalAlignment="Left" Width="1555">
+                    <Grid VerticalAlignment="Bottom" Height="794">
+                        <StackPanel Orientation="Horizontal" Height="28" VerticalAlignment="Top" Margin="10,2,0,0" HorizontalAlignment="Left" Width="Auto">
                             <Label Content="Recherche :" />
-                            <TextBox Name="RechercheFamille" Style="{StaticResource ResourceKey=flatTextBox}" Height="23" TextWrapping="Wrap" Text="TextBox" Width="716" />
+                            <TextBox Name="RechercheFamille" Style="{StaticResource ResourceKey=flatTextBox}" Height="24" TextWrapping="Wrap" Text="" Width="716" />
                             <Separator Height="6" Name="separator2" Width="626" Visibility="Hidden" />
                         </StackPanel>
-                        <DataGrid Name="FamilyDataGrid" HorizontalAlignment="Left" VerticalAlignment="Top" Height="468" Width="1579" Margin="10,36,0,0" AutoGenerateColumns="False" BorderThickness="1,2,1,1" 
+                        <DataGrid Name="FamilyDataGrid" HorizontalAlignment="Left" VerticalAlignment="Top" Height="468" Width="1580" Margin="10,36,10,0" AutoGenerateColumns="False" BorderThickness="1,2,1,1" 
                               Background="{StaticResource ResourceKey=GenBtcColorBrush}" BorderBrush="#FF889BB1" RowBackground="Snow" 
                               ItemsSource="{Binding Source={StaticResource famsorted}}" HeadersVisibility="Column">
                             <DataGrid.Columns>
@@ -266,8 +266,8 @@
                                 <DataGridTextColumn Binding="{Binding Path=LASTNAME, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Header="Nom" Width="200" CanUserSort="True" />
                                 <DataGridTextColumn Binding="{Binding Path=FIRSTNAME, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Header="Prénom" Width="200" CanUserSort="True" />
                                 <DataGridTextColumn Binding="{Binding Path=ADRESS, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Header="Adress" Width="200" CanUserSort="True" />
-                                <DataGridTextColumn Binding="{Binding Path=CITYID, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Header="CityID" Width="200" CanUserSort="True" />
-                                <!--<DataGridTextColumn Binding="{Binding Path=CITYNAME, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Header="CITYNAME" Width="200" CanUserSort="True" />-->
+                                <DataGridTextColumn Binding="{Binding Path=CITYID, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Header="CityID" Width="30" CanUserSort="True" />
+                                <DataGridTextColumn Binding="{Binding Path=CITIES.CITY, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Header="CityName" Width="200" CanUserSort="True" />
                                 <DataGridTextColumn Binding="{Binding Path=TEL1, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Header="Tel1" Width="200" CanUserSort="True" />
                                 <DataGridTextColumn Binding="{Binding Path=TEL2, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Header="Tel2" Width="200" CanUserSort="True" />
                                 <DataGridTextColumn Binding="{Binding Path=TEL3, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Header="Tel3" Width="200" CanUserSort="True" />
@@ -280,7 +280,7 @@
                                     <ComboBox Style="{StaticResource ResourceKey=ComboBoxFlatStyle}" HorizontalAlignment="Left" Margin="91,39,0,0" VerticalAlignment="Top" Width="85" />
                                     <Label Content="Civilité :" HorizontalAlignment="Left" Margin="35,39,0,0" VerticalAlignment="Top" />
                                     <Label Content="Nom :" HorizontalAlignment="Left" Margin="44,80,0,0" VerticalAlignment="Top" />
-                                    <TextBox Style="{StaticResource ResourceKey=flatTextBox}" HorizontalAlignment="Left" Height="26" Margin="91,80,0,0" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="175" />
+                                    <TextBox Style="{StaticResource ResourceKey=flatTextBox}" HorizontalAlignment="Left" Height="26" Margin="91,80,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="175" />
                                 </Grid>
                             </TabItem>
                             <TabItem Header="Droits">
@@ -293,17 +293,17 @@
                                     <ComboBox Margin="124,23,1318,186"/>
                                     <Label Content="Nom :" Margin="10,55,1455,157" HorizontalContentAlignment="Right" Padding="0" Height="20"/>
                                     <Label Content="Prénom :" HorizontalAlignment="Left" Margin="10,86,0,0" VerticalAlignment="Top" Width="109" Height="20" HorizontalContentAlignment="Right" Padding="0"/>
-                                    <TextBox HorizontalAlignment="Left" Height="23" Margin="124,83,0,0" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="462"/>
+                                    <TextBox HorizontalAlignment="Left" Height="23" Margin="124,83,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="462"/>
                                     <Label Content="Civilité :" HorizontalAlignment="Left" Margin="10,26,0,0" VerticalAlignment="Top" Width="109" HorizontalContentAlignment="Right" Padding="0" Height="20"/>
-                                    <TextBox HorizontalAlignment="Left" Height="23" Margin="124,52,0,0" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="462"/>
+                                    <TextBox HorizontalAlignment="Left" Height="23" Margin="124,52,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="462"/>
                                     <Label Content="Adresse :" Width="100" Margin="19,112,1455,100" Height="20" HorizontalContentAlignment="Right" Padding="0"/>
-                                    <TextBox Margin="124,111,988,54" TextWrapping="Wrap" Text="TextBox"/>
-                                    <TextBox Height="23" TextWrapping="Wrap" Text="TextBox" Width="120" Margin="124,183,1330,26"/>
+                                    <TextBox Margin="124,111,988,54" TextWrapping="Wrap" Text=""/>
+                                    <TextBox Height="23" TextWrapping="Wrap" Text="" Width="120" Margin="124,183,1330,26"/>
                                     <ComboBox Margin="249,183,988,26"/>
                                     <Label Content="Tel :" HorizontalAlignment="Left" Margin="725,28,0,0" VerticalAlignment="Top"/>
-                                    <TextBox HorizontalAlignment="Left" Height="20" Margin="761,26,0,0" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="145"/>
-                                    <TextBox Margin="911,28,518,181" TextWrapping="Wrap" Text="TextBox"/>
-                                    <TextBox HorizontalAlignment="Left" Height="20" Margin="1061,31,0,0" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="145"/>
+                                    <TextBox HorizontalAlignment="Left" Height="20" Margin="761,26,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="145"/>
+                                    <TextBox Margin="911,28,518,181" TextWrapping="Wrap" Text=""/>
+                                    <TextBox HorizontalAlignment="Left" Height="20" Margin="1061,31,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="145"/>
                                     <Label Content="Email :" Margin="662,66,818,140" HorizontalContentAlignment="Right" Padding="0" Height="20"/>
                                     <Label Content="Autorité :" Width="100" Margin="1241,32,233,167"/>
                                 </Grid>
@@ -311,13 +311,13 @@
                             <TabItem Header="Payeur">
                                 <Grid></Grid>
                             </TabItem>
-                            <TabItem Header="Enfants" Height="20" VerticalAlignment="Top" Margin="-2,-2,2,0">
+                            <TabItem Header="Enfants">
                                 <Grid Background="#FFE5E5E5">
                                     <DataGrid HorizontalAlignment="Left" Height="212" Margin="10,10,0,0" VerticalAlignment="Top" Width="1554"/>
                                 </Grid>
                             </TabItem>
                         </TabControl>
-                        <Button Content="Update!" Margin="1474,511,11,264" Name="savefamily" Command="{Binding Path=SaveFamily}" />
+                        <Button Content="Update!" Name="savefamily" Command="{Binding Path=SaveFamily}" Margin="1489,510,27,258" Width="84" />
                     </Grid>
                 </TabItem>
             </TabControl>
