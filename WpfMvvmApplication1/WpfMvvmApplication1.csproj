@@ -152,6 +152,7 @@
     <Compile Include="Models\EF.cs" />
     <Compile Include="Models\Gender.cs" />
     <Compile Include="Models\SQL.cs" />
+    <Compile Include="Helpers\ToObsvCollection.cs" />
     <Compile Include="ViewModels\MainWindowViewModel.cs" />
     <Compile Include="Views\MainView.xaml.cs">
       <DependentUpon>MainView.xaml</DependentUpon>

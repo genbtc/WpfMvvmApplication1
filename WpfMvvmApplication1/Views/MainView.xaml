@@ -33,6 +33,11 @@
                     <scm:SortDescription PropertyName="ID" />
                 </CollectionViewSource.SortDescriptions>
             </CollectionViewSource>
+            <CollectionViewSource x:Key="citysorted" Source="{Binding Path=CitiesCollection}" >
+                <CollectionViewSource.SortDescriptions>
+                    <scm:SortDescription PropertyName="ID" />
+                </CollectionViewSource.SortDescriptions>
+            </CollectionViewSource>
             <models:Gender x:Key="Gender" />
             <!--<viewModels:MainWindowViewModel x:Key="MainWindowViewModel" />-->
             <converters:AddOne x:Key="addOne" />
@@ -73,7 +78,7 @@
             <!--Window Icon and Title-->
             <TextBlock Text="Gestion des Enfants" FontFamily="Calibri" FontWeight="Bold" FontSize="16" Foreground="#FF000044" HorizontalAlignment="Center" VerticalAlignment="Top"/>
         </Border>
-        <ccl:CaptionButtons Grid.ColumnSpan="2" HorizontalAlignment="Right" Margin="0,8,0,0" Width="115" />
+        <ccl:CaptionButtons HorizontalAlignment="Right"  Grid.Column="2" Margin="0,6,-2,0" />
         <!--Content-->
         <Viewbox Grid.ColumnSpan="2" Margin="0,20,0,0">
             <TabControl Height="Auto"  HorizontalAlignment="Stretch" VerticalAlignment="Bottom" Margin="2,0,2,0" Grid.ColumnSpan="2" Width="Auto">
@@ -203,11 +208,11 @@
                                     </ComboBox>
                                     <!--ComboBox City-->
                                     <ComboBox x:Name="cbCity" Style="{StaticResource ResourceKey=ComboBoxFlatStyle}" Margin="190,92,1077,71" IsEditable="False" 
-                                            ItemsSource="{Binding Path=CitiesCollection}" DisplayMemberPath="CITY" SelectedValuePath="ID" IsSynchronizedWithCurrentItem="False"
-                                            SelectedIndex="{Binding ElementName=ChildrenDataGrid, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, Path=SelectedItem.FAMILIES.CITYID, Converter={StaticResource addOne}}" Width="303" />
+                                            ItemsSource="{Binding Source={StaticResource citysorted}}" DisplayMemberPath="CITY" SelectedValuePath="ID" IsSynchronizedWithCurrentItem="True"
+                                            SelectedIndex="{Binding SelectedItem.CITYID, ElementName=cbFamily, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, Path=SelectedItem.CITYID, Converter={StaticResource addOne}}" Width="303" />
                                     
                                     <TextBox x:Name="tbAdress" Style="{StaticResource ResourceKey=flatTextBox}" HorizontalAlignment="Left" Height="45" Margin="66,42,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="427" IsEnabled="True" Text="{Binding SelectedItem.ADRESS, ElementName=cbFamily}" />
-                                    <TextBox x:Name="tbCp" Style="{StaticResource ResourceKey=flatTextBox}" HorizontalAlignment="Left" Height="24" Margin="66,92,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" IsEnabled="True" Text="{Binding SelectedItem.CITYID, ElementName=cbFamily}" />
+                                    <TextBox x:Name="tbCp" Style="{StaticResource ResourceKey=flatTextBox}" HorizontalAlignment="Left" Height="24" Margin="66,92,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" IsEnabled="True" Text="{Binding SelectedItem.CITIES.CP, ElementName=cbFamily}" />
                                     <TextBox x:Name="tbTel1" Style="{StaticResource ResourceKey=flatTextBox}" HorizontalAlignment="Left" Height="20" Margin="66,121,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="142" IsEnabled="True" Text="{Binding SelectedItem.TEL1, ElementName=cbFamily}" />
                                     <TextBox x:Name="tbTel2" Style="{StaticResource ResourceKey=flatTextBox}" HorizontalAlignment="Left" Height="20" Margin="212,121,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="137" IsEnabled="True" Text="{Binding SelectedItem.TEL2, ElementName=cbFamily}" />
                                     <TextBox x:Name="tbTel3" Style="{StaticResource ResourceKey=flatTextBox}" HorizontalAlignment="Left" Height="20" Margin="353,121,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="140" IsEnabled="True" Text="{Binding SelectedItem.TEL3, ElementName=cbFamily}" />
