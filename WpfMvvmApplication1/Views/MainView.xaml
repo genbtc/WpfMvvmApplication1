@@ -112,21 +112,21 @@
                                 </DataGridTemplateColumn>
                                 <DataGridTextColumn Binding="{Binding Path=FAMILYID, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Header="FAMILYID" Width="40" CanUserSort="True" />
                                 <DataGridTemplateColumn Header="Family" Width="184" CanUserSort="True">
-                                    <DataGridTemplateColumn.CellTemplate>
-                                        <DataTemplate>
-                                            <ComboBox Name="cbFamilygrid" HorizontalAlignment="Stretch" Width="Auto" Style="{StaticResource ResourceKey=ComboBoxFlatStyle}"                                                       
-                                                      DisplayMemberPath="LASTNAME" SelectedValuePath="ID" IsSynchronizedWithCurrentItem="False"
-                                                      SelectedIndex="{Binding Path=FAMILYID, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" >
-                                                <ComboBox.ItemsSource>
-                                                    <CompositeCollection>
-                                                        <ComboBoxItem>None</ComboBoxItem>
-                                                        <CollectionContainer Collection="{Binding Source={StaticResource famsorted}}" />
-                                                    </CompositeCollection>
-                                                </ComboBox.ItemsSource>
-                                            </ComboBox>
-                                        </DataTemplate>
-                                    </DataGridTemplateColumn.CellTemplate>
-                                </DataGridTemplateColumn>
+                                <DataGridTemplateColumn.CellTemplate>
+                                    <DataTemplate>
+                                        <ComboBox Name="cbFamilygrid2" HorizontalAlignment="Stretch" Width="Auto" Style="{StaticResource ResourceKey=ComboBoxFlatStyle}"                                                       
+                                                    DisplayMemberPath="LASTNAME" SelectedValuePath="ID" IsSynchronizedWithCurrentItem="True"
+                                                    SelectedIndex="{Binding Path=FAMILYID, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" >
+                                            <ComboBox.ItemsSource>
+                                                <CompositeCollection>
+                                                    <ComboBoxItem Name="noneItem" Content="Aucon" />
+                                                    <CollectionContainer Collection="{Binding Source={StaticResource famsorted}}" />
+                                                </CompositeCollection>
+                                            </ComboBox.ItemsSource>
+                                        </ComboBox>
+                                    </DataTemplate>
+                                </DataGridTemplateColumn.CellTemplate>
+                            </DataGridTemplateColumn>
                             </DataGrid.Columns>
                         </DataGrid>
 
@@ -148,6 +148,7 @@
                                 <DataGridTextColumn Binding="{Binding Path=ID}" Header="Id" Width="30" CanUserSort="True" />
                                 <DataGridTextColumn Binding="{Binding Path=LASTNAME}" Header="Nom" Width="300" CanUserSort="True" />
                                 <DataGridTextColumn Binding="{Binding Path=FIRSTNAME}" Header="Prénom" Width="300" CanUserSort="True" />
+                                <DataGridTextColumn Binding="{Binding Path=FAMILYID}" Header="familyaddress" Width="300" CanUserSort="True" />
                                 <DataGridTemplateColumn Header="Date Naissance" CanUserSort="True">
                                     <DataGridTemplateColumn.CellTemplate>
                                         <DataTemplate>
@@ -169,12 +170,13 @@
                                 <DataGridTemplateColumn Header="Family" Width="184" CanUserSort="True">
                                     <DataGridTemplateColumn.CellTemplate>
                                         <DataTemplate>
+                                            <!--ComboBox GRID Family-->
                                             <ComboBox Name="cbFamilygrid" HorizontalAlignment="Stretch" Width="Auto" Style="{StaticResource ResourceKey=ComboBoxFlatStyle}"                                                       
-                                                      DisplayMemberPath="LASTNAME" SelectedValuePath="ID" IsSynchronizedWithCurrentItem="False"
+                                                      DisplayMemberPath="LASTNAME" SelectedValuePath="ID" IsSynchronizedWithCurrentItem="True"
                                                       SelectedIndex="{Binding Path=FAMILYID, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" >
                                                 <ComboBox.ItemsSource>
                                                     <CompositeCollection>
-                                                        <ComboBoxItem>None</ComboBoxItem>
+                                                        <ComboBoxItem Name="noneItem" Content="Aucon" />
                                                         <CollectionContainer Collection="{Binding Source={StaticResource famsorted}}" />
                                                     </CompositeCollection>
                                                 </ComboBox.ItemsSource>
@@ -184,41 +186,41 @@
                                 </DataGridTemplateColumn>
                             </DataGrid.Columns>
                         </DataGrid>
+                        <!--BottomPart of ChildrenTab-->
                         <TabControl Margin="5,568,10,10">
                             <TabItem Header="Famille" >
                                 <Grid Background="Snow" VerticalAlignment="Bottom" Margin="-2,0,2,0" Height="187">
                                     <!--ComboBox Family-->
-                                    <ComboBox x:Name="cbFamily" Style="{StaticResource ResourceKey=ComboBoxFlatStyle}" Margin="66,12,1077,149"  IsEditable="False" HorizontalAlignment="Stretch"
-                                            DisplayMemberPath="LASTNAME" SelectedValuePath="ID" IsSynchronizedWithCurrentItem="False"
-                                            SelectedIndex="{Binding SelectedItem.FAMILYID, ElementName=ChildrenDataGrid}" Width="427">
+                                    <ComboBox x:Name="cbFamily" Style="{StaticResource ResourceKey=ComboBoxFlatStyle}" Margin="66,12,1077,149" Width="427" IsEditable="False" HorizontalAlignment="Stretch"
+                                            DisplayMemberPath="LASTNAME" SelectedValuePath="ID" IsSynchronizedWithCurrentItem="True"
+                                            SelectedIndex="{Binding ElementName=ChildrenDataGrid, Path=SelectedItem.FAMILYID}" 
+                                            SelectedValue="{Binding ElementName=ChildrenDataGrid, Path=SelectedItem.FAMILYID}">
                                         <ComboBox.ItemsSource>
                                             <CompositeCollection>
-                                                <ComboBoxItem>None</ComboBoxItem>
+                                                <ComboBoxItem Name="noneItem" Content="Aucon" />
                                                 <CollectionContainer Collection="{Binding Source={StaticResource famsorted}}" />
                                             </CompositeCollection>
                                         </ComboBox.ItemsSource>
                                     </ComboBox>
                                     <!--ComboBox City-->
                                     <ComboBox x:Name="cbCity" Style="{StaticResource ResourceKey=ComboBoxFlatStyle}" Margin="190,92,1077,71" IsEditable="False" 
-                                            ItemsSource="{Binding Path=CitiesViewSource.Source}" DisplayMemberPath="CITY1" SelectedValuePath="ID" IsSynchronizedWithCurrentItem="False"
+                                            ItemsSource="{Binding Path=CityCollection}" DisplayMemberPath="CITY" SelectedValuePath="ID" IsSynchronizedWithCurrentItem="False"
                                             SelectedIndex="{Binding SelectedItem.CITYID, ElementName=FamilyDataGrid, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Width="303" />
-
-                                    <Label Content="Famille :" HorizontalAlignment="Left" Margin="15,19,0,0" VerticalAlignment="Top" FontSize="10" Height="13" Width="46" HorizontalContentAlignment="Right" Padding="0" />
-
+                                    
                                     <TextBox x:Name="tbAdress" Style="{StaticResource ResourceKey=flatTextBox}" HorizontalAlignment="Left" Height="45" Margin="66,42,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="427" IsEnabled="True" Text="{Binding SelectedItem.ADRESS, ElementName=cbFamily}" />
-                                    <TextBox x:Name="tbCp" Style="{StaticResource ResourceKey=flatTextBox}" HorizontalAlignment="Left" Height="24" Margin="66,92,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" IsEnabled="True" Text="{Binding SelectedItem.Cp, ElementName=cbFamily}" />
-
-                                    <Label Content="Adresse :" HorizontalAlignment="Left" Margin="10,41,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.5,0.538" FontSize="10" Height="15" Width="51" HorizontalContentAlignment="Right" UseLayoutRounding="True" Padding="0" />
+                                    <TextBox x:Name="tbCp" Style="{StaticResource ResourceKey=flatTextBox}" HorizontalAlignment="Left" Height="24" Margin="66,92,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" IsEnabled="True" Text="{Binding SelectedItem.CITYID, ElementName=cbFamily}" />
                                     <TextBox x:Name="tbTel1" Style="{StaticResource ResourceKey=flatTextBox}" HorizontalAlignment="Left" Height="20" Margin="66,121,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="142" IsEnabled="True" Text="{Binding SelectedItem.TEL1, ElementName=cbFamily}" />
                                     <TextBox x:Name="tbTel2" Style="{StaticResource ResourceKey=flatTextBox}" HorizontalAlignment="Left" Height="20" Margin="212,121,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="137" IsEnabled="True" Text="{Binding SelectedItem.TEL2, ElementName=cbFamily}" />
                                     <TextBox x:Name="tbTel3" Style="{StaticResource ResourceKey=flatTextBox}" HorizontalAlignment="Left" Height="20" Margin="353,121,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="140" IsEnabled="True" Text="{Binding SelectedItem.TEL3, ElementName=cbFamily}" />
+                                    <ComboBox x:Name="cbMedecin" Style="{StaticResource ResourceKey=ComboBoxFlatStyle}" HorizontalAlignment="Left" Margin="864,13,0,0" VerticalAlignment="Top" Width="283" Height="23" IsEditable="True" />
+                                    <TextBox x:Name="tbTelMedecin" Style="{StaticResource ResourceKey=flatTextBox}" HorizontalAlignment="Left" Height="23" Margin="1209,13,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="130"/>
+                                    <TextBox x:Name="tbAllergies2" Style="{StaticResource ResourceKey=flatTextBox}" HorizontalAlignment="Left" Height="60" Margin="864,44,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="475"/>
+                                    <Label Content="Famille :" HorizontalAlignment="Left" Margin="15,19,0,0" VerticalAlignment="Top" FontSize="10" Height="13" Width="46" HorizontalContentAlignment="Right" Padding="0" />
+                                    <Label Content="Adresse :" HorizontalAlignment="Left" Margin="10,41,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.5,0.538" FontSize="10" Height="15" Width="51" HorizontalContentAlignment="Right" UseLayoutRounding="True" Padding="0" />
                                     <Label Content="Téls. :" HorizontalAlignment="Left" Margin="31,128,0,0" VerticalAlignment="Top" Height="13" Padding="0" HorizontalContentAlignment="Right" Width="30" />
                                     <Label Content="Médecin :" HorizontalAlignment="Left" Margin="797,13,0,0" VerticalAlignment="Top"/>
-                                    <ComboBox x:Name="cbMedecin" Style="{StaticResource ResourceKey=ComboBoxFlatStyle}" HorizontalAlignment="Left" Margin="864,13,0,0" VerticalAlignment="Top" Width="283" Height="23" IsEditable="True" />
                                     <Label Content="Tél. :" HorizontalAlignment="Left" Margin="1170,13,0,0" VerticalAlignment="Top"/>
-                                    <TextBox x:Name="tbTelMedecin" Style="{StaticResource ResourceKey=flatTextBox}" HorizontalAlignment="Left" Height="23" Margin="1209,13,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="130"/>
                                     <Label Content="Allergies :" HorizontalAlignment="Left" Margin="798,44,0,0" VerticalAlignment="Top"/>
-                                    <TextBox x:Name="tbAllergies2" Style="{StaticResource ResourceKey=flatTextBox}" HorizontalAlignment="Left" Height="60" Margin="864,44,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="475"/>
                                     <Label Content="Email :" HorizontalAlignment="Left" Margin="24,153,0,0" VerticalAlignment="Top" Padding="0" Width="37" HorizontalContentAlignment="Right"/>
                                 </Grid>
                             </TabItem>
@@ -265,7 +267,7 @@
                                 <DataGridTextColumn Binding="{Binding Path=FIRSTNAME, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Header="Prénom" Width="200" CanUserSort="True" />
                                 <DataGridTextColumn Binding="{Binding Path=ADRESS, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Header="Adress" Width="200" CanUserSort="True" />
                                 <DataGridTextColumn Binding="{Binding Path=CITYID, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Header="CityID" Width="200" CanUserSort="True" />
-                                <DataGridTextColumn Binding="{Binding Path=CITYNAME, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Header="CITYNAME" Width="200" CanUserSort="True" />
+                                <!--<DataGridTextColumn Binding="{Binding Path=CITYNAME, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Header="CITYNAME" Width="200" CanUserSort="True" />-->
                                 <DataGridTextColumn Binding="{Binding Path=TEL1, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Header="Tel1" Width="200" CanUserSort="True" />
                                 <DataGridTextColumn Binding="{Binding Path=TEL2, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Header="Tel2" Width="200" CanUserSort="True" />
                                 <DataGridTextColumn Binding="{Binding Path=TEL3, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Header="Tel3" Width="200" CanUserSort="True" />

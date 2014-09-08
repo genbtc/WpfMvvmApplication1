@@ -33,7 +33,7 @@ namespace WpfMvvmApplication1
         /// </summary>
         public agsEntities() : base("name=agsEntities", "agsEntities")
         {
-            this.ContextOptions.LazyLoadingEnabled = false;
+            this.ContextOptions.LazyLoadingEnabled = true;
             OnContextCreated();
         }
     
@@ -42,7 +42,7 @@ namespace WpfMvvmApplication1
         /// </summary>
         public agsEntities(string connectionString) : base(connectionString, "agsEntities")
         {
-            this.ContextOptions.LazyLoadingEnabled = false;
+            this.ContextOptions.LazyLoadingEnabled = true;
             OnContextCreated();
         }
     
@@ -51,7 +51,7 @@ namespace WpfMvvmApplication1
         /// </summary>
         public agsEntities(EntityConnection connection) : base(connection, "agsEntities")
         {
-            this.ContextOptions.LazyLoadingEnabled = false;
+            this.ContextOptions.LazyLoadingEnabled = true;
             OnContextCreated();
         }
     
@@ -68,50 +68,98 @@ namespace WpfMvvmApplication1
         /// <summary>
         /// No Metadata Documentation available.
         /// </summary>
-        public ObjectSet<CHILDREN> CHILDRENS
+        public ObjectSet<CHILDRENS> CHILDRENS
         {
             get
             {
                 if ((_CHILDRENS == null))
                 {
-                    _CHILDRENS = base.CreateObjectSet<CHILDREN>("CHILDRENS");
+                    _CHILDRENS = base.CreateObjectSet<CHILDRENS>("CHILDRENS");
                 }
                 return _CHILDRENS;
             }
         }
-        private ObjectSet<CHILDREN> _CHILDRENS;
+        private ObjectSet<CHILDRENS> _CHILDRENS;
     
         /// <summary>
         /// No Metadata Documentation available.
         /// </summary>
-        public ObjectSet<CITY> CITIES
+        public ObjectSet<CITIES> CITIES
         {
             get
             {
                 if ((_CITIES == null))
                 {
-                    _CITIES = base.CreateObjectSet<CITY>("CITIES");
+                    _CITIES = base.CreateObjectSet<CITIES>("CITIES");
                 }
                 return _CITIES;
             }
         }
-        private ObjectSet<CITY> _CITIES;
+        private ObjectSet<CITIES> _CITIES;
     
         /// <summary>
         /// No Metadata Documentation available.
         /// </summary>
-        public ObjectSet<FAMILY> FAMILIES
+        public ObjectSet<CIVILITIES> CIVILITIES
+        {
+            get
+            {
+                if ((_CIVILITIES == null))
+                {
+                    _CIVILITIES = base.CreateObjectSet<CIVILITIES>("CIVILITIES");
+                }
+                return _CIVILITIES;
+            }
+        }
+        private ObjectSet<CIVILITIES> _CIVILITIES;
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        public ObjectSet<FAMILIES> FAMILIES
         {
             get
             {
                 if ((_FAMILIES == null))
                 {
-                    _FAMILIES = base.CreateObjectSet<FAMILY>("FAMILIES");
+                    _FAMILIES = base.CreateObjectSet<FAMILIES>("FAMILIES");
                 }
                 return _FAMILIES;
             }
         }
-        private ObjectSet<FAMILY> _FAMILIES;
+        private ObjectSet<FAMILIES> _FAMILIES;
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        public ObjectSet<FAMILYQUOTIENTS> FAMILYQUOTIENTS
+        {
+            get
+            {
+                if ((_FAMILYQUOTIENTS == null))
+                {
+                    _FAMILYQUOTIENTS = base.CreateObjectSet<FAMILYQUOTIENTS>("FAMILYQUOTIENTS");
+                }
+                return _FAMILYQUOTIENTS;
+            }
+        }
+        private ObjectSet<FAMILYQUOTIENTS> _FAMILYQUOTIENTS;
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        public ObjectSet<MEDECINS> MEDECINS
+        {
+            get
+            {
+                if ((_MEDECINS == null))
+                {
+                    _MEDECINS = base.CreateObjectSet<MEDECINS>("MEDECINS");
+                }
+                return _MEDECINS;
+            }
+        }
+        private ObjectSet<MEDECINS> _MEDECINS;
 
         #endregion
 
@@ -120,25 +168,49 @@ namespace WpfMvvmApplication1
         /// <summary>
         /// Deprecated Method for adding a new object to the CHILDRENS EntitySet. Consider using the .Add method of the associated ObjectSet&lt;T&gt; property instead.
         /// </summary>
-        public void AddToCHILDRENS(CHILDREN cHILDREN)
+        public void AddToCHILDRENS(CHILDRENS cHILDRENS)
         {
-            base.AddObject("CHILDRENS", cHILDREN);
+            base.AddObject("CHILDRENS", cHILDRENS);
         }
     
         /// <summary>
         /// Deprecated Method for adding a new object to the CITIES EntitySet. Consider using the .Add method of the associated ObjectSet&lt;T&gt; property instead.
         /// </summary>
-        public void AddToCITIES(CITY cITY)
+        public void AddToCITIES(CITIES cITIES)
         {
-            base.AddObject("CITIES", cITY);
+            base.AddObject("CITIES", cITIES);
+        }
+    
+        /// <summary>
+        /// Deprecated Method for adding a new object to the CIVILITIES EntitySet. Consider using the .Add method of the associated ObjectSet&lt;T&gt; property instead.
+        /// </summary>
+        public void AddToCIVILITIES(CIVILITIES cIVILITIES)
+        {
+            base.AddObject("CIVILITIES", cIVILITIES);
         }
     
         /// <summary>
         /// Deprecated Method for adding a new object to the FAMILIES EntitySet. Consider using the .Add method of the associated ObjectSet&lt;T&gt; property instead.
         /// </summary>
-        public void AddToFAMILIES(FAMILY fAMILY)
+        public void AddToFAMILIES(FAMILIES fAMILIES)
         {
-            base.AddObject("FAMILIES", fAMILY);
+            base.AddObject("FAMILIES", fAMILIES);
+        }
+    
+        /// <summary>
+        /// Deprecated Method for adding a new object to the FAMILYQUOTIENTS EntitySet. Consider using the .Add method of the associated ObjectSet&lt;T&gt; property instead.
+        /// </summary>
+        public void AddToFAMILYQUOTIENTS(FAMILYQUOTIENTS fAMILYQUOTIENTS)
+        {
+            base.AddObject("FAMILYQUOTIENTS", fAMILYQUOTIENTS);
+        }
+    
+        /// <summary>
+        /// Deprecated Method for adding a new object to the MEDECINS EntitySet. Consider using the .Add method of the associated ObjectSet&lt;T&gt; property instead.
+        /// </summary>
+        public void AddToMEDECINS(MEDECINS mEDECINS)
+        {
+            base.AddObject("MEDECINS", mEDECINS);
         }
 
         #endregion
@@ -152,54 +224,27 @@ namespace WpfMvvmApplication1
     /// <summary>
     /// No Metadata Documentation available.
     /// </summary>
-    [EdmEntityTypeAttribute(NamespaceName="agsModel", Name="CHILDREN")]
+    [EdmEntityTypeAttribute(NamespaceName="agsModel", Name="CHILDRENS")]
     [Serializable()]
     [DataContractAttribute(IsReference=true)]
-    public partial class CHILDREN : EntityObject
+    public partial class CHILDRENS : EntityObject
     {
         #region Factory Method
     
         /// <summary>
-        /// Create a new CHILDREN object.
+        /// Create a new CHILDRENS object.
         /// </summary>
         /// <param name="id">Initial value of the ID property.</param>
-        public static CHILDREN CreateCHILDREN(global::System.Int32 id)
+        public static CHILDRENS CreateCHILDRENS(global::System.Int32 id)
         {
-            CHILDREN cHILDREN = new CHILDREN();
-            cHILDREN.ID = id;
-            return cHILDREN;
+            CHILDRENS cHILDRENS = new CHILDRENS();
+            cHILDRENS.ID = id;
+            return cHILDRENS;
         }
 
         #endregion
 
         #region Primitive Properties
-    
-        /// <summary>
-        /// No Metadata Documentation available.
-        /// </summary>
-        [EdmScalarPropertyAttribute(EntityKeyProperty=true, IsNullable=false)]
-        [DataMemberAttribute()]
-        public global::System.Int32 ID
-        {
-            get
-            {
-                return _ID;
-            }
-            set
-            {
-                if (_ID != value)
-                {
-                    OnIDChanging(value);
-                    ReportPropertyChanging("ID");
-                    _ID = StructuralObject.SetValidValue(value);
-                    ReportPropertyChanged("ID");
-                    OnIDChanged();
-                }
-            }
-        }
-        private global::System.Int32 _ID;
-        partial void OnIDChanging(global::System.Int32 value);
-        partial void OnIDChanged();
     
         /// <summary>
         /// No Metadata Documentation available.
@@ -584,6 +629,33 @@ namespace WpfMvvmApplication1
         private Nullable<global::System.Int32> _MEDECINEID;
         partial void OnMEDECINEIDChanging(Nullable<global::System.Int32> value);
         partial void OnMEDECINEIDChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=true, IsNullable=false)]
+        [DataMemberAttribute()]
+        public global::System.Int32 ID
+        {
+            get
+            {
+                return _ID;
+            }
+            set
+            {
+                if (_ID != value)
+                {
+                    OnIDChanging(value);
+                    ReportPropertyChanging("ID");
+                    _ID = StructuralObject.SetValidValue(value);
+                    ReportPropertyChanged("ID");
+                    OnIDChanged();
+                }
+            }
+        }
+        private global::System.Int32 _ID;
+        partial void OnIDChanging(global::System.Int32 value);
+        partial void OnIDChanged();
 
         #endregion
 
@@ -593,22 +665,22 @@ namespace WpfMvvmApplication1
     /// <summary>
     /// No Metadata Documentation available.
     /// </summary>
-    [EdmEntityTypeAttribute(NamespaceName="agsModel", Name="CITY")]
+    [EdmEntityTypeAttribute(NamespaceName="agsModel", Name="CITIES")]
     [Serializable()]
     [DataContractAttribute(IsReference=true)]
-    public partial class CITY : EntityObject
+    public partial class CITIES : EntityObject
     {
         #region Factory Method
     
         /// <summary>
-        /// Create a new CITY object.
+        /// Create a new CITIES object.
         /// </summary>
         /// <param name="id">Initial value of the ID property.</param>
-        public static CITY CreateCITY(global::System.Int32 id)
+        public static CITIES CreateCITIES(global::System.Int32 id)
         {
-            CITY cITY = new CITY();
-            cITY.ID = id;
-            return cITY;
+            CITIES cITIES = new CITIES();
+            cITIES.ID = id;
+            return cITIES;
         }
 
         #endregion
@@ -647,24 +719,24 @@ namespace WpfMvvmApplication1
         /// </summary>
         [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
         [DataMemberAttribute()]
-        public global::System.String CITY1
+        public global::System.String CITY
         {
             get
             {
-                return _CITY1;
+                return _CITY;
             }
             set
             {
-                OnCITY1Changing(value);
-                ReportPropertyChanging("CITY1");
-                _CITY1 = StructuralObject.SetValidValue(value, true);
-                ReportPropertyChanged("CITY1");
-                OnCITY1Changed();
+                OnCITYChanging(value);
+                ReportPropertyChanging("CITY");
+                _CITY = StructuralObject.SetValidValue(value, true);
+                ReportPropertyChanged("CITY");
+                OnCITYChanged();
             }
         }
-        private global::System.String _CITY1;
-        partial void OnCITY1Changing(global::System.String value);
-        partial void OnCITY1Changed();
+        private global::System.String _CITY;
+        partial void OnCITYChanging(global::System.String value);
+        partial void OnCITYChanged();
     
         /// <summary>
         /// No Metadata Documentation available.
@@ -698,22 +770,22 @@ namespace WpfMvvmApplication1
     /// <summary>
     /// No Metadata Documentation available.
     /// </summary>
-    [EdmEntityTypeAttribute(NamespaceName="agsModel", Name="FAMILY")]
+    [EdmEntityTypeAttribute(NamespaceName="agsModel", Name="CIVILITIES")]
     [Serializable()]
     [DataContractAttribute(IsReference=true)]
-    public partial class FAMILY : EntityObject
+    public partial class CIVILITIES : EntityObject
     {
         #region Factory Method
     
         /// <summary>
-        /// Create a new FAMILY object.
+        /// Create a new CIVILITIES object.
         /// </summary>
         /// <param name="id">Initial value of the ID property.</param>
-        public static FAMILY CreateFAMILY(global::System.Int32 id)
+        public static CIVILITIES CreateCIVILITIES(global::System.Int64 id)
         {
-            FAMILY fAMILY = new FAMILY();
-            fAMILY.ID = id;
-            return fAMILY;
+            CIVILITIES cIVILITIES = new CIVILITIES();
+            cIVILITIES.ID = id;
+            return cIVILITIES;
         }
 
         #endregion
@@ -725,7 +797,7 @@ namespace WpfMvvmApplication1
         /// </summary>
         [EdmScalarPropertyAttribute(EntityKeyProperty=true, IsNullable=false)]
         [DataMemberAttribute()]
-        public global::System.Int32 ID
+        public global::System.Int64 ID
         {
             get
             {
@@ -743,9 +815,63 @@ namespace WpfMvvmApplication1
                 }
             }
         }
-        private global::System.Int32 _ID;
-        partial void OnIDChanging(global::System.Int32 value);
+        private global::System.Int64 _ID;
+        partial void OnIDChanging(global::System.Int64 value);
         partial void OnIDChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [DataMemberAttribute()]
+        public global::System.String CIVILITY
+        {
+            get
+            {
+                return _CIVILITY;
+            }
+            set
+            {
+                OnCIVILITYChanging(value);
+                ReportPropertyChanging("CIVILITY");
+                _CIVILITY = StructuralObject.SetValidValue(value, true);
+                ReportPropertyChanged("CIVILITY");
+                OnCIVILITYChanged();
+            }
+        }
+        private global::System.String _CIVILITY;
+        partial void OnCIVILITYChanging(global::System.String value);
+        partial void OnCIVILITYChanged();
+
+        #endregion
+
+    
+    }
+    
+    /// <summary>
+    /// No Metadata Documentation available.
+    /// </summary>
+    [EdmEntityTypeAttribute(NamespaceName="agsModel", Name="FAMILIES")]
+    [Serializable()]
+    [DataContractAttribute(IsReference=true)]
+    public partial class FAMILIES : EntityObject
+    {
+        #region Factory Method
+    
+        /// <summary>
+        /// Create a new FAMILIES object.
+        /// </summary>
+        /// <param name="id">Initial value of the ID property.</param>
+        public static FAMILIES CreateFAMILIES(global::System.Int32 id)
+        {
+            FAMILIES fAMILIES = new FAMILIES();
+            fAMILIES.ID = id;
+            return fAMILIES;
+        }
+
+        #endregion
+
+        #region Primitive Properties
     
         /// <summary>
         /// No Metadata Documentation available.
@@ -914,6 +1040,267 @@ namespace WpfMvvmApplication1
         private global::System.String _TEL3;
         partial void OnTEL3Changing(global::System.String value);
         partial void OnTEL3Changed();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=true, IsNullable=false)]
+        [DataMemberAttribute()]
+        public global::System.Int32 ID
+        {
+            get
+            {
+                return _ID;
+            }
+            set
+            {
+                if (_ID != value)
+                {
+                    OnIDChanging(value);
+                    ReportPropertyChanging("ID");
+                    _ID = StructuralObject.SetValidValue(value);
+                    ReportPropertyChanged("ID");
+                    OnIDChanged();
+                }
+            }
+        }
+        private global::System.Int32 _ID;
+        partial void OnIDChanging(global::System.Int32 value);
+        partial void OnIDChanged();
+
+        #endregion
+
+    
+    }
+    
+    /// <summary>
+    /// No Metadata Documentation available.
+    /// </summary>
+    [EdmEntityTypeAttribute(NamespaceName="agsModel", Name="FAMILYQUOTIENTS")]
+    [Serializable()]
+    [DataContractAttribute(IsReference=true)]
+    public partial class FAMILYQUOTIENTS : EntityObject
+    {
+        #region Factory Method
+    
+        /// <summary>
+        /// Create a new FAMILYQUOTIENTS object.
+        /// </summary>
+        /// <param name="id">Initial value of the ID property.</param>
+        public static FAMILYQUOTIENTS CreateFAMILYQUOTIENTS(global::System.Int64 id)
+        {
+            FAMILYQUOTIENTS fAMILYQUOTIENTS = new FAMILYQUOTIENTS();
+            fAMILYQUOTIENTS.ID = id;
+            return fAMILYQUOTIENTS;
+        }
+
+        #endregion
+
+        #region Primitive Properties
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=true, IsNullable=false)]
+        [DataMemberAttribute()]
+        public global::System.Int64 ID
+        {
+            get
+            {
+                return _ID;
+            }
+            set
+            {
+                if (_ID != value)
+                {
+                    OnIDChanging(value);
+                    ReportPropertyChanging("ID");
+                    _ID = StructuralObject.SetValidValue(value);
+                    ReportPropertyChanged("ID");
+                    OnIDChanged();
+                }
+            }
+        }
+        private global::System.Int64 _ID;
+        partial void OnIDChanging(global::System.Int64 value);
+        partial void OnIDChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [DataMemberAttribute()]
+        public Nullable<global::System.Int32> YEAR
+        {
+            get
+            {
+                return _YEAR;
+            }
+            set
+            {
+                OnYEARChanging(value);
+                ReportPropertyChanging("YEAR");
+                _YEAR = StructuralObject.SetValidValue(value);
+                ReportPropertyChanged("YEAR");
+                OnYEARChanged();
+            }
+        }
+        private Nullable<global::System.Int32> _YEAR;
+        partial void OnYEARChanging(Nullable<global::System.Int32> value);
+        partial void OnYEARChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [DataMemberAttribute()]
+        public Nullable<global::System.Int32> FAMILYID
+        {
+            get
+            {
+                return _FAMILYID;
+            }
+            set
+            {
+                OnFAMILYIDChanging(value);
+                ReportPropertyChanging("FAMILYID");
+                _FAMILYID = StructuralObject.SetValidValue(value);
+                ReportPropertyChanged("FAMILYID");
+                OnFAMILYIDChanged();
+            }
+        }
+        private Nullable<global::System.Int32> _FAMILYID;
+        partial void OnFAMILYIDChanging(Nullable<global::System.Int32> value);
+        partial void OnFAMILYIDChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [DataMemberAttribute()]
+        public Nullable<global::System.Single> FAMILYQUOTIENT
+        {
+            get
+            {
+                return _FAMILYQUOTIENT;
+            }
+            set
+            {
+                OnFAMILYQUOTIENTChanging(value);
+                ReportPropertyChanging("FAMILYQUOTIENT");
+                _FAMILYQUOTIENT = StructuralObject.SetValidValue(value);
+                ReportPropertyChanged("FAMILYQUOTIENT");
+                OnFAMILYQUOTIENTChanged();
+            }
+        }
+        private Nullable<global::System.Single> _FAMILYQUOTIENT;
+        partial void OnFAMILYQUOTIENTChanging(Nullable<global::System.Single> value);
+        partial void OnFAMILYQUOTIENTChanged();
+
+        #endregion
+
+    
+    }
+    
+    /// <summary>
+    /// No Metadata Documentation available.
+    /// </summary>
+    [EdmEntityTypeAttribute(NamespaceName="agsModel", Name="MEDECINS")]
+    [Serializable()]
+    [DataContractAttribute(IsReference=true)]
+    public partial class MEDECINS : EntityObject
+    {
+        #region Factory Method
+    
+        /// <summary>
+        /// Create a new MEDECINS object.
+        /// </summary>
+        /// <param name="id">Initial value of the ID property.</param>
+        public static MEDECINS CreateMEDECINS(global::System.Int32 id)
+        {
+            MEDECINS mEDECINS = new MEDECINS();
+            mEDECINS.ID = id;
+            return mEDECINS;
+        }
+
+        #endregion
+
+        #region Primitive Properties
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=true, IsNullable=false)]
+        [DataMemberAttribute()]
+        public global::System.Int32 ID
+        {
+            get
+            {
+                return _ID;
+            }
+            set
+            {
+                if (_ID != value)
+                {
+                    OnIDChanging(value);
+                    ReportPropertyChanging("ID");
+                    _ID = StructuralObject.SetValidValue(value);
+                    ReportPropertyChanged("ID");
+                    OnIDChanged();
+                }
+            }
+        }
+        private global::System.Int32 _ID;
+        partial void OnIDChanging(global::System.Int32 value);
+        partial void OnIDChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [DataMemberAttribute()]
+        public global::System.String FULLNAME
+        {
+            get
+            {
+                return _FULLNAME;
+            }
+            set
+            {
+                OnFULLNAMEChanging(value);
+                ReportPropertyChanging("FULLNAME");
+                _FULLNAME = StructuralObject.SetValidValue(value, true);
+                ReportPropertyChanged("FULLNAME");
+                OnFULLNAMEChanged();
+            }
+        }
+        private global::System.String _FULLNAME;
+        partial void OnFULLNAMEChanging(global::System.String value);
+        partial void OnFULLNAMEChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [DataMemberAttribute()]
+        public global::System.String TEL
+        {
+            get
+            {
+                return _TEL;
+            }
+            set
+            {
+                OnTELChanging(value);
+                ReportPropertyChanging("TEL");
+                _TEL = StructuralObject.SetValidValue(value, true);
+                ReportPropertyChanged("TEL");
+                OnTELChanged();
+            }
+        }
+        private global::System.String _TEL;
+        partial void OnTELChanging(global::System.String value);
+        partial void OnTELChanged();
 
         #endregion
 

@@ -1,66 +1,16 @@
 using System.Collections.ObjectModel;
-using System.ComponentModel;
-using System.Data.Objects;
 using System.Linq;
-using System.Security.Cryptography;
-using System.Security.Cryptography.Xml;
-using System.Windows.Data;
 using System.Windows.Input;
 using WpfMvvmApplication1.Helpers;
-using WpfMvvmApplication1.Models;
 
 namespace WpfMvvmApplication1.ViewModels
 {
     public class MainWindowViewModel : NotificationObject
     {
         #region Properties
-        private CollectionViewSource _familiesViewSource;
-        public CollectionViewSource FamiliesViewSource
-        {
-            get
-            {
-                if (_familiesViewSource == null)
-                    GetFamilyViewSource();
-                return _familiesViewSource;
-            }
-        }
 
-        private CollectionViewSource _familiesComboBoxViewSource;
-        public CollectionViewSource FamiliesComboBoxViewSource
-        {
-            get
-            {
-                if (_familiesComboBoxViewSource == null)
-                    GetFamilyViewSource();
-                return _familiesViewSource;
-            }
-        }
-
-        private CollectionViewSource _citiesViewSource;
-        public CollectionViewSource CitiesViewSource
-        {
-            get
-            {
-                if (_citiesViewSource == null)
-                    GetCitiesViewSource();
-                return _citiesViewSource;
-            }
-        }
-
-
-        private CollectionViewSource _childrenViewSource;
-        public CollectionViewSource ChildrenViewSource
-        {
-            get
-            {
-                if (_childrenViewSource == null)
-                    GetChildrenViewSource();
-                return _childrenViewSource;
-            }
-        }
-
-        private ObservableCollection<FAMILY> _familyCollection = new ObservableCollection<FAMILY>();
-        public ObservableCollection<FAMILY> FamilyCollection
+        private ObservableCollection<FAMILIES> _familyCollection = new ObservableCollection<FAMILIES>();
+        public ObservableCollection<FAMILIES> FamilyCollection
         {
             get { return _familyCollection; }
             set
@@ -73,8 +23,8 @@ namespace WpfMvvmApplication1.ViewModels
             }
         }
 
-        private ObservableCollection<CHILDREN> _childrenCollection = new ObservableCollection<CHILDREN>();
-        public ObservableCollection<CHILDREN> ChildrenCollection
+        private ObservableCollection<CHILDRENS> _childrenCollection = new ObservableCollection<CHILDRENS>();
+        public ObservableCollection<CHILDRENS> ChildrenCollection
         {
             get { return _childrenCollection; }
             set
@@ -87,8 +37,8 @@ namespace WpfMvvmApplication1.ViewModels
             }
         }
 
-        private ObservableCollection<CITY> _cityCollection = new ObservableCollection<CITY>();
-        public ObservableCollection<CITY> CityCollection
+        private ObservableCollection<CITIES> _cityCollection = new ObservableCollection<CITIES>();
+        public ObservableCollection<CITIES> CityCollection
         {
             get { return _cityCollection; }
             set
@@ -100,8 +50,56 @@ namespace WpfMvvmApplication1.ViewModels
                 }
             }
         }
-        
+
+         #region FAMILYQUOTIENTS
+        private ObservableCollection<FAMILYQUOTIENTS> _FAMILYQUOTIENTSCollection = new ObservableCollection<FAMILYQUOTIENTS>();
+        public ObservableCollection<FAMILYQUOTIENTS> FAMILYQUOTIENTSCollection
+        {
+            get { return _FAMILYQUOTIENTSCollection; }
+            set
+            {
+                if (_FAMILYQUOTIENTSCollection != value)
+                {
+                    _FAMILYQUOTIENTSCollection = value;
+                    RaisePropertyChanged(() => FAMILYQUOTIENTSCollection);
+                }
+            }
+        }
         #endregion
+ 
+        #region MedecinCollection
+        private ObservableCollection<MEDECINS> _medecinCollection = new ObservableCollection<MEDECINS>();
+        public ObservableCollection<MEDECINS> MedecinCollection
+        {
+            get { return _medecinCollection; }
+            set
+            {
+                if (_medecinCollection != value)
+                {
+                    _medecinCollection = value;
+                    RaisePropertyChanged(() => MedecinCollection);
+                }
+            }
+        }
+        #endregion
+ 
+        #region CIVILITIESCollection
+        private ObservableCollection<CIVILITIES> _CIVILITIESCollection = new ObservableCollection<CIVILITIES>();
+        public ObservableCollection<CIVILITIES> CIVILITIESCollection
+        {
+            get { return _CIVILITIESCollection; }
+            set
+            {
+                if (_CIVILITIESCollection != value)
+                {
+                    _CIVILITIESCollection = value;
+                    RaisePropertyChanged(() => CIVILITIESCollection);
+                }
+            }
+        }
+        #endregion
+        #endregion
+        
 
         #region Constructor
 
@@ -109,77 +107,70 @@ namespace WpfMvvmApplication1.ViewModels
 
         public MainWindowViewModel()
         {
-            //ChildrenCollection = new ChildrenCollection {Collection = SQL.listChildren()};
-            //FamilyCollection = SQL.listFamilies();
-            GetChildrenViewSource();
-            GetFamilyViewSource();
-            GetCitiesViewSource();
+            GetCitiesCollection();
+            GetFamilyCollection();
+            GetChildrenCollection();
+            GetFAMILYQUOTIENTSCollection();
+            //GetMedecinCollection();
+            //GetCIVILITIESCollection();
         }
 
         #endregion
 
         #region EF Query
-        private void GetCitiesViewSource()
+
+        private void GetCIVILITIESCollection()
         {
-            CityCollection = new ObservableCollection<CITY>(agsEntities.CITIES);
-            // Load data into CHILDREN
-            var citiesQuery = agsEntities.CITIES;
-            this._citiesViewSource = new CollectionViewSource();
-            this._citiesViewSource.Source = citiesQuery.Execute(MergeOption.AppendOnly);
-            this._citiesViewSource.View.Refresh();
+            CIVILITIESCollection = new ObservableCollection<CIVILITIES>(agsEntities.CIVILITIES);
         }
 
-        private void GetFamilyViewSource()
+        private void GetMedecinCollection()
         {
-            FamilyCollection = new ObservableCollection<FAMILY>(agsEntities.FAMILIES);
-            // Load data into FAMILIES
-            var familiesQuery = agsEntities.FAMILIES;
-            this._familiesViewSource = new CollectionViewSource();
-            this._familiesViewSource.Source = familiesQuery.Execute(MergeOption.AppendOnly);
-            this._familiesViewSource.View.Refresh();
-            this._familiesViewSource.Source = FamilyCollection;
-            this._familiesViewSource.SortDescriptions.Add(new SortDescription("ID", ListSortDirection.Ascending));
-
-            this._familiesComboBoxViewSource = new CollectionViewSource();
-            //this._familiesComboBoxViewSource.Source = this.GetFamiliesQuery(this.agsEntities).Execute(MergeOption.AppendOnly);
-            
-            this._familiesComboBoxViewSource.Source = FamilyCollection;
-            this._familiesComboBoxViewSource.SortDescriptions.Add(new SortDescription("ID", ListSortDirection.Ascending));
-            this._familiesComboBoxViewSource.View.Refresh();
-
-        }
-        private void GetChildrenViewSource()
-        {
-            // Load data into CHILDREN
-            ChildrenCollection = new ObservableCollection<CHILDREN>(agsEntities.CHILDRENS);
-            var childrenQuery = agsEntities.CHILDRENS;
-            this._childrenViewSource = new CollectionViewSource();
-            this._childrenViewSource.Source = childrenQuery.Execute(MergeOption.AppendOnly);
-            this._childrenViewSource.View.Refresh();
+            MedecinCollection = new ObservableCollection<MEDECINS>(agsEntities.MEDECINS);
         }
 
-        private IQueryable MapChildrentoCity()
+        private void GetFAMILYQUOTIENTSCollection()
         {
-            var childrenQuery = agsEntities.CHILDRENS;
-            var familiesQuery = agsEntities.FAMILIES;
-            var citiesQuery = agsEntities.CITIES;
-            
-            var query1 = from child in childrenQuery
-                        join fam in familiesQuery on child.FAMILYID equals fam.ID
-                        select new {child.ID , fam.CITYID};
-            var query2 = from fam in familiesQuery
-                        join cit in citiesQuery on fam.CITYID equals cit.ID
-                        select new {fam.CITYID , cit.CITY1};
-            var query3 = from a in query1 
-                        join b in query2 on a.CITYID equals b.CITYID 
-                        select new {a.ID, b.CITY1};
-            var query4 = from c in query3
-                join d in citiesQuery on c.CITY1 equals d.CITY1
-                select new {c.ID, d.CP};
-            return query4;        
+            FAMILYQUOTIENTSCollection = new ObservableCollection<FAMILYQUOTIENTS>(agsEntities.FAMILYQUOTIENTS);
+        }
+
+        private void GetCitiesCollection()
+        {
+            CityCollection = new ObservableCollection<CITIES>(agsEntities.CITIES);
+        }
+
+        private void GetFamilyCollection()
+        {
+            FamilyCollection = new ObservableCollection<FAMILIES>(agsEntities.FAMILIES);
+        }
+
+        private void GetChildrenCollection()
+        {
+            ChildrenCollection = new ObservableCollection<CHILDRENS>(agsEntities.CHILDRENS);
         }
 
         #endregion
+
+        //private IQueryable MapChildrentoCity()
+        //{
+        //    var childrenQuery = agsEntities.CHILDRENS;
+        //    var familiesQuery = agsEntities.FAMILIES;
+        //    var citiesQuery = agsEntities.CITIES;
+            
+        //    var query1 = from child in childrenQuery
+        //                join fam in familiesQuery on child.FAMILYID equals fam.ID
+        //                select new {child.ID , fam.CITYID};
+        //    var query2 = from fam in familiesQuery
+        //                join cit in citiesQuery on fam.CITYID equals cit.ID
+        //                select new {fam.CITYID , cit.CITY1};
+        //    var query3 = from a in query1 
+        //                join b in query2 on a.CITYID equals b.CITYID 
+        //                select new {a.ID, b.CITY1};
+        //    var query4 = from c in query3
+        //        join d in citiesQuery on c.CITY1 equals d.CITY1
+        //        select new {c.ID, d.CP};
+        //    return query4;        
+        //}
 
         #region Commands
 
@@ -226,25 +217,19 @@ namespace WpfMvvmApplication1.ViewModels
 
         private void SaveChildrentoDB()
         {
-            //this.agsEntities.SaveChanges();
-            //this.agsEntities.Refresh(RefreshMode.StoreWins, this.childrenQuery);
-            foreach (CHILDREN some in this.ChildrenCollection.Where(some => some.ID == 0))
+            foreach (CHILDRENS some in this.ChildrenCollection.Where(some => some.ID == 0))
             {
                 this.agsEntities.CHILDRENS.AddObject(some);
             }
-            //this.agsEntities.Refresh(RefreshMode.ClientWins, this.ChildrenCollection);
             this.agsEntities.SaveChanges();
         }
 
         private void SaveFamilytoDB()
         {
-            //this.agsEntities.SaveChanges();
-            //this.agsEntities.Refresh(RefreshMode.StoreWins, this.familiesQuery);
-            foreach (FAMILY some in this.FamilyCollection.Where(some => some.ID == 0))
+            foreach (FAMILIES some in this.FamilyCollection.Where(some => some.ID == 0))
             {
                 this.agsEntities.FAMILIES.AddObject(some);
             }
-            //this.agsEntities.Refresh(RefreshMode.ClientWins, this.FamilyCollection);
             this.agsEntities.SaveChanges();
         }
 
