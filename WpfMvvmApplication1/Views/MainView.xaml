@@ -283,7 +283,7 @@
 
                             </DataGrid.Columns>
                         </DataGrid>
-                        <TabControl Margin="10,520,10,18">
+                        <TabControl Margin="10,520,10,6">
                             <TabItem Header="Famille">
                                 <Grid HorizontalAlignment="Left" Width="1537">
                                     <ComboBox Style="{StaticResource ResourceKey=ComboBoxFlatStyle}" HorizontalAlignment="Left" Margin="91,39,0,0" VerticalAlignment="Top" Width="85" />
@@ -294,27 +294,35 @@
                             </TabItem>
                             <TabItem Header="Droits">
                                 <Grid>
-                                    <DataGrid Margin="10,10,1300,10"/>
-                                </Grid>
+                                    <DataGrid Name="DroitsDataGrid" HeadersVisibility="Column" Background="{StaticResource ResourceKey=GenBtcColorBrush}" RowBackground="Snow" BorderBrush="#FF889BB1"
+                                              HorizontalAlignment="Left" VerticalAlignment="Top" Height="228" Width="200"  AutoGenerateColumns="False" BorderThickness="1,2,1,1" Margin="10,0,0,0"
+                                              ItemsSource="{Binding Source={StaticResource famsorted}, Path=FAMILYQUOTIENTS}" >
+                                        <DataGrid.Columns>
+                                            <DataGridTextColumn Binding="{Binding Path=ID}" Header="ID" Width="30" CanUserSort="True" />
+                                            <DataGridTextColumn Binding="{Binding Path=YEAR}" Header="YEAR" Width="83" CanUserSort="True" />
+                                            <DataGridTextColumn Binding="{Binding Path=FAMILYQUOTIENT}" Header="QUOTIENT" Width="83" CanUserSort="True" />
+                                        </DataGrid.Columns>
+                                    </DataGrid>
+                               </Grid>
                             </TabItem>
                             <TabItem Header="Conjoint">
                                 <Grid>
-                                    <ComboBox Margin="124,23,1318,186"/>
-                                    <Label Content="Nom :" Margin="10,55,1455,157" HorizontalContentAlignment="Right" Padding="0" Height="20"/>
+                                    <ComboBox Margin="124,19,1318,182"/>
+                                    <Label Content="Nom :" Margin="10,55,1455,147" HorizontalContentAlignment="Right" Padding="0" />
                                     <Label Content="Prénom :" HorizontalAlignment="Left" Margin="10,86,0,0" VerticalAlignment="Top" Width="109" Height="20" HorizontalContentAlignment="Right" Padding="0"/>
                                     <TextBox HorizontalAlignment="Left" Height="23" Margin="124,83,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="462"/>
-                                    <Label Content="Civilité :" HorizontalAlignment="Left" Margin="10,26,0,0" VerticalAlignment="Top" Width="109" HorizontalContentAlignment="Right" Padding="0" Height="20"/>
+                                    <Label Content="Civilité :" HorizontalAlignment="Left" Margin="10,23,0,0" VerticalAlignment="Top" Width="109" HorizontalContentAlignment="Right" Padding="0" Height="20"/>
                                     <TextBox HorizontalAlignment="Left" Height="23" Margin="124,52,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="462"/>
-                                    <Label Content="Adresse :" Width="100" Margin="19,112,1455,100" Height="20" HorizontalContentAlignment="Right" Padding="0"/>
+                                    <Label Content="Adresse :" Width="100" Margin="19,112,1455,88" HorizontalContentAlignment="Right" Padding="0"/>
                                     <TextBox Margin="124,111,988,54" TextWrapping="Wrap" Text=""/>
                                     <TextBox Height="23" TextWrapping="Wrap" Text="" Width="120" Margin="124,183,1330,26"/>
                                     <ComboBox Margin="249,183,988,26"/>
-                                    <Label Content="Tel :" HorizontalAlignment="Left" Margin="725,28,0,0" VerticalAlignment="Top"/>
-                                    <TextBox HorizontalAlignment="Left" Height="20" Margin="761,26,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="145"/>
-                                    <TextBox Margin="911,28,518,181" TextWrapping="Wrap" Text=""/>
-                                    <TextBox HorizontalAlignment="Left" Height="20" Margin="1061,31,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="145"/>
+                                    <Label Content="Tel :" HorizontalAlignment="Left" Margin="730,24,0,0" VerticalAlignment="Top"/>
+                                    <TextBox HorizontalAlignment="Left" Height="24" Margin="761,26,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="145"/>
+                                    <TextBox Margin="911,26,0,174" TextWrapping="Wrap" Text="" HorizontalAlignment="Left" Width="145" />
+                                    <TextBox HorizontalAlignment="Left" Height="24" Margin="1061,26,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="145"/>
                                     <Label Content="Email :" Margin="662,66,818,140" HorizontalContentAlignment="Right" Padding="0" Height="20"/>
-                                    <Label Content="Autorité :" Width="100" Margin="1241,32,233,167"/>
+                                    <Label Content="Autorité :" Width="100" Margin="1229,65,245,134"/>
                                 </Grid>
                             </TabItem>
                             <TabItem Header="Payeur">

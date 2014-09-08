@@ -21,6 +21,7 @@ using System.Xml.Serialization;
 
 [assembly: EdmRelationshipAttribute("agsModel", "cityfk", "CITIES", System.Data.Metadata.Edm.RelationshipMultiplicity.ZeroOrOne, typeof(WpfMvvmApplication1.CITIES), "FAMILIES", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(WpfMvvmApplication1.FAMILIES), true)]
 [assembly: EdmRelationshipAttribute("agsModel", "famfk", "FAMILIES", System.Data.Metadata.Edm.RelationshipMultiplicity.ZeroOrOne, typeof(WpfMvvmApplication1.FAMILIES), "CHILDRENS", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(WpfMvvmApplication1.CHILDRENS), true)]
+[assembly: EdmRelationshipAttribute("agsModel", "familyfk", "FAMILIES", System.Data.Metadata.Edm.RelationshipMultiplicity.ZeroOrOne, typeof(WpfMvvmApplication1.FAMILIES), "FAMILYQUOTIENTS", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(WpfMvvmApplication1.FAMILYQUOTIENTS), true)]
 
 #endregion
 
@@ -1207,6 +1208,28 @@ namespace WpfMvvmApplication1
                 }
             }
         }
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [XmlIgnoreAttribute()]
+        [SoapIgnoreAttribute()]
+        [DataMemberAttribute()]
+        [EdmRelationshipNavigationPropertyAttribute("agsModel", "familyfk", "FAMILYQUOTIENTS")]
+        public EntityCollection<FAMILYQUOTIENTS> FAMILYQUOTIENTS
+        {
+            get
+            {
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedCollection<FAMILYQUOTIENTS>("agsModel.familyfk", "FAMILYQUOTIENTS");
+            }
+            set
+            {
+                if ((value != null))
+                {
+                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedCollection<FAMILYQUOTIENTS>("agsModel.familyfk", "FAMILYQUOTIENTS", value);
+                }
+            }
+        }
 
         #endregion
 
@@ -1339,6 +1362,48 @@ namespace WpfMvvmApplication1
         #endregion
 
     
+        #region Navigation Properties
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [XmlIgnoreAttribute()]
+        [SoapIgnoreAttribute()]
+        [DataMemberAttribute()]
+        [EdmRelationshipNavigationPropertyAttribute("agsModel", "familyfk", "FAMILIES")]
+        public FAMILIES FAMILIES
+        {
+            get
+            {
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<FAMILIES>("agsModel.familyfk", "FAMILIES").Value;
+            }
+            set
+            {
+                ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<FAMILIES>("agsModel.familyfk", "FAMILIES").Value = value;
+            }
+        }
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [BrowsableAttribute(false)]
+        [DataMemberAttribute()]
+        public EntityReference<FAMILIES> FAMILIESReference
+        {
+            get
+            {
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<FAMILIES>("agsModel.familyfk", "FAMILIES");
+            }
+            set
+            {
+                if ((value != null))
+                {
+                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedReference<FAMILIES>("agsModel.familyfk", "FAMILIES", value);
+                }
+            }
+        }
+
+        #endregion
+
     }
     
     /// <summary>
