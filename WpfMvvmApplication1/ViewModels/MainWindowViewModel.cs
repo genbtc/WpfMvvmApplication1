@@ -98,8 +98,12 @@ namespace WpfMvvmApplication1.ViewModels
             GetFamilyquotientsCollection();
             GetMedecinCollection();
             GetCivilitiesCollection();
+            //_selectRowCommand = new RelayCommand(SelectionHasChanged);
         }
 
+        //private void SelectionHasChanged()
+        //{ }
+            
         #endregion
 
         #region EF Query
@@ -209,6 +213,12 @@ namespace WpfMvvmApplication1.ViewModels
         private void SaveFamilytoDb() { EF.SaveChildrentoDB(ChildrensCollection); }
         private void SaveChildrentoDb() { EF.SaveFamilytoDB(FamiliesCollection); }
         #endregion
-        
+
+        //private RelayCommand _selectRowCommand;
+        //public ICommand SelectRowCommand
+        //{
+        //    get { return _selectRowCommand; }
+        //}
+
     }
 }

@@ -15,6 +15,7 @@
         xmlns:models="clr-namespace:WpfMvvmApplication1.Models" 
         xmlns:viewModels="clr-namespace:WpfMvvmApplication1.ViewModels"
         xmlns:converters="clr-namespace:WpfMvvmApplication1.Converters" 
+        xmlns:helpers="clr-namespace:WpfMvvmApplication1.Helpers" 
     HorizontalContentAlignment="Center" VerticalContentAlignment="Center" WindowStyle="None">
 
     <Window.DataContext>
@@ -264,7 +265,10 @@
                         </StackPanel>
                         <DataGrid Name="FamilyDataGrid" HorizontalAlignment="Left" VerticalAlignment="Top" Height="468" Width="1580" Margin="10,36,10,0" AutoGenerateColumns="False" BorderThickness="1,2,1,1" 
                               Background="{StaticResource ResourceKey=GenBtcColorBrush}" BorderBrush="#FF889BB1" RowBackground="Snow" 
-                              ItemsSource="{Binding Source={StaticResource famsorted}}" HeadersVisibility="Column">
+                              ItemsSource="{Binding Source={StaticResource famsorted}}" HeadersVisibility="Column" >
+                                <!--helpers:CommandBehavior.RoutedEventName="SelectionChanged"
+                                helpers:CommandBehavior.TheCommandToRun="{Binding Path=SelectRowCommand}" >-->
+                            
                             <DataGrid.Columns>
                                 <!--, Converter={StaticResource addOne}}-->
                                 <DataGridTextColumn Binding="{Binding Path=ID}" Header="Id" Width="30" CanUserSort="True"/>
@@ -318,7 +322,34 @@
                             </TabItem>
                             <TabItem Header="Enfants">
                                 <Grid Background="#FFE5E5E5">
-                                    <DataGrid HorizontalAlignment="Left" Height="212" Margin="10,10,0,0" VerticalAlignment="Top" Width="1554"/>
+                                    <DataGrid Name="FamilyChildren" HeadersVisibility="Column" Background="{StaticResource ResourceKey=GenBtcColorBrush}" RowBackground="Snow" BorderBrush="#FF889BB1"
+                                              HorizontalAlignment="Left" VerticalAlignment="Top" Height="500" Width="1580"  AutoGenerateColumns="False" BorderThickness="1,2,1,1" 
+                                              ItemsSource="{Binding Source={StaticResource famsorted}, Path=CHILDRENS}" >
+                                        <DataGrid.Columns>
+                                            <DataGridTextColumn Binding="{Binding Path=ID}" Header="Id" Width="30" CanUserSort="True" />
+                                            <DataGridTextColumn Binding="{Binding Path=LASTNAME}" Header="Nom" Width="200" CanUserSort="True" />
+                                            <DataGridTextColumn Binding="{Binding Path=FIRSTNAME}" Header="Prénom" Width="200" CanUserSort="True" />
+                                            <DataGridTemplateColumn Header="Date Naissance" CanUserSort="True">
+                                                <DataGridTemplateColumn.CellTemplate>
+                                                    <DataTemplate>
+                                                        <xctk:DateTimePicker Value="{Binding Path=BIRTHDATE, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" 
+                                                                            Name="dtpNaissance" Height="20" HorizontalAlignment="Center" Margin="1,0,0,0" Width="101" Format="ShortDate" 
+                                                                         AllowDrop="False" IsManipulationEnabled="True" ShowButtonSpinner="True" TimePickerVisibility="Hidden" Background="Snow" />
+                                                    </DataTemplate>
+                                                </DataGridTemplateColumn.CellTemplate>
+                                            </DataGridTemplateColumn>
+                                            <DataGridTextColumn Header="Age" Binding="{Binding Path=BIRTHDATE, Converter={StaticResource dateConverter}}" Width="40" CanUserSort="True" IsReadOnly="True" />
+                                            <DataGridTemplateColumn Header="Gender" CanUserSort="True">
+                                                <DataGridTemplateColumn.CellTemplate>
+                                                    <DataTemplate>
+                                                        <ComboBox Name="cbGender" HorizontalAlignment="Center" Width="111" Style="{StaticResource ResourceKey=ComboBoxFlatStyle}"
+                                                                ItemsSource="{Binding Source={StaticResource Gender}, Path=ListGenders}"  DisplayMemberPath="Value" SelectedValuePath="Id" 
+                                                                SelectedIndex="{Binding Path=GENDERID, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
+                                                    </DataTemplate>
+                                                </DataGridTemplateColumn.CellTemplate>
+                                            </DataGridTemplateColumn>
+                                        </DataGrid.Columns>
+                                    </DataGrid>
                                 </Grid>
                             </TabItem>
                         </TabControl>

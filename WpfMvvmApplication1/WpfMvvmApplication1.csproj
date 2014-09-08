@@ -141,6 +141,8 @@
     <Compile Include="Converters\AddOne.cs" />
     <Compile Include="Converters\DateConverter.cs" />
     <Compile Include="Converters\DebugConverter.cs" />
+    <Compile Include="Helpers\CommandBehavior.cs" />
+    <Compile Include="Helpers\RelayCommand.cs" />
     <Compile Include="Helpers\ToAge.cs" />
     <Compile Include="Helpers\DelegateCommand.cs" />
     <Compile Include="Helpers\NotificationObject.cs" />
