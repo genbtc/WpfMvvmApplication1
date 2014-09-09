@@ -84,7 +84,7 @@
         <!--Content-->
         <Viewbox Margin="0,22,0,8">
             <TabControl Margin="2,0,2,0" >
-                <!--Presence Tab-->
+                    <!--Presence Tab-->
                 <TabItem Header="Presence">
                     <Grid Height="820" Width="1600" >
                         <Grid.RowDefinitions>
@@ -96,7 +96,7 @@
                         <Label Grid.Row="0" Content="Recherche :" />
                         <TextBox Grid.Row="0" Margin="80,0,0,0" Name="Recherche2" HorizontalAlignment="Left" Style="{StaticResource ResourceKey=flatTextBox}" Height="24" TextWrapping="Wrap" Width="716" />
                         <Button Grid.Row="0" Content="+" HorizontalAlignment="Right" Width="30" Margin="0,0,10,0" />
-                        <DataGrid Grid.Row="1" Name="PresenceDataGrid" ItemsSource="{Binding Source={StaticResource childsorted}}" AutoGenerateColumns="False" Margin="4,4,4,2" 
+                        <DataGrid Grid.Row="1" Name="PresenceDataGrid" ItemsSource="{Binding Source={StaticResource childsorted}, UpdateSourceTrigger=PropertyChanged}" AutoGenerateColumns="False" Margin="4,4,4,2" 
                                   BorderThickness="1,2,1,1" Background="{StaticResource ResourceKey=GenBtcColorBrush}" BorderBrush="#FF889BB1" RowBackground="Snow" HeadersVisibility="Column" >
                             <DataGrid.Columns>
                                 <DataGridTextColumn Binding="{Binding Path=ID}" Header="Id" Width="30" CanUserSort="True" />
@@ -130,22 +130,23 @@
                                 </DataGridTemplateColumn>-->
                             </DataGrid.Columns>
                         </DataGrid>
-                        <Button Grid.Row="2" x:Name="savechildren2" Content="Update!" Command="{Binding Path=SaveAll}" HorizontalAlignment="Right" Margin="0,3,10,4" Width="84" Height="30" />
                         <Grid Grid.Row="3">
                             <Label Content="Secteur :" HorizontalAlignment="Left" Margin="10,8,0,0" VerticalAlignment="Top" Width="57"/>
-                            <ComboBox HorizontalAlignment="Left" VerticalAlignment="Top" Width="179" Margin="72,8,0,0">
+                            <Label Content="Groupe :" HorizontalAlignment="Left" Height="26" Margin="301,8,0,0" VerticalAlignment="Top" Width="56"/>
+                            <Label Content="Période :" HorizontalAlignment="Left" Margin="569,8,0,0" VerticalAlignment="Top"/>
+                            <Label Content="Activité :" HorizontalAlignment="Left" Margin="937,8,0,0" VerticalAlignment="Top"/>
+                            <ComboBox HorizontalAlignment="Left" Height="26" Margin="72,8,0,0" VerticalAlignment="Top" Width="179" Style="{StaticResource ResourceKey=ComboBoxFlatStyle}">
                                 <ComboBoxItem Name="cbi1">Item1</ComboBoxItem>
                             </ComboBox>
-                            <Label Content="Groupe :" HorizontalAlignment="Left" Height="26" Margin="301,8,0,0" VerticalAlignment="Top" Width="56"/>
-                            <ComboBox HorizontalAlignment="Left" Height="26" Margin="357,8,0,0" VerticalAlignment="Top" Width="142"/>
-                            <Label Content="Période :" HorizontalAlignment="Left" Margin="569,8,0,0" VerticalAlignment="Top"/>
-                            <ComboBox HorizontalAlignment="Left" Height="26" Margin="630,8,0,0" VerticalAlignment="Top" Width="225"/>
-                            <Label Content="Activité :" HorizontalAlignment="Left" Margin="937,8,0,0" VerticalAlignment="Top"/>
-                            <ComboBox HorizontalAlignment="Left" Height="26" Margin="997,8,0,0" VerticalAlignment="Top" Width="240"/>
+                            <ComboBox HorizontalAlignment="Left" Height="26" Margin="357,8,0,0" VerticalAlignment="Top" Width="142" Style="{StaticResource ResourceKey=ComboBoxFlatStyle}" />
+                            <ComboBox HorizontalAlignment="Left" Height="26" Margin="630,8,0,0" VerticalAlignment="Top" Width="225" Style="{StaticResource ResourceKey=ComboBoxFlatStyle}"/>
+                            <ComboBox HorizontalAlignment="Left" Height="26" Margin="997,8,0,0" VerticalAlignment="Top" Width="240" Style="{StaticResource ResourceKey=ComboBoxFlatStyle}" />
                         </Grid>
+                        <Button Grid.Row="2" x:Name="savechildren2" Content="Update!" Command="{Binding Path=SaveAll}" HorizontalAlignment="Right" Margin="0,1,10,6" Width="84" Height="30" />
+                        <Button Grid.Row="2" Content="Refresh..." Name="Refresh1Button" Command="{Binding Path=RefreshDb}" Margin="0,1,105,6" HorizontalAlignment="Right" Width="84"  Height="30"  />
                     </Grid>
                 </TabItem>
-                <!--Children Tab-->
+                    <!--Children Tab-->
                 <TabItem Header="Enfants">
                     <Grid Height="820" Width="1600">
                         <Grid.RowDefinitions>
@@ -158,7 +159,7 @@
                         <TextBox Grid.Row="0" Margin="80,0,0,0" Name="Recherche" HorizontalAlignment="Left" Style="{StaticResource ResourceKey=flatTextBox}" Height="24" TextWrapping="Wrap" Width="716" />
                         <Button Grid.Row="0" Content="+" HorizontalAlignment="Right" Width="30" Margin="0,0,10,0" />
                         <!--ChildrenDataGrid-->
-                        <DataGrid Grid.Row="1" Name="ChildrenDataGrid" ItemsSource="{Binding Source={StaticResource childsorted}}" AutoGenerateColumns="False" ColumnWidth="152" Margin="4,4,4,2"
+                        <DataGrid Grid.Row="1" Name="ChildrenDataGrid" ItemsSource="{Binding Source={StaticResource childsorted}, UpdateSourceTrigger=PropertyChanged}" AutoGenerateColumns="False" ColumnWidth="152" Margin="4,4,4,2"
                               BorderThickness="1,2,1,1" Background="{StaticResource ResourceKey=GenBtcColorBrush}" BorderBrush="#FF889BB1" RowBackground="Snow" HeadersVisibility="Column">
                             <DataGrid.Columns>
                                 <DataGridTextColumn Binding="{Binding Path=ID}" Header="Id" Width="30" CanUserSort="True" />
@@ -167,17 +168,19 @@
                                 <DataGridTemplateColumn Header="Date Naissance" CanUserSort="True">
                                     <DataGridTemplateColumn.CellTemplate>
                                         <DataTemplate>
-                                            <xctk:DateTimePicker Name="dtpNaissance" Height="20" HorizontalAlignment="Center" Margin="1,0,0,0" Width="101" Format="ShortDate" 
-                                                                AllowDrop="False" IsManipulationEnabled="True" ShowButtonSpinner="True" TimePickerVisibility="Hidden" Background="Snow" Value="{Binding Path=BIRTHDATE, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
+                                            <xctk:DateTimePicker Name="dtpNaissance" HorizontalAlignment="Center" Margin="1,0,0,0" Width="101" Format="ShortDate" 
+                                                                AllowDrop="False" IsManipulationEnabled="True" ShowButtonSpinner="True" TimePickerVisibility="Hidden" Background="Snow" 
+                                                                 Value="{Binding Path=BIRTHDATE, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
                                         </DataTemplate>
                                     </DataGridTemplateColumn.CellTemplate>
                                 </DataGridTemplateColumn>
                                 <DataGridTextColumn Header="Age" Binding="{Binding Path=BIRTHDATE, Converter={StaticResource dateConverter}}" Width="40" CanUserSort="True" IsReadOnly="True" />
-                                <DataGridTemplateColumn Header="Gender" CanUserSort="True">
+                                <DataGridTemplateColumn Header="Gender" Width="111" CanUserSort="True">
                                     <DataGridTemplateColumn.CellTemplate>
                                         <DataTemplate>
-                                            <ComboBox Name="cbGender" HorizontalAlignment="Center" Width="111" Style="{StaticResource ResourceKey=ComboBoxFlatStyle}"
-                                                    ItemsSource="{Binding Source={StaticResource Gender}, Path=ListGenders}"  DisplayMemberPath="Value" SelectedValuePath="Id" SelectedIndex="{Binding Path=GENDERID, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
+                                            <ComboBox Name="cbGender" HorizontalAlignment="Stretch" Style="{StaticResource ResourceKey=ComboBoxFlatStyle}"
+                                                    ItemsSource="{Binding Source={StaticResource Gender}, Path=ListGenders}"  DisplayMemberPath="Value" SelectedValuePath="Id" 
+                                                      SelectedIndex="{Binding Path=GENDERID, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"  />
                                         </DataTemplate>
                                     </DataGridTemplateColumn.CellTemplate>
                                 </DataGridTemplateColumn>
@@ -199,17 +202,16 @@
                                         </DataTemplate>
                                     </DataGridTemplateColumn.CellTemplate>
                                 </DataGridTemplateColumn>
-                                <DataGridTextColumn Binding="{Binding Path=FAMILIES.ADRESS}" Header="Family Address" Width="250" CanUserSort="True" />
+                                <DataGridTextColumn Binding="{Binding Path=FAMILIES.ADRESS, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Header="Family Address" Width="250" CanUserSort="True" />
                                 <DataGridTextColumn Binding="{Binding Path=FAMILIES.CITIES.CITY, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Header="CITYNAME" Width="120" CanUserSort="True" />
                             </DataGrid.Columns>
                         </DataGrid>
-                        <!--BottomPart of ChildrenTab-->
+                            <!--BottomPart of ChildrenTab-->
                         <TabControl Margin="4,12,4,0" Grid.Row="2" Grid.RowSpan="2">
                             <TabItem Header="Famille" >
                                 <Grid Background="Snow" Margin="-2,0,2,0">
-                                    <!--ComboBox Family-->
+                                        <!--ComboBox Family-->
                                     <ComboBox x:Name="cbFamily" Style="{StaticResource ResourceKey=ComboBoxFlatStyle}" Margin="66,12,0,0" Width="427" Height="27" IsEditable="False" DisplayMemberPath="LASTNAME" SelectedValuePath="ID" IsSynchronizedWithCurrentItem="True"
-                                            SelectedIndex="{Binding ElementName=ChildrenDataGrid, Path=SelectedItem.FAMILYID}" 
                                             SelectedValue="{Binding ElementName=ChildrenDataGrid, Path=SelectedItem.FAMILYID}" VerticalAlignment="Top" HorizontalAlignment="Left">
                                         <ComboBox.ItemsSource>
                                             <CompositeCollection>
@@ -218,7 +220,7 @@
                                             </CompositeCollection>
                                         </ComboBox.ItemsSource>
                                     </ComboBox>
-                                    <!--ComboBox City-->
+                                        <!--ComboBox City-->
                                     <ComboBox x:Name="cbCity" Style="{StaticResource ResourceKey=ComboBoxFlatStyle}" IsEditable="False" ItemsSource="{Binding Source={StaticResource citysorted}}" DisplayMemberPath="CITY" SelectedValuePath="ID" IsSynchronizedWithCurrentItem="True"
                                             SelectedIndex="{Binding ElementName=cbFamily, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, Path=SelectedItem.CITYID, Converter={StaticResource addOne}}" Width="298" Margin="195,91,0,0" Height="27" VerticalAlignment="Top" HorizontalAlignment="Left" />
 
@@ -263,9 +265,10 @@
                             </TabItem>
                         </TabControl>
                         <Button Grid.Row="2" x:Name="savechildren" Content="Update!" Command="{Binding Path=SaveAll}" HorizontalAlignment="Right" Margin="0,1,10,6" Width="84" Height="30" />
+                        <Button Grid.Row="2" Content="Refresh..." Name="Refresh2Button" Command="{Binding Path=RefreshDb}" Margin="0,1,105,6" HorizontalAlignment="Right" Width="84"  Height="30"  />
                     </Grid>
                 </TabItem>
-                <!--Family Tab-->
+                    <!--Family Tab-->
                 <TabItem Header="Famille">
                     <Grid Height="820" Width="1600">
                         <Grid.RowDefinitions>
@@ -279,7 +282,7 @@
                         <Separator Grid.Row="0" Height="6" Name="separator2" HorizontalAlignment="Right" Visibility="Hidden" />
                         <DataGrid Grid.Row="1" Name="FamilyDataGrid" Margin="4,4,4,2" AutoGenerateColumns="False" BorderThickness="1,2,1,1" 
                               Background="{StaticResource ResourceKey=GenBtcColorBrush}" BorderBrush="#FF889BB1" RowBackground="Snow" 
-                              ItemsSource="{Binding Source={StaticResource famsorted}}" HeadersVisibility="Column">
+                              ItemsSource="{Binding Source={StaticResource famsorted}, UpdateSourceTrigger=PropertyChanged}" HeadersVisibility="Column">
                                 <!--helpers:CommandBehavior.RoutedEventName="SelectionChanged"
                                 helpers:CommandBehavior.TheCommandToRun="{Binding Path=SelectRowCommand}" >-->
                             <DataGrid.Columns>
@@ -287,12 +290,13 @@
                                 <DataGridTextColumn Binding="{Binding Path=ID, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Header="Id" Width="30" CanUserSort="True"/>
                                 <DataGridTextColumn Binding="{Binding Path=LASTNAME, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Header="Nom" Width="200" CanUserSort="True" />
                                 <DataGridTextColumn Binding="{Binding Path=FIRSTNAME, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Header="Prénom" Width="200" CanUserSort="True" />
-                                <DataGridTextColumn Binding="{Binding Path=ADRESS, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Header="Adress" Width="200" CanUserSort="True" />
+                                <DataGridTextColumn Binding="{Binding Path=ADRESS, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Header="Adress" Width="220" CanUserSort="True" />
                                 <DataGridTextColumn Binding="{Binding Path=CITYID, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Header="CityID" Width="30" CanUserSort="True" />
                                 <DataGridTextColumn Binding="{Binding Path=CITIES.CITY, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Header="CityName" Width="200" CanUserSort="True" />
-                                <DataGridTextColumn Binding="{Binding Path=TEL1, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Header="Tel1" Width="200" CanUserSort="True" />
-                                <DataGridTextColumn Binding="{Binding Path=TEL2, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Header="Tel2" Width="200" CanUserSort="True" />
-                                <DataGridTextColumn Binding="{Binding Path=TEL3, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Header="Tel3" Width="200" CanUserSort="True" />
+                                <DataGridTextColumn Binding="{Binding Path=CITIES.CP, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Header="CP" Width="60" CanUserSort="True" />
+                                <DataGridTextColumn Binding="{Binding Path=TEL1, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Header="Tele 1" Width="180" CanUserSort="True" />
+                                <DataGridTextColumn Binding="{Binding Path=TEL2, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Header="Tele 2" Width="180" CanUserSort="True" />
+                                <DataGridTextColumn Binding="{Binding Path=TEL3, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Header="Tele 3" Width="180" CanUserSort="True" />
 
                             </DataGrid.Columns>
                         </DataGrid>
@@ -301,7 +305,7 @@
                                 <Grid>
                                     <DataGrid Name="DroitsDataGrid" HeadersVisibility="Column" Background="{StaticResource ResourceKey=GenBtcColorBrush}" RowBackground="Snow" BorderBrush="#FF889BB1"
                                               HorizontalAlignment="Left" VerticalAlignment="Top" Height="228" Width="200"  AutoGenerateColumns="False" BorderThickness="1,2,1,1" Margin="10,0,0,0"
-                                              ItemsSource="{Binding Source={StaticResource famsorted}, Path=FAMILYQUOTIENTS}" >
+                                              ItemsSource="{Binding Source={StaticResource famsorted}, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay, Path=FAMILYQUOTIENTS}" >
                                         <DataGrid.Columns>
                                             <DataGridTextColumn Binding="{Binding Path=ID}" Header="ID" Width="30" CanUserSort="True" />
                                             <DataGridTextColumn Binding="{Binding Path=YEAR}" Header="YEAR" Width="83" CanUserSort="True" />
@@ -355,7 +359,7 @@
                             <TabItem Header="Enfants">
                                 <Grid>
                                     <DataGrid Name="FamilyChildren" HeadersVisibility="Column" Background="{StaticResource ResourceKey=GenBtcColorBrush}" RowBackground="Snow" BorderBrush="#FF889BB1" AutoGenerateColumns="False" BorderThickness="1,2,1,1" 
-                                              ItemsSource="{Binding Source={StaticResource famsorted}, Path=CHILDRENS}" Margin="4,4,0,0">
+                                              ItemsSource="{Binding Source={StaticResource famsorted}, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay, Path=CHILDRENS}" Margin="4,4,0,0">
                                         <DataGrid.Columns>
                                             <DataGridTextColumn Binding="{Binding Path=ID}" Header="Id" Width="30" CanUserSort="True" />
                                             <DataGridTextColumn Binding="{Binding Path=LASTNAME}" Header="Nom" Width="200" CanUserSort="True" />
@@ -384,7 +388,8 @@
                                 </Grid>
                             </TabItem>
                         </TabControl>
-                        <Button Content="Update!" Name="savefamily" Command="{Binding Path=SaveAll}" Margin="0,1,10,6" HorizontalAlignment="Right" Width="84" Height="30" Grid.Row="2" />
+                        <Button Grid.Row="2" Content="Update!" Name="SaveFamilyButton" Command="{Binding Path=SaveAll}" Margin="0,1,10,6" HorizontalAlignment="Right" Width="84" Height="30"  />
+                        <Button Grid.Row="2" Content="Refresh..." Name="Refresh3Button" Command="{Binding Path=RefreshDb}" Margin="0,1,105,6" HorizontalAlignment="Right" Width="84"  Height="30"  />
                     </Grid>
                 </TabItem>
             </TabControl>

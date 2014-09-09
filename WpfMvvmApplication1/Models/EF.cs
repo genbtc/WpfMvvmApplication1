@@ -1,10 +1,11 @@
 ﻿using System.Collections.ObjectModel;
 using System.Data.Objects;
 using System.Linq;
+using WpfMvvmApplication1.Helpers;
 
 namespace WpfMvvmApplication1.Models
 {
-    class EF
+    class EF : NotificationObject
     {
         internal agsEntities agsEntities;
 
@@ -27,6 +28,15 @@ namespace WpfMvvmApplication1.Models
         //    this.agsEntities.Refresh(RefreshMode.ClientWins, FamiliesCollection);
         //    this.agsEntities.SaveChanges();
         //}
+
+        internal void Refresh(ObservableCollection<CHILDRENS> ChildrensCollection,
+            ObservableCollection<FAMILIES> FamiliesCollection)
+        {
+            this.agsEntities.Refresh(RefreshMode.StoreWins, ChildrensCollection);
+            this.agsEntities.Refresh(RefreshMode.StoreWins, FamiliesCollection);
+            RaisePropertyChanged(() => ChildrensCollection);
+            RaisePropertyChanged(() => FamiliesCollection);
+        }
 
         internal void SaveChildrentoDB(ObservableCollection<CHILDRENS> ChildrensCollection)
         {

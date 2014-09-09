@@ -2,6 +2,7 @@ using System;
 using System.Collections.ObjectModel;
 using System.Collections.Specialized;
 using System.ComponentModel;
+using System.Data.Objects;
 using System.Linq;
 using System.Windows.Data;
 using System.Windows.Input;
@@ -248,9 +249,11 @@ namespace WpfMvvmApplication1.ViewModels
         public ICommand SaveFamily { get { return new DelegateCommand(SaveFamilytoDb); } }
         public ICommand SaveChildren { get { return new DelegateCommand(SaveChildrentoDb); } }
         public ICommand SaveAll { get { return new DelegateCommand(SaveToDb); } }
+        public ICommand RefreshDb { get { return new DelegateCommand(RefreshViewDb); } }
         #endregion
 
         #region Commands
+        private void RefreshViewDb() { EF.Refresh(ChildrensCollection, FamiliesCollection); }
         private void SaveFamilytoDb() { EF.SaveChildrentoDB(ChildrensCollection); }
         private void SaveChildrentoDb() { EF.SaveFamilytoDB(FamiliesCollection); }
         private void SaveToDb() { EF.SaveToDb(); }
