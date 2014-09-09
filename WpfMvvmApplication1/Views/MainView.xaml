@@ -52,7 +52,7 @@
     </shell:WindowChrome.WindowChrome>
 
     <Grid>
-        <!--provide the background for the entire form.  In practice, this appears as the window's resize border, because the title and window content obscure the rest-->
+            <!--provide the background for the entire form.  In practice, this appears as the window's resize border, because the title and window content obscure the rest-->
         <Border CornerRadius="15,15,10,10" BorderThickness="3" BorderBrush="LightSteelBlue">
             <Border.Background>
                 <LinearGradientBrush StartPoint="0.5,0" EndPoint="0.5,1">
@@ -75,12 +75,13 @@
             <TextBlock Margin="0,6,0,0" Text="Gestion des Enfants" FontFamily="Calibri" FontWeight="Bold" FontSize="16" Foreground="#FF000044" HorizontalAlignment="Center" VerticalAlignment="Top"/>
         </Border>
         <ccl:CaptionButtons HorizontalAlignment="Right" Margin="0,6,0,0" Height="23" VerticalAlignment="Top" />
+        
         <!--Content-->
         <Viewbox Margin="0,22,0,8">
-            <TabControl Margin="2,0,2,0" HorizontalAlignment="Stretch">
+            <TabControl Margin="2,0,2,0" >
                 <!--Presence Tab-->
                 <TabItem Header="Presence">
-                    <Grid Height="820">
+                    <Grid Height="820" Width="1600" >
                         <Grid.RowDefinitions>
                             <RowDefinition Height="28" />
                             <RowDefinition Height="2*" />
@@ -90,7 +91,7 @@
                         <Label Grid.Row="0" Content="Recherche :" />
                         <TextBox Grid.Row="0" Margin="80,0,0,0" Name="Recherche2" HorizontalAlignment="Left" Style="{StaticResource ResourceKey=flatTextBox}" Height="24" TextWrapping="Wrap" Width="716" />
                         <Button Grid.Row="0" Content="+" HorizontalAlignment="Right" Width="30" Margin="0,0,10,0" />
-                        <DataGrid Width="1596" Grid.Row="1" Name="PresenceDataGrid" ItemsSource="{Binding Source={StaticResource childsorted}}" AutoGenerateColumns="False" Margin="4,4,4,2" 
+                        <DataGrid Grid.Row="1" Name="PresenceDataGrid" ItemsSource="{Binding Source={StaticResource childsorted}}" AutoGenerateColumns="False" Margin="4,4,4,2" 
                                   BorderThickness="1,2,1,1" Background="{StaticResource ResourceKey=GenBtcColorBrush}" BorderBrush="#FF889BB1" RowBackground="Snow" HeadersVisibility="Column" >
                             <DataGrid.Columns>
                                 <DataGridTextColumn Binding="{Binding Path=ID}" Header="Id" Width="30" CanUserSort="True" />
@@ -137,7 +138,7 @@
                 </TabItem>
                 <!--Children Tab-->
                 <TabItem Header="Enfants">
-                    <Grid Height="820">
+                    <Grid Height="820" Width="1600">
                         <Grid.RowDefinitions>
                             <RowDefinition Height="28" />
                             <RowDefinition Height="2*" />
@@ -147,7 +148,7 @@
                         <Label Grid.Row="0" Content="Recherche :" />
                         <TextBox Grid.Row="0" Margin="80,0,0,0" Name="Recherche" HorizontalAlignment="Left" Style="{StaticResource ResourceKey=flatTextBox}" Height="24" TextWrapping="Wrap" Width="716" />
                         <Button Grid.Row="0" Content="+" HorizontalAlignment="Right" Width="30" Margin="0,0,10,0" />
-                        <DataGrid Grid.Row="1" Width="1596"  Name="ChildrenDataGrid" ItemsSource="{Binding Source={StaticResource childsorted}}" AutoGenerateColumns="False" ColumnWidth="152" Margin="4,4,4,2"
+                        <DataGrid Grid.Row="1" Name="ChildrenDataGrid" ItemsSource="{Binding Source={StaticResource childsorted}}" AutoGenerateColumns="False" ColumnWidth="152" Margin="4,4,4,2"
                               BorderThickness="1,2,1,1" Background="{StaticResource ResourceKey=GenBtcColorBrush}" BorderBrush="#FF889BB1" RowBackground="Snow" HeadersVisibility="Column">
                             <DataGrid.Columns>
                                 <DataGridTextColumn Binding="{Binding Path=ID}" Header="Id" Width="30" CanUserSort="True" />
@@ -256,7 +257,7 @@
                 </TabItem>
                 <!--Family Tab-->
                 <TabItem Header="Famille">
-                    <Grid Height="820">
+                    <Grid Height="820" Width="1600">
                         <Grid.RowDefinitions>
                             <RowDefinition Height="28" />
                             <RowDefinition Height="2*" />
@@ -266,7 +267,7 @@
                         <Label Grid.Row="0" Content="Recherche :" />
                         <TextBox Name="RechercheFamille" Style="{StaticResource ResourceKey=flatTextBox}" Height="24" TextWrapping="Wrap" Text="" Width="716" HorizontalAlignment="Left" Margin="80,2,0,2" />
                         <Separator Grid.Row="0" Height="6" Name="separator2" HorizontalAlignment="Right" Visibility="Hidden" />
-                        <DataGrid Grid.Row="1" Width="1596" Name="FamilyDataGrid" Margin="4,4,4,2" AutoGenerateColumns="False" BorderThickness="1,2,1,1" 
+                        <DataGrid Grid.Row="1" Name="FamilyDataGrid" Margin="4,4,4,2" AutoGenerateColumns="False" BorderThickness="1,2,1,1" 
                               Background="{StaticResource ResourceKey=GenBtcColorBrush}" BorderBrush="#FF889BB1" RowBackground="Snow" 
                               ItemsSource="{Binding Source={StaticResource famsorted}}" HeadersVisibility="Column">
                                 <!--helpers:CommandBehavior.RoutedEventName="SelectionChanged"
@@ -333,7 +334,7 @@
                             <TabItem Header="Enfants">
                                 <Grid>
                                     <DataGrid Name="FamilyChildren" HeadersVisibility="Column" Background="{StaticResource ResourceKey=GenBtcColorBrush}" RowBackground="Snow" BorderBrush="#FF889BB1" AutoGenerateColumns="False" BorderThickness="1,2,1,1" 
-                                              ItemsSource="{Binding Source={StaticResource famsorted}, Path=CHILDRENS}" Margin="4,4,0,0" VerticalAlignment="Stretch" HorizontalAlignment="Stretch">
+                                              ItemsSource="{Binding Source={StaticResource famsorted}, Path=CHILDRENS}" Margin="4,4,0,0">
                                         <DataGrid.Columns>
                                             <DataGridTextColumn Binding="{Binding Path=ID}" Header="Id" Width="30" CanUserSort="True" />
                                             <DataGridTextColumn Binding="{Binding Path=LASTNAME}" Header="Nom" Width="200" CanUserSort="True" />
