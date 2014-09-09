@@ -29,6 +29,11 @@
                     <scm:SortDescription PropertyName="ID" />
                 </CollectionViewSource.SortDescriptions>
             </CollectionViewSource>
+            <CollectionViewSource x:Key="famcombobox" Source="{Binding Path=FamiliesBox}" >
+                <CollectionViewSource.SortDescriptions>
+                    <scm:SortDescription PropertyName="ID" />
+                </CollectionViewSource.SortDescriptions>
+            </CollectionViewSource>
             <CollectionViewSource x:Key="childsorted" Source="{Binding Path=ChildrensCollection}" >
                 <CollectionViewSource.SortDescriptions>
                     <scm:SortDescription PropertyName="ID" />
@@ -125,7 +130,7 @@
                                 </DataGridTemplateColumn>-->
                             </DataGrid.Columns>
                         </DataGrid>
-                        <Button Grid.Row="2" x:Name="savechildren2" Content="Update!" Command="{Binding Path=SaveChildren}" HorizontalAlignment="Right" Margin="0,3,10,4" Width="84" Height="30" />
+                        <Button Grid.Row="2" x:Name="savechildren2" Content="Update!" Command="{Binding Path=SaveAll}" HorizontalAlignment="Right" Margin="0,3,10,4" Width="84" Height="30" />
                         <Grid Grid.Row="3">
                             <Label Content="Secteur :" HorizontalAlignment="Left" Margin="10,8,0,0" VerticalAlignment="Top" Width="57"/>
                             <ComboBox HorizontalAlignment="Left" VerticalAlignment="Top" Width="179" Margin="72,8,0,0">
@@ -183,11 +188,11 @@
                                             <!--ComboBox GRID Family-->
                                             <ComboBox Name="cbFamilygrid" HorizontalAlignment="Stretch" Width="Auto" Style="{StaticResource ResourceKey=ComboBoxFlatStyle}"                                                       
                                                       DisplayMemberPath="LASTNAME" SelectedValuePath="ID" IsSynchronizedWithCurrentItem="True"
-                                                      SelectedIndex="{Binding Path=FAMILYID, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" >
+                                                      SelectedValue="{Binding Path=FAMILYID, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" >
                                                 <ComboBox.ItemsSource>
                                                     <CompositeCollection>
                                                         <ComboBoxItem Name="noneItem" Content="Aucon" />
-                                                        <CollectionContainer Collection="{Binding Source={StaticResource famsorted}}" />
+                                                        <CollectionContainer Collection="{Binding Source={StaticResource famcombobox}}" />
                                                     </CompositeCollection>
                                                 </ComboBox.ItemsSource>
                                             </ComboBox>
@@ -209,7 +214,7 @@
                                         <ComboBox.ItemsSource>
                                             <CompositeCollection>
                                                 <ComboBoxItem Name="noneItem" Content="Aucon" />
-                                                <CollectionContainer Collection="{Binding Source={StaticResource famsorted}}" />
+                                                <CollectionContainer Collection="{Binding Source={StaticResource famcombobox}}" />
                                             </CompositeCollection>
                                         </ComboBox.ItemsSource>
                                     </ComboBox>
@@ -257,7 +262,7 @@
                                 </Grid>
                             </TabItem>
                         </TabControl>
-                        <Button Grid.Row="2" x:Name="savechildren" Content="Update!" Command="{Binding Path=SaveChildren}" HorizontalAlignment="Right" Margin="0,1,10,6" Width="84" Height="30" />
+                        <Button Grid.Row="2" x:Name="savechildren" Content="Update!" Command="{Binding Path=SaveAll}" HorizontalAlignment="Right" Margin="0,1,10,6" Width="84" Height="30" />
                     </Grid>
                 </TabItem>
                 <!--Family Tab-->
@@ -279,7 +284,7 @@
                                 helpers:CommandBehavior.TheCommandToRun="{Binding Path=SelectRowCommand}" >-->
                             <DataGrid.Columns>
                                 <!--, Converter={StaticResource addOne}}-->
-                                <DataGridTextColumn Binding="{Binding Path=ID}" Header="Id" Width="30" CanUserSort="True"/>
+                                <DataGridTextColumn Binding="{Binding Path=ID, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Header="Id" Width="30" CanUserSort="True"/>
                                 <DataGridTextColumn Binding="{Binding Path=LASTNAME, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Header="Nom" Width="200" CanUserSort="True" />
                                 <DataGridTextColumn Binding="{Binding Path=FIRSTNAME, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Header="Prénom" Width="200" CanUserSort="True" />
                                 <DataGridTextColumn Binding="{Binding Path=ADRESS, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Header="Adress" Width="200" CanUserSort="True" />
@@ -379,7 +384,7 @@
                                 </Grid>
                             </TabItem>
                         </TabControl>
-                        <Button Content="Update!" Name="savefamily" Command="{Binding Path=SaveFamily}" Margin="0,1,10,6" HorizontalAlignment="Right" Width="84" Height="30" Grid.Row="2" />
+                        <Button Content="Update!" Name="savefamily" Command="{Binding Path=SaveAll}" Margin="0,1,10,6" HorizontalAlignment="Right" Width="84" Height="30" Grid.Row="2" />
                     </Grid>
                 </TabItem>
             </TabControl>

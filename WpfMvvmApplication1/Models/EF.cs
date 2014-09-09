@@ -1,8 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Collections.ObjectModel;
+﻿using System.Collections.ObjectModel;
+using System.Data.Objects;
 using System.Linq;
-using System.Text;
 
 namespace WpfMvvmApplication1.Models
 {
@@ -14,6 +12,21 @@ namespace WpfMvvmApplication1.Models
         {
             agsEntities = new agsEntities("metadata=res://*/Model1.csdl|res://*/Model1.ssdl|res://*/Model1.msl;provider=Npgsql;provider connection string='PORT=5432;TIMEOUT=15;POOLING=True;MINPOOLSIZE=1;MAXPOOLSIZE=20;COMMANDTIMEOUT=20;COMPATIBLE=2.2.0.0;HOST=localhost;DATABASE=ags;USER ID=ags;PASSWORD=Fadila1980'");
         }
+
+        internal void SaveToDb()
+        {
+            this.agsEntities.SaveChanges();
+        }
+
+        //internal void SaveToDb(ObservableCollection<CHILDRENS> ChildrensCollection,
+        //    ObservableCollection<FAMILIES> FamiliesCollection)
+        //{
+        //    SaveChildrentoDB(ChildrensCollection);
+        //    SaveFamilytoDB(FamiliesCollection);
+        //    this.agsEntities.Refresh(RefreshMode.ClientWins, ChildrensCollection);
+        //    this.agsEntities.Refresh(RefreshMode.ClientWins, FamiliesCollection);
+        //    this.agsEntities.SaveChanges();
+        //}
 
         internal void SaveChildrentoDB(ObservableCollection<CHILDRENS> ChildrensCollection)
         {

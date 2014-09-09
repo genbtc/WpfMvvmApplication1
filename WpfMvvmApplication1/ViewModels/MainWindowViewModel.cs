@@ -1,5 +1,9 @@
+using System;
 using System.Collections.ObjectModel;
+using System.Collections.Specialized;
+using System.ComponentModel;
 using System.Linq;
+using System.Windows.Data;
 using System.Windows.Input;
 using WpfMvvmApplication1.Helpers;
 using WpfMvvmApplication1.Models;
@@ -8,8 +12,10 @@ namespace WpfMvvmApplication1.ViewModels
 {
     public class MainWindowViewModel : NotificationObject
     {
-
+    
     #region Properties
+
+        public ObservableCollection<FAMILIES> FamiliesBox { get; set; }
 
         private ObservableCollection<FAMILIES> _familiesCollection;
         public ObservableCollection<FAMILIES> FamiliesCollection
@@ -19,6 +25,7 @@ namespace WpfMvvmApplication1.ViewModels
             {
                 if (_familiesCollection == value) return;
                 _familiesCollection = value;
+                FamiliesBox = new ObservableCollection<FAMILIES>(_familiesCollection);
                 RaisePropertyChanged(() => FamiliesCollection);
             }
         }
@@ -82,8 +89,41 @@ namespace WpfMvvmApplication1.ViewModels
                 RaisePropertyChanged(() => CIVILITIESCollection);
             }
         }
+        private CollectionViewSource _familiesViewSource;
+        public CollectionViewSource FamiliesViewSource
+        {
+            get
+            {
+                if (_familiesViewSource == null)
+                    GetFamilyViewSource();
+                return _familiesViewSource;
+            }
+        }
 
-    #endregion
+        private CollectionViewSource _childrenViewSource;
+        public CollectionViewSource ChildrenViewSource
+        {
+            get
+            {
+                if (_childrenViewSource == null)
+                    GetChildrenViewSource();
+                return _childrenViewSource;
+            }
+        }
+        #endregion
+        #region EF Query
+
+        private void GetFamilyViewSource()
+        {
+            this._familiesViewSource = new CollectionViewSource { Source = EF.agsEntities.FAMILIES };
+        }
+        private void GetChildrenViewSource()
+        {
+            this._childrenViewSource = new CollectionViewSource { Source = EF.agsEntities.CHILDRENS };
+            //this._childrenViewSource.SortDescriptions = new SortDescriptionCollection();
+        }
+
+        #endregion
 
         #region Constructor
 
@@ -93,11 +133,13 @@ namespace WpfMvvmApplication1.ViewModels
         {
             this.EF = new EF();
             GetCitiesCollection();
-            GetFamilyCollection();
-            GetChildrenCollection();
+            GetFamiliesCollection();
+            GetChildrensCollection();
             GetFamilyquotientsCollection();
-            GetMedecinCollection();
+            GetMedecinsCollection();
             GetCivilitiesCollection();
+            this.FamiliesCollection.CollectionChanged += ItemCollection_CollectionChanged;
+            this.ChildrensCollection.CollectionChanged += ItemCollection_CollectionChanged;
             //_selectRowCommand = new RelayCommand(SelectionHasChanged);
         }
 
@@ -113,7 +155,7 @@ namespace WpfMvvmApplication1.ViewModels
             CIVILITIESCollection = new ObservableCollection<CIVILITIES>(EF.agsEntities.CIVILITIES);
         }
 
-        private void GetMedecinCollection()
+        private void GetMedecinsCollection()
         {
             MedecinsCollection = new ObservableCollection<MEDECINS>(EF.agsEntities.MEDECINS);
         }
@@ -128,12 +170,12 @@ namespace WpfMvvmApplication1.ViewModels
             CitiesCollection = new ObservableCollection<CITIES>(EF.agsEntities.CITIES);
         }
 
-        private void GetFamilyCollection()
+        private void GetFamiliesCollection()
         {
             FamiliesCollection = new ObservableCollection<FAMILIES>(EF.agsEntities.FAMILIES);
         }
 
-        private void GetChildrenCollection()
+        private void GetChildrensCollection()
         {
             ChildrensCollection = new ObservableCollection<CHILDRENS>(EF.agsEntities.CHILDRENS);
         }
@@ -160,8 +202,6 @@ namespace WpfMvvmApplication1.ViewModels
         //        select new {c.ID, d.CP};
         //    return query4;        
         //}
-
-
 
         //private void TestChildNames()
         //{
@@ -207,11 +247,14 @@ namespace WpfMvvmApplication1.ViewModels
         #region Command Handlers
         public ICommand SaveFamily { get { return new DelegateCommand(SaveFamilytoDb); } }
         public ICommand SaveChildren { get { return new DelegateCommand(SaveChildrentoDb); } }
+        public ICommand SaveAll { get { return new DelegateCommand(SaveToDb); } }
         #endregion
 
         #region Commands
         private void SaveFamilytoDb() { EF.SaveChildrentoDB(ChildrensCollection); }
         private void SaveChildrentoDb() { EF.SaveFamilytoDB(FamiliesCollection); }
+        private void SaveToDb() { EF.SaveToDb(); }
+
         #endregion
 
         //private RelayCommand _selectRowCommand;
@@ -220,5 +263,35 @@ namespace WpfMvvmApplication1.ViewModels
         //    get { return _selectRowCommand; }
         //}
 
+        //When the collection changes, (Occurs when an item is added, removed, changed, moved, or the entire list is refreshed)
+        // (Usually as soon as a new row is clicked, or deleted.)
+        // Check for new rows, (ID ==0) then Add the Blank row to the entity context, and SaveChanges (write to DB)
+        void ItemCollection_CollectionChanged(object sender, NotifyCollectionChangedEventArgs e)
+        {
+            Type nodeType = sender.GetType();
+            if (nodeType == typeof(ObservableCollection<FAMILIES>))
+            {
+                var typedcollection = (ObservableCollection<FAMILIES>)sender;
+                foreach (FAMILIES some in typedcollection.Where(some => some.ID == 0))
+                {
+                    EF.agsEntities.FAMILIES.AddObject(some);
+                }
+                EF.SaveToDb();
+                if (e.Action == NotifyCollectionChangedAction.Remove || e.Action == NotifyCollectionChangedAction.Add)
+                {
+                    FamiliesBox = new ObservableCollection<FAMILIES>((ObservableCollection<FAMILIES>)sender);
+                    RaisePropertyChanged(() => FamiliesBox);
+                }
+            }
+            else if (nodeType == typeof(ObservableCollection<CHILDRENS>))
+            {
+                var typedcollection = (ObservableCollection<CHILDRENS>)sender;
+                foreach (CHILDRENS some in typedcollection.Where(some => some.ID == 0))
+                {
+                    EF.agsEntities.CHILDRENS.AddObject(some);
+                }
+                EF.SaveToDb();
+            }
+        }
     }
 }
