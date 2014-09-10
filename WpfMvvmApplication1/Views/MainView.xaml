@@ -16,7 +16,7 @@
         xmlns:viewModels="clr-namespace:WpfMvvmApplication1.ViewModels"
         xmlns:converters="clr-namespace:WpfMvvmApplication1.Converters" 
         xmlns:helpers="clr-namespace:WpfMvvmApplication1.Helpers" 
-    Width="1600" Height="900" WindowStyle="SingleBorderWindow">
+    Width="1600" Height="900" WindowStyle="SingleBorderWindow" xmlns:my="clr-namespace:ExtendedGrid.ExtendedGridControl;assembly=ExtendedGrid">
 
     <Window.DataContext>
         <viewModels:MainWindowViewModel x:Name="datacontextviewmodel" />
@@ -391,6 +391,9 @@
                         <Button Grid.Row="2" Content="Update!" Name="SaveFamilyButton" Command="{Binding Path=SaveAll}" Margin="0,1,10,6" HorizontalAlignment="Right" Width="84" Height="30"  />
                         <Button Grid.Row="2" Content="Refresh..." Name="Refresh3Button" Command="{Binding Path=RefreshDb}" Margin="0,1,105,6" HorizontalAlignment="Right" Width="84"  Height="30"  />
                     </Grid>
+                </TabItem>
+                <TabItem Header="City">
+                    <my:ExtendedDataGrid Height="100" Name="extendedDataGrid1" Width="200" />
                 </TabItem>
             </TabControl>
         </Viewbox>
