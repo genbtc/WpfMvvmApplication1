@@ -1,5 +1,8 @@
 ﻿
 
+using System.Windows.Controls;
+using System.Windows.Data;
+
 namespace WpfMvvmApplication1.Views
 {
     /// <summary>

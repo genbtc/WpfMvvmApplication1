@@ -1,8 +1,6 @@
 using System;
 using System.Collections.ObjectModel;
 using System.Collections.Specialized;
-using System.ComponentModel;
-using System.Data.Objects;
 using System.Linq;
 using System.Windows.Data;
 using System.Windows.Input;
@@ -139,9 +137,10 @@ namespace WpfMvvmApplication1.ViewModels
             GetFamilyquotientsCollection();
             GetMedecinsCollection();
             GetCivilitiesCollection();
+            //tracks item additions and deletions, and saves to the database when that occurs.
             this.FamiliesCollection.CollectionChanged += ItemCollection_CollectionChanged;
             this.ChildrensCollection.CollectionChanged += ItemCollection_CollectionChanged;
-            //_selectRowCommand = new RelayCommand(SelectionHasChanged);
+            //_selectRowCommand = new RelayCommand(SelectionHasChanged);    //not used yet.
         }
 
         //private void SelectionHasChanged()
@@ -254,12 +253,13 @@ namespace WpfMvvmApplication1.ViewModels
 
         #region Commands
         private void RefreshViewDb() { EF.Refresh(ChildrensCollection, FamiliesCollection); }
-        private void SaveFamilytoDb() { EF.SaveChildrentoDB(ChildrensCollection); }
-        private void SaveChildrentoDb() { EF.SaveFamilytoDB(FamiliesCollection); }
+        private void SaveFamilytoDb() { EF.SaveFamilytoDB(FamiliesCollection); }
+        private void SaveChildrentoDb() { EF.SaveChildrentoDB(ChildrensCollection); }
         private void SaveToDb() { EF.SaveToDb(); }
 
         #endregion
-
+        
+        //not used yet.
         //private RelayCommand _selectRowCommand;
         //public ICommand SelectRowCommand
         //{
@@ -267,7 +267,7 @@ namespace WpfMvvmApplication1.ViewModels
         //}
 
         //When the collection changes, (Occurs when an item is added, removed, changed, moved, or the entire list is refreshed)
-        // (Usually as soon as a new row is clicked, or deleted.)
+        // (Usually as soon as a blank row is clicked(new,Add) or deleted.)
         // Check for new rows, (ID ==0) then Add the Blank row to the entity context, and SaveChanges (write to DB)
         void ItemCollection_CollectionChanged(object sender, NotifyCollectionChangedEventArgs e)
         {
@@ -275,23 +275,41 @@ namespace WpfMvvmApplication1.ViewModels
             if (nodeType == typeof(ObservableCollection<FAMILIES>))
             {
                 var typedcollection = (ObservableCollection<FAMILIES>)sender;
-                foreach (FAMILIES some in typedcollection.Where(some => some.ID == 0))
+                if (e.Action == NotifyCollectionChangedAction.Add)
                 {
-                    EF.agsEntities.FAMILIES.AddObject(some);
+                    foreach (FAMILIES somenew in typedcollection.Where(some => some.ID == 0))
+                    {
+                        EF.agsEntities.FAMILIES.AddObject(somenew);
+                    }
+                }
+                else if (e.Action == NotifyCollectionChangedAction.Remove)
+                {
+                    foreach (FAMILIES removeitems in e.OldItems)
+                    {
+                        EF.agsEntities.FAMILIES.DeleteObject(removeitems);
+                    }
                 }
                 EF.SaveToDb();
-                if (e.Action == NotifyCollectionChangedAction.Remove || e.Action == NotifyCollectionChangedAction.Add)
-                {
-                    FamiliesBox = new ObservableCollection<FAMILIES>((ObservableCollection<FAMILIES>)sender);
-                    RaisePropertyChanged(() => FamiliesBox);
-                }
+                //needs to be created after DB save, so it adds as the permanent ID, at the end of the list, not as ID0 at the beginning.
+                FamiliesBox = new ObservableCollection<FAMILIES>((ObservableCollection<FAMILIES>)sender);
+                RaisePropertyChanged(() => FamiliesBox);
             }
             else if (nodeType == typeof(ObservableCollection<CHILDRENS>))
             {
                 var typedcollection = (ObservableCollection<CHILDRENS>)sender;
-                foreach (CHILDRENS some in typedcollection.Where(some => some.ID == 0))
+                if (e.Action == NotifyCollectionChangedAction.Add)
                 {
-                    EF.agsEntities.CHILDRENS.AddObject(some);
+                    foreach (CHILDRENS somenew in typedcollection.Where(some => some.ID == 0))
+                    {
+                        EF.agsEntities.CHILDRENS.AddObject(somenew);
+                    }
+                }
+                else if (e.Action == NotifyCollectionChangedAction.Remove)
+                {
+                    foreach (CHILDRENS removeitems in e.OldItems)
+                    {
+                        EF.agsEntities.CHILDRENS.DeleteObject(removeitems);
+                    }
                 }
                 EF.SaveToDb();
             }
