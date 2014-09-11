@@ -90,17 +90,21 @@ xmlns:ExtendedColumn="clr-namespace:ExtendedGrid.ExtendedColumn;assembly=Extende
             <TabControl Margin="2,0,2,0" >
                     <!--Presence Tab-->
                 <TabItem Header="Presence">
-                    <Grid Height="820" Width="1600" >
+                    <Grid Height="820" Width="1593" >
                         <Grid.RowDefinitions>
-                            <RowDefinition Height="28" />
+                            <RowDefinition Height="31" />
                             <RowDefinition Height="2*" />
                             <RowDefinition Height="37" />
                             <RowDefinition Height="1*" />
                         </Grid.RowDefinitions>
                         <Label Grid.Row="0" Content="Recherche :" />
                         <TextBox Grid.Row="0" Margin="80,0,0,0" Name="Recherche2" HorizontalAlignment="Left" Style="{StaticResource ResourceKey=flatTextBox}" Height="24" TextWrapping="Wrap" Width="716" />
-                        <Button Grid.Row="0" Content="+" HorizontalAlignment="Right" Width="30" Margin="0,0,10,0" />
-                        <DataGrid Grid.Row="1" Name="PresenceDataGrid" ItemsSource="{Binding Source={StaticResource childsorted}, UpdateSourceTrigger=PropertyChanged}" AutoGenerateColumns="False" Margin="4,4,4,2" 
+                        <!--Buttons-->
+                        <Button Grid.Row="0" Content="+" Margin="0,0,10,0" VerticalAlignment="Top" HorizontalAlignment="Right" Height="30" Width="35"  />
+                        <Button Content="Update!" Command="{Binding Path=SaveAll}" VerticalAlignment="Top" HorizontalAlignment="Right" Margin="0,0,56,0" Width="84" Height="30" />
+                        <Button Content="Refresh..." Command="{Binding Path=RefreshDb}" Margin="0,0,152,0" VerticalAlignment="Top" HorizontalAlignment="Right" Width="84"  Height="30"  />
+
+                        <DataGrid Grid.Row="1" Name="PresenceDataGrid" ItemsSource="{Binding Source={StaticResource childsorted}, UpdateSourceTrigger=PropertyChanged}" AutoGenerateColumns="False" Margin="4,1,4,2" 
                                   BorderThickness="1,2,1,1" Background="{StaticResource ResourceKey=GenBtcColorBrush}" BorderBrush="#FF889BB1" RowBackground="Snow" HeadersVisibility="Column" >
                             <DataGrid.Columns>
                                 <DataGridTextColumn Binding="{Binding Path=ID}" Header="Id" Width="30" CanUserSort="True" />
@@ -146,25 +150,103 @@ xmlns:ExtendedColumn="clr-namespace:ExtendedGrid.ExtendedColumn;assembly=Extende
                             <ComboBox HorizontalAlignment="Left" Height="26" Margin="630,8,0,0" VerticalAlignment="Top" Width="225" Style="{StaticResource ResourceKey=ComboBoxFlatStyle}"/>
                             <ComboBox HorizontalAlignment="Left" Height="26" Margin="997,8,0,0" VerticalAlignment="Top" Width="240" Style="{StaticResource ResourceKey=ComboBoxFlatStyle}" />
                         </Grid>
-                        <Button Grid.Row="2" x:Name="savechildren2" Content="Update!" Command="{Binding Path=SaveAll}" HorizontalAlignment="Right" Margin="0,1,10,6" Width="84" Height="30" />
-                        <Button Grid.Row="2" Content="Refresh..." Name="Refresh1Button" Command="{Binding Path=RefreshDb}" Margin="0,1,105,6" HorizontalAlignment="Right" Width="84"  Height="30"  />
                     </Grid>
                 </TabItem>
                     <!--Children Tab-->
                 <TabItem Header="Enfants">
-                    <Grid Height="820" Width="1600">
+                    <Grid Height="820" Width="1593">
                         <Grid.RowDefinitions>
-                            <RowDefinition Height="28" />
-                            <RowDefinition Height="2*" />
-                            <RowDefinition Height="37" />
+                            <RowDefinition Height="31" />
                             <RowDefinition Height="1*" />
                         </Grid.RowDefinitions>
-                        <Label Grid.Row="0" Content="Recherche :" />
+                        <Label Content="Recherche :" Margin="0,0,0,0" VerticalAlignment="Top" HorizontalAlignment="Left"  />
                         <TextBox Grid.Row="0" Margin="80,0,0,0" Name="Recherche" HorizontalAlignment="Left" Style="{StaticResource ResourceKey=flatTextBox}" Height="24" TextWrapping="Wrap" Width="716" />
-                        <Button Grid.Row="0" Content="+" HorizontalAlignment="Right" Width="30" Margin="0,0,10,0" />
+                        <!--Buttons-->
+                        <Button Content="Update!" Command="{Binding Path=SaveAll}" VerticalAlignment="Top" HorizontalAlignment="Right" Margin="0,0,56,0" Width="84" Height="30" />
+                        <Button Content="Refresh..." Command="{Binding Path=RefreshDb}" Margin="0,0,152,0" VerticalAlignment="Top" HorizontalAlignment="Right" Width="84"  Height="30"  />
+                        <Button Content="+" Margin="0,0,10,0" VerticalAlignment="Top" HorizontalAlignment="Right" Height="30" Width="35" />
                         <!--ChildrenDataGrid-->
-                        <DataGrid Grid.Row="1" Name="ChildrenDataGrid" ItemsSource="{Binding Source={StaticResource childsorted}, UpdateSourceTrigger=PropertyChanged}" AutoGenerateColumns="False" ColumnWidth="152" Margin="4,4,4,2"
-                              BorderThickness="1,2,1,1" Background="{StaticResource ResourceKey=GenBtcColorBrush}" BorderBrush="#FF889BB1" RowBackground="Snow" HeadersVisibility="Column">
+                        <DataGrid Grid.Row="1" Grid.RowSpan="3" Name="ChildrenDataGrid" ItemsSource="{Binding Source={StaticResource childsorted}, UpdateSourceTrigger=PropertyChanged}" AutoGenerateColumns="False" ColumnWidth="152" Margin="4,1,4,2"
+                              BorderThickness="1,2,1,1" Background="{StaticResource ResourceKey=GenBtcColorBrush}" BorderBrush="#FF889BB1" RowBackground="Snow" HeadersVisibility="Column" >
+                            <DataGrid.RowDetailsTemplate>
+                                <DataTemplate>
+                                    <TabControl TabStripPlacement="Bottom">
+                                        <TabItem Header="Family">
+                                            <Grid>
+                                                <!--ComboBox Family-->
+                                                <ComboBox x:Name="cbFamily" Style="{StaticResource ResourceKey=ComboBoxFlatStyle}" Margin="66,12,0,0" Width="225" Height="27" IsEditable="True" DisplayMemberPath="LASTNAME" SelectedValuePath="ID" IsSynchronizedWithCurrentItem="True"
+                                            SelectedValue="{Binding ElementName=ChildrenDataGrid, Path=SelectedItem.FAMILYID}" VerticalAlignment="Top" HorizontalAlignment="Left">
+                                                    <ComboBox.ItemsSource>
+                                                        <CompositeCollection>
+                                                            <ComboBoxItem Name="noneItem" Content="Aucon" />
+                                                            <CollectionContainer Collection="{Binding Source={StaticResource famcombobox}}" />
+                                                        </CompositeCollection>
+                                                    </ComboBox.ItemsSource>
+                                                </ComboBox>
+                                                <!--ComboBox City-->
+                                                <ComboBox x:Name="cbCity" Style="{StaticResource ResourceKey=ComboBoxFlatStyle}" IsEditable="False" ItemsSource="{Binding Source={StaticResource citysorted}}" DisplayMemberPath="CITY" SelectedValuePath="ID" IsSynchronizedWithCurrentItem="True"
+                                            SelectedIndex="{Binding ElementName=cbFamily, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, Path=SelectedItem.CITYID, Converter={StaticResource addOne}}" Width="298" Margin="195,91,0,0" Height="27" VerticalAlignment="Top" HorizontalAlignment="Left" />
+                                                <TextBox Height="27" Style="{StaticResource ResourceKey=flatTextBox}" HorizontalAlignment="Left" Margin="298,12,0,0" Name="childrentab_familyFirstname" VerticalAlignment="Top" Width="195" Text="{Binding SelectedItem.FIRSTNAME, ElementName=cbFamily}" />
+                                                <TextBox x:Name="tbAdress" Style="{StaticResource ResourceKey=flatTextBox}" HorizontalAlignment="Left" Height="45" Margin="66,42,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="427" IsEnabled="True" Text="{Binding SelectedItem.ADRESS, ElementName=cbFamily}" />
+                                                <TextBox x:Name="tbCp" Style="{StaticResource ResourceKey=flatTextBox}" HorizontalAlignment="Left" Height="27" Margin="66,91,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="119" IsEnabled="True" Text="{Binding SelectedItem.CITIES.CP, ElementName=cbFamily}" VerticalContentAlignment="Center" />
+                                                <TextBox x:Name="tbTel1" Style="{StaticResource ResourceKey=flatTextBox}" HorizontalAlignment="Left" Height="20" Margin="66,121,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="142" IsEnabled="True" Text="{Binding SelectedItem.TEL1, ElementName=cbFamily}" />
+                                                <TextBox x:Name="tbTel2" Style="{StaticResource ResourceKey=flatTextBox}" HorizontalAlignment="Left" Height="20" Margin="212,121,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="137" IsEnabled="True" Text="{Binding SelectedItem.TEL2, ElementName=cbFamily}" />
+                                                <TextBox x:Name="tbTel3" Style="{StaticResource ResourceKey=flatTextBox}" HorizontalAlignment="Left" Height="20" Margin="353,121,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="140" IsEnabled="True" Text="{Binding SelectedItem.TEL3, ElementName=cbFamily}" />
+                                                <ComboBox x:Name="cbMedecin" Style="{StaticResource ResourceKey=ComboBoxFlatStyle}" HorizontalAlignment="Right" Margin="0,13,424,0" VerticalAlignment="Top" Width="283" Height="26" IsEditable="True" />
+                                                <TextBox x:Name="tbTelMedecin" Style="{StaticResource ResourceKey=flatTextBox}" HorizontalAlignment="Right" Height="26" Margin="0,13,231,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="130"/>
+                                                <TextBox x:Name="tbAllergies2" Style="{StaticResource ResourceKey=flatTextBox}" HorizontalAlignment="Right" Height="60" Margin="0,44,232,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="475"/>
+                                                <Label Content="Famille :" HorizontalAlignment="Left" Margin="15,19,0,0" VerticalAlignment="Top" Height="13" Width="46" HorizontalContentAlignment="Right" Padding="0" />
+                                                <Label Content="Adresse :" HorizontalAlignment="Left" Margin="10,41,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.5,0.538" Height="15" Width="51" HorizontalContentAlignment="Right" UseLayoutRounding="True" Padding="0" />
+                                                <Label Content="Téls. :" HorizontalAlignment="Left" Margin="31,124,0,0" VerticalAlignment="Top" Height="19" Padding="0" HorizontalContentAlignment="Right" Width="30" />
+                                                <Label Content="Médecin :" Margin="0,13,712,0" VerticalAlignment="Top" HorizontalAlignment="Right" Width="62" />
+                                                <Label Content="Tél. :" Margin="0,13,367,0" VerticalAlignment="Top" HorizontalAlignment="Right" Width="34" />
+                                                <Label Content="Allergies :" Margin="0,44,712,0" VerticalAlignment="Top" HorizontalAlignment="Right" Width="61" />
+                                                <Label Content="Email :" HorizontalAlignment="Left" Margin="24,153,0,0" VerticalAlignment="Top" Padding="0" Width="37" HorizontalContentAlignment="Right"/>
+                                            </Grid>
+                                        </TabItem>
+                                        <TabItem Header="Consignes" >
+                                            <Grid Background="Snow">
+                                                <CheckBox Content="Sans Gluten" Margin="708,20,767,0" Padding="4,0,0,0" Height="20" VerticalAlignment="Top" />
+                                                <CheckBox Content="Sans Oeuf" Margin="841,20,639,0" Padding="4,0,0,0" Height="19" VerticalAlignment="Top" />
+                                                <CheckBox Content="Sans Poisson" Margin="964,20,510,0" Height="20" VerticalAlignment="Top" />
+                                                <CheckBox Content="Sans Porc" Margin="1119,20,374,0" Height="22" VerticalAlignment="Top" />
+                                                <CheckBox Content="Sans Viande" Margin="1274,20,209,0" Width="87" Height="19" VerticalAlignment="Top" />
+                                                <Label Content="Régime Particuliers :" HorizontalAlignment="Right" Margin="0,69,764,0" VerticalAlignment="Top"/>
+                                                <TextBox Style="{StaticResource ResourceKey=flatTextBox}" Height="60" Margin="830,69,201,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" />
+                                                <Rectangle Fill="#FFF4F4F5" HorizontalAlignment="Left" Height="165" Margin="10,10,0,0" Stroke="Black" VerticalAlignment="Top" Width="574"/>
+                                                <CheckBox x:Name="chkHospital" Content="Hôpital" Margin="36,29,0,0" IsChecked="{Binding SelectedItem.HOSPITAL, ElementName=ChildrenDataGrid}" VerticalContentAlignment="Center" HorizontalAlignment="Left" Width="61" Height="18" VerticalAlignment="Top" />
+                                                <CheckBox x:Name="chkEMT" Content="S.A.M.U" Margin="36,54,0,0" IsChecked="{Binding SelectedItem.EMT, ElementName=ChildrenDataGrid}" Height="20" VerticalAlignment="Top" HorizontalAlignment="Left" Width="69" />
+                                                <CheckBox x:Name="chkClinic" Content="Clinique" Margin="36,84,0,0" IsChecked="{Binding SelectedItem.CLINIC, ElementName=ChildrenDataGrid}" Width="64" HorizontalAlignment="Left" Height="20" VerticalAlignment="Top" />
+                                                <CheckBox x:Name="chkBePhotography" Content="Être Photographié" Margin="36,114.5,0,0" IsChecked="{Binding SelectedItem.BEPHOTOGRAPHY, ElementName=ChildrenDataGrid}" Width="120" HorizontalAlignment="Left" Height="20" VerticalAlignment="Top" />
+                                                <CheckBox x:Name="chkPublicationPhotography" Content="Publication de l'image" Margin="36,145,0,0"  IsChecked="{Binding SelectedItem.PUBLICATIONPHOTOGRAPHY, ElementName=ChildrenDataGrid}" Width="139" HorizontalAlignment="Left" Height="22" VerticalAlignment="Top" />
+                                                <CheckBox x:Name="chkOffOutputsStructure" Content="Sorties Hors Structure" Margin="326,24,0,0" IsChecked="{Binding SelectedItem.OFFOUTPUTSSTRUCTURE, ElementName=ChildrenDataGrid}" Width="137" HorizontalAlignment="Left" Height="19" VerticalAlignment="Top" />
+                                                <CheckBox x:Name="chkSwim" Content="Baignade" Margin="326,54,0,0" IsChecked="{Binding SelectedItem.SWIM, ElementName=ChildrenDataGrid}" Width="75" HorizontalAlignment="Left" Height="20" VerticalAlignment="Top" />
+                                                <CheckBox x:Name="chkBikeOutings" Content="Sorties Vélo" Margin="326,84,0,0" IsChecked="{Binding SelectedItem.BIKEOUTINGS, ElementName=ChildrenDataGrid}" Width="90" Height="24" VerticalAlignment="Top" HorizontalAlignment="Left" />
+                                                <CheckBox x:Name="chkBoatOutings" Content="Sorties Bâteau" Margin="326,114,0,0" IsChecked="{Binding SelectedItem.BOATOUTINGS, ElementName=ChildrenDataGrid}" Width="101" Height="20" VerticalAlignment="Top" HorizontalAlignment="Left" />
+                                                <ComboBox x:Name="cbClinic" Style="{StaticResource ResourceKey=ComboBoxFlatStyle}" Margin="131,77,0,0" HorizontalAlignment="Left" Width="166" Height="27" VerticalAlignment="Top" />
+                                            </Grid>
+                                        </TabItem>
+                                    </TabControl>
+                                    <!--<StackPanel Orientation="Horizontal">
+                                        <Separator Width="29" />
+                                        <TextBox Text="{Binding FAMILIES.LASTNAME, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"  Width="200" />
+                                        <TextBlock Text=", " />
+                                        <TextBox Text="{Binding FAMILIES.FIRSTNAME, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Width="180"/>
+                                        <TextBlock Text="     ," />
+                                        <TextBox Text="{Binding FAMILIES.ADRESS, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Width="150"/>
+                                        <TextBlock Text="  " />
+                                        <TextBox Text="{Binding FAMILIES.CITIES.CITY, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Width="100"/>
+                                        <TextBlock Text="-" />
+                                        <TextBox Text="{Binding FAMILIES.CITIES.CP, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Width="50" />
+                                        <TextBlock Text="  -    " />
+                                        <TextBox Text="{Binding FAMILIES.TEL1, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Width="50" />
+                                        <TextBlock Text="  -    " />
+                                        <TextBox Text="{Binding FAMILIES.TEL2, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Width="50"  />
+                                        <TextBlock Text="  -    " />
+                                        <TextBox Text="{Binding FAMILIES.TEL3, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Width="50"  />
+                                    </StackPanel>-->
+                                </DataTemplate>
+                            </DataGrid.RowDetailsTemplate>
                             <DataGrid.Columns>
                                 <DataGridTextColumn Binding="{Binding Path=ID}" Header="Id" Width="30" CanUserSort="True" />
                                 <DataGridTextColumn Binding="{Binding Path=LASTNAME}" Header="Nom" Width="200" CanUserSort="True" />
@@ -215,7 +297,7 @@ xmlns:ExtendedColumn="clr-namespace:ExtendedGrid.ExtendedColumn;assembly=Extende
                                                     <DataTemplate>
                                                         <StackPanel Orientation="Horizontal">
                                                             <TextBlock Text="{Binding LASTNAME}" />
-                                                            <TextBlock Text=" " />
+                                                            <TextBlock Text=", " />
                                                             <TextBlock Text="{Binding FIRSTNAME}" />
                                                         </StackPanel>
                                                     </DataTemplate>
@@ -229,104 +311,24 @@ xmlns:ExtendedColumn="clr-namespace:ExtendedGrid.ExtendedColumn;assembly=Extende
                                 <DataGridTextColumn Binding="{Binding Path=FAMILIES.CITIES.CITY, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Header="CITYNAME" Width="120" CanUserSort="True" />
                             </DataGrid.Columns>
                         </DataGrid>
-                            <!--BottomPart of ChildrenTab-->
-                        <TabControl Margin="4,12,4,0" Grid.Row="2" Grid.RowSpan="2">
-                            <TabItem Header="FamilleGrid">
-                                <DataGrid Grid.Row="1" Name="ChildrensFamilyDataGrid" Margin="4,4,4,2" AutoGenerateColumns="False" BorderThickness="1,2,1,1" 
-                                          Background="{StaticResource ResourceKey=GenBtcColorBrush}" BorderBrush="#FF889BB1" RowBackground="Snow" HeadersVisibility="Column" IsTextSearchEnabled="True" 
-                                          ItemsSource="{Binding ElementName=ChildrenDataGrid, Path=SelectedItem.FAMILIES, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, Converter={StaticResource EFtoIEnum}}">
-                                        <!--helpers:CommandBehavior.RoutedEventName="SelectionChanged"
-                                        helpers:CommandBehavior.TheCommandToRun="{Binding Path=SelectRowCommand}" >-->
-                                    <DataGrid.Columns>
-                                        <!--, Converter={StaticResource addOne}}-->
-                                        <DataGridTextColumn Binding="{Binding Path=ID, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Header="Id" Width="30" CanUserSort="True"/>
-                                        <DataGridTextColumn Binding="{Binding Path=LASTNAME, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Header="Nom" Width="200" CanUserSort="True" />
-                                        <DataGridTextColumn Binding="{Binding Path=FIRSTNAME, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Header="Prénom" Width="200" CanUserSort="True" />
-                                        <DataGridTextColumn Binding="{Binding Path=ADRESS, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Header="Adress" Width="220" CanUserSort="True" />
-                                        <DataGridTextColumn Binding="{Binding Path=CITYID, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Header="CityID" Width="30" CanUserSort="True" />
-                                        <DataGridTextColumn Binding="{Binding Path=CITIES.CITY, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Header="CityName" Width="200" CanUserSort="True" />
-                                        <DataGridTextColumn Binding="{Binding Path=CITIES.CP, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Header="CP" Width="60" CanUserSort="True" />
-                                        <DataGridTextColumn Binding="{Binding Path=TEL1, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Header="Tele 1" Width="180" CanUserSort="True" />
-                                        <DataGridTextColumn Binding="{Binding Path=TEL2, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Header="Tele 2" Width="180" CanUserSort="True" />
-                                        <DataGridTextColumn Binding="{Binding Path=TEL3, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Header="Tele 3" Width="180" CanUserSort="True" />
-                                    </DataGrid.Columns>
-                                </DataGrid>
-                            </TabItem>
-                            <TabItem Header="Famille" >
-                                <Grid Background="Snow" Margin="-2,0,2,0">
-                                        <!--ComboBox Family-->
-                                    <ComboBox x:Name="cbFamily" Style="{StaticResource ResourceKey=ComboBoxFlatStyle}" Margin="66,12,0,0" Width="226" Height="27" IsEditable="True" DisplayMemberPath="LASTNAME" SelectedValuePath="ID" IsSynchronizedWithCurrentItem="True"
-                                            SelectedValue="{Binding ElementName=ChildrenDataGrid, Path=SelectedItem.FAMILYID}" VerticalAlignment="Top" HorizontalAlignment="Left">
-                                        <ComboBox.ItemsSource>
-                                            <CompositeCollection>
-                                                <ComboBoxItem Name="noneItem" Content="Aucon" />
-                                                <CollectionContainer Collection="{Binding Source={StaticResource famcombobox}}" />
-                                            </CompositeCollection>
-                                        </ComboBox.ItemsSource>
-                                    </ComboBox>
-                                        <!--ComboBox City-->
-                                    <ComboBox x:Name="cbCity" Style="{StaticResource ResourceKey=ComboBoxFlatStyle}" IsEditable="False" ItemsSource="{Binding Source={StaticResource citysorted}}" DisplayMemberPath="CITY" SelectedValuePath="ID" IsSynchronizedWithCurrentItem="True"
-                                            SelectedIndex="{Binding ElementName=cbFamily, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, Path=SelectedItem.CITYID, Converter={StaticResource addOne}}" Width="298" Margin="195,91,0,0" Height="27" VerticalAlignment="Top" HorizontalAlignment="Left" />
-                                    <TextBox Height="27" Style="{StaticResource ResourceKey=flatTextBox}" HorizontalAlignment="Left" Margin="298,12,0,0" Name="childrentab_familyFirstname" VerticalAlignment="Top" Width="195" Text="{Binding SelectedItem.FIRSTNAME, ElementName=cbFamily}" />
-                                    <TextBox x:Name="tbAdress" Style="{StaticResource ResourceKey=flatTextBox}" HorizontalAlignment="Left" Height="45" Margin="66,42,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="427" IsEnabled="True" Text="{Binding SelectedItem.ADRESS, ElementName=cbFamily}" />
-                                    <TextBox x:Name="tbCp" Style="{StaticResource ResourceKey=flatTextBox}" HorizontalAlignment="Left" Height="27" Margin="66,91,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" IsEnabled="True" Text="{Binding SelectedItem.CITIES.CP, ElementName=cbFamily}" VerticalContentAlignment="Center" />
-                                    <TextBox x:Name="tbTel1" Style="{StaticResource ResourceKey=flatTextBox}" HorizontalAlignment="Left" Height="20" Margin="66,121,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="142" IsEnabled="True" Text="{Binding SelectedItem.TEL1, ElementName=cbFamily}" />
-                                    <TextBox x:Name="tbTel2" Style="{StaticResource ResourceKey=flatTextBox}" HorizontalAlignment="Left" Height="20" Margin="212,121,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="137" IsEnabled="True" Text="{Binding SelectedItem.TEL2, ElementName=cbFamily}" />
-                                    <TextBox x:Name="tbTel3" Style="{StaticResource ResourceKey=flatTextBox}" HorizontalAlignment="Left" Height="20" Margin="353,121,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="140" IsEnabled="True" Text="{Binding SelectedItem.TEL3, ElementName=cbFamily}" />
-                                    <ComboBox x:Name="cbMedecin" Style="{StaticResource ResourceKey=ComboBoxFlatStyle}" HorizontalAlignment="Right" Margin="0,13,424,0" VerticalAlignment="Top" Width="283" Height="26" IsEditable="True" />
-                                    <TextBox x:Name="tbTelMedecin" Style="{StaticResource ResourceKey=flatTextBox}" HorizontalAlignment="Right" Height="26" Margin="0,13,231,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="130"/>
-                                    <TextBox x:Name="tbAllergies2" Style="{StaticResource ResourceKey=flatTextBox}" HorizontalAlignment="Right" Height="60" Margin="0,44,232,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="475"/>
-                                    <Label Content="Famille :" HorizontalAlignment="Left" Margin="15,19,0,0" VerticalAlignment="Top" Height="13" Width="46" HorizontalContentAlignment="Right" Padding="0" />
-                                    <Label Content="Adresse :" HorizontalAlignment="Left" Margin="10,41,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.5,0.538" Height="15" Width="51" HorizontalContentAlignment="Right" UseLayoutRounding="True" Padding="0" />
-                                    <Label Content="Téls. :" HorizontalAlignment="Left" Margin="31,124,0,0" VerticalAlignment="Top" Height="19" Padding="0" HorizontalContentAlignment="Right" Width="30" />
-                                    <Label Content="Médecin :" Margin="0,13,712,0" VerticalAlignment="Top" HorizontalAlignment="Right" Width="62" />
-                                    <Label Content="Tél. :" Margin="0,13,367,0" VerticalAlignment="Top" HorizontalAlignment="Right" Width="34" />
-                                    <Label Content="Allergies :" Margin="0,44,712,0" VerticalAlignment="Top" HorizontalAlignment="Right" Width="61" />
-                                    <Label Content="Email :" HorizontalAlignment="Left" Margin="24,153,0,0" VerticalAlignment="Top" Padding="0" Width="37" HorizontalContentAlignment="Right"/>
-                                    
-                                    
-                                </Grid>
-                            </TabItem>
-                            <TabItem Header="Consignes" >
-                                <Grid Background="Snow">
-                                    <CheckBox Content="Sans Gluten" Margin="708,20,767,0" Padding="4,0,0,0" Height="20" VerticalAlignment="Top" />
-                                    <CheckBox Content="Sans Oeuf" Margin="841,20,639,0" Padding="4,0,0,0" Height="19" VerticalAlignment="Top" />
-                                    <CheckBox Content="Sans Poisson" Margin="964,20,510,0" Height="20" VerticalAlignment="Top" />
-                                    <CheckBox Content="Sans Porc" Margin="1119,20,374,0" Height="22" VerticalAlignment="Top" />
-                                    <CheckBox Content="Sans Viande" Margin="1274,20,209,0" Width="87" Height="19" VerticalAlignment="Top" />
-                                    <Label Content="Régime Particuliers :" HorizontalAlignment="Right" Margin="0,69,764,0" VerticalAlignment="Top"/>
-                                    <TextBox Style="{StaticResource ResourceKey=flatTextBox}" Height="60" Margin="830,69,201,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" />
-                                    <Rectangle Fill="#FFF4F4F5" HorizontalAlignment="Left" Height="165" Margin="10,10,0,0" Stroke="Black" VerticalAlignment="Top" Width="574"/>
-                                    <CheckBox x:Name="chkHospital" Content="Hôpital" Margin="36,29,0,0" IsChecked="{Binding SelectedItem.HOSPITAL, ElementName=ChildrenDataGrid}" VerticalContentAlignment="Center" HorizontalAlignment="Left" Width="61" Height="18" VerticalAlignment="Top" />
-                                    <CheckBox x:Name="chkEMT" Content="S.A.M.U" Margin="36,54,0,0" IsChecked="{Binding SelectedItem.EMT, ElementName=ChildrenDataGrid}" Height="20" VerticalAlignment="Top" HorizontalAlignment="Left" Width="69" />
-                                    <CheckBox x:Name="chkClinic" Content="Clinique" Margin="36,84,0,0" IsChecked="{Binding SelectedItem.CLINIC, ElementName=ChildrenDataGrid}" Width="64" HorizontalAlignment="Left" Height="20" VerticalAlignment="Top" />
-                                    <CheckBox x:Name="chkBePhotography" Content="Être Photographié" Margin="36,114.5,0,0" IsChecked="{Binding SelectedItem.BEPHOTOGRAPHY, ElementName=ChildrenDataGrid}" Width="120" HorizontalAlignment="Left" Height="20" VerticalAlignment="Top" />
-                                    <CheckBox x:Name="chkPublicationPhotography" Content="Publication de l'image" Margin="36,145,0,0"  IsChecked="{Binding SelectedItem.PUBLICATIONPHOTOGRAPHY, ElementName=ChildrenDataGrid}" Width="139" HorizontalAlignment="Left" Height="22" VerticalAlignment="Top" />
-                                    <CheckBox x:Name="chkOffOutputsStructure" Content="Sorties Hors Structure" Margin="326,24,0,0" IsChecked="{Binding SelectedItem.OFFOUTPUTSSTRUCTURE, ElementName=ChildrenDataGrid}" Width="137" HorizontalAlignment="Left" Height="19" VerticalAlignment="Top" />
-                                    <CheckBox x:Name="chkSwim" Content="Baignade" Margin="326,54,0,0" IsChecked="{Binding SelectedItem.SWIM, ElementName=ChildrenDataGrid}" Width="75" HorizontalAlignment="Left" Height="20" VerticalAlignment="Top" />
-                                    <CheckBox x:Name="chkBikeOutings" Content="Sorties Vélo" Margin="326,84,0,0" IsChecked="{Binding SelectedItem.BIKEOUTINGS, ElementName=ChildrenDataGrid}" Width="90" Height="24" VerticalAlignment="Top" HorizontalAlignment="Left" />
-                                    <CheckBox x:Name="chkBoatOutings" Content="Sorties Bâteau" Margin="326,114,0,0" IsChecked="{Binding SelectedItem.BOATOUTINGS, ElementName=ChildrenDataGrid}" Width="101" Height="20" VerticalAlignment="Top" HorizontalAlignment="Left" />
-                                    <ComboBox x:Name="cbClinic" Style="{StaticResource ResourceKey=ComboBoxFlatStyle}" Margin="131,77,0,0" HorizontalAlignment="Left" Width="166" Height="27" VerticalAlignment="Top" />
-                                </Grid>
-                            </TabItem>
-                        </TabControl>
-                        <Button Grid.Row="2" x:Name="savechildren" Content="Update!" Command="{Binding Path=SaveAll}" HorizontalAlignment="Right" Margin="0,1,10,6" Width="84" Height="30" />
-                        <Button Grid.Row="2" Content="Refresh..." Name="Refresh2Button" Command="{Binding Path=RefreshDb}" Margin="0,1,105,6" HorizontalAlignment="Right" Width="84"  Height="30"  />
                     </Grid>
                 </TabItem>
                     <!--Family Tab-->
                 <TabItem Header="Famille">
-                    <Grid Height="820" Width="1600">
+                    <Grid Height="820" Width="1593">
                         <Grid.RowDefinitions>
-                            <RowDefinition Height="28" />
+                            <RowDefinition Height="31" />
                             <RowDefinition Height="2*" />
                             <RowDefinition Height="37" /> 
                             <RowDefinition Height="1*" />
                         </Grid.RowDefinitions>
                         <Label Grid.Row="0" Content="Recherche :" />
                         <TextBox Name="RechercheFamille" Style="{StaticResource ResourceKey=flatTextBox}" Height="24" TextWrapping="Wrap" Text="" Width="716" HorizontalAlignment="Left" Margin="80,2,0,2" />
-                        <Separator Grid.Row="0" Height="6" Name="separator2" HorizontalAlignment="Right" Visibility="Hidden" />
-                        <DataGrid Grid.Row="1" Name="FamilyDataGrid" Margin="4,4,4,2" AutoGenerateColumns="False" BorderThickness="1,2,1,1" 
+                        <!--Buttons-->
+                        <Button Content="Update!" Command="{Binding Path=SaveAll}" VerticalAlignment="Top" HorizontalAlignment="Right" Margin="0,0,56,0" Width="84" Height="30" />
+                        <Button Content="Refresh..." Command="{Binding Path=RefreshDb}" Margin="0,0,152,0" VerticalAlignment="Top" HorizontalAlignment="Right" Width="84"  Height="30"  />
+                        <Button Content="+" Margin="0,0,10,0" VerticalAlignment="Top" HorizontalAlignment="Right" Height="30" Width="35" />
+                        <DataGrid Grid.Row="1" Name="FamilyDataGrid" Margin="4,1,4,2" AutoGenerateColumns="False" BorderThickness="1,2,1,1" 
                               Background="{StaticResource ResourceKey=GenBtcColorBrush}" BorderBrush="#FF889BB1" RowBackground="Snow" 
                               ItemsSource="{Binding Source={StaticResource famsorted}, UpdateSourceTrigger=PropertyChanged}" HeadersVisibility="Column">
                                 <!--helpers:CommandBehavior.RoutedEventName="SelectionChanged"
@@ -434,23 +436,22 @@ xmlns:ExtendedColumn="clr-namespace:ExtendedGrid.ExtendedColumn;assembly=Extende
                                 </Grid>
                             </TabItem>
                         </TabControl>
-                        <Button Grid.Row="2" Content="Update!" Name="SaveFamilyButton" Command="{Binding Path=SaveAll}" Margin="0,1,10,6" HorizontalAlignment="Right" Width="84" Height="30"  />
-                        <Button Grid.Row="2" Content="Refresh..." Name="Refresh3Button" Command="{Binding Path=RefreshDb}" Margin="0,1,105,6" HorizontalAlignment="Right" Width="84"  Height="30"  />
+
                     </Grid>
                 </TabItem>
                 <TabItem Header="Cities">
-                    <Grid Height="820" Width="1600">
+                    <Grid Height="820" Width="1593">
                         <Grid.RowDefinitions>
-                            <RowDefinition Height="28" />
+                            <RowDefinition Height="31" />
                             <RowDefinition Height="2*" />
                             <RowDefinition Height="37" />
                             <RowDefinition Height="1*" />
                         </Grid.RowDefinitions>
-                        <ExtendedGridControl:ExtendedDataGrid x:Name="CitiesDataGrid" Grid.Row="1"  Height="608" HorizontalAlignment="Left" VerticalAlignment="Top" Width="1580" Margin="10,36,0,0" AutoGenerateColumns="False" BorderThickness="1,2,1,1"
+                        <ExtendedGridControl:ExtendedDataGrid x:Name="CitiesDataGrid" Grid.Row="1" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Margin="10,0,10,0" AutoGenerateColumns="False" BorderThickness="1,2,1,1"
                                                         Background="{StaticResource ResourceKey=GenBtcColorBrush}" BorderBrush="#FF889BB1" RowBackground="Snow" ItemsSource="{Binding Path=CitiesCollection}" HeadersVisibility="Column" >
                             <Controls:DataGrid.Columns>
-                                <ExtendedColumn:ExtendedDataGridTextColumn Binding="{Binding ID}" Header="Id" Width="30"/>
-                                <ExtendedColumn:ExtendedDataGridTextColumn Binding="{Binding CITY, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Header="Commune" Width="600"  />
+                                <ExtendedColumn:ExtendedDataGridTextColumn Binding="{Binding ID}" Header="Id" Width="30" SortDirection="Ascending"/>
+                                <ExtendedColumn:ExtendedDataGridTextColumn Binding="{Binding CITY, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Header="Commune" Width="400"  />
                                 <ExtendedColumn:ExtendedDataGridTextColumn Binding="{Binding CP, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Header="CP" Width="100"  />
                                 <!--<ExtendedColumn:ExtendedDataGridTextColumn Binding="{Binding PARTNERSHIP, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Header="Partenariat" Width="100"  />-->
                             </Controls:DataGrid.Columns>
