@@ -22,9 +22,22 @@
             </Setter.Value>
         </Setter>
     </Style>
+    <Style x:Key="flatTextBoxMultiLine" TargetType="{x:Type TextBox}">
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="{x:Type TextBox}">
+                    <Grid>
+                        <Rectangle Stroke="{StaticResource ResourceKey=detailMarkBrush}" StrokeThickness="1"/>
+                        <TextBox AcceptsReturn="True" Text="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=Text, UpdateSourceTrigger=PropertyChanged}" Margin="1" BorderThickness="0" Background="{StaticResource ResourceKey=GenBtcColorBrush}" />
+                    </Grid>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
 
-    
-    
+
+
+
     <SolidColorBrush x:Key="ComboBoxNormalBorderBrush" Color="#FFA1A9B3" />
     <SolidColorBrush x:Key="ComboBoxNormalBackgroundBrush" Color="{StaticResource ResourceKey=GenBtcColor}" />
     <SolidColorBrush x:Key="ComboBoxDisabledForegroundBrush" Color="#888" />
