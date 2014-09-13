@@ -11,7 +11,7 @@ namespace WpfMvvmApplication1.Models
 
         public EF()
         {
-            agsEntities = new agsEntities("metadata=res://*/Model1.csdl|res://*/Model1.ssdl|res://*/Model1.msl;provider=Npgsql;provider connection string='PORT=5432;TIMEOUT=15;POOLING=True;MINPOOLSIZE=1;MAXPOOLSIZE=20;COMMANDTIMEOUT=20;COMPATIBLE=2.2.0.0;HOST=localhost;DATABASE=ags;USER ID=ags;PASSWORD=Fadila1980'");
+            agsEntities = new agsEntities("metadata=res://*/Models.Model1.csdl|res://*/Models.Model1.ssdl|res://*/Models.Model1.msl;provider=Npgsql;provider connection string='PORT=5432;TIMEOUT=15;POOLING=True;MINPOOLSIZE=1;MAXPOOLSIZE=20;COMMANDTIMEOUT=20;COMPATIBLE=2.2.0.0;HOST=localhost;DATABASE=ags;USER ID=ags;PASSWORD=Fadila1980'");
         }
 
         internal void SaveToDb()
@@ -19,23 +19,11 @@ namespace WpfMvvmApplication1.Models
             this.agsEntities.SaveChanges();
         }
 
-        //internal void SaveToDb(ObservableCollection<CHILDRENS> ChildrensCollection,
-        //    ObservableCollection<FAMILIES> FamiliesCollection)
-        //{
-        //    SaveChildrentoDB(ChildrensCollection);
-        //    SaveFamilytoDB(FamiliesCollection);
-        //    this.agsEntities.Refresh(RefreshMode.ClientWins, ChildrensCollection);
-        //    this.agsEntities.Refresh(RefreshMode.ClientWins, FamiliesCollection);
-        //    this.agsEntities.SaveChanges();
-        //}
-
         internal void Refresh(ObservableCollection<CHILDRENS> ChildrensCollection,
             ObservableCollection<FAMILIES> FamiliesCollection)
         {
             this.agsEntities.Refresh(RefreshMode.StoreWins, ChildrensCollection);
             this.agsEntities.Refresh(RefreshMode.StoreWins, FamiliesCollection);
-            RaisePropertyChanged(() => ChildrensCollection);
-            RaisePropertyChanged(() => FamiliesCollection);
         }
 
         internal void SaveChildrentoDB(ObservableCollection<CHILDRENS> ChildrensCollection)
@@ -44,6 +32,7 @@ namespace WpfMvvmApplication1.Models
             {
                 this.agsEntities.CHILDRENS.AddObject(some);
             }
+            //    this.agsEntities.Refresh(RefreshMode.ClientWins, ChildrensCollection);
             this.agsEntities.SaveChanges();
         }
 
@@ -53,6 +42,7 @@ namespace WpfMvvmApplication1.Models
             {
                 this.agsEntities.FAMILIES.AddObject(some);
             }
+            //    this.agsEntities.Refresh(RefreshMode.ClientWins, FamiliesCollection);
             this.agsEntities.SaveChanges();
         }
     }

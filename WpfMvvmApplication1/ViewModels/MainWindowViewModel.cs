@@ -1,6 +1,7 @@
 using System;
 using System.Collections.ObjectModel;
 using System.Collections.Specialized;
+using System.ComponentModel;
 using System.Linq;
 using System.Windows.Data;
 using System.Windows.Input;
@@ -88,41 +89,25 @@ namespace WpfMvvmApplication1.ViewModels
                 RaisePropertyChanged(() => CIVILITIESCollection);
             }
         }
-        private CollectionViewSource _familiesViewSource;
-        public CollectionViewSource FamiliesViewSource
-        {
-            get
-            {
-                if (_familiesViewSource == null)
-                    GetFamilyViewSource();
-                return _familiesViewSource;
-            }
-        }
 
-        private CollectionViewSource _childrenViewSource;
-        public CollectionViewSource ChildrenViewSource
-        {
-            get
-            {
-                if (_childrenViewSource == null)
-                    GetChildrenViewSource();
-                return _childrenViewSource;
-            }
-        }
+        public ICollectionView FamiliesViewSource { get; set; }
+        public ICollectionView ChildrenViewSource { get; set; }
+
         #endregion
-        #region EF Query
 
+        #region EF Query
         private void GetFamilyViewSource()
         {
-            this._familiesViewSource = new CollectionViewSource { Source = EF.agsEntities.FAMILIES };
+            this.FamiliesViewSource = CollectionViewSource.GetDefaultView(FamiliesCollection);
+            this.FamiliesViewSource.SortDescriptions.Add(new SortDescription("ID", ListSortDirection.Ascending));
         }
         private void GetChildrenViewSource()
         {
-            this._childrenViewSource = new CollectionViewSource { Source = EF.agsEntities.CHILDRENS };
-            //this._childrenViewSource.SortDescriptions = new SortDescriptionCollection();
+            this.ChildrenViewSource = CollectionViewSource.GetDefaultView(ChildrensCollection);
+            this.ChildrenViewSource.SortDescriptions.Add(new SortDescription("ID", ListSortDirection.Ascending));
         }
 
-        #endregion
+        //#endregion
 
         #region Constructor
 
@@ -131,12 +116,16 @@ namespace WpfMvvmApplication1.ViewModels
         public MainWindowViewModel()
         {
             this.EF = new EF();
+            //Fill Collections
             GetCitiesCollection();
             GetFamiliesCollection();
             GetChildrensCollection();
             GetFamilyquotientsCollection();
             GetMedecinsCollection();
             GetCivilitiesCollection();
+            //Fill Views
+            GetChildrenViewSource();
+            GetFamilyViewSource();
             //tracks item additions and deletions, and saves to the database when that occurs.
             this.FamiliesCollection.CollectionChanged += ItemCollection_CollectionChanged;
             this.ChildrensCollection.CollectionChanged += ItemCollection_CollectionChanged;
@@ -148,7 +137,7 @@ namespace WpfMvvmApplication1.ViewModels
             
         #endregion
 
-        #region EF Query
+        #region Fill Collections with EF Query
 
         private void GetCivilitiesCollection()
         {
@@ -252,13 +241,19 @@ namespace WpfMvvmApplication1.ViewModels
         #endregion
 
         #region Commands
-        private void RefreshViewDb() { EF.Refresh(ChildrensCollection, FamiliesCollection); }
+        private void RefreshViewDb()
+        {
+            EF.Refresh(ChildrensCollection, FamiliesCollection); 
+            //RaisePropertyChanged(() => ChildrensCollection);
+            //RaisePropertyChanged(() => FamiliesCollection);
+        }
         private void SaveFamilytoDb() { EF.SaveFamilytoDB(FamiliesCollection); }
         private void SaveChildrentoDb() { EF.SaveChildrentoDB(ChildrensCollection); }
         private void SaveToDb() { EF.SaveToDb(); }
 
         #endregion
-        
+        #endregion
+
         //not used yet.
         //private RelayCommand _selectRowCommand;
         //public ICommand SelectRowCommand

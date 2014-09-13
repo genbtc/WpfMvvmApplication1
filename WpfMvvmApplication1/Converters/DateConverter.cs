@@ -13,7 +13,7 @@ namespace WpfMvvmApplication1.Converters
                 return 0;
             DateTime now = DateTime.Today;
             int age = now.Year - ((DateTime)value).Year;
-            if (now < ((DateTime)value).AddYears(age)) 
+            if (now < ((DateTime)value).AddYears(age))
                 age--;
 
             return age.ToString();

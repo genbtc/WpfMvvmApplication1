@@ -16,5 +16,10 @@ namespace WpfMvvmApplication1.Views
             //DataContext = new MainWindowViewModel();
         }
 
+        private void button1_Click(object sender, System.Windows.RoutedEventArgs e)
+        {
+            this.FamilyDataGrid.Items.Refresh();
+        }
+
     }
 }
