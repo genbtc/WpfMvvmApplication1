@@ -13,7 +13,7 @@ namespace WpfMvvmApplication1.Models
         /// </summary>
         [EdmScalarProperty(EntityKeyProperty = false, IsNullable = true)]
         [DataMember()]
-        public Nullable<global::System.Int32> FAMILYID
+        public Nullable<int> FAMILYID
         {
             get { return _FAMILYID; }
             set
@@ -26,8 +26,8 @@ namespace WpfMvvmApplication1.Models
                 OnNavigationPropertyChanged("FAMILIES");
             }
         }
-        private Nullable<global::System.Int32> _FAMILYID;
-        partial void OnFAMILYIDChanging(Nullable<global::System.Int32> value);
+        private Nullable<int> _FAMILYID;
+        partial void OnFAMILYIDChanging(Nullable<int> value);
         partial void OnFAMILYIDChanged();
 
         protected virtual void OnNavigationPropertyChanged(String propertyName)
@@ -51,7 +51,7 @@ namespace WpfMvvmApplication1.Models
         /// </summary>
         [EdmScalarProperty(EntityKeyProperty = false, IsNullable = true)]
         [DataMember()]
-        public Nullable<global::System.Int32> CITYID
+        public Nullable<int> CITYID
         {
             get { return _CITYID; }
             set
@@ -64,8 +64,8 @@ namespace WpfMvvmApplication1.Models
                 OnNavigationPropertyChanged("CITIES");
             }
         }
-        private Nullable<global::System.Int32> _CITYID;
-        partial void OnCITYIDChanging(Nullable<global::System.Int32> value);
+        private Nullable<int> _CITYID;
+        partial void OnCITYIDChanging(Nullable<int> value);
         partial void OnCITYIDChanged();
 
         protected virtual void OnNavigationPropertyChanged(String propertyName)

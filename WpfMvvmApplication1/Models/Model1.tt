@@ -28,8 +28,8 @@ UserSettings userSettings =
     {
         SourceCsdlPath = @"Model1.edmx",
         ReferenceCsdlPaths = new string[] {},
-        FullyQualifySystemTypes = true,
-        CreateContextAddToMethods = true,
+        FullyQualifySystemTypes = false,
+        CreateContextAddToMethods = false,
         CamelCaseFields = false,
     };
 

@@ -171,58 +171,6 @@ namespace WpfMvvmApplication1.Models
 
         #endregion
 
-        #region AddTo Methods
-    
-        /// <summary>
-        /// Deprecated Method for adding a new object to the CHILDRENS EntitySet. Consider using the .Add method of the associated ObjectSet&lt;T&gt; property instead.
-        /// </summary>
-        public void AddToCHILDRENS(CHILDRENS cHILDRENS)
-        {
-            base.AddObject("CHILDRENS", cHILDRENS);
-        }
-    
-        /// <summary>
-        /// Deprecated Method for adding a new object to the CITIES EntitySet. Consider using the .Add method of the associated ObjectSet&lt;T&gt; property instead.
-        /// </summary>
-        public void AddToCITIES(CITIES cITIES)
-        {
-            base.AddObject("CITIES", cITIES);
-        }
-    
-        /// <summary>
-        /// Deprecated Method for adding a new object to the CIVILITIES EntitySet. Consider using the .Add method of the associated ObjectSet&lt;T&gt; property instead.
-        /// </summary>
-        public void AddToCIVILITIES(CIVILITIES cIVILITIES)
-        {
-            base.AddObject("CIVILITIES", cIVILITIES);
-        }
-    
-        /// <summary>
-        /// Deprecated Method for adding a new object to the FAMILIES EntitySet. Consider using the .Add method of the associated ObjectSet&lt;T&gt; property instead.
-        /// </summary>
-        public void AddToFAMILIES(FAMILIES fAMILIES)
-        {
-            base.AddObject("FAMILIES", fAMILIES);
-        }
-    
-        /// <summary>
-        /// Deprecated Method for adding a new object to the FAMILYQUOTIENTS EntitySet. Consider using the .Add method of the associated ObjectSet&lt;T&gt; property instead.
-        /// </summary>
-        public void AddToFAMILYQUOTIENTS(FAMILYQUOTIENTS fAMILYQUOTIENTS)
-        {
-            base.AddObject("FAMILYQUOTIENTS", fAMILYQUOTIENTS);
-        }
-    
-        /// <summary>
-        /// Deprecated Method for adding a new object to the MEDECINS EntitySet. Consider using the .Add method of the associated ObjectSet&lt;T&gt; property instead.
-        /// </summary>
-        public void AddToMEDECINS(MEDECINS mEDECINS)
-        {
-            base.AddObject("MEDECINS", mEDECINS);
-        }
-
-        #endregion
-
     }
 
     #endregion
@@ -243,7 +191,7 @@ namespace WpfMvvmApplication1.Models
         /// Create a new CHILDRENS object.
         /// </summary>
         /// <param name="id">Initial value of the ID property.</param>
-        public static CHILDRENS CreateCHILDRENS(global::System.Int32 id)
+        public static CHILDRENS CreateCHILDRENS(int id)
         {
             CHILDRENS cHILDRENS = new CHILDRENS();
             cHILDRENS.ID = id;
@@ -259,7 +207,7 @@ namespace WpfMvvmApplication1.Models
         /// </summary>
         [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
         [DataMemberAttribute()]
-        public global::System.String LASTNAME
+        public string LASTNAME
         {
             get
             {
@@ -274,8 +222,8 @@ namespace WpfMvvmApplication1.Models
                 OnLASTNAMEChanged();
             }
         }
-        private global::System.String _LASTNAME;
-        partial void OnLASTNAMEChanging(global::System.String value);
+        private string _LASTNAME;
+        partial void OnLASTNAMEChanging(string value);
         partial void OnLASTNAMEChanged();
     
         /// <summary>
@@ -283,7 +231,7 @@ namespace WpfMvvmApplication1.Models
         /// </summary>
         [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
         [DataMemberAttribute()]
-        public global::System.String FIRSTNAME
+        public string FIRSTNAME
         {
             get
             {
@@ -298,8 +246,8 @@ namespace WpfMvvmApplication1.Models
                 OnFIRSTNAMEChanged();
             }
         }
-        private global::System.String _FIRSTNAME;
-        partial void OnFIRSTNAMEChanging(global::System.String value);
+        private string _FIRSTNAME;
+        partial void OnFIRSTNAMEChanging(string value);
         partial void OnFIRSTNAMEChanged();
     
         /// <summary>
@@ -307,7 +255,7 @@ namespace WpfMvvmApplication1.Models
         /// </summary>
         [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
         [DataMemberAttribute()]
-        public Nullable<global::System.DateTime> BIRTHDATE
+        public Nullable<System.DateTime> BIRTHDATE
         {
             get
             {
@@ -322,8 +270,8 @@ namespace WpfMvvmApplication1.Models
                 OnBIRTHDATEChanged();
             }
         }
-        private Nullable<global::System.DateTime> _BIRTHDATE;
-        partial void OnBIRTHDATEChanging(Nullable<global::System.DateTime> value);
+        private Nullable<System.DateTime> _BIRTHDATE;
+        partial void OnBIRTHDATEChanging(Nullable<System.DateTime> value);
         partial void OnBIRTHDATEChanged();
     
         ///// <summary>
@@ -331,7 +279,7 @@ namespace WpfMvvmApplication1.Models
         ///// </summary>
         //[EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
         //[DataMemberAttribute()]
-        //public Nullable<global::System.Int32> FAMILYID
+        //public Nullable<int> FAMILYID
         //{
         //    get
         //    {
@@ -346,8 +294,8 @@ namespace WpfMvvmApplication1.Models
         //        OnFAMILYIDChanged();
         //    }
         //}
-        //private Nullable<global::System.Int32> _FAMILYID;
-        //partial void OnFAMILYIDChanging(Nullable<global::System.Int32> value);
+        //private Nullable<int> _FAMILYID;
+        //partial void OnFAMILYIDChanging(Nullable<int> value);
         //partial void OnFAMILYIDChanged();
     
         /// <summary>
@@ -355,7 +303,7 @@ namespace WpfMvvmApplication1.Models
         /// </summary>
         [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
         [DataMemberAttribute()]
-        public Nullable<global::System.Int32> GENDERID
+        public Nullable<int> GENDERID
         {
             get
             {
@@ -370,8 +318,8 @@ namespace WpfMvvmApplication1.Models
                 OnGENDERIDChanged();
             }
         }
-        private Nullable<global::System.Int32> _GENDERID;
-        partial void OnGENDERIDChanging(Nullable<global::System.Int32> value);
+        private Nullable<int> _GENDERID;
+        partial void OnGENDERIDChanging(Nullable<int> value);
         partial void OnGENDERIDChanged();
     
         /// <summary>
@@ -379,7 +327,7 @@ namespace WpfMvvmApplication1.Models
         /// </summary>
         [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
         [DataMemberAttribute()]
-        public Nullable<global::System.Boolean> EMT
+        public Nullable<bool> EMT
         {
             get
             {
@@ -394,8 +342,8 @@ namespace WpfMvvmApplication1.Models
                 OnEMTChanged();
             }
         }
-        private Nullable<global::System.Boolean> _EMT;
-        partial void OnEMTChanging(Nullable<global::System.Boolean> value);
+        private Nullable<bool> _EMT;
+        partial void OnEMTChanging(Nullable<bool> value);
         partial void OnEMTChanged();
     
         /// <summary>
@@ -403,7 +351,7 @@ namespace WpfMvvmApplication1.Models
         /// </summary>
         [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
         [DataMemberAttribute()]
-        public Nullable<global::System.Boolean> HOSPITAL
+        public Nullable<bool> HOSPITAL
         {
             get
             {
@@ -418,8 +366,8 @@ namespace WpfMvvmApplication1.Models
                 OnHOSPITALChanged();
             }
         }
-        private Nullable<global::System.Boolean> _HOSPITAL;
-        partial void OnHOSPITALChanging(Nullable<global::System.Boolean> value);
+        private Nullable<bool> _HOSPITAL;
+        partial void OnHOSPITALChanging(Nullable<bool> value);
         partial void OnHOSPITALChanged();
     
         /// <summary>
@@ -427,7 +375,7 @@ namespace WpfMvvmApplication1.Models
         /// </summary>
         [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
         [DataMemberAttribute()]
-        public Nullable<global::System.Boolean> CLINIC
+        public Nullable<bool> CLINIC
         {
             get
             {
@@ -442,8 +390,8 @@ namespace WpfMvvmApplication1.Models
                 OnCLINICChanged();
             }
         }
-        private Nullable<global::System.Boolean> _CLINIC;
-        partial void OnCLINICChanging(Nullable<global::System.Boolean> value);
+        private Nullable<bool> _CLINIC;
+        partial void OnCLINICChanging(Nullable<bool> value);
         partial void OnCLINICChanged();
     
         /// <summary>
@@ -451,7 +399,7 @@ namespace WpfMvvmApplication1.Models
         /// </summary>
         [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
         [DataMemberAttribute()]
-        public Nullable<global::System.Int32> CLINICID
+        public Nullable<int> CLINICID
         {
             get
             {
@@ -466,8 +414,8 @@ namespace WpfMvvmApplication1.Models
                 OnCLINICIDChanged();
             }
         }
-        private Nullable<global::System.Int32> _CLINICID;
-        partial void OnCLINICIDChanging(Nullable<global::System.Int32> value);
+        private Nullable<int> _CLINICID;
+        partial void OnCLINICIDChanging(Nullable<int> value);
         partial void OnCLINICIDChanged();
     
         /// <summary>
@@ -475,7 +423,7 @@ namespace WpfMvvmApplication1.Models
         /// </summary>
         [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
         [DataMemberAttribute()]
-        public Nullable<global::System.Boolean> BEPHOTOGRAPHY
+        public Nullable<bool> BEPHOTOGRAPHY
         {
             get
             {
@@ -490,8 +438,8 @@ namespace WpfMvvmApplication1.Models
                 OnBEPHOTOGRAPHYChanged();
             }
         }
-        private Nullable<global::System.Boolean> _BEPHOTOGRAPHY;
-        partial void OnBEPHOTOGRAPHYChanging(Nullable<global::System.Boolean> value);
+        private Nullable<bool> _BEPHOTOGRAPHY;
+        partial void OnBEPHOTOGRAPHYChanging(Nullable<bool> value);
         partial void OnBEPHOTOGRAPHYChanged();
     
         /// <summary>
@@ -499,7 +447,7 @@ namespace WpfMvvmApplication1.Models
         /// </summary>
         [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
         [DataMemberAttribute()]
-        public Nullable<global::System.Boolean> PUBLICATIONPHOTOGRAPHY
+        public Nullable<bool> PUBLICATIONPHOTOGRAPHY
         {
             get
             {
@@ -514,8 +462,8 @@ namespace WpfMvvmApplication1.Models
                 OnPUBLICATIONPHOTOGRAPHYChanged();
             }
         }
-        private Nullable<global::System.Boolean> _PUBLICATIONPHOTOGRAPHY;
-        partial void OnPUBLICATIONPHOTOGRAPHYChanging(Nullable<global::System.Boolean> value);
+        private Nullable<bool> _PUBLICATIONPHOTOGRAPHY;
+        partial void OnPUBLICATIONPHOTOGRAPHYChanging(Nullable<bool> value);
         partial void OnPUBLICATIONPHOTOGRAPHYChanged();
     
         /// <summary>
@@ -523,7 +471,7 @@ namespace WpfMvvmApplication1.Models
         /// </summary>
         [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
         [DataMemberAttribute()]
-        public Nullable<global::System.Boolean> OFFOUTPUTSSTRUCTURE
+        public Nullable<bool> OFFOUTPUTSSTRUCTURE
         {
             get
             {
@@ -538,8 +486,8 @@ namespace WpfMvvmApplication1.Models
                 OnOFFOUTPUTSSTRUCTUREChanged();
             }
         }
-        private Nullable<global::System.Boolean> _OFFOUTPUTSSTRUCTURE;
-        partial void OnOFFOUTPUTSSTRUCTUREChanging(Nullable<global::System.Boolean> value);
+        private Nullable<bool> _OFFOUTPUTSSTRUCTURE;
+        partial void OnOFFOUTPUTSSTRUCTUREChanging(Nullable<bool> value);
         partial void OnOFFOUTPUTSSTRUCTUREChanged();
     
         /// <summary>
@@ -547,7 +495,7 @@ namespace WpfMvvmApplication1.Models
         /// </summary>
         [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
         [DataMemberAttribute()]
-        public Nullable<global::System.Boolean> SWIM
+        public Nullable<bool> SWIM
         {
             get
             {
@@ -562,8 +510,8 @@ namespace WpfMvvmApplication1.Models
                 OnSWIMChanged();
             }
         }
-        private Nullable<global::System.Boolean> _SWIM;
-        partial void OnSWIMChanging(Nullable<global::System.Boolean> value);
+        private Nullable<bool> _SWIM;
+        partial void OnSWIMChanging(Nullable<bool> value);
         partial void OnSWIMChanged();
     
         /// <summary>
@@ -571,7 +519,7 @@ namespace WpfMvvmApplication1.Models
         /// </summary>
         [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
         [DataMemberAttribute()]
-        public Nullable<global::System.Boolean> BIKEOUTINGS
+        public Nullable<bool> BIKEOUTINGS
         {
             get
             {
@@ -586,8 +534,8 @@ namespace WpfMvvmApplication1.Models
                 OnBIKEOUTINGSChanged();
             }
         }
-        private Nullable<global::System.Boolean> _BIKEOUTINGS;
-        partial void OnBIKEOUTINGSChanging(Nullable<global::System.Boolean> value);
+        private Nullable<bool> _BIKEOUTINGS;
+        partial void OnBIKEOUTINGSChanging(Nullable<bool> value);
         partial void OnBIKEOUTINGSChanged();
     
         /// <summary>
@@ -595,7 +543,7 @@ namespace WpfMvvmApplication1.Models
         /// </summary>
         [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
         [DataMemberAttribute()]
-        public Nullable<global::System.Boolean> BOATOUTINGS
+        public Nullable<bool> BOATOUTINGS
         {
             get
             {
@@ -610,8 +558,8 @@ namespace WpfMvvmApplication1.Models
                 OnBOATOUTINGSChanged();
             }
         }
-        private Nullable<global::System.Boolean> _BOATOUTINGS;
-        partial void OnBOATOUTINGSChanging(Nullable<global::System.Boolean> value);
+        private Nullable<bool> _BOATOUTINGS;
+        partial void OnBOATOUTINGSChanging(Nullable<bool> value);
         partial void OnBOATOUTINGSChanged();
     
         /// <summary>
@@ -619,7 +567,7 @@ namespace WpfMvvmApplication1.Models
         /// </summary>
         [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
         [DataMemberAttribute()]
-        public Nullable<global::System.Int32> MEDECINEID
+        public Nullable<int> MEDECINEID
         {
             get
             {
@@ -634,8 +582,8 @@ namespace WpfMvvmApplication1.Models
                 OnMEDECINEIDChanged();
             }
         }
-        private Nullable<global::System.Int32> _MEDECINEID;
-        partial void OnMEDECINEIDChanging(Nullable<global::System.Int32> value);
+        private Nullable<int> _MEDECINEID;
+        partial void OnMEDECINEIDChanging(Nullable<int> value);
         partial void OnMEDECINEIDChanged();
     
         /// <summary>
@@ -643,7 +591,7 @@ namespace WpfMvvmApplication1.Models
         /// </summary>
         [EdmScalarPropertyAttribute(EntityKeyProperty=true, IsNullable=false)]
         [DataMemberAttribute()]
-        public global::System.Int32 ID
+        public int ID
         {
             get
             {
@@ -661,8 +609,8 @@ namespace WpfMvvmApplication1.Models
                 }
             }
         }
-        private global::System.Int32 _ID;
-        partial void OnIDChanging(global::System.Int32 value);
+        private int _ID;
+        partial void OnIDChanging(int value);
         partial void OnIDChanged();
 
         #endregion
@@ -725,7 +673,7 @@ namespace WpfMvvmApplication1.Models
         /// Create a new CITIES object.
         /// </summary>
         /// <param name="id">Initial value of the ID property.</param>
-        public static CITIES CreateCITIES(global::System.Int32 id)
+        public static CITIES CreateCITIES(int id)
         {
             CITIES cITIES = new CITIES();
             cITIES.ID = id;
@@ -741,7 +689,7 @@ namespace WpfMvvmApplication1.Models
         /// </summary>
         [EdmScalarPropertyAttribute(EntityKeyProperty=true, IsNullable=false)]
         [DataMemberAttribute()]
-        public global::System.Int32 ID
+        public int ID
         {
             get
             {
@@ -759,8 +707,8 @@ namespace WpfMvvmApplication1.Models
                 }
             }
         }
-        private global::System.Int32 _ID;
-        partial void OnIDChanging(global::System.Int32 value);
+        private int _ID;
+        partial void OnIDChanging(int value);
         partial void OnIDChanged();
     
         /// <summary>
@@ -768,7 +716,7 @@ namespace WpfMvvmApplication1.Models
         /// </summary>
         [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
         [DataMemberAttribute()]
-        public global::System.String CITY
+        public string CITY
         {
             get
             {
@@ -783,8 +731,8 @@ namespace WpfMvvmApplication1.Models
                 OnCITYChanged();
             }
         }
-        private global::System.String _CITY;
-        partial void OnCITYChanging(global::System.String value);
+        private string _CITY;
+        partial void OnCITYChanging(string value);
         partial void OnCITYChanged();
     
         /// <summary>
@@ -792,7 +740,7 @@ namespace WpfMvvmApplication1.Models
         /// </summary>
         [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
         [DataMemberAttribute()]
-        public global::System.String CP
+        public string CP
         {
             get
             {
@@ -807,8 +755,8 @@ namespace WpfMvvmApplication1.Models
                 OnCPChanged();
             }
         }
-        private global::System.String _CP;
-        partial void OnCPChanging(global::System.String value);
+        private string _CP;
+        partial void OnCPChanging(string value);
         partial void OnCPChanged();
     
         /// <summary>
@@ -816,7 +764,7 @@ namespace WpfMvvmApplication1.Models
         /// </summary>
         [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
         [DataMemberAttribute()]
-        public Nullable<global::System.Boolean> PARTNERSHIP
+        public Nullable<bool> PARTNERSHIP
         {
             get
             {
@@ -831,8 +779,8 @@ namespace WpfMvvmApplication1.Models
                 OnPARTNERSHIPChanged();
             }
         }
-        private Nullable<global::System.Boolean> _PARTNERSHIP;
-        partial void OnPARTNERSHIPChanging(Nullable<global::System.Boolean> value);
+        private Nullable<bool> _PARTNERSHIP;
+        partial void OnPARTNERSHIPChanging(Nullable<bool> value);
         partial void OnPARTNERSHIPChanged();
 
         #endregion
@@ -879,7 +827,7 @@ namespace WpfMvvmApplication1.Models
         /// Create a new CIVILITIES object.
         /// </summary>
         /// <param name="id">Initial value of the ID property.</param>
-        public static CIVILITIES CreateCIVILITIES(global::System.Int64 id)
+        public static CIVILITIES CreateCIVILITIES(long id)
         {
             CIVILITIES cIVILITIES = new CIVILITIES();
             cIVILITIES.ID = id;
@@ -895,7 +843,7 @@ namespace WpfMvvmApplication1.Models
         /// </summary>
         [EdmScalarPropertyAttribute(EntityKeyProperty=true, IsNullable=false)]
         [DataMemberAttribute()]
-        public global::System.Int64 ID
+        public long ID
         {
             get
             {
@@ -913,8 +861,8 @@ namespace WpfMvvmApplication1.Models
                 }
             }
         }
-        private global::System.Int64 _ID;
-        partial void OnIDChanging(global::System.Int64 value);
+        private long _ID;
+        partial void OnIDChanging(long value);
         partial void OnIDChanged();
     
         /// <summary>
@@ -922,7 +870,7 @@ namespace WpfMvvmApplication1.Models
         /// </summary>
         [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
         [DataMemberAttribute()]
-        public global::System.String CIVILITY
+        public string CIVILITY
         {
             get
             {
@@ -937,8 +885,8 @@ namespace WpfMvvmApplication1.Models
                 OnCIVILITYChanged();
             }
         }
-        private global::System.String _CIVILITY;
-        partial void OnCIVILITYChanging(global::System.String value);
+        private string _CIVILITY;
+        partial void OnCIVILITYChanging(string value);
         partial void OnCIVILITYChanged();
 
         #endregion
@@ -959,7 +907,7 @@ namespace WpfMvvmApplication1.Models
         /// Create a new FAMILIES object.
         /// </summary>
         /// <param name="id">Initial value of the ID property.</param>
-        public static FAMILIES CreateFAMILIES(global::System.Int32 id)
+        public static FAMILIES CreateFAMILIES(int id)
         {
             FAMILIES fAMILIES = new FAMILIES();
             fAMILIES.ID = id;
@@ -975,7 +923,7 @@ namespace WpfMvvmApplication1.Models
         /// </summary>
         [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
         [DataMemberAttribute()]
-        public global::System.String LASTNAME
+        public string LASTNAME
         {
             get
             {
@@ -990,8 +938,8 @@ namespace WpfMvvmApplication1.Models
                 OnLASTNAMEChanged();
             }
         }
-        private global::System.String _LASTNAME;
-        partial void OnLASTNAMEChanging(global::System.String value);
+        private string _LASTNAME;
+        partial void OnLASTNAMEChanging(string value);
         partial void OnLASTNAMEChanged();
     
         /// <summary>
@@ -999,7 +947,7 @@ namespace WpfMvvmApplication1.Models
         /// </summary>
         [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
         [DataMemberAttribute()]
-        public global::System.String FIRSTNAME
+        public string FIRSTNAME
         {
             get
             {
@@ -1014,8 +962,8 @@ namespace WpfMvvmApplication1.Models
                 OnFIRSTNAMEChanged();
             }
         }
-        private global::System.String _FIRSTNAME;
-        partial void OnFIRSTNAMEChanging(global::System.String value);
+        private string _FIRSTNAME;
+        partial void OnFIRSTNAMEChanging(string value);
         partial void OnFIRSTNAMEChanged();
     
         /// <summary>
@@ -1023,7 +971,7 @@ namespace WpfMvvmApplication1.Models
         /// </summary>
         [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
         [DataMemberAttribute()]
-        public global::System.String ADRESS
+        public string ADRESS
         {
             get
             {
@@ -1038,8 +986,8 @@ namespace WpfMvvmApplication1.Models
                 OnADRESSChanged();
             }
         }
-        private global::System.String _ADRESS;
-        partial void OnADRESSChanging(global::System.String value);
+        private string _ADRESS;
+        partial void OnADRESSChanging(string value);
         partial void OnADRESSChanged();
     
         ///// <summary>
@@ -1047,7 +995,7 @@ namespace WpfMvvmApplication1.Models
         ///// </summary>
         //[EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
         //[DataMemberAttribute()]
-        //public Nullable<global::System.Int32> CITYID
+        //public Nullable<int> CITYID
         //{
         //    get
         //    {
@@ -1062,8 +1010,8 @@ namespace WpfMvvmApplication1.Models
         //        OnCITYIDChanged();
         //    }
         //}
-        //private Nullable<global::System.Int32> _CITYID;
-        //partial void OnCITYIDChanging(Nullable<global::System.Int32> value);
+        //private Nullable<int> _CITYID;
+        //partial void OnCITYIDChanging(Nullable<int> value);
         //partial void OnCITYIDChanged();
     
         /// <summary>
@@ -1071,7 +1019,7 @@ namespace WpfMvvmApplication1.Models
         /// </summary>
         [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
         [DataMemberAttribute()]
-        public global::System.String TEL1
+        public string TEL1
         {
             get
             {
@@ -1086,8 +1034,8 @@ namespace WpfMvvmApplication1.Models
                 OnTEL1Changed();
             }
         }
-        private global::System.String _TEL1;
-        partial void OnTEL1Changing(global::System.String value);
+        private string _TEL1;
+        partial void OnTEL1Changing(string value);
         partial void OnTEL1Changed();
     
         /// <summary>
@@ -1095,7 +1043,7 @@ namespace WpfMvvmApplication1.Models
         /// </summary>
         [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
         [DataMemberAttribute()]
-        public global::System.String TEL2
+        public string TEL2
         {
             get
             {
@@ -1110,8 +1058,8 @@ namespace WpfMvvmApplication1.Models
                 OnTEL2Changed();
             }
         }
-        private global::System.String _TEL2;
-        partial void OnTEL2Changing(global::System.String value);
+        private string _TEL2;
+        partial void OnTEL2Changing(string value);
         partial void OnTEL2Changed();
     
         /// <summary>
@@ -1119,7 +1067,7 @@ namespace WpfMvvmApplication1.Models
         /// </summary>
         [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
         [DataMemberAttribute()]
-        public global::System.String TEL3
+        public string TEL3
         {
             get
             {
@@ -1134,8 +1082,8 @@ namespace WpfMvvmApplication1.Models
                 OnTEL3Changed();
             }
         }
-        private global::System.String _TEL3;
-        partial void OnTEL3Changing(global::System.String value);
+        private string _TEL3;
+        partial void OnTEL3Changing(string value);
         partial void OnTEL3Changed();
     
         /// <summary>
@@ -1143,7 +1091,7 @@ namespace WpfMvvmApplication1.Models
         /// </summary>
         [EdmScalarPropertyAttribute(EntityKeyProperty=true, IsNullable=false)]
         [DataMemberAttribute()]
-        public global::System.Int32 ID
+        public int ID
         {
             get
             {
@@ -1161,8 +1109,8 @@ namespace WpfMvvmApplication1.Models
                 }
             }
         }
-        private global::System.Int32 _ID;
-        partial void OnIDChanging(global::System.Int32 value);
+        private int _ID;
+        partial void OnIDChanging(int value);
         partial void OnIDChanged();
     
         /// <summary>
@@ -1170,7 +1118,7 @@ namespace WpfMvvmApplication1.Models
         /// </summary>
         [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
         [DataMemberAttribute()]
-        public Nullable<global::System.Int32> CIVILITYID
+        public Nullable<int> CIVILITYID
         {
             get
             {
@@ -1185,8 +1133,8 @@ namespace WpfMvvmApplication1.Models
                 OnCIVILITYIDChanged();
             }
         }
-        private Nullable<global::System.Int32> _CIVILITYID;
-        partial void OnCIVILITYIDChanging(Nullable<global::System.Int32> value);
+        private Nullable<int> _CIVILITYID;
+        partial void OnCIVILITYIDChanging(Nullable<int> value);
         partial void OnCIVILITYIDChanged();
 
         #endregion
@@ -1293,7 +1241,7 @@ namespace WpfMvvmApplication1.Models
         /// Create a new FAMILYQUOTIENTS object.
         /// </summary>
         /// <param name="id">Initial value of the ID property.</param>
-        public static FAMILYQUOTIENTS CreateFAMILYQUOTIENTS(global::System.Int64 id)
+        public static FAMILYQUOTIENTS CreateFAMILYQUOTIENTS(long id)
         {
             FAMILYQUOTIENTS fAMILYQUOTIENTS = new FAMILYQUOTIENTS();
             fAMILYQUOTIENTS.ID = id;
@@ -1309,7 +1257,7 @@ namespace WpfMvvmApplication1.Models
         /// </summary>
         [EdmScalarPropertyAttribute(EntityKeyProperty=true, IsNullable=false)]
         [DataMemberAttribute()]
-        public global::System.Int64 ID
+        public long ID
         {
             get
             {
@@ -1327,8 +1275,8 @@ namespace WpfMvvmApplication1.Models
                 }
             }
         }
-        private global::System.Int64 _ID;
-        partial void OnIDChanging(global::System.Int64 value);
+        private long _ID;
+        partial void OnIDChanging(long value);
         partial void OnIDChanged();
     
         /// <summary>
@@ -1336,7 +1284,7 @@ namespace WpfMvvmApplication1.Models
         /// </summary>
         [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
         [DataMemberAttribute()]
-        public Nullable<global::System.Int32> YEAR
+        public Nullable<int> YEAR
         {
             get
             {
@@ -1351,8 +1299,8 @@ namespace WpfMvvmApplication1.Models
                 OnYEARChanged();
             }
         }
-        private Nullable<global::System.Int32> _YEAR;
-        partial void OnYEARChanging(Nullable<global::System.Int32> value);
+        private Nullable<int> _YEAR;
+        partial void OnYEARChanging(Nullable<int> value);
         partial void OnYEARChanged();
     
         /// <summary>
@@ -1360,7 +1308,7 @@ namespace WpfMvvmApplication1.Models
         /// </summary>
         [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
         [DataMemberAttribute()]
-        public Nullable<global::System.Int32> FAMILYID
+        public Nullable<int> FAMILYID
         {
             get
             {
@@ -1375,8 +1323,8 @@ namespace WpfMvvmApplication1.Models
                 OnFAMILYIDChanged();
             }
         }
-        private Nullable<global::System.Int32> _FAMILYID;
-        partial void OnFAMILYIDChanging(Nullable<global::System.Int32> value);
+        private Nullable<int> _FAMILYID;
+        partial void OnFAMILYIDChanging(Nullable<int> value);
         partial void OnFAMILYIDChanged();
     
         /// <summary>
@@ -1384,7 +1332,7 @@ namespace WpfMvvmApplication1.Models
         /// </summary>
         [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
         [DataMemberAttribute()]
-        public Nullable<global::System.Single> FAMILYQUOTIENT
+        public Nullable<float> FAMILYQUOTIENT
         {
             get
             {
@@ -1399,8 +1347,8 @@ namespace WpfMvvmApplication1.Models
                 OnFAMILYQUOTIENTChanged();
             }
         }
-        private Nullable<global::System.Single> _FAMILYQUOTIENT;
-        partial void OnFAMILYQUOTIENTChanging(Nullable<global::System.Single> value);
+        private Nullable<float> _FAMILYQUOTIENT;
+        partial void OnFAMILYQUOTIENTChanging(Nullable<float> value);
         partial void OnFAMILYQUOTIENTChanged();
 
         #endregion
@@ -1463,7 +1411,7 @@ namespace WpfMvvmApplication1.Models
         /// Create a new MEDECINS object.
         /// </summary>
         /// <param name="id">Initial value of the ID property.</param>
-        public static MEDECINS CreateMEDECINS(global::System.Int32 id)
+        public static MEDECINS CreateMEDECINS(int id)
         {
             MEDECINS mEDECINS = new MEDECINS();
             mEDECINS.ID = id;
@@ -1479,7 +1427,7 @@ namespace WpfMvvmApplication1.Models
         /// </summary>
         [EdmScalarPropertyAttribute(EntityKeyProperty=true, IsNullable=false)]
         [DataMemberAttribute()]
-        public global::System.Int32 ID
+        public int ID
         {
             get
             {
@@ -1497,8 +1445,8 @@ namespace WpfMvvmApplication1.Models
                 }
             }
         }
-        private global::System.Int32 _ID;
-        partial void OnIDChanging(global::System.Int32 value);
+        private int _ID;
+        partial void OnIDChanging(int value);
         partial void OnIDChanged();
     
         /// <summary>
@@ -1506,7 +1454,7 @@ namespace WpfMvvmApplication1.Models
         /// </summary>
         [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
         [DataMemberAttribute()]
-        public global::System.String FULLNAME
+        public string FULLNAME
         {
             get
             {
@@ -1521,8 +1469,8 @@ namespace WpfMvvmApplication1.Models
                 OnFULLNAMEChanged();
             }
         }
-        private global::System.String _FULLNAME;
-        partial void OnFULLNAMEChanging(global::System.String value);
+        private string _FULLNAME;
+        partial void OnFULLNAMEChanging(string value);
         partial void OnFULLNAMEChanged();
     
         /// <summary>
@@ -1530,7 +1478,7 @@ namespace WpfMvvmApplication1.Models
         /// </summary>
         [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
         [DataMemberAttribute()]
-        public global::System.String TEL
+        public string TEL
         {
             get
             {
@@ -1545,8 +1493,8 @@ namespace WpfMvvmApplication1.Models
                 OnTELChanged();
             }
         }
-        private global::System.String _TEL;
-        partial void OnTELChanging(global::System.String value);
+        private string _TEL;
+        partial void OnTELChanging(string value);
         partial void OnTELChanged();
 
         #endregion
