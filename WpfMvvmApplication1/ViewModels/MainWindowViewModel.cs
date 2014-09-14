@@ -90,16 +90,36 @@ namespace WpfMvvmApplication1.ViewModels
             }
         }
 
-        public ICollectionView FamiliesViewSource { get; set; }
-        public ICollectionView ChildrenViewSource { get; set; }
+        private ICollectionView _familiesViewSource;
+        public ICollectionView FamiliesViewSource
+        {
+            get { return _familiesViewSource; }
+            set
+            {
+                _familiesViewSource = value;
+                RaisePropertyChanged(() => FamiliesViewSource);
+            } 
+        }
+
+        private ICollectionView _childrenViewSource;
+        public ICollectionView ChildrenViewSource
+        {
+            get { return _childrenViewSource; }
+            set
+            {
+                _childrenViewSource = value;
+                RaisePropertyChanged(() => ChildrenViewSource);
+            }
+        }
 
         #endregion
 
         #region EF Query
-        private void GetFamilyViewSource()
+        private void GetFamiliesViewSource()
         {
-            this.FamiliesViewSource = CollectionViewSource.GetDefaultView(FamiliesCollection);
-            this.FamiliesViewSource.SortDescriptions.Add(new SortDescription("ID", ListSortDirection.Ascending));
+            //this.FamiliesViewSource = CollectionViewSource.GetDefaultView(FamiliesCollection);
+            //this.FamiliesViewSource.SortDescriptions.Add(new SortDescription("ID", ListSortDirection.Ascending));
+            CollectionViewSource.GetDefaultView(FamiliesCollection).SortDescriptions.Add(new SortDescription("ID", ListSortDirection.Ascending));
         }
         private void GetChildrenViewSource()
         {
@@ -125,10 +145,10 @@ namespace WpfMvvmApplication1.ViewModels
             GetCivilitiesCollection();
             //Fill Views
             GetChildrenViewSource();
-            GetFamilyViewSource();
+            GetFamiliesViewSource();
             //tracks item additions and deletions, and saves to the database when that occurs.
-            this.FamiliesCollection.CollectionChanged += ItemCollection_CollectionChanged;
-            this.ChildrensCollection.CollectionChanged += ItemCollection_CollectionChanged;
+            //this.FamiliesCollection.CollectionChanged += ItemCollection_CollectionChanged;
+            //this.ChildrensCollection.CollectionChanged += ItemCollection_CollectionChanged;
             //_selectRowCommand = new RelayCommand(SelectionHasChanged);    //not used yet.
         }
 

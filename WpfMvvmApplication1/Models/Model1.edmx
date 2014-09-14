@@ -1,10 +1,10 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+<edmx:Edmx Version="2.0" xmlns:edmx="http://schemas.microsoft.com/ado/2008/10/edmx">
   <!-- EF Runtime content -->
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-    <Schema Namespace="agsModel.Store" Provider="Npgsql" ProviderManifestToken="9.3.5" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+      <Schema Namespace="agsModel.Store" Provider="Npgsql" ProviderManifestToken="9.3.5" Alias="Self" xmlns="http://schemas.microsoft.com/ado/2009/02/edm/ssdl">
         <EntityType Name="CHILDRENS">
           <Key>
             <PropertyRef Name="ID" />
@@ -34,6 +34,7 @@
           <Property Name="ID" Type="int4" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="CITY" Type="text" />
           <Property Name="CP" Type="text" />
+          <Property Name="PARTNERSHIP" Type="bool" />
         </EntityType>
         <EntityType Name="CIVILITIES">
           <Key>
@@ -54,6 +55,7 @@
           <Property Name="TEL2" Type="text" />
           <Property Name="TEL3" Type="text" />
           <Property Name="ID" Type="int4" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="CIVILITYID" Type="int4" />
         </EntityType>
         <EntityType Name="FAMILYQUOTIENTS">
           <Key>
@@ -109,12 +111,12 @@
           </ReferentialConstraint>
         </Association>
         <EntityContainer Name="agsModelStoreContainer">
-          <EntitySet Name="CHILDRENS" EntityType="Self.CHILDRENS" Schema="public" store:Type="Tables" />
-          <EntitySet Name="CITIES" EntityType="Self.CITIES" Schema="public" store:Type="Tables" />
-          <EntitySet Name="CIVILITIES" EntityType="Self.CIVILITIES" Schema="public" store:Type="Tables" />
-          <EntitySet Name="FAMILIES" EntityType="Self.FAMILIES" Schema="public" store:Type="Tables" />
-          <EntitySet Name="FAMILYQUOTIENTS" EntityType="Self.FAMILYQUOTIENTS" Schema="public" store:Type="Tables" />
-          <EntitySet Name="MEDECINS" EntityType="Self.MEDECINS" Schema="public" store:Type="Tables" />
+          <EntitySet Name="CHILDRENS" EntityType="Self.CHILDRENS" Schema="public" store:Type="Tables" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" />
+          <EntitySet Name="CITIES" EntityType="Self.CITIES" Schema="public" store:Type="Tables" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" />
+          <EntitySet Name="CIVILITIES" EntityType="Self.CIVILITIES" Schema="public" store:Type="Tables" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" />
+          <EntitySet Name="FAMILIES" EntityType="Self.FAMILIES" Schema="public" store:Type="Tables" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" />
+          <EntitySet Name="FAMILYQUOTIENTS" EntityType="Self.FAMILYQUOTIENTS" Schema="public" store:Type="Tables" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" />
+          <EntitySet Name="MEDECINS" EntityType="Self.MEDECINS" Schema="public" store:Type="Tables" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" />
           <AssociationSet Name="cityfk" Association="Self.cityfk">
             <End Role="CITIES" EntitySet="CITIES" />
             <End Role="FAMILIES" EntitySet="FAMILIES" />
@@ -128,36 +130,17 @@
             <End Role="FAMILYQUOTIENTS" EntitySet="FAMILYQUOTIENTS" />
           </AssociationSet>
         </EntityContainer>
-      </Schema></edmx:StorageModels>
+      </Schema>
+    </edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
-      <Schema Namespace="agsModel" Alias="Self" xmlns="http://schemas.microsoft.com/ado/2009/11/edm" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation">
-        <EntityContainer Name="agsEntities" annotation:LazyLoadingEnabled="true" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation">
-          <EntitySet Name="CHILDRENS" EntityType="agsModel.CHILDRENS" />
-          <EntitySet Name="CITIES" EntityType="agsModel.CITIES" />
-          <EntitySet Name="CIVILITIES" EntityType="agsModel.CIVILITIES" />
-          <EntitySet Name="FAMILIES" EntityType="agsModel.FAMILIES" />
-          <EntitySet Name="FAMILYQUOTIENTS" EntityType="agsModel.FAMILYQUOTIENTS" />
-          <EntitySet Name="MEDECINS" EntityType="agsModel.MEDECINS" />
-          <AssociationSet Name="childrenfk" Association="agsModel.famfk">
-            <End Role="FAMILIES" EntitySet="FAMILIES" />
-            <End Role="CHILDRENS" EntitySet="CHILDRENS" />
-          </AssociationSet>
-          <AssociationSet Name="cityfk" Association="agsModel.cityfk">
-            <End Role="CITIES" EntitySet="CITIES" />
-            <End Role="FAMILIES" EntitySet="FAMILIES" />
-          </AssociationSet>
-          <AssociationSet Name="familyfk" Association="agsModel.familyfk">
-            <End Role="FAMILIES" EntitySet="FAMILIES" />
-            <End Role="FAMILYQUOTIENTS" EntitySet="FAMILYQUOTIENTS" />
-          </AssociationSet>
-        </EntityContainer>
+      <Schema Namespace="agsModel" Alias="Self" xmlns="http://schemas.microsoft.com/ado/2008/09/edm" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation">
         <EntityType Name="CHILDRENS">
           <Key>
             <PropertyRef Name="ID" />
           </Key>
-          <Property Name="LASTNAME" Type="String" MaxLength="Max" Unicode="true" FixedLength="false" />
-          <Property Name="FIRSTNAME" Type="String" MaxLength="Max" Unicode="true" FixedLength="false" />
+          <Property Name="LASTNAME" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="FIRSTNAME" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
           <Property Name="BIRTHDATE" Type="DateTime" Precision="0" />
           <Property Name="FAMILYID" Type="Int32" />
           <Property Name="GENDERID" Type="Int32" />
@@ -172,62 +155,64 @@
           <Property Name="BIKEOUTINGS" Type="Boolean" />
           <Property Name="BOATOUTINGS" Type="Boolean" />
           <Property Name="MEDECINEID" Type="Int32" />
-          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" />
-          <NavigationProperty Name="FAMILIES" Relationship="agsModel.famfk" FromRole="CHILDRENS" ToRole="FAMILIES" />
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <NavigationProperty Name="FAMILIES" Relationship="Self.famfk" FromRole="CHILDRENS" ToRole="FAMILIES" />
         </EntityType>
         <EntityType Name="CITIES">
           <Key>
             <PropertyRef Name="ID" />
           </Key>
-          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" />
-          <Property Name="CITY" Type="String" MaxLength="Max" Unicode="true" FixedLength="false" />
-          <Property Name="CP" Type="String" MaxLength="Max" Unicode="true" FixedLength="false" />
-          <NavigationProperty Name="FAMILIES" Relationship="agsModel.cityfk" FromRole="CITIES" ToRole="FAMILIES" />
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="CITY" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="CP" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="PARTNERSHIP" Type="Boolean" />
+          <NavigationProperty Name="FAMILIES" Relationship="Self.cityfk" FromRole="CITIES" ToRole="FAMILIES" />
         </EntityType>
         <EntityType Name="CIVILITIES">
           <Key>
             <PropertyRef Name="ID" />
           </Key>
-          <Property Name="ID" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" />
-          <Property Name="CIVILITY" Type="String" MaxLength="Max" Unicode="true" FixedLength="false" />
+          <Property Name="ID" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="CIVILITY" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
         </EntityType>
         <EntityType Name="FAMILIES">
           <Key>
             <PropertyRef Name="ID" />
           </Key>
-          <Property Name="LASTNAME" Type="String" MaxLength="Max" Unicode="true" FixedLength="false" />
-          <Property Name="FIRSTNAME" Type="String" MaxLength="Max" Unicode="true" FixedLength="false" />
-          <Property Name="ADRESS" Type="String" MaxLength="Max" Unicode="true" FixedLength="false" />
+          <Property Name="LASTNAME" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="FIRSTNAME" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="ADRESS" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
           <Property Name="CITYID" Type="Int32" />
-          <Property Name="TEL1" Type="String" MaxLength="Max" Unicode="true" FixedLength="false" />
-          <Property Name="TEL2" Type="String" MaxLength="Max" Unicode="true" FixedLength="false" />
-          <Property Name="TEL3" Type="String" MaxLength="Max" Unicode="true" FixedLength="false" />
-          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" />
-          <NavigationProperty Name="CHILDRENS" Relationship="agsModel.famfk" FromRole="FAMILIES" ToRole="CHILDRENS" />
-          <NavigationProperty Name="CITIES" Relationship="agsModel.cityfk" FromRole="FAMILIES" ToRole="CITIES" />
-          <NavigationProperty Name="FAMILYQUOTIENTS" Relationship="agsModel.familyfk" FromRole="FAMILIES" ToRole="FAMILYQUOTIENTS" />
+          <Property Name="TEL1" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="TEL2" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="TEL3" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="CIVILITYID" Type="Int32" />
+          <NavigationProperty Name="CHILDRENS" Relationship="Self.famfk" FromRole="FAMILIES" ToRole="CHILDRENS" />
+          <NavigationProperty Name="CITIES" Relationship="Self.cityfk" FromRole="FAMILIES" ToRole="CITIES" />
+          <NavigationProperty Name="FAMILYQUOTIENTS" Relationship="Self.familyfk" FromRole="FAMILIES" ToRole="FAMILYQUOTIENTS" />
         </EntityType>
         <EntityType Name="FAMILYQUOTIENTS">
           <Key>
             <PropertyRef Name="ID" />
           </Key>
-          <Property Name="ID" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" />
+          <Property Name="ID" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="YEAR" Type="Int32" />
           <Property Name="FAMILYID" Type="Int32" />
           <Property Name="FAMILYQUOTIENT" Type="Single" />
-          <NavigationProperty Name="FAMILIES" Relationship="agsModel.familyfk" FromRole="FAMILYQUOTIENTS" ToRole="FAMILIES" />
+          <NavigationProperty Name="FAMILIES" Relationship="Self.familyfk" FromRole="FAMILYQUOTIENTS" ToRole="FAMILIES" />
         </EntityType>
         <EntityType Name="MEDECINS">
           <Key>
             <PropertyRef Name="ID" />
           </Key>
-          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" />
-          <Property Name="FULLNAME" Type="String" MaxLength="Max" Unicode="true" FixedLength="false" />
-          <Property Name="TEL" Type="String" MaxLength="Max" Unicode="true" FixedLength="false" />
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="FULLNAME" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="TEL" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
         </EntityType>
         <Association Name="famfk">
-          <End Role="FAMILIES" Type="agsModel.FAMILIES" Multiplicity="0..1" />
-          <End Role="CHILDRENS" Type="agsModel.CHILDRENS" Multiplicity="*" />
+          <End Role="FAMILIES" Type="Self.FAMILIES" Multiplicity="0..1" />
+          <End Role="CHILDRENS" Type="Self.CHILDRENS" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="FAMILIES">
               <PropertyRef Name="ID" />
@@ -238,8 +223,8 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="cityfk">
-          <End Role="CITIES" Type="agsModel.CITIES" Multiplicity="0..1" />
-          <End Role="FAMILIES" Type="agsModel.FAMILIES" Multiplicity="*" />
+          <End Role="CITIES" Type="Self.CITIES" Multiplicity="0..1" />
+          <End Role="FAMILIES" Type="Self.FAMILIES" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="CITIES">
               <PropertyRef Name="ID" />
@@ -250,8 +235,8 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="familyfk">
-          <End Role="FAMILIES" Type="agsModel.FAMILIES" Multiplicity="0..1" />
-          <End Role="FAMILYQUOTIENTS" Type="agsModel.FAMILYQUOTIENTS" Multiplicity="*" />
+          <End Role="FAMILIES" Type="Self.FAMILIES" Multiplicity="0..1" />
+          <End Role="FAMILYQUOTIENTS" Type="Self.FAMILYQUOTIENTS" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="FAMILIES">
               <PropertyRef Name="ID" />
@@ -261,11 +246,31 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <EntityContainer Name="agsEntities" annotation:LazyLoadingEnabled="false">
+          <EntitySet Name="CHILDRENS" EntityType="Self.CHILDRENS" />
+          <EntitySet Name="CITIES" EntityType="Self.CITIES" />
+          <EntitySet Name="CIVILITIES" EntityType="Self.CIVILITIES" />
+          <EntitySet Name="FAMILIES" EntityType="Self.FAMILIES" />
+          <EntitySet Name="FAMILYQUOTIENTS" EntityType="Self.FAMILYQUOTIENTS" />
+          <EntitySet Name="MEDECINS" EntityType="Self.MEDECINS" />
+          <AssociationSet Name="famfk" Association="Self.famfk">
+            <End Role="FAMILIES" EntitySet="FAMILIES" />
+            <End Role="CHILDRENS" EntitySet="CHILDRENS" />
+          </AssociationSet>
+          <AssociationSet Name="cityfk" Association="Self.cityfk">
+            <End Role="CITIES" EntitySet="CITIES" />
+            <End Role="FAMILIES" EntitySet="FAMILIES" />
+          </AssociationSet>
+          <AssociationSet Name="familyfk" Association="Self.familyfk">
+            <End Role="FAMILIES" EntitySet="FAMILIES" />
+            <End Role="FAMILYQUOTIENTS" EntitySet="FAMILYQUOTIENTS" />
+          </AssociationSet>
+        </EntityContainer>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
     <edmx:Mappings>
-      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2008/09/mapping/cs">
         <EntityContainerMapping StorageEntityContainer="agsModelStoreContainer" CdmEntityContainer="agsEntities">
           <EntitySetMapping Name="CHILDRENS">
             <EntityTypeMapping TypeName="agsModel.CHILDRENS">
@@ -296,6 +301,7 @@
                 <ScalarProperty Name="ID" ColumnName="ID" />
                 <ScalarProperty Name="CITY" ColumnName="CITY" />
                 <ScalarProperty Name="CP" ColumnName="CP" />
+                <ScalarProperty Name="PARTNERSHIP" ColumnName="PARTNERSHIP" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
@@ -318,6 +324,7 @@
                 <ScalarProperty Name="TEL2" ColumnName="TEL2" />
                 <ScalarProperty Name="TEL3" ColumnName="TEL3" />
                 <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="CIVILITYID" ColumnName="CIVILITYID" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
@@ -345,46 +352,23 @@
     </edmx:Mappings>
   </edmx:Runtime>
   <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
-  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
-    <Connection>
-      <DesignerInfoPropertySet>
-        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
-      </DesignerInfoPropertySet>
-    </Connection>
-    <Options>
-      <DesignerInfoPropertySet>
-        <DesignerProperty Name="ValidateOnBuild" Value="true" />
-        <DesignerProperty Name="EnablePluralization" Value="False" />
-        <DesignerProperty Name="IncludeForeignKeysInModel" Value="True" />
-        <DesignerProperty Name="DefaultDatabaseSchema" Value="public" />
-        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
-        <DesignerProperty Name="SynchronizePropertyFacets" Value="True" />
-        <DesignerProperty Name="UseLegacyProvider" Value="True" />
-      </DesignerInfoPropertySet>
-    </Options>
+  <edmx:Designer>
+    <edmx:Connection>
+      <edmx:DesignerInfoPropertySet>
+        <edmx:DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </edmx:DesignerInfoPropertySet>
+    </edmx:Connection>
+    <edmx:Options>
+      <edmx:DesignerInfoPropertySet>
+        <edmx:DesignerProperty Name="ValidateOnBuild" Value="True" />
+        <edmx:DesignerProperty Name="EnablePluralization" Value="false" />
+        <edmx:DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <edmx:DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <edmx:DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+        <edmx:DesignerProperty Name="DefaultDatabaseSchema" Value="public" />
+      </edmx:DesignerInfoPropertySet>
+    </edmx:Options>
     <!-- Diagram content (shape and connector positions) -->
-    <Diagrams>
-      <Diagram Name="Model1">
-        <EntityTypeShape EntityType="agsModel.CHILDRENS" Width="1.5" PointX="5.25" PointY="1.125" Height="4.480205078125" IsExpanded="true" />
-        <EntityTypeShape EntityType="agsModel.CITIES" Width="1.5" PointX="0.75" PointY="3.875" Height="1.7879850260416674" IsExpanded="true" />
-        <EntityTypeShape EntityType="agsModel.CIVILITIES" Width="1.5" PointX="0.75" PointY="0.75" Height="1.4033821614583326" IsExpanded="true" />
-        <EntityTypeShape EntityType="agsModel.FAMILIES" Width="1.5" PointX="3" PointY="3.25" Height="3.1340950520833335" IsExpanded="true" />
-        <EntityTypeShape EntityType="agsModel.FAMILYQUOTIENTS" Width="1.5" PointX="5.25" PointY="6.375" Height="1.9802864583333335" IsExpanded="true" />
-        <EntityTypeShape EntityType="agsModel.MEDECINS" Width="1.5" PointX="7.75" PointY="0.75" Height="1.5956835937499996" IsExpanded="true" />
-        <AssociationConnector Association="agsModel.famfk" ManuallyRouted="false">
-          <ConnectorPoint PointX="4.5" PointY="4.4276025390625" />
-          <ConnectorPoint PointX="5.25" PointY="4.4276025390625" />
-        </AssociationConnector>
-        <AssociationConnector Association="agsModel.cityfk" ManuallyRouted="false">
-          <ConnectorPoint PointX="2.25" PointY="4.7689925130208337" />
-          <ConnectorPoint PointX="3" PointY="4.7689925130208337" />
-        </AssociationConnector>
-        <AssociationConnector Association="agsModel.familyfk" ManuallyRouted="false">
-          <ConnectorPoint PointX="3.75" PointY="6.3840950520833335" />
-          <ConnectorPoint PointX="3.75" PointY="7.369691255208334" />
-          <ConnectorPoint PointX="5.25" PointY="7.369691255208334" />
-        </AssociationConnector>
-      </Diagram>
-    </Diagrams>
-  </Designer>
+    <edmx:Diagrams />
+  </edmx:Designer>
 </edmx:Edmx>

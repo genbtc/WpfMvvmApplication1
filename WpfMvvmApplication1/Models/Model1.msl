@@ -1,0 +1,80 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="agsModelStoreContainer" CdmEntityContainer="agsEntities">
+    <EntitySetMapping Name="CHILDRENS">
+      <EntityTypeMapping TypeName="agsModel.CHILDRENS">
+        <MappingFragment StoreEntitySet="CHILDRENS">
+          <ScalarProperty Name="LASTNAME" ColumnName="LASTNAME" />
+          <ScalarProperty Name="FIRSTNAME" ColumnName="FIRSTNAME" />
+          <ScalarProperty Name="BIRTHDATE" ColumnName="BIRTHDATE" />
+          <ScalarProperty Name="FAMILYID" ColumnName="FAMILYID" />
+          <ScalarProperty Name="GENDERID" ColumnName="GENDERID" />
+          <ScalarProperty Name="EMT" ColumnName="EMT" />
+          <ScalarProperty Name="HOSPITAL" ColumnName="HOSPITAL" />
+          <ScalarProperty Name="CLINIC" ColumnName="CLINIC" />
+          <ScalarProperty Name="CLINICID" ColumnName="CLINICID" />
+          <ScalarProperty Name="BEPHOTOGRAPHY" ColumnName="BEPHOTOGRAPHY" />
+          <ScalarProperty Name="PUBLICATIONPHOTOGRAPHY" ColumnName="PUBLICATIONPHOTOGRAPHY" />
+          <ScalarProperty Name="OFFOUTPUTSSTRUCTURE" ColumnName="OFFOUTPUTSSTRUCTURE" />
+          <ScalarProperty Name="SWIM" ColumnName="SWIM" />
+          <ScalarProperty Name="BIKEOUTINGS" ColumnName="BIKEOUTINGS" />
+          <ScalarProperty Name="BOATOUTINGS" ColumnName="BOATOUTINGS" />
+          <ScalarProperty Name="MEDECINEID" ColumnName="MEDECINEID" />
+          <ScalarProperty Name="ID" ColumnName="ID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="CITIES">
+      <EntityTypeMapping TypeName="agsModel.CITIES">
+        <MappingFragment StoreEntitySet="CITIES">
+          <ScalarProperty Name="ID" ColumnName="ID" />
+          <ScalarProperty Name="CITY" ColumnName="CITY" />
+          <ScalarProperty Name="CP" ColumnName="CP" />
+          <ScalarProperty Name="PARTNERSHIP" ColumnName="PARTNERSHIP" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="CIVILITIES">
+      <EntityTypeMapping TypeName="agsModel.CIVILITIES">
+        <MappingFragment StoreEntitySet="CIVILITIES">
+          <ScalarProperty Name="ID" ColumnName="ID" />
+          <ScalarProperty Name="CIVILITY" ColumnName="CIVILITY" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="FAMILIES">
+      <EntityTypeMapping TypeName="agsModel.FAMILIES">
+        <MappingFragment StoreEntitySet="FAMILIES">
+          <ScalarProperty Name="LASTNAME" ColumnName="LASTNAME" />
+          <ScalarProperty Name="FIRSTNAME" ColumnName="FIRSTNAME" />
+          <ScalarProperty Name="ADRESS" ColumnName="ADRESS" />
+          <ScalarProperty Name="CITYID" ColumnName="CITYID" />
+          <ScalarProperty Name="TEL1" ColumnName="TEL1" />
+          <ScalarProperty Name="TEL2" ColumnName="TEL2" />
+          <ScalarProperty Name="TEL3" ColumnName="TEL3" />
+          <ScalarProperty Name="ID" ColumnName="ID" />
+          <ScalarProperty Name="CIVILITYID" ColumnName="CIVILITYID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="FAMILYQUOTIENTS">
+      <EntityTypeMapping TypeName="agsModel.FAMILYQUOTIENTS">
+        <MappingFragment StoreEntitySet="FAMILYQUOTIENTS">
+          <ScalarProperty Name="ID" ColumnName="ID" />
+          <ScalarProperty Name="YEAR" ColumnName="YEAR" />
+          <ScalarProperty Name="FAMILYID" ColumnName="FAMILYID" />
+          <ScalarProperty Name="FAMILYQUOTIENT" ColumnName="FAMILYQUOTIENT" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="MEDECINS">
+      <EntityTypeMapping TypeName="agsModel.MEDECINS">
+        <MappingFragment StoreEntitySet="MEDECINS">
+          <ScalarProperty Name="ID" ColumnName="ID" />
+          <ScalarProperty Name="FULLNAME" ColumnName="FULLNAME" />
+          <ScalarProperty Name="TEL" ColumnName="TEL" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+  </EntityContainerMapping>
+</Mapping>

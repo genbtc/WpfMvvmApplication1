@@ -1,0 +1,128 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="agsModel.Store" Provider="Npgsql" ProviderManifestToken="9.3.5" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityType Name="CHILDRENS">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="LASTNAME" Type="text" />
+    <Property Name="FIRSTNAME" Type="text" />
+    <Property Name="BIRTHDATE" Type="date" />
+    <Property Name="FAMILYID" Type="int4" />
+    <Property Name="GENDERID" Type="int4" />
+    <Property Name="EMT" Type="bool" />
+    <Property Name="HOSPITAL" Type="bool" />
+    <Property Name="CLINIC" Type="bool" />
+    <Property Name="CLINICID" Type="int4" />
+    <Property Name="BEPHOTOGRAPHY" Type="bool" />
+    <Property Name="PUBLICATIONPHOTOGRAPHY" Type="bool" />
+    <Property Name="OFFOUTPUTSSTRUCTURE" Type="bool" />
+    <Property Name="SWIM" Type="bool" />
+    <Property Name="BIKEOUTINGS" Type="bool" />
+    <Property Name="BOATOUTINGS" Type="bool" />
+    <Property Name="MEDECINEID" Type="int4" />
+    <Property Name="ID" Type="int4" StoreGeneratedPattern="Identity" Nullable="false" />
+  </EntityType>
+  <EntityType Name="CITIES">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="int4" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="CITY" Type="text" />
+    <Property Name="CP" Type="text" />
+    <Property Name="PARTNERSHIP" Type="bool" />
+  </EntityType>
+  <EntityType Name="CIVILITIES">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="int8" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="CIVILITY" Type="text" />
+  </EntityType>
+  <EntityType Name="FAMILIES">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="LASTNAME" Type="text" />
+    <Property Name="FIRSTNAME" Type="text" />
+    <Property Name="ADRESS" Type="text" />
+    <Property Name="CITYID" Type="int4" />
+    <Property Name="TEL1" Type="text" />
+    <Property Name="TEL2" Type="text" />
+    <Property Name="TEL3" Type="text" />
+    <Property Name="ID" Type="int4" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="CIVILITYID" Type="int4" />
+  </EntityType>
+  <EntityType Name="FAMILYQUOTIENTS">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="int8" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="YEAR" Type="int4" />
+    <Property Name="FAMILYID" Type="int4" />
+    <Property Name="FAMILYQUOTIENT" Type="float4" />
+  </EntityType>
+  <EntityType Name="MEDECINS">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="int4" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="FULLNAME" Type="text" />
+    <Property Name="TEL" Type="text" />
+  </EntityType>
+  <Association Name="cityfk">
+    <End Role="CITIES" Type="Self.CITIES" Multiplicity="0..1" />
+    <End Role="FAMILIES" Type="Self.FAMILIES" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="CITIES">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="FAMILIES">
+        <PropertyRef Name="CITYID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="famfk">
+    <End Role="FAMILIES" Type="Self.FAMILIES" Multiplicity="0..1" />
+    <End Role="CHILDRENS" Type="Self.CHILDRENS" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="FAMILIES">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="CHILDRENS">
+        <PropertyRef Name="FAMILYID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="familyfk">
+    <End Role="FAMILIES" Type="Self.FAMILIES" Multiplicity="0..1" />
+    <End Role="FAMILYQUOTIENTS" Type="Self.FAMILYQUOTIENTS" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="FAMILIES">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="FAMILYQUOTIENTS">
+        <PropertyRef Name="FAMILYID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="agsModelStoreContainer">
+    <EntitySet Name="CHILDRENS" EntityType="Self.CHILDRENS" Schema="public" store:Type="Tables" />
+    <EntitySet Name="CITIES" EntityType="Self.CITIES" Schema="public" store:Type="Tables" />
+    <EntitySet Name="CIVILITIES" EntityType="Self.CIVILITIES" Schema="public" store:Type="Tables" />
+    <EntitySet Name="FAMILIES" EntityType="Self.FAMILIES" Schema="public" store:Type="Tables" />
+    <EntitySet Name="FAMILYQUOTIENTS" EntityType="Self.FAMILYQUOTIENTS" Schema="public" store:Type="Tables" />
+    <EntitySet Name="MEDECINS" EntityType="Self.MEDECINS" Schema="public" store:Type="Tables" />
+    <AssociationSet Name="cityfk" Association="Self.cityfk">
+      <End Role="CITIES" EntitySet="CITIES" />
+      <End Role="FAMILIES" EntitySet="FAMILIES" />
+    </AssociationSet>
+    <AssociationSet Name="famfk" Association="Self.famfk">
+      <End Role="FAMILIES" EntitySet="FAMILIES" />
+      <End Role="CHILDRENS" EntitySet="CHILDRENS" />
+    </AssociationSet>
+    <AssociationSet Name="familyfk" Association="Self.familyfk">
+      <End Role="FAMILIES" EntitySet="FAMILIES" />
+      <End Role="FAMILYQUOTIENTS" EntitySet="FAMILYQUOTIENTS" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>
