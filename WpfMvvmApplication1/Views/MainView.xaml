@@ -288,7 +288,7 @@
                 <!--NEW FAM TAB-->
                 <TabItem Header="Famille">
                     <Grid Height="820" Width="1593">
-                        <ExtendedGridControl:ExtendedDataGrid x:Name="FamilyDataGrid" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Margin="4,4,4,4" BorderThickness="1,2,1,1"
+                        <ExtendedGridControl:ExtendedDataGrid x:Name="FamilyDataGrid" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Margin="4,4,2,-2" BorderThickness="1,2,1,1"
                                 Background="{StaticResource ResourceKey=GenBtcColorBrush}" BorderBrush="#FF889BB1" RowBackground="Snow"
                                 ItemsSource="{Binding Path=FamiliesCollection}" HeadersVisibility="Column"  AutoGenerateColumns="False" RowHeight="50"  >
 
@@ -347,7 +347,7 @@
                                 <ExtendedColumn:ExtendedDataGridTextColumn Binding="{Binding TEL1, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Header="Tel 1" Width="100" CanUserSort="True" />
                                 <ExtendedColumn:ExtendedDataGridTextColumn Binding="{Binding TEL2, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Header="Tel 2" Width="100" CanUserSort="True" />
                                 <ExtendedColumn:ExtendedDataGridTextColumn Binding="{Binding TEL3, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Header="Tel 3" Width="100" CanUserSort="True" />
-                                <ExtendedColumn:ExtendedDataGridTextColumn Binding="{Binding EMAIL, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Header="Email" Width="353" CanUserSort="True" />
+                                <ExtendedColumn:ExtendedDataGridTextColumn Binding="{Binding EMAIL, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Header="Email" Width="340" CanUserSort="True" />
 
                             </Controls:DataGrid.Columns>
 
@@ -476,16 +476,15 @@
 
                         </ExtendedGridControl:ExtendedDataGrid>
 
-                        <Button Content="Update!" x:Name="savefamily2" Command="{Binding SaveFamily}" Width="84" Margin="1442,7,67,783" />
-                        <Button BorderThickness="0" Style="{StaticResource {x:Static ToolBar.ButtonStyleKey}}" Click="ExcelExport_Click" Height="25" Margin="1509,10,0,785" Width="30">
-                            <StackPanel HorizontalAlignment="Left" Height="23" VerticalAlignment="Top" Width="24" >
+                        <Button Content="Update!" x:Name="savefamily2" Command="{Binding SaveFamily}" Margin="1439,8,76,784" />
+                        <Button BorderThickness="0" Style="{StaticResource {x:Static ToolBar.ButtonStyleKey}}" Click="ExcelExport_Click" Height="25" Margin="1521,9,42,786" Width="30">
+                            <StackPanel Height="23" Width="24" >
                                 <Image Source="{StaticResource ExcelImage}" Height="23" />
                             </StackPanel>
                         </Button>
                     </Grid>
                 </TabItem>
 
-                <!-- region TabItem_Cities -->
                 <TabItem Header="Communes">
                     <Grid Height="820" Width="1593">
                         <Grid.RowDefinitions>
@@ -499,15 +498,22 @@
                             <TextBox x:Name="SearchCity" Style="{StaticResource ResourceKey=flatTextBox}" Height="24" TextWrapping="Wrap" Text="" Width="716" />
                             <Separator Height="6" Width="626" Visibility="Hidden" />
                         </StackPanel>
-
                         <!-- region DataGrid_Cities -->
-                        <ExtendedGridControl:ExtendedDataGrid x:Name="CitiesDataGrid2" Grid.Row="1" Grid.RowSpan="3" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Margin="10,4,0,0" AutoGenerateColumns="False" BorderThickness="1,2,1,1" Background="{StaticResource ResourceKey=GenBtcColorBrush}" BorderBrush="#FF889BB1" RowBackground="Snow" 
+                        <ExtendedGridControl:ExtendedDataGrid x:Name="CitiesDataGrid" Grid.Row="1" Grid.RowSpan="3" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Margin="4,4,4,2" AutoGenerateColumns="False" 
+                                                              BorderThickness="1,2,1,1" Background="{StaticResource ResourceKey=GenBtcColorBrush}" BorderBrush="#FF889BB1" RowBackground="Snow" 
                                                               ItemsSource="{Binding Path=CitiesCollection}" HeadersVisibility="Column" >
                             <Controls:DataGrid.Columns>
-                                <ExtendedColumn:ExtendedDataGridTextColumn Binding="{Binding ID}" Header="Id" Width="30"/>
-                                <ExtendedColumn:ExtendedDataGridTextColumn Binding="{Binding CITY, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Header="Commune" Width="500"  />
+                                <ExtendedColumn:ExtendedDataGridTextColumn Binding="{Binding ID}" Header="Id" Width="50"/>
+                                <ExtendedColumn:ExtendedDataGridTextColumn Binding="{Binding CITY, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Header="Commune" Width="600"  />
                                 <ExtendedColumn:ExtendedDataGridTextColumn Binding="{Binding CP, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Header="CP" Width="100"  />
-                                <ExtendedColumn:ExtendedDataGridTextColumn Binding="{Binding PARTNERSHIP, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Header="Partenariat" Width="100"  />
+                                <Controls:DataGridTemplateColumn Header="Partenariat" Width="100"  >
+                                    <Controls:DataGridTemplateColumn.CellTemplate>
+                                        <DataTemplate>
+                                            <CheckBox IsChecked="{Binding PARTNERSHIP, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" HorizontalAlignment="Center" />
+                                        </DataTemplate>
+                                    </Controls:DataGridTemplateColumn.CellTemplate>
+                                </Controls:DataGridTemplateColumn>
+
                             </Controls:DataGrid.Columns>
                         </ExtendedGridControl:ExtendedDataGrid>
 
