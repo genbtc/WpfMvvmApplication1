@@ -23,7 +23,7 @@ namespace WpfMvvmApplication1.Models
         internal void Refresh(ObservableCollection<CHILDRENS> ChildrensCollection,
             ObservableCollection<FAMILIES> FamiliesCollection)
         {
-            //this.agsEntities.Refresh(RefreshMode.StoreWins, this.agsEntities.CHILDRENS);
+            this.agsEntities.Refresh(RefreshMode.StoreWins, this.agsEntities.CHILDRENS);
             this.agsEntities.Refresh(RefreshMode.StoreWins, this.agsEntities.FAMILIES);
         }
 

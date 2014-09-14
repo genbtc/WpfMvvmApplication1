@@ -2,7 +2,9 @@ using System;
 using System.Collections.ObjectModel;
 using System.Collections.Specialized;
 using System.ComponentModel;
+using System.IO;
 using System.Linq;
+using System.Text;
 using System.Windows.Data;
 using System.Windows.Input;
 using WpfMvvmApplication1.Helpers;
@@ -12,12 +14,14 @@ namespace WpfMvvmApplication1.ViewModels
 {
     public class MainWindowViewModel : NotificationObject
     {
-    
-    #region Properties
 
+        #region Properties
+        
+        //purposefully doesnt have an INotify.
         public ObservableCollection<FAMILIES> FamiliesBox { get; set; }
 
         private ObservableCollection<FAMILIES> _familiesCollection;
+
         public ObservableCollection<FAMILIES> FamiliesCollection
         {
             get { return _familiesCollection; }
@@ -31,6 +35,7 @@ namespace WpfMvvmApplication1.ViewModels
         }
 
         private ObservableCollection<CHILDRENS> _childrensCollection;
+
         public ObservableCollection<CHILDRENS> ChildrensCollection
         {
             get { return _childrensCollection; }
@@ -43,6 +48,7 @@ namespace WpfMvvmApplication1.ViewModels
         }
 
         private ObservableCollection<CITIES> _citiesCollection;
+
         public ObservableCollection<CITIES> CitiesCollection
         {
             get { return _citiesCollection; }
@@ -55,6 +61,7 @@ namespace WpfMvvmApplication1.ViewModels
         }
 
         private ObservableCollection<FAMILYQUOTIENTS> _familyquotientsCollection;
+
         public ObservableCollection<FAMILYQUOTIENTS> FAMILYQUOTIENTSCollection
         {
             get { return _familyquotientsCollection; }
@@ -65,8 +72,9 @@ namespace WpfMvvmApplication1.ViewModels
                 RaisePropertyChanged(() => FAMILYQUOTIENTSCollection);
             }
         }
- 
+
         private ObservableCollection<MEDECINES> _medecinsCollection;
+
         public ObservableCollection<MEDECINES> MedecinsCollection
         {
             get { return _medecinsCollection; }
@@ -79,6 +87,7 @@ namespace WpfMvvmApplication1.ViewModels
         }
 
         private ObservableCollection<CIVILITIES> _civilitiesCollection;
+
         public ObservableCollection<CIVILITIES> CIVILITIESCollection
         {
             get { return _civilitiesCollection; }
@@ -91,6 +100,7 @@ namespace WpfMvvmApplication1.ViewModels
         }
 
         private ICollectionView _familiesViewSource;
+
         public ICollectionView FamiliesViewSource
         {
             get { return _familiesViewSource; }
@@ -98,10 +108,11 @@ namespace WpfMvvmApplication1.ViewModels
             {
                 _familiesViewSource = value;
                 RaisePropertyChanged(() => FamiliesViewSource);
-            } 
+            }
         }
 
         private ICollectionView _childrenViewSource;
+
         public ICollectionView ChildrenViewSource
         {
             get { return _childrenViewSource; }
@@ -115,19 +126,20 @@ namespace WpfMvvmApplication1.ViewModels
         #endregion
 
         #region EF Query
-        private void GetFamiliesViewSource()
+
+        private void SortFamiliesViewSource()
         {
-            //this.FamiliesViewSource = CollectionViewSource.GetDefaultView(FamiliesCollection);
-            //this.FamiliesViewSource.SortDescriptions.Add(new SortDescription("ID", ListSortDirection.Ascending));
-            CollectionViewSource.GetDefaultView(FamiliesCollection).SortDescriptions.Add(new SortDescription("ID", ListSortDirection.Ascending));
-        }
-        private void GetChildrenViewSource()
-        {
-            this.ChildrenViewSource = CollectionViewSource.GetDefaultView(ChildrensCollection);
-            this.ChildrenViewSource.SortDescriptions.Add(new SortDescription("ID", ListSortDirection.Ascending));
+            CollectionViewSource.GetDefaultView(FamiliesCollection)
+                .SortDescriptions.Add(new SortDescription("ID", ListSortDirection.Ascending));
         }
 
-        //#endregion
+        private void SortChildrenViewSource()
+        {
+            CollectionViewSource.GetDefaultView(ChildrensCollection)
+                .SortDescriptions.Add(new SortDescription("ID", ListSortDirection.Ascending));
+        }
+
+        #endregion
 
         #region Constructor
 
@@ -144,8 +156,12 @@ namespace WpfMvvmApplication1.ViewModels
             GetMedecinsCollection();
             GetCivilitiesCollection();
             //Fill Views
-            GetChildrenViewSource();
-            GetFamiliesViewSource();
+            SortChildrenViewSource();
+            SortFamiliesViewSource();
+
+            //call once to create a randomized database then comment out.
+            //RandomizeData();
+
             //tracks item additions and deletions, and saves to the database when that occurs.
             this.FamiliesCollection.CollectionChanged += ItemCollection_CollectionChanged;
             this.ChildrensCollection.CollectionChanged += ItemCollection_CollectionChanged;
@@ -154,7 +170,7 @@ namespace WpfMvvmApplication1.ViewModels
 
         //private void SelectionHasChanged()
         //{ }
-            
+
         #endregion
 
         #region Fill Collections with EF Query
@@ -191,87 +207,54 @@ namespace WpfMvvmApplication1.ViewModels
 
         #endregion
 
-        //private IQueryable MapChildrentoCity()
-        //{
-        //    var childrenQuery = agsEntities.CHILDRENS;
-        //    var familiesQuery = agsEntities.FAMILIES;
-        //    var citiesQuery = agsEntities.CITIES;
-            
-        //    var query1 = from child in childrenQuery
-        //                join fam in familiesQuery on child.FAMILYID equals fam.ID
-        //                select new {child.ID , fam.CITYID};
-        //    var query2 = from fam in familiesQuery
-        //                join cit in citiesQuery on fam.CITYID equals cit.ID
-        //                select new {fam.CITYID , cit.CITY1};
-        //    var query3 = from a in query1 
-        //                join b in query2 on a.CITYID equals b.CITYID 
-        //                select new {a.ID, b.CITY1};
-        //    var query4 = from c in query3
-        //        join d in citiesQuery on c.CITY1 equals d.CITY1
-        //        select new {c.ID, d.CP};
-        //    return query4;        
-        //}
-
-        //private void TestChildNames()
-        //{
-        //using (var db = new agsEntities())
-        //{
-        //    IQueryable<CHILDREN> childQuery = from product in db.CHILDRENS
-        //        select product;
-
-        //    Console.WriteLine("Children Names:");
-        //    foreach (var child in childQuery)
-        //        Console.WriteLine(child.FIRSTNAME + child.LASTNAME);
-        //}
-        //    using (var Context = new agsEntities())
-        //    {
-        //        foreach (CHILDREN blog in Context.CHILDRENS)
-        //            Console.WriteLine(blog.FIRSTNAME + " " + blog.LASTNAME);
-        //    }
-        //}
-
-        ////old way
-        //private void UpdateSqlrow()
-        //{
-        //    //connection string
-        //    var Connection = new NpgsqlConnection(SQL.sConnection);
-
-        //    //open connection once.
-        //    Connection.Open();
-
-        //    //issue many commands
-        //    foreach (Children row in ChildrenCollection.Collection)
-        //    {
-        //        NpgsqlCommand command = Connection.CreateCommand();
-        //        if (row.Id > 0) //if row exist
-        //            SQL.UpdateDBChild(command, row);
-        //        else //or not exist, do insert
-        //            row.Id = SQL.InsertDBChild(command, row);
-        //    }
-
-        //    //close
-        //    Connection.Close();
-        //}
-
         #region Command Handlers
-        public ICommand SaveFamily { get { return new DelegateCommand(SaveFamilytoDb); } }
-        public ICommand SaveChildren { get { return new DelegateCommand(SaveChildrentoDb); } }
-        public ICommand SaveAll { get { return new DelegateCommand(SaveToDb); } }
-        public ICommand RefreshDb { get { return new DelegateCommand(RefreshViewDb); } }
+
+        public ICommand SaveFamily
+        {
+            get { return new DelegateCommand(SaveFamilytoDb); }
+        }
+
+        public ICommand SaveChildren
+        {
+            get { return new DelegateCommand(SaveChildrentoDb); }
+        }
+
+        public ICommand SaveAll
+        {
+            get { return new DelegateCommand(SaveToDb); }
+        }
+
+        public ICommand RefreshDb
+        {
+            get { return new DelegateCommand(RefreshViewDb); }
+        }
+
         #endregion
 
         #region Commands
+
         private void RefreshViewDb()
         {
-            EF.Refresh(ChildrensCollection, FamiliesCollection); 
-            //RaisePropertyChanged(() => ChildrensCollection);
-            //RaisePropertyChanged(() => FamiliesCollection);
+            EF.Refresh(ChildrensCollection, FamiliesCollection);
+            RaisePropertyChanged(() => ChildrensCollection);
+            RaisePropertyChanged(() => FamiliesCollection);
         }
-        private void SaveFamilytoDb() { EF.SaveFamilytoDB(FamiliesCollection); }
-        private void SaveChildrentoDb() { EF.SaveChildrentoDB(ChildrensCollection); }
-        private void SaveToDb() { EF.SaveToDb(); }
 
-        #endregion
+        private void SaveFamilytoDb()
+        {
+            EF.SaveFamilytoDB(FamiliesCollection);
+        }
+
+        private void SaveChildrentoDb()
+        {
+            EF.SaveChildrentoDB(ChildrensCollection);
+        }
+
+        private void SaveToDb()
+        {
+            EF.SaveToDb();
+        }
+
         #endregion
 
         //not used yet.
@@ -284,10 +267,10 @@ namespace WpfMvvmApplication1.ViewModels
         //When the collection changes, (Occurs when an item is added, removed, changed, moved, or the entire list is refreshed)
         // (Usually as soon as a blank row is clicked(new,Add) or deleted.)
         // Check for new rows, (ID ==0) then Add the Blank row to the entity context, and SaveChanges (write to DB)
-        void ItemCollection_CollectionChanged(object sender, NotifyCollectionChangedEventArgs e)
+        private void ItemCollection_CollectionChanged(object sender, NotifyCollectionChangedEventArgs e)
         {
             Type nodeType = sender.GetType();
-            if (nodeType == typeof(ObservableCollection<FAMILIES>))
+            if (nodeType == typeof (ObservableCollection<FAMILIES>))
             {
                 var typedcollection = (ObservableCollection<FAMILIES>)sender;
                 if (e.Action == NotifyCollectionChangedAction.Add)
@@ -309,7 +292,7 @@ namespace WpfMvvmApplication1.ViewModels
                 FamiliesBox = new ObservableCollection<FAMILIES>((ObservableCollection<FAMILIES>)sender);
                 RaisePropertyChanged(() => FamiliesBox);
             }
-            else if (nodeType == typeof(ObservableCollection<CHILDRENS>))
+            else if (nodeType == typeof (ObservableCollection<CHILDRENS>))
             {
                 var typedcollection = (ObservableCollection<CHILDRENS>)sender;
                 if (e.Action == NotifyCollectionChangedAction.Add)
@@ -328,6 +311,61 @@ namespace WpfMvvmApplication1.ViewModels
                 }
                 EF.SaveToDb();
             }
+        }
+
+        private void RandomizeData()
+        {
+            Random r = new Random();
+            string alphabet = "ABEFGHILMNOPUVabbcdefghijklmnooppqrstuvwyxzeeeiouea";
+
+            foreach (CHILDRENS child in ChildrensCollection)
+            {
+                child.BIRTHDATE = RandomHelper.RandomDate(new DateTime(1950, 1, 1), DateTime.Now);
+            }
+
+
+            for (int f = 0; f < 200; f++)
+            {
+                var fakefamily = new FAMILIES();
+
+                Func<char> randomLetter = () => alphabet[r.Next(alphabet.Length)];
+                Func<int, string> makeName =
+                    (length) => new string(Enumerable.Range(0, length)
+                        .Select(x => x == 0 ? char.ToUpper(randomLetter()) : randomLetter())
+                        .ToArray());
+                
+                fakefamily.CIVILITYID = RandomHelper.RandomInt(1, 3);
+                fakefamily.LASTNAME = makeName(r.Next(7) + 7);
+                fakefamily.FIRSTNAME = makeName(r.Next(5) + 5);
+                fakefamily.EMAIL = RandomHelper.RandomString(12, true) + "@" + RandomHelper.RandomString(17, true) + ".com";
+                fakefamily.SOCIALSECURITYID = RandomHelper.RandomInt(1, 999999999);
+                fakefamily.TEL1 = RandomHelper.RandomInt(100, 999) + "-" + RandomHelper.RandomInt(100, 999) + "-" +
+                              RandomHelper.RandomInt(1000, 9999);
+                fakefamily.TEL2 = RandomHelper.RandomInt(100, 999) + "-" + RandomHelper.RandomInt(100, 999) + "-" +
+                              RandomHelper.RandomInt(1000, 9999);
+                fakefamily.TEL3 = RandomHelper.RandomInt(100, 999) + "-" + RandomHelper.RandomInt(100, 999) + "-" +
+                              RandomHelper.RandomInt(1000, 9999);
+
+                fakefamily.ADDRESS += RandomHelper.RandomInt(1, 9999) + " ";
+                for (int i = 1; i <= 2; i++)
+                {
+                    fakefamily.ADDRESS += RandomHelper.RandomString(12, true) + " " + Path.GetRandomFileName().Replace(".", "");
+                    fakefamily.ADDRESS += "\n";
+                }
+                fakefamily.ADDRESS += makeName(r.Next(7) + 7);
+                fakefamily.CITYID = RandomHelper.RandomInt(1, CitiesCollection.Count);
+
+                FamiliesCollection.Add(fakefamily);
+                this.EF.agsEntities.FAMILIES.AddObject(fakefamily);
+            }
+            foreach (FAMILIES family in FamiliesCollection)
+            {
+                //
+            }
+            //RandomHelper.RandomString(10, true);
+            //RandomHelper.RandomDate(new DateTime(1980, 1, 1), DateTime.Now);
+            //RandomHelper.RandomInt(1, 3);
+            //RandomHelper.RandomBool();
         }
     }
 }

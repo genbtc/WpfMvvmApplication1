@@ -110,6 +110,9 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="Views\Window1.xaml.cs">
+      <DependentUpon>Window1.xaml</DependentUpon>
+    </Compile>
     <Page Include="Resources\Dictionary1.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -136,6 +139,7 @@
     <Compile Include="Converters\DateConverter.cs" />
     <Compile Include="Converters\DebugConverter.cs" />
     <Compile Include="Helpers\CommandBehavior.cs" />
+    <Compile Include="Helpers\RandomHelper.cs" />
     <Compile Include="Helpers\RelayCommand.cs" />
     <Compile Include="Helpers\ToAge.cs" />
     <Compile Include="Helpers\DelegateCommand.cs" />
@@ -155,6 +159,10 @@
       <DependentUpon>MainView.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
+    <Page Include="Views\Window1.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Properties\AssemblyInfo.cs">
