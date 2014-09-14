@@ -1,8 +1,4 @@
 ﻿
-
-using System.Windows.Controls;
-using System.Windows.Data;
-
 namespace WpfMvvmApplication1.Views
 {
     /// <summary>
@@ -21,5 +17,10 @@ namespace WpfMvvmApplication1.Views
             this.FamilyDataGrid.Items.Refresh();
         }
 
+
+        private void ExcelExport_Click(object sender, System.Windows.RoutedEventArgs e)
+        {
+            FamilyDataGrid.ExportToCsv("FamilyDataGrid", @"C:\Users\Activ-Design\Desktop\test.txt", true);
+        }
     }
 }
