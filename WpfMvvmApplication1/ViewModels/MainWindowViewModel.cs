@@ -317,14 +317,13 @@ namespace WpfMvvmApplication1.ViewModels
         {
             Random r = new Random();
             string alphabet = "ABEFGHILMNOPUVabbcdefghijklmnooppqrstuvwyxzeeeiouea";
+            
+            //RandomHelper.RandomString(10, true);
+            //RandomHelper.RandomDate(new DateTime(1980, 1, 1), DateTime.Now);
+            //RandomHelper.RandomInt(1, 3);
+            //RandomHelper.RandomBool();
 
-            foreach (CHILDRENS child in ChildrensCollection)
-            {
-                child.BIRTHDATE = RandomHelper.RandomDate(new DateTime(1950, 1, 1), DateTime.Now);
-            }
-
-
-            for (int f = 0; f < 200; f++)
+            for (int f = 0; f < 400; f++)
             {
                 var fakefamily = new FAMILIES();
 
@@ -355,9 +354,34 @@ namespace WpfMvvmApplication1.ViewModels
                 fakefamily.ADDRESS += makeName(r.Next(7) + 7);
                 fakefamily.CITYID = RandomHelper.RandomInt(1, CitiesCollection.Count);
 
-                FamiliesCollection.Add(fakefamily);
+//                FamiliesCollection.Add(fakefamily);
                 this.EF.agsEntities.FAMILIES.AddObject(fakefamily);
             }
+            this.EF.agsEntities.SaveChanges();
+            foreach (CHILDRENS child in ChildrensCollection)
+            {
+                //child.BIRTHDATE = RandomHelper.RandomDate(new DateTime(1950, 1, 1), DateTime.Now);
+                child.ALLERGIES = Path.GetRandomFileName().Replace(".", "");
+                child.BEPHOTOGRAPHY = RandomHelper.RandomBool();
+                child.BIKEOUTINGS = RandomHelper.RandomBool();
+                child.BOATOUTINGS = RandomHelper.RandomBool();
+                child.CLINIC = RandomHelper.RandomBool();
+                child.EMT = RandomHelper.RandomBool();
+                child.FAMILYID = RandomHelper.RandomInt(1, 400);
+                child.GENDERID = RandomHelper.RandomInt(1, 3);
+                child.HOSPITAL = RandomHelper.RandomBool();
+                //child.MEDECINEID = 
+                child.OFFOUTPUTSSTRUCTURE = RandomHelper.RandomBool();
+                child.PUBLICATIONPHOTOGRAPHY = RandomHelper.RandomBool();
+                child.SPECIALARRANGEMENTS = Path.GetRandomFileName().Replace(".", "") + Path.GetRandomFileName().Replace(".", "");
+                child.SWIM = RandomHelper.RandomBool();
+                child.WITHOUTEGG = RandomHelper.RandomBool();
+                child.WITHOUTFISH = RandomHelper.RandomBool();
+                child.WITHOUTGLUTEN = RandomHelper.RandomBool();
+                child.WITHOUTMEAT = RandomHelper.RandomBool();
+                child.WITHOUTPORK = RandomHelper.RandomBool();
+            }
+            this.EF.agsEntities.SaveChanges();
             foreach (FAMILIES family in FamiliesCollection)
             {
                 //
@@ -366,6 +390,7 @@ namespace WpfMvvmApplication1.ViewModels
             //RandomHelper.RandomDate(new DateTime(1980, 1, 1), DateTime.Now);
             //RandomHelper.RandomInt(1, 3);
             //RandomHelper.RandomBool();
+ 
         }
     }
 }
