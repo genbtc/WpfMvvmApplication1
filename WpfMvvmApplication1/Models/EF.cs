@@ -11,9 +11,8 @@ namespace WpfMvvmApplication1.Models
 
         public EF()
         {
-            //agsEntities = new agsEntities("metadata=res://*/Models.Model1.csdl|res://*/Models.Model1.ssdl|res://*/Models.Model1.msl;provider=Npgsql;provider connection string='PORT=5432;TIMEOUT=15;POOLING=True;MINPOOLSIZE=1;MAXPOOLSIZE=20;COMMANDTIMEOUT=20;COMPATIBLE=2.2.0.0;HOST=localhost;DATABASE=ags;USER ID=ags;PASSWORD=Fadila1980'");
-            //agsEntities = new agsEntities("metadata=res://WpfMvvmApplication1/Models.Model1.csdl|res://WpfMvvmApplication1/Models.Model1.ssdl|res://WpfMvvmApplication1/Models.Model1.msl;provider=Npgsql;provider connection string='PORT=5432;TIMEOUT=15;POOLING=True;MINPOOLSIZE=1;MAXPOOLSIZE=20;COMMANDTIMEOUT=20;COMPATIBLE=2.2.0.0;HOST=localhost;DATABASE=ags;USER ID=ags;PASSWORD=Fadila1980'");
-            agsEntities = new agsEntities();
+            agsEntities = new agsEntities(@"metadata=res://WpfMvvmApplication1/Models.Model1.csdl|res://WpfMvvmApplication1/Models.Model1.ssdl|res://WpfMvvmApplication1/Models.Model1.msl;provider=Npgsql;provider connection string='PORT=5432;TIMEOUT=15;POOLING=True;MINPOOLSIZE=1;MAXPOOLSIZE=20;COMMANDTIMEOUT=20;COMPATIBLE=2.2.0.0;HOST=localhost;DATABASE=ags;USER ID=ags;PASSWORD=Fadila1980'");
+            //agsEntities = new agsEntities();
         }
 
         internal void SaveToDb()

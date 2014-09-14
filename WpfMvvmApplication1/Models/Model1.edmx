@@ -4,7 +4,7 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-      <Schema Namespace="agsModel.Store" Provider="Npgsql" ProviderManifestToken="9.3.5" Alias="Self" xmlns="http://schemas.microsoft.com/ado/2009/02/edm/ssdl">
+    <Schema Namespace="agsModel.Store" Alias="Self" Provider="Npgsql" ProviderManifestToken="9.3.5" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/02/edm/ssdl">
         <EntityType Name="CHILDRENS">
           <Key>
             <PropertyRef Name="ID" />
@@ -111,12 +111,12 @@
           </ReferentialConstraint>
         </Association>
         <EntityContainer Name="agsModelStoreContainer">
-          <EntitySet Name="CHILDRENS" EntityType="Self.CHILDRENS" Schema="public" store:Type="Tables" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" />
-          <EntitySet Name="CITIES" EntityType="Self.CITIES" Schema="public" store:Type="Tables" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" />
-          <EntitySet Name="CIVILITIES" EntityType="Self.CIVILITIES" Schema="public" store:Type="Tables" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" />
-          <EntitySet Name="FAMILIES" EntityType="Self.FAMILIES" Schema="public" store:Type="Tables" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" />
-          <EntitySet Name="FAMILYQUOTIENTS" EntityType="Self.FAMILYQUOTIENTS" Schema="public" store:Type="Tables" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" />
-          <EntitySet Name="MEDECINS" EntityType="Self.MEDECINS" Schema="public" store:Type="Tables" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" />
+          <EntitySet Name="CHILDRENS" EntityType="agsModel.Store.CHILDRENS" store:Type="Tables" Schema="public" />
+          <EntitySet Name="CITIES" EntityType="agsModel.Store.CITIES" store:Type="Tables" Schema="public" />
+          <EntitySet Name="CIVILITIES" EntityType="agsModel.Store.CIVILITIES" store:Type="Tables" Schema="public" />
+          <EntitySet Name="FAMILIES" EntityType="agsModel.Store.FAMILIES" store:Type="Tables" Schema="public" />
+          <EntitySet Name="FAMILYQUOTIENTS" EntityType="agsModel.Store.FAMILYQUOTIENTS" store:Type="Tables" Schema="public" />
+          <EntitySet Name="MEDECINS" EntityType="agsModel.Store.MEDECINS" store:Type="Tables" Schema="public" />
           <AssociationSet Name="cityfk" Association="Self.cityfk">
             <End Role="CITIES" EntitySet="CITIES" />
             <End Role="FAMILIES" EntitySet="FAMILIES" />
@@ -134,7 +134,7 @@
     </edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
-      <Schema Namespace="agsModel" Alias="Self" xmlns="http://schemas.microsoft.com/ado/2008/09/edm" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation">
+      <Schema Namespace="agsModel" Alias="Self" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns="http://schemas.microsoft.com/ado/2008/09/edm">
         <EntityType Name="CHILDRENS">
           <Key>
             <PropertyRef Name="ID" />
@@ -273,7 +273,7 @@
       <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2008/09/mapping/cs">
         <EntityContainerMapping StorageEntityContainer="agsModelStoreContainer" CdmEntityContainer="agsEntities">
           <EntitySetMapping Name="CHILDRENS">
-            <EntityTypeMapping TypeName="agsModel.CHILDRENS">
+            <EntityTypeMapping TypeName="IsTypeOf(agsModel.CHILDRENS)">
               <MappingFragment StoreEntitySet="CHILDRENS">
                 <ScalarProperty Name="LASTNAME" ColumnName="LASTNAME" />
                 <ScalarProperty Name="FIRSTNAME" ColumnName="FIRSTNAME" />
@@ -296,7 +296,7 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="CITIES">
-            <EntityTypeMapping TypeName="agsModel.CITIES">
+            <EntityTypeMapping TypeName="IsTypeOf(agsModel.CITIES)">
               <MappingFragment StoreEntitySet="CITIES">
                 <ScalarProperty Name="ID" ColumnName="ID" />
                 <ScalarProperty Name="CITY" ColumnName="CITY" />
@@ -306,7 +306,7 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="CIVILITIES">
-            <EntityTypeMapping TypeName="agsModel.CIVILITIES">
+            <EntityTypeMapping TypeName="IsTypeOf(agsModel.CIVILITIES)">
               <MappingFragment StoreEntitySet="CIVILITIES">
                 <ScalarProperty Name="ID" ColumnName="ID" />
                 <ScalarProperty Name="CIVILITY" ColumnName="CIVILITY" />
@@ -314,7 +314,7 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="FAMILIES">
-            <EntityTypeMapping TypeName="agsModel.FAMILIES">
+            <EntityTypeMapping TypeName="IsTypeOf(agsModel.FAMILIES)">
               <MappingFragment StoreEntitySet="FAMILIES">
                 <ScalarProperty Name="LASTNAME" ColumnName="LASTNAME" />
                 <ScalarProperty Name="FIRSTNAME" ColumnName="FIRSTNAME" />
@@ -329,7 +329,7 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="FAMILYQUOTIENTS">
-            <EntityTypeMapping TypeName="agsModel.FAMILYQUOTIENTS">
+            <EntityTypeMapping TypeName="IsTypeOf(agsModel.FAMILYQUOTIENTS)">
               <MappingFragment StoreEntitySet="FAMILYQUOTIENTS">
                 <ScalarProperty Name="ID" ColumnName="ID" />
                 <ScalarProperty Name="YEAR" ColumnName="YEAR" />
@@ -339,7 +339,7 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="MEDECINS">
-            <EntityTypeMapping TypeName="agsModel.MEDECINS">
+            <EntityTypeMapping TypeName="IsTypeOf(agsModel.MEDECINS)">
               <MappingFragment StoreEntitySet="MEDECINS">
                 <ScalarProperty Name="ID" ColumnName="ID" />
                 <ScalarProperty Name="FULLNAME" ColumnName="FULLNAME" />
@@ -352,23 +352,45 @@
     </edmx:Mappings>
   </edmx:Runtime>
   <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
-  <edmx:Designer>
-    <edmx:Connection>
-      <edmx:DesignerInfoPropertySet>
-        <edmx:DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
-      </edmx:DesignerInfoPropertySet>
-    </edmx:Connection>
-    <edmx:Options>
-      <edmx:DesignerInfoPropertySet>
-        <edmx:DesignerProperty Name="ValidateOnBuild" Value="True" />
-        <edmx:DesignerProperty Name="EnablePluralization" Value="false" />
-        <edmx:DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
-        <edmx:DesignerProperty Name="UseLegacyProvider" Value="false" />
-        <edmx:DesignerProperty Name="CodeGenerationStrategy" Value="None" />
-        <edmx:DesignerProperty Name="DefaultDatabaseSchema" Value="public" />
-      </edmx:DesignerInfoPropertySet>
-    </edmx:Options>
+  <Designer xmlns="http://schemas.microsoft.com/ado/2008/10/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="True" />
+        <DesignerProperty Name="EnablePluralization" Value="false" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="Default" />
+        <DesignerProperty Name="DefaultDatabaseSchema" Value="public" />
+      </DesignerInfoPropertySet>
+    </Options>
     <!-- Diagram content (shape and connector positions) -->
-    <edmx:Diagrams />
-  </edmx:Designer>
+    <Diagrams >
+      <Diagram Name="Model1">
+        <EntityTypeShape EntityType="agsModel.CHILDRENS" Width="1.5" PointX="5.25" PointY="1.125" Height="4.480205078125" IsExpanded="true" />
+        <EntityTypeShape EntityType="agsModel.CITIES" Width="1.5" PointX="0.75" PointY="3.75" Height="1.9802864583333335" IsExpanded="true" />
+        <EntityTypeShape EntityType="agsModel.CIVILITIES" Width="1.5" PointX="0.75" PointY="0.75" Height="1.4033821614583326" IsExpanded="true" />
+        <EntityTypeShape EntityType="agsModel.FAMILIES" Width="1.5" PointX="3" PointY="3.125" Height="3.3263964843749996" IsExpanded="true" />
+        <EntityTypeShape EntityType="agsModel.FAMILYQUOTIENTS" Width="1.5" PointX="5.25" PointY="6.375" Height="1.9802864583333335" IsExpanded="true" />
+        <EntityTypeShape EntityType="agsModel.MEDECINS" Width="1.5" PointX="7.75" PointY="0.75" Height="1.5956835937499996" IsExpanded="true" />
+        <AssociationConnector Association="agsModel.famfk" ManuallyRouted="false">
+          <ConnectorPoint PointX="4.5" PointY="4.3651025390625" />
+          <ConnectorPoint PointX="5.25" PointY="4.3651025390625" />
+        </AssociationConnector>
+        <AssociationConnector Association="agsModel.cityfk" ManuallyRouted="false">
+          <ConnectorPoint PointX="2.25" PointY="4.7401432291666667" />
+          <ConnectorPoint PointX="3" PointY="4.7401432291666667" />
+        </AssociationConnector>
+        <AssociationConnector Association="agsModel.familyfk" ManuallyRouted="false">
+          <ConnectorPoint PointX="3.75" PointY="6.451396484375" />
+          <ConnectorPoint PointX="3.75" PointY="7.4033419713541662" />
+          <ConnectorPoint PointX="5.25" PointY="7.4033419713541662" />
+        </AssociationConnector>
+      </Diagram>
+    </Diagrams>
+  </Designer>
 </edmx:Edmx>
