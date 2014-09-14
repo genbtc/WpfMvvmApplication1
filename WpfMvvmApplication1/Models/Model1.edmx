@@ -84,6 +84,25 @@
           <Property Name="SOCIALSECURITYID" Type="int4" />
           <Property Name="RECIPIENTNUMBER" Type="text" />
         </EntityType>
+        <EntityType Name="FAMILIES2">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int4" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="CIVILITYID" Type="int4" />
+          <Property Name="LASTNAME" Type="text" />
+          <Property Name="FIRSTNAME" Type="text" />
+          <Property Name="ADDRESS" Type="text" />
+          <Property Name="CITYID" Type="int4" />
+          <Property Name="TEL1" Type="text" />
+          <Property Name="TEL2" Type="text" />
+          <Property Name="TEL3" Type="text" />
+          <Property Name="EMAIL" Type="text" />
+          <Property Name="PARTNERID" Type="int8" />
+          <Property Name="PAYERID" Type="int8" />
+          <Property Name="SOCIALSECURITYID" Type="int4" />
+          <Property Name="RECIPIENTNUMBER" Type="text" />
+        </EntityType>
         <EntityType Name="FAMILYQUOTIENTS">
           <Key>
             <PropertyRef Name="ID" />
@@ -101,6 +120,21 @@
           <Property Name="FULLNAME" Type="text" />
           <Property Name="TEL" Type="text" />
         </EntityType>
+        <EntityType Name="PERSON">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int8" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="CIVILITYID" Type="int4" />
+          <Property Name="LASTNAME" Type="text" />
+          <Property Name="FIRSTNAME" Type="text" />
+          <Property Name="ADDRESS" Type="text" />
+          <Property Name="CITYID" Type="int4" />
+          <Property Name="TEL1" Type="text" />
+          <Property Name="TEL2" Type="text" />
+          <Property Name="TEL3" Type="text" />
+          <Property Name="EMAIL" Type="text" />
+        </EntityType>
         <Association Name="cityfk">
           <End Role="CITIES" Type="Self.CITIES" Multiplicity="0..1" />
           <End Role="FAMILIES" Type="Self.FAMILIES" Multiplicity="*" />
@@ -109,6 +143,18 @@
               <PropertyRef Name="ID" />
             </Principal>
             <Dependent Role="FAMILIES">
+              <PropertyRef Name="CITYID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="cityfk1">
+          <End Role="CITIES" Type="Self.CITIES" Multiplicity="0..1" />
+          <End Role="FAMILIES2" Type="Self.FAMILIES2" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="CITIES">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="FAMILIES2">
               <PropertyRef Name="CITYID" />
             </Dependent>
           </ReferentialConstraint>
@@ -125,11 +171,23 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="familyfk">
-          <End Role="FAMILIES" Type="Self.FAMILIES" Multiplicity="0..1" />
+        <Association Name="civilityfk1">
+          <End Role="CIVILITIES" Type="Self.CIVILITIES" Multiplicity="0..1" />
+          <End Role="FAMILIES2" Type="Self.FAMILIES2" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="CIVILITIES">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="FAMILIES2">
+              <PropertyRef Name="CIVILITYID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="family2fk">
+          <End Role="FAMILIES2" Type="Self.FAMILIES2" Multiplicity="0..1" />
           <End Role="CHILDRENS" Type="Self.CHILDRENS" Multiplicity="*" />
           <ReferentialConstraint>
-            <Principal Role="FAMILIES">
+            <Principal Role="FAMILIES2">
               <PropertyRef Name="ID" />
             </Principal>
             <Dependent Role="CHILDRENS">
@@ -137,7 +195,19 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="familyfk1">
+        <Association Name="family2fk1">
+          <End Role="FAMILIES2" Type="Self.FAMILIES2" Multiplicity="0..1" />
+          <End Role="FAMILYQUOTIENTS" Type="Self.FAMILYQUOTIENTS" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="FAMILIES2">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="FAMILYQUOTIENTS">
+              <PropertyRef Name="FAMILYID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="familyfk">
           <End Role="FAMILIES" Type="Self.FAMILIES" Multiplicity="0..1" />
           <End Role="FAMILYQUOTIENTS" Type="Self.FAMILYQUOTIENTS" Multiplicity="*" />
           <ReferentialConstraint>
@@ -145,6 +215,18 @@
               <PropertyRef Name="ID" />
             </Principal>
             <Dependent Role="FAMILYQUOTIENTS">
+              <PropertyRef Name="FAMILYID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="familyfk1">
+          <End Role="FAMILIES" Type="Self.FAMILIES" Multiplicity="0..1" />
+          <End Role="CHILDRENS" Type="Self.CHILDRENS" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="FAMILIES">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="CHILDRENS">
               <PropertyRef Name="FAMILYID" />
             </Dependent>
           </ReferentialConstraint>
@@ -161,32 +243,82 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="partner">
+          <End Role="PERSON" Type="Self.PERSON" Multiplicity="0..1" />
+          <End Role="FAMILIES2" Type="Self.FAMILIES2" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="PERSON">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="FAMILIES2">
+              <PropertyRef Name="PARTNERID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="payer">
+          <End Role="PERSON" Type="Self.PERSON" Multiplicity="0..1" />
+          <End Role="FAMILIES2" Type="Self.FAMILIES2" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="PERSON">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="FAMILIES2">
+              <PropertyRef Name="PAYERID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <EntityContainer Name="agsModelStoreContainer">
           <EntitySet Name="CHILDRENS" EntityType="Self.CHILDRENS" Schema="public" store:Type="Tables" />
           <EntitySet Name="CITIES" EntityType="Self.CITIES" Schema="public" store:Type="Tables" />
           <EntitySet Name="CIVILITIES" EntityType="Self.CIVILITIES" Schema="public" store:Type="Tables" />
           <EntitySet Name="FAMILIES" EntityType="Self.FAMILIES" Schema="public" store:Type="Tables" />
+          <EntitySet Name="FAMILIES2" EntityType="Self.FAMILIES2" Schema="public" store:Type="Tables" />
           <EntitySet Name="FAMILYQUOTIENTS" EntityType="Self.FAMILYQUOTIENTS" Schema="public" store:Type="Tables" />
           <EntitySet Name="MEDECINES" EntityType="Self.MEDECINES" Schema="public" store:Type="Tables" />
+          <EntitySet Name="PERSON" EntityType="Self.PERSON" Schema="public" store:Type="Tables" />
           <AssociationSet Name="cityfk" Association="Self.cityfk">
             <End Role="CITIES" EntitySet="CITIES" />
             <End Role="FAMILIES" EntitySet="FAMILIES" />
+          </AssociationSet>
+          <AssociationSet Name="cityfk1" Association="Self.cityfk1">
+            <End Role="CITIES" EntitySet="CITIES" />
+            <End Role="FAMILIES2" EntitySet="FAMILIES2" />
           </AssociationSet>
           <AssociationSet Name="civilityfk" Association="Self.civilityfk">
             <End Role="CIVILITIES" EntitySet="CIVILITIES" />
             <End Role="FAMILIES" EntitySet="FAMILIES" />
           </AssociationSet>
+          <AssociationSet Name="civilityfk1" Association="Self.civilityfk1">
+            <End Role="CIVILITIES" EntitySet="CIVILITIES" />
+            <End Role="FAMILIES2" EntitySet="FAMILIES2" />
+          </AssociationSet>
+          <AssociationSet Name="family2fk" Association="Self.family2fk">
+            <End Role="FAMILIES2" EntitySet="FAMILIES2" />
+            <End Role="CHILDRENS" EntitySet="CHILDRENS" />
+          </AssociationSet>
+          <AssociationSet Name="family2fk1" Association="Self.family2fk1">
+            <End Role="FAMILIES2" EntitySet="FAMILIES2" />
+            <End Role="FAMILYQUOTIENTS" EntitySet="FAMILYQUOTIENTS" />
+          </AssociationSet>
           <AssociationSet Name="familyfk" Association="Self.familyfk">
             <End Role="FAMILIES" EntitySet="FAMILIES" />
-            <End Role="CHILDRENS" EntitySet="CHILDRENS" />
+            <End Role="FAMILYQUOTIENTS" EntitySet="FAMILYQUOTIENTS" />
           </AssociationSet>
           <AssociationSet Name="familyfk1" Association="Self.familyfk1">
             <End Role="FAMILIES" EntitySet="FAMILIES" />
-            <End Role="FAMILYQUOTIENTS" EntitySet="FAMILYQUOTIENTS" />
+            <End Role="CHILDRENS" EntitySet="CHILDRENS" />
           </AssociationSet>
           <AssociationSet Name="medecinefk" Association="Self.medecinefk">
             <End Role="MEDECINES" EntitySet="MEDECINES" />
             <End Role="CHILDRENS" EntitySet="CHILDRENS" />
+          </AssociationSet>
+          <AssociationSet Name="partner" Association="Self.partner">
+            <End Role="PERSON" EntitySet="PERSON" />
+            <End Role="FAMILIES2" EntitySet="FAMILIES2" />
+          </AssociationSet>
+          <AssociationSet Name="payer" Association="Self.payer">
+            <End Role="PERSON" EntitySet="PERSON" />
+            <End Role="FAMILIES2" EntitySet="FAMILIES2" />
           </AssociationSet>
         </EntityContainer>
       </Schema></edmx:StorageModels>
@@ -198,9 +330,15 @@
           <EntitySet Name="CITIES" EntityType="agsModel.CITIES" />
           <EntitySet Name="CIVILITIES" EntityType="agsModel.CIVILITIES" />
           <EntitySet Name="FAMILIES" EntityType="agsModel.FAMILIES" />
+          <EntitySet Name="FAMILIES2" EntityType="agsModel.FAMILIES2" />
           <EntitySet Name="FAMILYQUOTIENTS" EntityType="agsModel.FAMILYQUOTIENTS" />
           <EntitySet Name="MEDECINES" EntityType="agsModel.MEDECINES" />
-          <AssociationSet Name="familyfk" Association="agsModel.familyfk">
+          <EntitySet Name="PERSON" EntityType="agsModel.PERSON" />
+          <AssociationSet Name="family2fk" Association="agsModel.family2fk">
+            <End Role="FAMILIES2" EntitySet="FAMILIES2" />
+            <End Role="CHILDRENS" EntitySet="CHILDRENS" />
+          </AssociationSet>
+          <AssociationSet Name="familyfk1" Association="agsModel.familyfk1">
             <End Role="FAMILIES" EntitySet="FAMILIES" />
             <End Role="CHILDRENS" EntitySet="CHILDRENS" />
           </AssociationSet>
@@ -212,12 +350,32 @@
             <End Role="CITIES" EntitySet="CITIES" />
             <End Role="FAMILIES" EntitySet="FAMILIES" />
           </AssociationSet>
+          <AssociationSet Name="cityfk1" Association="agsModel.cityfk1">
+            <End Role="CITIES" EntitySet="CITIES" />
+            <End Role="FAMILIES2" EntitySet="FAMILIES2" />
+          </AssociationSet>
           <AssociationSet Name="civilityfk" Association="agsModel.civilityfk">
             <End Role="CIVILITIES" EntitySet="CIVILITIES" />
             <End Role="FAMILIES" EntitySet="FAMILIES" />
           </AssociationSet>
-          <AssociationSet Name="familyfk1" Association="agsModel.familyfk1">
+          <AssociationSet Name="civilityfk1" Association="agsModel.civilityfk1">
+            <End Role="CIVILITIES" EntitySet="CIVILITIES" />
+            <End Role="FAMILIES2" EntitySet="FAMILIES2" />
+          </AssociationSet>
+          <AssociationSet Name="familyfk" Association="agsModel.familyfk">
             <End Role="FAMILIES" EntitySet="FAMILIES" />
+            <End Role="FAMILYQUOTIENTS" EntitySet="FAMILYQUOTIENTS" />
+          </AssociationSet>
+          <AssociationSet Name="partner" Association="agsModel.partner">
+            <End Role="PERSON" EntitySet="PERSON" />
+            <End Role="FAMILIES2" EntitySet="FAMILIES2" />
+          </AssociationSet>
+          <AssociationSet Name="payer" Association="agsModel.payer">
+            <End Role="PERSON" EntitySet="PERSON" />
+            <End Role="FAMILIES2" EntitySet="FAMILIES2" />
+          </AssociationSet>
+          <AssociationSet Name="family2fk1" Association="agsModel.family2fk1">
+            <End Role="FAMILIES2" EntitySet="FAMILIES2" />
             <End Role="FAMILYQUOTIENTS" EntitySet="FAMILYQUOTIENTS" />
           </AssociationSet>
         </EntityContainer>
@@ -248,7 +406,8 @@
           <Property Name="WITHOUTPORK" Type="Boolean" Nullable="false" />
           <Property Name="WITHOUTMEAT" Type="Boolean" Nullable="false" />
           <Property Name="SPECIALARRANGEMENTS" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
-          <NavigationProperty Name="FAMILIES" Relationship="agsModel.familyfk" FromRole="CHILDRENS" ToRole="FAMILIES" />
+          <NavigationProperty Name="FAMILIES2" Relationship="agsModel.family2fk" FromRole="CHILDRENS" ToRole="FAMILIES2" />
+          <NavigationProperty Name="FAMILIES" Relationship="agsModel.familyfk1" FromRole="CHILDRENS" ToRole="FAMILIES" />
           <NavigationProperty Name="MEDECINES" Relationship="agsModel.medecinefk" FromRole="CHILDRENS" ToRole="MEDECINES" />
         </EntityType>
         <EntityType Name="CITIES">
@@ -260,6 +419,7 @@
           <Property Name="CP" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
           <Property Name="PARTNERSHIP" Type="Boolean" />
           <NavigationProperty Name="FAMILIES" Relationship="agsModel.cityfk" FromRole="CITIES" ToRole="FAMILIES" />
+          <NavigationProperty Name="FAMILIES2" Relationship="agsModel.cityfk1" FromRole="CITIES" ToRole="FAMILIES2" />
         </EntityType>
         <EntityType Name="CIVILITIES">
           <Key>
@@ -268,6 +428,7 @@
           <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="CIVILITY" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
           <NavigationProperty Name="FAMILIES" Relationship="agsModel.civilityfk" FromRole="CIVILITIES" ToRole="FAMILIES" />
+          <NavigationProperty Name="FAMILIES2" Relationship="agsModel.civilityfk1" FromRole="CIVILITIES" ToRole="FAMILIES2" />
         </EntityType>
         <EntityType Name="FAMILIES">
           <Key>
@@ -303,10 +464,35 @@
           <Property Name="PAYEREMAIL" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
           <Property Name="SOCIALSECURITYID" Type="Int32" />
           <Property Name="RECIPIENTNUMBER" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
-          <NavigationProperty Name="CHILDRENS" Relationship="agsModel.familyfk" FromRole="FAMILIES" ToRole="CHILDRENS" />
+          <NavigationProperty Name="CHILDRENS" Relationship="agsModel.familyfk1" FromRole="FAMILIES" ToRole="CHILDRENS" />
           <NavigationProperty Name="CITIES" Relationship="agsModel.cityfk" FromRole="FAMILIES" ToRole="CITIES" />
           <NavigationProperty Name="CIVILITIES" Relationship="agsModel.civilityfk" FromRole="FAMILIES" ToRole="CIVILITIES" />
-          <NavigationProperty Name="FAMILYQUOTIENTS" Relationship="agsModel.familyfk1" FromRole="FAMILIES" ToRole="FAMILYQUOTIENTS" />
+          <NavigationProperty Name="FAMILYQUOTIENTS" Relationship="agsModel.familyfk" FromRole="FAMILIES" ToRole="FAMILYQUOTIENTS" />
+        </EntityType>
+        <EntityType Name="FAMILIES2">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="CIVILITYID" Type="Int32" />
+          <Property Name="LASTNAME" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="FIRSTNAME" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="ADDRESS" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="CITYID" Type="Int32" />
+          <Property Name="TEL1" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="TEL2" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="TEL3" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="EMAIL" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="PARTNERID" Type="Int64" />
+          <Property Name="PAYERID" Type="Int64" />
+          <Property Name="SOCIALSECURITYID" Type="Int32" />
+          <Property Name="RECIPIENTNUMBER" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="CHILDRENS" Relationship="agsModel.family2fk" FromRole="FAMILIES2" ToRole="CHILDRENS" />
+          <NavigationProperty Name="CITIES" Relationship="agsModel.cityfk1" FromRole="FAMILIES2" ToRole="CITIES" />
+          <NavigationProperty Name="CIVILITIES" Relationship="agsModel.civilityfk1" FromRole="FAMILIES2" ToRole="CIVILITIES" />
+          <NavigationProperty Name="PARTNER" Relationship="agsModel.partner" FromRole="FAMILIES2" ToRole="PERSON" />
+          <NavigationProperty Name="PAYER" Relationship="agsModel.payer" FromRole="FAMILIES2" ToRole="PERSON" />
+          <NavigationProperty Name="FAMILYQUOTIENTS" Relationship="agsModel.family2fk1" FromRole="FAMILIES2" ToRole="FAMILYQUOTIENTS" />
         </EntityType>
         <EntityType Name="FAMILYQUOTIENTS">
           <Key>
@@ -316,7 +502,8 @@
           <Property Name="YEAR" Type="Int32" />
           <Property Name="FAMILYID" Type="Int32" />
           <Property Name="FAMILYQUOTIENT" Type="Single" />
-          <NavigationProperty Name="FAMILIES" Relationship="agsModel.familyfk1" FromRole="FAMILYQUOTIENTS" ToRole="FAMILIES" />
+          <NavigationProperty Name="FAMILIES" Relationship="agsModel.familyfk" FromRole="FAMILYQUOTIENTS" ToRole="FAMILIES" />
+          <NavigationProperty Name="FAMILIES2" Relationship="agsModel.family2fk1" FromRole="FAMILYQUOTIENTS" ToRole="FAMILIES2" />
         </EntityType>
         <EntityType Name="MEDECINES">
           <Key>
@@ -327,7 +514,36 @@
           <Property Name="TEL" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
           <NavigationProperty Name="CHILDRENS" Relationship="agsModel.medecinefk" FromRole="MEDECINES" ToRole="CHILDRENS" />
         </EntityType>
-        <Association Name="familyfk">
+        <EntityType Name="PERSON">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="CIVILITYID" Type="Int32" />
+          <Property Name="LASTNAME" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="FIRSTNAME" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="ADDRESS" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="CITYID" Type="Int32" />
+          <Property Name="TEL1" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="TEL2" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="TEL3" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="EMAIL" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="FAMILIES2" Relationship="agsModel.partner" FromRole="PERSON" ToRole="FAMILIES2" />
+          <NavigationProperty Name="FAMILIES21" Relationship="agsModel.payer" FromRole="PERSON" ToRole="FAMILIES2" />
+        </EntityType>
+        <Association Name="family2fk">
+          <End Type="agsModel.FAMILIES2" Role="FAMILIES2" Multiplicity="0..1" />
+          <End Type="agsModel.CHILDRENS" Role="CHILDRENS" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="FAMILIES2">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="CHILDRENS">
+              <PropertyRef Name="FAMILYID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="familyfk1">
           <End Type="agsModel.FAMILIES" Role="FAMILIES" Multiplicity="0..1" />
           <End Type="agsModel.CHILDRENS" Role="CHILDRENS" Multiplicity="*" />
           <ReferentialConstraint>
@@ -363,6 +579,18 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="cityfk1">
+          <End Type="agsModel.CITIES" Role="CITIES" Multiplicity="0..1" />
+          <End Type="agsModel.FAMILIES2" Role="FAMILIES2" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="CITIES">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="FAMILIES2">
+              <PropertyRef Name="CITYID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="civilityfk">
           <End Type="agsModel.CIVILITIES" Role="CIVILITIES" Multiplicity="0..1" />
           <End Type="agsModel.FAMILIES" Role="FAMILIES" Multiplicity="*" />
@@ -375,7 +603,19 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="familyfk1">
+        <Association Name="civilityfk1">
+          <End Type="agsModel.CIVILITIES" Role="CIVILITIES" Multiplicity="0..1" />
+          <End Type="agsModel.FAMILIES2" Role="FAMILIES2" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="CIVILITIES">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="FAMILIES2">
+              <PropertyRef Name="CIVILITYID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="familyfk">
           <End Type="agsModel.FAMILIES" Role="FAMILIES" Multiplicity="0..1" />
           <End Type="agsModel.FAMILYQUOTIENTS" Role="FAMILYQUOTIENTS" Multiplicity="*" />
           <ReferentialConstraint>
@@ -387,7 +627,43 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-      </Schema>
+        <Association Name="partner">
+          <End Type="agsModel.PERSON" Role="PERSON" Multiplicity="0..1" />
+          <End Type="agsModel.FAMILIES2" Role="FAMILIES2" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="PERSON">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="FAMILIES2">
+              <PropertyRef Name="PARTNERID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="payer">
+          <End Type="agsModel.PERSON" Role="PERSON" Multiplicity="0..1" />
+          <End Type="agsModel.FAMILIES2" Role="FAMILIES2" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="PERSON">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="FAMILIES2">
+              <PropertyRef Name="PAYERID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="family2fk1">
+          <End Type="agsModel.FAMILIES2" Role="FAMILIES2" Multiplicity="0..1" />
+          <End Type="agsModel.FAMILYQUOTIENTS" Role="FAMILYQUOTIENTS" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="FAMILIES2">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="FAMILYQUOTIENTS">
+              <PropertyRef Name="FAMILYID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
     <edmx:Mappings>
@@ -476,6 +752,26 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
+          <EntitySetMapping Name="FAMILIES2">
+            <EntityTypeMapping TypeName="agsModel.FAMILIES2">
+              <MappingFragment StoreEntitySet="FAMILIES2">
+                <ScalarProperty Name="RECIPIENTNUMBER" ColumnName="RECIPIENTNUMBER" />
+                <ScalarProperty Name="SOCIALSECURITYID" ColumnName="SOCIALSECURITYID" />
+                <ScalarProperty Name="PAYERID" ColumnName="PAYERID" />
+                <ScalarProperty Name="PARTNERID" ColumnName="PARTNERID" />
+                <ScalarProperty Name="EMAIL" ColumnName="EMAIL" />
+                <ScalarProperty Name="TEL3" ColumnName="TEL3" />
+                <ScalarProperty Name="TEL2" ColumnName="TEL2" />
+                <ScalarProperty Name="TEL1" ColumnName="TEL1" />
+                <ScalarProperty Name="CITYID" ColumnName="CITYID" />
+                <ScalarProperty Name="ADDRESS" ColumnName="ADDRESS" />
+                <ScalarProperty Name="FIRSTNAME" ColumnName="FIRSTNAME" />
+                <ScalarProperty Name="LASTNAME" ColumnName="LASTNAME" />
+                <ScalarProperty Name="CIVILITYID" ColumnName="CIVILITYID" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
           <EntitySetMapping Name="FAMILYQUOTIENTS">
             <EntityTypeMapping TypeName="agsModel.FAMILYQUOTIENTS">
               <MappingFragment StoreEntitySet="FAMILYQUOTIENTS">
@@ -491,6 +787,22 @@
               <MappingFragment StoreEntitySet="MEDECINES">
                 <ScalarProperty Name="TEL" ColumnName="TEL" />
                 <ScalarProperty Name="FULLNAME" ColumnName="FULLNAME" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="PERSON">
+            <EntityTypeMapping TypeName="agsModel.PERSON">
+              <MappingFragment StoreEntitySet="PERSON">
+                <ScalarProperty Name="EMAIL" ColumnName="EMAIL" />
+                <ScalarProperty Name="TEL3" ColumnName="TEL3" />
+                <ScalarProperty Name="TEL2" ColumnName="TEL2" />
+                <ScalarProperty Name="TEL1" ColumnName="TEL1" />
+                <ScalarProperty Name="CITYID" ColumnName="CITYID" />
+                <ScalarProperty Name="ADDRESS" ColumnName="ADDRESS" />
+                <ScalarProperty Name="FIRSTNAME" ColumnName="FIRSTNAME" />
+                <ScalarProperty Name="LASTNAME" ColumnName="LASTNAME" />
+                <ScalarProperty Name="CIVILITYID" ColumnName="CIVILITYID" />
                 <ScalarProperty Name="ID" ColumnName="ID" />
               </MappingFragment>
             </EntityTypeMapping>
@@ -512,24 +824,37 @@
         <DesignerProperty Name="EnablePluralization" Value="false" />
         <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
         <DesignerProperty Name="UseLegacyProvider" Value="false" />
-        <DesignerProperty Name="CodeGenerationStrategy" Value="Par défaut" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="Default" />
         <DesignerProperty Name="DefaultDatabaseSchema" Value="public" />
       </DesignerInfoPropertySet>
     </Options>
     <!-- Diagram content (shape and connector positions) -->
     <Diagrams >
-      <Diagram Name="Model1">
-        <EntityTypeShape EntityType="agsModel.CHILDRENS" Width="2.75" PointX="5.625" PointY="2.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="agsModel.CITIES" Width="1.5" PointX="0.625" PointY="1.25" />
-        <EntityTypeShape EntityType="agsModel.CIVILITIES" Width="1.5" PointX="0.75" PointY="4.75" />
-        <EntityTypeShape EntityType="agsModel.FAMILIES" Width="2" PointX="3.125" PointY="2" IsExpanded="true" />
-        <EntityTypeShape EntityType="agsModel.FAMILYQUOTIENTS" Width="1.75" PointX="0.5" PointY="7.375" IsExpanded="true" />
-        <EntityTypeShape EntityType="agsModel.MEDECINES" Width="1.5" PointX="8.875" PointY="1.875" />
-        <AssociationConnector Association="agsModel.familyfk" />
+      <Diagram Name="Model1" ZoomLevel="85">
+        <EntityTypeShape EntityType="agsModel.CHILDRENS" Width="2" PointX="9.875" PointY="0.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="agsModel.CITIES" Width="1.5" PointX="6.875" PointY="7.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="agsModel.CIVILITIES" Width="1.5" PointX="3.125" PointY="7.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="agsModel.FAMILIES" Width="1.875" PointX="0.5" PointY="0.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="agsModel.FAMILIES2" Width="1.75" PointX="0.5" PointY="8.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="agsModel.FAMILYQUOTIENTS" Width="1.5" PointX="5" PointY="7.375" />
+        <EntityTypeShape EntityType="agsModel.MEDECINES" Width="1.5" PointX="9.875" PointY="7.625" />
+        <EntityTypeShape EntityType="agsModel.PERSON" Width="1.5" PointX="4.5" PointY="11.375" />
+        <AssociationConnector Association="agsModel.family2fk" />
+        <AssociationConnector Association="agsModel.familyfk1" />
         <AssociationConnector Association="agsModel.medecinefk" />
         <AssociationConnector Association="agsModel.cityfk" />
+        <AssociationConnector Association="agsModel.cityfk1" ManuallyRouted="true" >
+          <ConnectorPoint PointX="7.625" PointY="9.422587890625" />
+          <ConnectorPoint PointX="7.625" PointY="10.065854848922658" />
+          <ConnectorPoint PointX="2.25" PointY="10.065854848922658" />
+        </AssociationConnector>
         <AssociationConnector Association="agsModel.civilityfk" />
-        <AssociationConnector Association="agsModel.familyfk1" />
+        <AssociationConnector Association="agsModel.civilityfk1" />
+        <AssociationConnector Association="agsModel.familyfk" />
+        <AssociationConnector Association="agsModel.partner" ManuallyRouted="false" >
+        </AssociationConnector>
+        <AssociationConnector Association="agsModel.payer" />
+        <AssociationConnector Association="agsModel.family2fk1" />
       </Diagram>
     </Diagrams>
   </Designer>
