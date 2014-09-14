@@ -1,25 +1,25 @@
-﻿<ccl:CustomChromeWindow 
+﻿<ccl:CustomChromeWindow
     Title="Gestion des Enfants" Background="{StaticResource ResourceKey=GenBtcColorBrush}"
         x:Class="WpfMvvmApplication1.Views.MainWindow"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:xctk="http://schemas.xceed.com/wpf/xaml/toolkit"
         xmlns:shell="http://schemas.microsoft.com/winfx/2006/xaml/presentation/shell"
-        xmlns:ccl="clr-namespace:CustomChromeLibrary;assembly=CustomChromeLibrary"        
-        mc:Ignorable="d" 
-        xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
-        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+        xmlns:ccl="clr-namespace:CustomChromeLibrary;assembly=CustomChromeLibrary"
+        mc:Ignorable="d"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:scm="clr-namespace:System.ComponentModel;assembly=WindowsBase"
         xmlns:dat="clr-namespace:System.Windows.Data;assembly=PresentationFramework"
-        xmlns:main="clr-namespace:WpfMvvmApplication1" 
-        xmlns:models="clr-namespace:WpfMvvmApplication1.Models" 
+        xmlns:main="clr-namespace:WpfMvvmApplication1"
+        xmlns:models="clr-namespace:WpfMvvmApplication1.Models"
         xmlns:viewModels="clr-namespace:WpfMvvmApplication1.ViewModels"
-        xmlns:converters="clr-namespace:WpfMvvmApplication1.Converters" 
-        xmlns:helpers="clr-namespace:WpfMvvmApplication1.Helpers" 
+        xmlns:converters="clr-namespace:WpfMvvmApplication1.Converters"
+        xmlns:helpers="clr-namespace:WpfMvvmApplication1.Helpers"
         xmlns:Controls="clr-namespace:ExtendedGrid.Microsoft.Windows.Controls;assembly=ExtendedGrid"
         xmlns:ExtendedGridControl="clr-namespace:ExtendedGrid.ExtendedGridControl;assembly=ExtendedGrid"
-        xmlns:ExtendedColumn="clr-namespace:ExtendedGrid.ExtendedColumn;assembly=ExtendedGrid"    
-    Width="1600" Height="900" WindowStyle="SingleBorderWindow" >
+        xmlns:ExtendedColumn="clr-namespace:ExtendedGrid.ExtendedColumn;assembly=ExtendedGrid"
+    Width="1600" Height="900" WindowStyle="SingleBorderWindow">
 
     <Window.DataContext>
         <viewModels:MainWindowViewModel x:Name="datacontextviewmodel" />
@@ -27,22 +27,22 @@
 
     <Window.Resources>
         <ResourceDictionary>
-            <CollectionViewSource x:Key="famsorted" Source="{Binding Path=FamiliesCollection}" >
+            <CollectionViewSource x:Key="famsorted" Source="{Binding Path=FamiliesCollection}">
                 <CollectionViewSource.SortDescriptions>
                     <scm:SortDescription PropertyName="ID" />
                 </CollectionViewSource.SortDescriptions>
             </CollectionViewSource>
-            <CollectionViewSource x:Key="famcombobox" Source="{Binding Path=FamiliesBox}" >
+            <CollectionViewSource x:Key="famcombobox" Source="{Binding Path=FamiliesBox}">
                 <CollectionViewSource.SortDescriptions>
                     <scm:SortDescription PropertyName="ID" />
                 </CollectionViewSource.SortDescriptions>
             </CollectionViewSource>
-            <CollectionViewSource x:Key="citysorted" Source="{Binding Path=CitiesCollection}" >
+            <CollectionViewSource x:Key="citysorted" Source="{Binding Path=CitiesCollection}">
                 <CollectionViewSource.SortDescriptions>
                     <scm:SortDescription PropertyName="ID" />
                 </CollectionViewSource.SortDescriptions>
             </CollectionViewSource>
-            <CollectionViewSource x:Key="CivilitiesSorted" Source="{Binding Path=CIVILITIESCollection}" >
+            <CollectionViewSource x:Key="CivilitiesSorted" Source="{Binding Path=CIVILITIESCollection}">
                 <CollectionViewSource.SortDescriptions>
                     <scm:SortDescription PropertyName="ID" />
                 </CollectionViewSource.SortDescriptions>
@@ -50,9 +50,9 @@
             <models:Gender x:Key="Gender" />
             <!--<viewModels:MainWindowViewModel x:Key="MainWindowViewModel" />-->
             <converters:AddOne x:Key="addOne" />
-            <converters:DateConverter x:Key="dateConverter"/>
-            <converters:DebugConverter x:Key="DebugConverter"/>
-            <converters:EFtoIEnum x:Key="EFtoIEnum"/>
+            <converters:DateConverter x:Key="dateConverter" />
+            <converters:DebugConverter x:Key="DebugConverter" />
+            <converters:EFtoIEnum x:Key="EFtoIEnum" />
             <BitmapImage x:Key="ExcelImage" UriSource="../Resources/excel.png" />
         </ResourceDictionary>
     </Window.Resources>
@@ -83,16 +83,16 @@
             </Border.Background>
 
             <!--Window Icon and Title-->
-            <TextBlock Margin="0,6,0,0" Text="Gestion des Enfants" FontFamily="Calibri" FontWeight="Bold" FontSize="16" Foreground="#FF000044" HorizontalAlignment="Center" VerticalAlignment="Top"/>
+            <TextBlock Margin="0,6,0,0" Text="Gestion des Enfants" FontFamily="Calibri" FontWeight="Bold" FontSize="16" Foreground="#FF000044" HorizontalAlignment="Center" VerticalAlignment="Top" />
         </Border>
         <ccl:CaptionButtons HorizontalAlignment="Right" Margin="0,6,0,0" Height="23" VerticalAlignment="Top" />
 
         <!--Content-->
         <Viewbox Margin="0,22,0,8">
-            <TabControl Margin="2,0,2,0" >
+            <TabControl Margin="2,0,2,0">
                 <!--Presence Tab-->
                 <TabItem Header="Presence">
-                    <Grid Height="820" Width="1593" >
+                    <Grid Height="820" Width="1593">
                         <Grid.RowDefinitions>
                             <RowDefinition Height="31" />
                             <RowDefinition Height="2*" />
@@ -102,12 +102,12 @@
                         <Label Grid.Row="0" Content="Recherche :" />
                         <TextBox Grid.Row="0" Margin="80,0,0,0" Name="Recherche2" HorizontalAlignment="Left" Style="{StaticResource ResourceKey=flatTextBox}" Height="24" TextWrapping="Wrap" Width="716" />
                         <!--Buttons-->
-                        <Button Grid.Row="0" Content="+" Margin="0,0,10,0" VerticalAlignment="Top" HorizontalAlignment="Right" Height="30" Width="35"  />
+                        <Button Grid.Row="0" Content="+" Margin="0,0,10,0" VerticalAlignment="Top" HorizontalAlignment="Right" Height="30" Width="35" />
                         <Button Content="Update!" Command="{Binding Path=SaveAll}" VerticalAlignment="Top" HorizontalAlignment="Right" Margin="0,0,56,0" Width="84" Height="30" />
-                        <Button Content="Refresh..." Command="{Binding Path=RefreshDb}" Margin="0,0,152,0" VerticalAlignment="Top" HorizontalAlignment="Right" Width="84"  Height="30"  />
+                        <Button Content="Refresh..." Command="{Binding Path=RefreshDb}" Margin="0,0,152,0" VerticalAlignment="Top" HorizontalAlignment="Right" Width="84"  Height="30" />
 
-                        <DataGrid Grid.Row="1" Name="PresenceDataGrid" ItemsSource="{Binding Path=ChildrenViewSource, UpdateSourceTrigger=PropertyChanged}" AutoGenerateColumns="False" Margin="4,1,4,2" 
-                                  BorderThickness="1,2,1,1" Background="{StaticResource ResourceKey=GenBtcColorBrush}" BorderBrush="#FF889BB1" RowBackground="Snow" HeadersVisibility="Column" >
+                        <DataGrid Grid.Row="1" Name="PresenceDataGrid" ItemsSource="{Binding Path=ChildrenViewSource, UpdateSourceTrigger=PropertyChanged}" AutoGenerateColumns="False" Margin="4,1,4,2"
+                                  BorderThickness="1,2,1,1" Background="{StaticResource ResourceKey=GenBtcColorBrush}" BorderBrush="#FF889BB1" RowBackground="Snow" HeadersVisibility="Column">
                             <DataGrid.Columns>
                                 <DataGridTextColumn Binding="{Binding Path=ID}" Header="Id" Width="30" IsReadOnly="True" CanUserSort="True" />
                                 <DataGridTextColumn Binding="{Binding Path=LASTNAME}" Header="Nom" Width="200" CanUserSort="True" />
@@ -125,15 +125,15 @@
                             </DataGrid.Columns>
                         </DataGrid>
                         <Grid Grid.Row="3">
-                            <Label Content="Secteur :" HorizontalAlignment="Left" Margin="10,8,0,0" VerticalAlignment="Top" Width="57"/>
-                            <Label Content="Groupe :" HorizontalAlignment="Left" Height="26" Margin="301,8,0,0" VerticalAlignment="Top" Width="56"/>
-                            <Label Content="Période :" HorizontalAlignment="Left" Margin="569,8,0,0" VerticalAlignment="Top"/>
-                            <Label Content="Activité :" HorizontalAlignment="Left" Margin="937,8,0,0" VerticalAlignment="Top"/>
+                            <Label Content="Secteur :" HorizontalAlignment="Left" Margin="10,8,0,0" VerticalAlignment="Top" Width="57" />
+                            <Label Content="Groupe :" HorizontalAlignment="Left" Height="26" Margin="301,8,0,0" VerticalAlignment="Top" Width="56" />
+                            <Label Content="Période :" HorizontalAlignment="Left" Margin="569,8,0,0" VerticalAlignment="Top" />
+                            <Label Content="Activité :" HorizontalAlignment="Left" Margin="937,8,0,0" VerticalAlignment="Top" />
                             <ComboBox HorizontalAlignment="Left" Height="26" Margin="72,8,0,0" VerticalAlignment="Top" Width="179" Style="{StaticResource ResourceKey=ComboBoxFlatStyle}">
                                 <ComboBoxItem Name="cbi1">Item1</ComboBoxItem>
                             </ComboBox>
                             <ComboBox HorizontalAlignment="Left" Height="26" Margin="357,8,0,0" VerticalAlignment="Top" Width="142" Style="{StaticResource ResourceKey=ComboBoxFlatStyle}" />
-                            <ComboBox HorizontalAlignment="Left" Height="26" Margin="630,8,0,0" VerticalAlignment="Top" Width="225" Style="{StaticResource ResourceKey=ComboBoxFlatStyle}"/>
+                            <ComboBox HorizontalAlignment="Left" Height="26" Margin="630,8,0,0" VerticalAlignment="Top" Width="225" Style="{StaticResource ResourceKey=ComboBoxFlatStyle}" />
                             <ComboBox HorizontalAlignment="Left" Height="26" Margin="997,8,0,0" VerticalAlignment="Top" Width="240" Style="{StaticResource ResourceKey=ComboBoxFlatStyle}" />
                         </Grid>
                     </Grid>
@@ -145,11 +145,11 @@
                             <RowDefinition Height="31" />
                             <RowDefinition Height="1*" />
                         </Grid.RowDefinitions>
-                        <Label Content="Recherche :" Margin="0,0,0,0" VerticalAlignment="Top" HorizontalAlignment="Left"  />
+                        <Label Content="Recherche :" Margin="0,0,0,0" VerticalAlignment="Top" HorizontalAlignment="Left" />
                         <TextBox Grid.Row="0" Margin="80,0,0,0" Name="Recherche" HorizontalAlignment="Left" Style="{StaticResource ResourceKey=flatTextBox}" Height="24" TextWrapping="Wrap" Width="716" />
                         <!--Buttons-->
                         <Button Content="Update!" Command="{Binding Path=SaveAll}" VerticalAlignment="Top" HorizontalAlignment="Right" Margin="0,0,56,0" Width="84" Height="30" />
-                        <Button Content="Refresh..." Command="{Binding Path=RefreshDb}" Margin="0,0,152,0" VerticalAlignment="Top" HorizontalAlignment="Right" Width="84"  Height="30"  />
+                        <Button Content="Refresh..." Command="{Binding Path=RefreshDb}" Margin="0,0,152,0" VerticalAlignment="Top" HorizontalAlignment="Right" Width="84"  Height="30" />
                         <Button Content="+" Margin="0,0,10,0" VerticalAlignment="Top" HorizontalAlignment="Right" Height="30" Width="35" />
                         <!--ChildrenDataGrid-->
                         <DataGrid Grid.Row="1" Grid.RowSpan="3" Name="ChildrenDataGrid" ItemsSource="{Binding Path=ChildrenViewSource, UpdateSourceTrigger=PropertyChanged}" AutoGenerateColumns="False" Margin="4,1,4,2"
@@ -181,26 +181,26 @@
                                                 <TextBox x:Name="tbTel2" Style="{StaticResource ResourceKey=flatTextBox}" HorizontalAlignment="Left" Height="20" Margin="212,121,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="137" IsEnabled="True" Text="{Binding SelectedItem.TEL2, ElementName=cbFamily}" />
                                                 <TextBox x:Name="tbTel3" Style="{StaticResource ResourceKey=flatTextBox}" HorizontalAlignment="Left" Height="20" Margin="353,121,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="140" IsEnabled="True" Text="{Binding SelectedItem.TEL3, ElementName=cbFamily}" />
                                                 <ComboBox x:Name="cbMedecin" Style="{StaticResource ResourceKey=ComboBoxFlatStyle}" HorizontalAlignment="Right" Margin="0,11,424,0" VerticalAlignment="Top" Width="283" Height="26" IsEditable="True" />
-                                                <TextBox x:Name="tbTelMedecin" Style="{StaticResource ResourceKey=flatTextBox}" HorizontalAlignment="Right" Height="26" Margin="0,11,231,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="130"/>
-                                                <TextBox x:Name="tbAllergies2" Style="{StaticResource ResourceKey=flatTextBoxMultiLine}" HorizontalAlignment="Right" Height="60" Margin="0,45,232,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="475"/>
+                                                <TextBox x:Name="tbTelMedecin" Style="{StaticResource ResourceKey=flatTextBox}" HorizontalAlignment="Right" Height="26" Margin="0,11,231,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="130" />
+                                                <TextBox x:Name="tbAllergies2" Style="{StaticResource ResourceKey=flatTextBoxMultiLine}" HorizontalAlignment="Right" Height="60" Margin="0,45,232,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="475" />
                                                 <Label Content="Famille :" HorizontalAlignment="Left" Margin="12,14,0,0" VerticalAlignment="Top" HorizontalContentAlignment="Right" />
                                                 <Label Content="Addresse :" HorizontalAlignment="Left" Margin="7,41,0,0" VerticalAlignment="Top" HorizontalContentAlignment="Right" />
                                                 <Label Content="Téls. :" HorizontalAlignment="Left" Margin="24,117,0,0" VerticalAlignment="Top" HorizontalContentAlignment="Right" />
                                                 <Label Content="Email :" HorizontalAlignment="Left" Margin="19,143,0,0" VerticalAlignment="Top" HorizontalContentAlignment="Right" />
                                                 <Label Content="Médecin :" Margin="0,11,712,0" VerticalAlignment="Top" HorizontalAlignment="Right" />
                                                 <Label Content="Tél. :" Margin="0,11,367,0" VerticalAlignment="Top" HorizontalAlignment="Right" />
-                                                <Label Content="Allergies :" Margin="0,44,712,0" VerticalAlignment="Top" HorizontalAlignment="Right"  />
+                                                <Label Content="Allergies :" Margin="0,44,712,0" VerticalAlignment="Top" HorizontalAlignment="Right" />
                                             </Grid>
                                         </TabItem>
-                                        <TabItem Header="Consignes" >
+                                        <TabItem Header="Consignes">
                                             <Grid Background="Snow">
-                                                <Rectangle Fill="#FFF4F4F5" HorizontalAlignment="Left" Height="169" Margin="12,0,12,0" Stroke="Black" VerticalAlignment="Stretch" Width="574"/>
+                                                <Rectangle Fill="#FFF4F4F5" HorizontalAlignment="Left" Height="169" Margin="12,0,12,0" Stroke="Black" VerticalAlignment="Stretch" Width="574" />
                                                 <CheckBox Content="Sans Gluten" Margin="708,20,767,0" Padding="4,0,0,0"  VerticalAlignment="Top" />
                                                 <CheckBox Content="Sans Oeuf" Margin="841,20,639,0" Padding="4,0,0,0" VerticalAlignment="Top" />
                                                 <CheckBox Content="Sans Poisson" Margin="964,20,510,0" VerticalAlignment="Top" />
                                                 <CheckBox Content="Sans Porc" Margin="1119,20,374,0" VerticalAlignment="Top" />
                                                 <CheckBox Content="Sans Viande" Margin="1274,20,209,0" VerticalAlignment="Top" />
-                                                <Label Content="Régime Particuliers :" HorizontalAlignment="Right" Margin="0,69,764,0" VerticalAlignment="Top"/>
+                                                <Label Content="Régime Particuliers :" HorizontalAlignment="Right" Margin="0,69,764,0" VerticalAlignment="Top" />
                                                 <TextBox Style="{StaticResource ResourceKey=flatTextBoxMultiLine}" Height="60" Margin="830,69,201,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" />
 
                                                 <CheckBox x:Name="chkHospital" Content="Hôpital" Margin="36,20,0,0" IsChecked="{Binding SelectedItem.HOSPITAL, ElementName=ChildrenDataGrid}" VerticalAlignment="Top" />
@@ -212,7 +212,7 @@
                                                 <CheckBox x:Name="chkSwim" Content="Baignade" Margin="326,54,0,0" IsChecked="{Binding SelectedItem.SWIM, ElementName=ChildrenDataGrid}" HorizontalAlignment="Left" VerticalAlignment="Top" />
                                                 <CheckBox x:Name="chkBikeOutings" Content="Sorties Vélo" Margin="326,84,0,0" IsChecked="{Binding SelectedItem.BIKEOUTINGS, ElementName=ChildrenDataGrid}"  VerticalAlignment="Top" HorizontalAlignment="Left" />
                                                 <CheckBox x:Name="chkBoatOutings" Content="Sorties Bâteau" Margin="326,114,0,0" IsChecked="{Binding SelectedItem.BOATOUTINGS, ElementName=ChildrenDataGrid}" VerticalAlignment="Top" HorizontalAlignment="Left" />
-                                                <ComboBox x:Name="cbClinic" Style="{StaticResource ResourceKey=ComboBoxFlatStyle}" Margin="131,77,0,0" HorizontalAlignment="Left" VerticalAlignment="Top" Width="130"/>
+                                                <ComboBox x:Name="cbClinic" Style="{StaticResource ResourceKey=ComboBoxFlatStyle}" Margin="131,77,0,0" HorizontalAlignment="Left" VerticalAlignment="Top" Width="130" />
                                             </Grid>
                                         </TabItem>
                                     </TabControl>
@@ -225,8 +225,8 @@
                                 <DataGridTemplateColumn Header="Date Naissance" CanUserSort="True">
                                     <DataGridTemplateColumn.CellTemplate>
                                         <DataTemplate>
-                                            <xctk:DateTimePicker Name="dtpNaissance" HorizontalAlignment="Center" Margin="1,0,0,0" Width="101" Format="ShortDate" 
-                                                                AllowDrop="False" IsManipulationEnabled="True" ShowButtonSpinner="True" TimePickerVisibility="Hidden" Background="Snow" 
+                                            <xctk:DateTimePicker Name="dtpNaissance" HorizontalAlignment="Center" Margin="1,0,0,0" Width="101" Format="ShortDate"
+                                                                AllowDrop="False" IsManipulationEnabled="True" ShowButtonSpinner="True" TimePickerVisibility="Hidden" Background="Snow"
                                                                  Value="{Binding Path=BIRTHDATE, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
                                         </DataTemplate>
                                     </DataGridTemplateColumn.CellTemplate>
@@ -236,14 +236,14 @@
                                     <DataGridTemplateColumn.CellTemplate>
                                         <DataTemplate>
                                             <ComboBox Name="cbGender" HorizontalAlignment="Stretch" Style="{StaticResource ResourceKey=ComboBoxFlatStyle}"
-                                                    ItemsSource="{Binding Source={StaticResource Gender}, Path=ListGenders}"  DisplayMemberPath="Value" SelectedValuePath="Id" 
-                                                      SelectedIndex="{Binding Path=GENDERID, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"  />
+                                                    ItemsSource="{Binding Source={StaticResource Gender}, Path=ListGenders}"  DisplayMemberPath="Value" SelectedValuePath="Id"
+                                                      SelectedIndex="{Binding Path=GENDERID, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
                                         </DataTemplate>
                                     </DataGridTemplateColumn.CellTemplate>
                                 </DataGridTemplateColumn>
                                 <DataGridTextColumn Binding="{Binding Path=FAMILIES.ID, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Header="FAMILYID" Width="65" IsReadOnly="True" CanUserSort="True" />
                                 <!--<DataGridTemplateColumn Header="Family" Width="184" CanUserSort="True">
-                                    <DataGridTemplateColumn.CellTemplate >
+                                    <DataGridTemplateColumn.CellTemplate>
                                         <DataTemplate>
                                             <StackPanel Orientation="Horizontal">
                                                 <TextBlock Text="{Binding FAMILIES.LASTNAME}" />
@@ -255,9 +255,9 @@
                                     <DataGridTemplateColumn.CellEditingTemplate>
                                         <DataTemplate>
                                             ComboBox GRID Family
-                                            <ComboBox Name="cbFamilygrid" HorizontalAlignment="Stretch" Width="Auto" Style="{StaticResource ResourceKey=ComboBoxFlatStyle}"                                                       
+                                            <ComboBox Name="cbFamilygrid" HorizontalAlignment="Stretch" Width="Auto" Style="{StaticResource ResourceKey=ComboBoxFlatStyle}"
                                                       DisplayMemberPath="LASTNAME" SelectedValuePath="ID" IsSynchronizedWithCurrentItem="True"
-                                                      SelectedValue="{Binding Path=FAMILYID, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" >
+                                                      SelectedValue="{Binding Path=FAMILYID, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}">
                                                 <ComboBox.ItemsSource>
                                                     <CompositeCollection>
                                                         <ComboBoxItem Name="noneItem" Content="Aucun" />
@@ -276,7 +276,6 @@
                                             </ComboBox>
                                         </DataTemplate>
                                     </DataGridTemplateColumn.CellEditingTemplate>
-
                                 </DataGridTemplateColumn>-->
                                 <!--<DataGridTextColumn Binding="{Binding Path=FAMILIES.ADDRESS, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Header="Family Address" Width="250" CanUserSort="True" />
                                 <DataGridTextColumn Binding="{Binding Path=FAMILIES.CITIES.CITY, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Header="CITYNAME" Width="120" CanUserSort="True" />-->
@@ -290,16 +289,16 @@
                     <Grid Height="820" Width="1593">
                         <ExtendedGridControl:ExtendedDataGrid x:Name="FamilyDataGrid" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Margin="4,4,2,-2" BorderThickness="1,2,1,1"
                                 Background="{StaticResource ResourceKey=GenBtcColorBrush}" BorderBrush="#FF889BB1" RowBackground="Snow"
-                                ItemsSource="{Binding Path=FamiliesCollection}" HeadersVisibility="Column"  AutoGenerateColumns="False" RowHeight="50"  >
+                                ItemsSource="{Binding Path=FamiliesCollection}" HeadersVisibility="Column"  AutoGenerateColumns="False" RowHeight="50">
 
                             <Controls:DataGrid.Columns>
-                                <!--<ExtendedColumn:ExtendedDataGridTextColumn Binding="{Binding ID}" Header="ID" Width="200" CanUserSort="True" SortDirection="Ascending"/>-->
+                                <!--<ExtendedColumn:ExtendedDataGridTextColumn Binding="{Binding ID}" Header="ID" Width="200" CanUserSort="True" SortDirection="Ascending" />-->
 
                                 <Controls:DataGridTemplateColumn Header="Civ." Width="80" ClipboardContentBinding="{Binding CIVILITIES.CIVILITYID}">
                                     <Controls:DataGridTemplateColumn.CellTemplate>
                                         <DataTemplate>
                                             <ComboBox Height="20" Style="{StaticResource ResourceKey=ComboBoxFlatStyle}"  VerticalAlignment="Top"
-                                                      SelectedIndex="{Binding CIVILITYID}" DisplayMemberPath="CIVILITY" SelectedValuePath="ID" >
+                                                      SelectedIndex="{Binding CIVILITYID}" DisplayMemberPath="CIVILITY" SelectedValuePath="ID">
                                                 <ComboBox.ItemsSource>
                                                     <CompositeCollection>
                                                         <ComboBoxItem Name="noneItem" Content="Aucun" />
@@ -314,7 +313,7 @@
                                 <ExtendedColumn:ExtendedDataGridTextColumn x:Name="LastName" Binding="{Binding LASTNAME, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Header="Nom" Width="170" CanUserSort="True" />
                                 <ExtendedColumn:ExtendedDataGridTextColumn x:Name="FirstName" Binding="{Binding FIRSTNAME, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Header="Prénom" Width="170" CanUserSort="True" />
 
-                                <ExtendedColumn:ExtendedDataGridTextColumn x:Name="Address"  Binding="{Binding ADDRESS, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Header="Addresse" Width="220" CanUserSort="True" >
+                                <ExtendedColumn:ExtendedDataGridTextColumn x:Name="Address"  Binding="{Binding ADDRESS, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Header="Addresse" Width="220" CanUserSort="True">
                                     <ExtendedColumn:ExtendedDataGridTextColumn.ElementStyle>
                                         <Style TargetType="TextBlock">
                                             <Setter Property="TextWrapping" Value="Wrap" />
@@ -330,10 +329,10 @@
 
                                 <ExtendedColumn:ExtendedDataGridTextColumn Binding="{Binding CITIES.CP, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Header="CP" Width="70" IsReadOnly="true" CanUserSort="True" />
 
-                                <Controls:DataGridTemplateColumn Header="Commune" Width="200" >
+                                <Controls:DataGridTemplateColumn Header="Commune" Width="200">
                                     <Controls:DataGridTemplateColumn.CellTemplate>
                                         <DataTemplate>
-                                            <ComboBox Height="20" Style="{StaticResource ResourceKey=ComboBoxFlatStyle}" SelectedIndex="{Binding CITYID}" DisplayMemberPath="CITY" SelectedValuePath="ID" VerticalAlignment="Top" >
+                                            <ComboBox Height="20" Style="{StaticResource ResourceKey=ComboBoxFlatStyle}" SelectedIndex="{Binding CITYID}" DisplayMemberPath="CITY" SelectedValuePath="ID" VerticalAlignment="Top">
                                                 <ComboBox.ItemsSource>
                                                     <CompositeCollection>
                                                         <ComboBoxItem Name="noneItem" Content="Aucun" />
@@ -348,7 +347,6 @@
                                 <ExtendedColumn:ExtendedDataGridTextColumn Binding="{Binding TEL2, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Header="Tel 2" Width="100" CanUserSort="True" />
                                 <ExtendedColumn:ExtendedDataGridTextColumn Binding="{Binding TEL3, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Header="Tel 3" Width="100" CanUserSort="True" />
                                 <ExtendedColumn:ExtendedDataGridTextColumn Binding="{Binding EMAIL, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Header="Email" Width="340" CanUserSort="True" />
-
                             </Controls:DataGrid.Columns>
 
                             <Controls:DataGrid.RowDetailsTemplate>
@@ -392,19 +390,19 @@
                                                     <Label Content="Civilité :" HorizontalAlignment="Left" Margin="30,18,0,0" VerticalAlignment="Top" Width="52" HorizontalContentAlignment="Right" />
                                                     <ComboBox x:Name="cbPartnerCivility" Style="{StaticResource ResourceKey=ComboBoxFlatStyle}" Margin="82,20,0,0"  VerticalAlignment="Top" HorizontalAlignment="Left" Width="74" />
                                                     <Label Content="Nom :" Margin="30,43,0,0" HorizontalContentAlignment="Right" VerticalAlignment="Top" HorizontalAlignment="Left" Width="52" />
-                                                    <TextBox x:Name="tbPartnerLastName" Style="{StaticResource ResourceKey=flatTextBox}" Text="{Binding SelectedItem.PARTNER.LASTNAME, ElementName=FamilyDataGrid, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" HorizontalAlignment="Left" Height="20" Margin="82,46,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="445"/>
-                                                    <Label Content="Prénom :" HorizontalAlignment="Left" Margin="16,70,0,0" VerticalAlignment="Top" Width="66" HorizontalContentAlignment="Right"  />
-                                                    <TextBox x:Name="tbPartnerFirstName" Style="{StaticResource ResourceKey=flatTextBox}" Text="{Binding SelectedItem.PARTNER.FIRSTNAME, ElementName=FamilyDataGrid, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" HorizontalAlignment="Left" Height="20" Margin="82,72,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="445"/>
-                                                    <Label Content="Addresse :" Width="60" Margin="22,97,0,0" HorizontalContentAlignment="Right" HorizontalAlignment="Left" Height="26" VerticalAlignment="Top"  />
+                                                    <TextBox x:Name="tbPartnerLastName" Style="{StaticResource ResourceKey=flatTextBox}" Text="{Binding SelectedItem.PARTNER.LASTNAME, ElementName=FamilyDataGrid, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" HorizontalAlignment="Left" Height="20" Margin="82,46,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="445" />
+                                                    <Label Content="Prénom :" HorizontalAlignment="Left" Margin="16,70,0,0" VerticalAlignment="Top" Width="66" HorizontalContentAlignment="Right" />
+                                                    <TextBox x:Name="tbPartnerFirstName" Style="{StaticResource ResourceKey=flatTextBox}" Text="{Binding SelectedItem.PARTNER.FIRSTNAME, ElementName=FamilyDataGrid, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" HorizontalAlignment="Left" Height="20" Margin="82,72,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="445" />
+                                                    <Label Content="Addresse :" Width="60" Margin="22,97,0,0" HorizontalContentAlignment="Right" HorizontalAlignment="Left" Height="26" VerticalAlignment="Top" />
                                                     <TextBox x:Name="tbPartnerAddress" Style="{StaticResource ResourceKey=flatTextBox}" Text="{Binding SelectedItem.PARTNER.ADDRESS, ElementName=FamilyDataGrid, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Margin="82,97,0,0" TextWrapping="Wrap" Height="51" VerticalAlignment="Top" HorizontalAlignment="Left" Width="445" />
                                                     <TextBox x:Name="tbPartnerZipCode" Style="{StaticResource ResourceKey=flatTextBox}" Text="{Binding PARTNERCP, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" TextWrapping="Wrap" Width="120" Margin="82,153,0,0" VerticalAlignment="Top" HorizontalAlignment="Left" />
                                                     <ComboBox Style="{StaticResource ResourceKey=ComboBoxFlatStyle}" Margin="207,153,0,0" VerticalAlignment="Top" HorizontalAlignment="Left" Width="320" Height="20" />
-                                                    <Label Content="Tel :" HorizontalAlignment="Left" Margin="30,178,0,0" VerticalAlignment="Top" Width="52" HorizontalContentAlignment="Right"  />
-                                                    <TextBox x:Name="tbPartnerTel1" Style="{StaticResource ResourceKey=flatTextBox}" Text="{Binding SelectedItem.PARTNER.TEL1, ElementName=FamilyDataGrid, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" HorizontalAlignment="Left" Height="20" Margin="82,178,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="145"/>
+                                                    <Label Content="Tel :" HorizontalAlignment="Left" Margin="30,178,0,0" VerticalAlignment="Top" Width="52" HorizontalContentAlignment="Right" />
+                                                    <TextBox x:Name="tbPartnerTel1" Style="{StaticResource ResourceKey=flatTextBox}" Text="{Binding SelectedItem.PARTNER.TEL1, ElementName=FamilyDataGrid, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" HorizontalAlignment="Left" Height="20" Margin="82,178,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="145" />
                                                     <TextBox x:Name="tbPartnerTel2" Style="{StaticResource ResourceKey=flatTextBox}" Text="{Binding SelectedItem.PARTNER.TEL2, ElementName=FamilyDataGrid, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Margin="232,178,0,0" TextWrapping="Wrap" HorizontalAlignment="Left" Width="145" Height="20" VerticalAlignment="Top" />
-                                                    <TextBox x:Name="tbPartnerTel3" Style="{StaticResource ResourceKey=flatTextBox}" Text="{Binding SelectedItem.PARTNER.TEL3, ElementName=FamilyDataGrid, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" HorizontalAlignment="Left" Height="20" Margin="382,178,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="145"/>
+                                                    <TextBox x:Name="tbPartnerTel3" Style="{StaticResource ResourceKey=flatTextBox}" Text="{Binding SelectedItem.PARTNER.TEL3, ElementName=FamilyDataGrid, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" HorizontalAlignment="Left" Height="20" Margin="382,178,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="145" />
                                                     <Label Content="Email :" Margin="30,200,0,0" HorizontalContentAlignment="Right" HorizontalAlignment="Left" Width="52" VerticalAlignment="Top" />
-                                                    <TextBox x:Name="tbPartnerEmail" Style="{StaticResource ResourceKey=flatTextBox}" Text="{Binding SelectedItem.PARTNER.EMAIL, ElementName=FamilyDataGrid, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" HorizontalAlignment="Left" Height="20" Margin="82,203,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="445"/>
+                                                    <TextBox x:Name="tbPartnerEmail" Style="{StaticResource ResourceKey=flatTextBox}" Text="{Binding SelectedItem.PARTNER.EMAIL, ElementName=FamilyDataGrid, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" HorizontalAlignment="Left" Height="20" Margin="82,203,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="445" />
                                                 </Grid>
                                             </TabItem>
                                             <TabItem Header="Payeur">
@@ -413,19 +411,19 @@
                                                         <Label Content="Civilité :" HorizontalAlignment="Left" Margin="30,18,0,0" VerticalAlignment="Top" Width="52" HorizontalContentAlignment="Right" />
                                                         <ComboBox x:Name="cbPayerCivility" Style="{StaticResource ResourceKey=ComboBoxFlatStyle}" Margin="82,20,0,0"  VerticalAlignment="Top" HorizontalAlignment="Left" Width="74" />
                                                         <Label Content="Nom :" Margin="30,43,0,0" HorizontalContentAlignment="Right" VerticalAlignment="Top" HorizontalAlignment="Left" Width="52" />
-                                                        <TextBox x:Name="tbPayerLastName" Style="{StaticResource ResourceKey=flatTextBox}" Text="{Binding SelectedItem.PAYER.LASTNAME, ElementName=FamilyDataGrid, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" HorizontalAlignment="Left" Height="20" Margin="82,46,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="445"/>
-                                                        <Label Content="Prénom :" HorizontalAlignment="Left" Margin="16,70,0,0" VerticalAlignment="Top" Width="66" HorizontalContentAlignment="Right"  />
-                                                        <TextBox x:Name="tbPayerFirstName" Style="{StaticResource ResourceKey=flatTextBox}" Text="{Binding SelectedItem.PAYER.FIRSTNAME, ElementName=FamilyDataGrid, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" HorizontalAlignment="Left" Height="20" Margin="82,72,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="445"/>
-                                                        <Label Content="Addresse :" Width="60" Margin="22,97,0,0" HorizontalContentAlignment="Right" HorizontalAlignment="Left" Height="26" VerticalAlignment="Top"  />
+                                                        <TextBox x:Name="tbPayerLastName" Style="{StaticResource ResourceKey=flatTextBox}" Text="{Binding SelectedItem.PAYER.LASTNAME, ElementName=FamilyDataGrid, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" HorizontalAlignment="Left" Height="20" Margin="82,46,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="445" />
+                                                        <Label Content="Prénom :" HorizontalAlignment="Left" Margin="16,70,0,0" VerticalAlignment="Top" Width="66" HorizontalContentAlignment="Right" />
+                                                        <TextBox x:Name="tbPayerFirstName" Style="{StaticResource ResourceKey=flatTextBox}" Text="{Binding SelectedItem.PAYER.FIRSTNAME, ElementName=FamilyDataGrid, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" HorizontalAlignment="Left" Height="20" Margin="82,72,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="445" />
+                                                        <Label Content="Addresse :" Width="60" Margin="22,97,0,0" HorizontalContentAlignment="Right" HorizontalAlignment="Left" Height="26" VerticalAlignment="Top" />
                                                         <TextBox x:Name="tbPayerAddress" Style="{StaticResource ResourceKey=flatTextBox}" Text="{Binding SelectedItem.PAYER.ADDRESS, ElementName=FamilyDataGrid, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Margin="82,97,0,0" TextWrapping="Wrap" Height="51" VerticalAlignment="Top" HorizontalAlignment="Left" Width="445" />
                                                         <TextBox x:Name="tbPayerZipCode" Style="{StaticResource ResourceKey=flatTextBox}" Text="{Binding PAYERCP, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" TextWrapping="Wrap" Width="120" Margin="82,153,0,0" VerticalAlignment="Top" HorizontalAlignment="Left" />
                                                         <ComboBox Style="{StaticResource ResourceKey=ComboBoxFlatStyle}" Margin="207,153,0,0" VerticalAlignment="Top" HorizontalAlignment="Left" Width="320" Height="20" />
-                                                        <Label Content="Tel :" HorizontalAlignment="Left" Margin="30,178,0,0" VerticalAlignment="Top" Width="52" HorizontalContentAlignment="Right"  />
-                                                        <TextBox x:Name="tbPayerTel1" Style="{StaticResource ResourceKey=flatTextBox}" Text="{Binding SelectedItem.PAYER.TEL1, ElementName=FamilyDataGrid, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" HorizontalAlignment="Left" Height="20" Margin="82,178,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="145"/>
+                                                        <Label Content="Tel :" HorizontalAlignment="Left" Margin="30,178,0,0" VerticalAlignment="Top" Width="52" HorizontalContentAlignment="Right" />
+                                                        <TextBox x:Name="tbPayerTel1" Style="{StaticResource ResourceKey=flatTextBox}" Text="{Binding SelectedItem.PAYER.TEL1, ElementName=FamilyDataGrid, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" HorizontalAlignment="Left" Height="20" Margin="82,178,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="145" />
                                                         <TextBox x:Name="tbPayerTel2" Style="{StaticResource ResourceKey=flatTextBox}" Text="{Binding SelectedItem.PAYER.TEL2, ElementName=FamilyDataGrid, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Margin="232,178,0,0" TextWrapping="Wrap" HorizontalAlignment="Left" Width="145" Height="20" VerticalAlignment="Top" />
-                                                        <TextBox x:Name="tbPayerTel3" Style="{StaticResource ResourceKey=flatTextBox}" Text="{Binding SelectedItem.PAYER.TEL3, ElementName=FamilyDataGrid, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" HorizontalAlignment="Left" Height="20" Margin="382,178,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="145"/>
+                                                        <TextBox x:Name="tbPayerTel3" Style="{StaticResource ResourceKey=flatTextBox}" Text="{Binding SelectedItem.PAYER.TEL3, ElementName=FamilyDataGrid, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" HorizontalAlignment="Left" Height="20" Margin="382,178,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="145" />
                                                         <Label Content="Email :" Margin="30,200,0,0" HorizontalContentAlignment="Right" HorizontalAlignment="Left" Width="52" VerticalAlignment="Top" />
-                                                        <TextBox x:Name="tbPayerrEmail" Style="{StaticResource ResourceKey=flatTextBox}" Text="{Binding SelectedItem.PAYER.EMAIL, ElementName=FamilyDataGrid, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" HorizontalAlignment="Left" Height="20" Margin="82,203,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="445"/>
+                                                        <TextBox x:Name="tbPayerrEmail" Style="{StaticResource ResourceKey=flatTextBox}" Text="{Binding SelectedItem.PAYER.EMAIL, ElementName=FamilyDataGrid, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" HorizontalAlignment="Left" Height="20" Margin="82,203,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="445" />
                                                     </Grid>
                                                 </Grid>
                                             </TabItem>
@@ -434,7 +432,7 @@
                                                 <Grid>
                                                     <DataGrid x:Name="DroitsDataGrid" HeadersVisibility="Column" Background="{StaticResource ResourceKey=GenBtcColorBrush}" RowBackground="Snow" BorderBrush="#FF889BB1"
                                                             HorizontalAlignment="Left" VerticalAlignment="Top" Height="228" Width="281"  AutoGenerateColumns="False" BorderThickness="1,2,1,1" Margin="30,20,0,0"
-                                                            ItemsSource="{Binding SelectedItem.FAMILYQUOTIENTS, ElementName=FamilyDataGrid}" >
+                                                            ItemsSource="{Binding SelectedItem.FAMILYQUOTIENTS, ElementName=FamilyDataGrid}">
                                                         <DataGrid.Columns>
                                                             <DataGridTextColumn Binding="{Binding ID}" Header="Id" Width="30" IsReadOnly="True" CanUserSort="True" />
                                                             <DataGridTextColumn Binding="{Binding YEAR}" Header="Year" Width="83" CanUserSort="True" />
@@ -442,7 +440,7 @@
                                                             <DataGridTextColumn Binding="{Binding FAMILYQUOTIENT}" Header="Tarif" Width="83" CanUserSort="True" />
                                                         </DataGrid.Columns>
                                                     </DataGrid>
-                                                    <Label Content="N° Allocataire :" HorizontalAlignment="Left" Margin="377,68,0,0" VerticalAlignment="Top"/>
+                                                    <Label Content="N° Allocataire :" HorizontalAlignment="Left" Margin="377,68,0,0" VerticalAlignment="Top" />
                                                     <TextBox HorizontalAlignment="Left" Height="23" Margin="470,68,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="204">
                                                         <TextBox.Style>
                                                             <Style TargetType="TextBox" xmlns:sys="clr-namespace:System;assembly=mscorlib">
@@ -467,20 +465,19 @@
                                                             </Style>
                                                         </TextBox.Style>
                                                     </TextBox>
-                                                    <Label Content="Aide :" HorizontalAlignment="Left" Margin="425,37,0,0" VerticalAlignment="Top"/>
-                                                    <ComboBox Style="{StaticResource ResourceKey=ComboBoxFlatStyle}" HorizontalAlignment="Left" Margin="470,37,0,0" VerticalAlignment="Top" Width="204"/>
+                                                    <Label Content="Aide :" HorizontalAlignment="Left" Margin="425,37,0,0" VerticalAlignment="Top" />
+                                                    <ComboBox Style="{StaticResource ResourceKey=ComboBoxFlatStyle}" HorizontalAlignment="Left" Margin="470,37,0,0" VerticalAlignment="Top" Width="204" />
                                                 </Grid>
                                             </TabItem>
                                         </TabControl>
                                     </Border>
                                 </DataTemplate>
                             </Controls:DataGrid.RowDetailsTemplate>
-
                         </ExtendedGridControl:ExtendedDataGrid>
 
                         <Button Content="Update!" x:Name="savefamily2" Command="{Binding SaveFamily}" Margin="1439,8,76,784" />
                         <Button BorderThickness="0" Style="{StaticResource {x:Static ToolBar.ButtonStyleKey}}" Click="ExcelExport_Click" Height="25" Margin="1521,9,42,786" Width="30">
-                            <StackPanel Height="23" Width="24" >
+                            <StackPanel Height="23" Width="24">
                                 <Image Source="{StaticResource ExcelImage}" Height="23" />
                             </StackPanel>
                         </Button>
@@ -501,21 +498,20 @@
                             <Separator Height="6" Width="626" Visibility="Hidden" />
                         </StackPanel>
                         <!-- region DataGrid_Cities -->
-                        <ExtendedGridControl:ExtendedDataGrid x:Name="CitiesDataGrid" Grid.Row="1" Grid.RowSpan="3" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Margin="4,4,4,2" AutoGenerateColumns="False" 
-                                                              BorderThickness="1,2,1,1" Background="{StaticResource ResourceKey=GenBtcColorBrush}" BorderBrush="#FF889BB1" RowBackground="Snow" 
-                                                              ItemsSource="{Binding Path=CitiesCollection}" HeadersVisibility="Column" >
+                        <ExtendedGridControl:ExtendedDataGrid x:Name="CitiesDataGrid" Grid.Row="1" Grid.RowSpan="3" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Margin="4,4,4,2" AutoGenerateColumns="False"
+                                                              BorderThickness="1,2,1,1" Background="{StaticResource ResourceKey=GenBtcColorBrush}" BorderBrush="#FF889BB1" RowBackground="Snow"
+                                                              ItemsSource="{Binding Path=CitiesCollection}" HeadersVisibility="Column">
                             <Controls:DataGrid.Columns>
-                                <ExtendedColumn:ExtendedDataGridTextColumn Binding="{Binding ID}" Header="Id" Width="50"/>
-                                <ExtendedColumn:ExtendedDataGridTextColumn Binding="{Binding CITY, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Header="Commune" Width="600"  />
-                                <ExtendedColumn:ExtendedDataGridTextColumn Binding="{Binding CP, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Header="CP" Width="100"  />
-                                <Controls:DataGridTemplateColumn Header="Partenariat" Width="100"  >
+                                <ExtendedColumn:ExtendedDataGridTextColumn Binding="{Binding ID}" Header="Id" Width="50" />
+                                <ExtendedColumn:ExtendedDataGridTextColumn Binding="{Binding CITY, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Header="Commune" Width="600" />
+                                <ExtendedColumn:ExtendedDataGridTextColumn Binding="{Binding CP, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Header="CP" Width="100" />
+                                <Controls:DataGridTemplateColumn Header="Partenariat" Width="100">
                                     <Controls:DataGridTemplateColumn.CellTemplate>
                                         <DataTemplate>
                                             <CheckBox IsChecked="{Binding PARTNERSHIP, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" HorizontalAlignment="Center" />
                                         </DataTemplate>
                                     </Controls:DataGridTemplateColumn.CellTemplate>
                                 </Controls:DataGridTemplateColumn>
-
                             </Controls:DataGrid.Columns>
                         </ExtendedGridControl:ExtendedDataGrid>
 

@@ -1,5 +1,4 @@
-﻿
-namespace WpfMvvmApplication1.Views
+﻿namespace WpfMvvmApplication1.Views
 {
     /// <summary>
     /// Interaction logic for MainWindow.xaml
@@ -16,7 +15,6 @@ namespace WpfMvvmApplication1.Views
         {
             this.FamilyDataGrid.Items.Refresh();
         }
-
 
         private void ExcelExport_Click(object sender, System.Windows.RoutedEventArgs e)
         {
