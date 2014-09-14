@@ -66,8 +66,8 @@ namespace WpfMvvmApplication1.ViewModels
             }
         }
  
-        private ObservableCollection<MEDECINS> _medecinsCollection;
-        public ObservableCollection<MEDECINS> MedecinsCollection
+        private ObservableCollection<MEDECINES> _medecinsCollection;
+        public ObservableCollection<MEDECINES> MedecinsCollection
         {
             get { return _medecinsCollection; }
             set
@@ -147,8 +147,8 @@ namespace WpfMvvmApplication1.ViewModels
             GetChildrenViewSource();
             GetFamiliesViewSource();
             //tracks item additions and deletions, and saves to the database when that occurs.
-            //this.FamiliesCollection.CollectionChanged += ItemCollection_CollectionChanged;
-            //this.ChildrensCollection.CollectionChanged += ItemCollection_CollectionChanged;
+            this.FamiliesCollection.CollectionChanged += ItemCollection_CollectionChanged;
+            this.ChildrensCollection.CollectionChanged += ItemCollection_CollectionChanged;
             //_selectRowCommand = new RelayCommand(SelectionHasChanged);    //not used yet.
         }
 
@@ -166,7 +166,7 @@ namespace WpfMvvmApplication1.ViewModels
 
         private void GetMedecinsCollection()
         {
-            MedecinsCollection = new ObservableCollection<MEDECINS>(EF.agsEntities.MEDECINS);
+            MedecinsCollection = new ObservableCollection<MEDECINES>(EF.agsEntities.MEDECINES);
         }
 
         private void GetFamilyquotientsCollection()

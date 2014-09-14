@@ -175,7 +175,7 @@
                                                 <ComboBox x:Name="cbCity" Style="{StaticResource ResourceKey=ComboBoxFlatStyle}" IsEditable="False" ItemsSource="{Binding Source={StaticResource citysorted}}" DisplayMemberPath="CITY" SelectedValuePath="ID" IsSynchronizedWithCurrentItem="False"
                                             SelectedIndex="{Binding ElementName=cbFamily, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, Path=SelectedItem.CITYID, Converter={StaticResource addOne}}" Width="298" Margin="195,91,0,0" Height="27" VerticalAlignment="Top" HorizontalAlignment="Left" />
 
-                                                <TextBox x:Name="tbAdress" Style="{StaticResource ResourceKey=flatTextBoxMultiLine}" HorizontalAlignment="Left" Height="45" Margin="66,42,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="427" IsEnabled="True" Text="{Binding SelectedItem.ADRESS, ElementName=cbFamily}" />
+                                                <TextBox x:Name="tbADDRESS" Style="{StaticResource ResourceKey=flatTextBoxMultiLine}" HorizontalAlignment="Left" Height="45" Margin="66,42,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="427" IsEnabled="True" Text="{Binding SelectedItem.ADDRESS, ElementName=cbFamily}" />
                                                 <TextBox x:Name="tbCp" Style="{StaticResource ResourceKey=flatTextBox}" HorizontalAlignment="Left" Height="27" Margin="66,91,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="122" IsEnabled="True" Text="{Binding SelectedItem.CITIES.CP, ElementName=cbFamily}" VerticalContentAlignment="Center" />
                                                 <TextBox x:Name="tbTel1" Style="{StaticResource ResourceKey=flatTextBox}" HorizontalAlignment="Left" Height="20" Margin="66,121,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="142" IsEnabled="True" Text="{Binding SelectedItem.TEL1, ElementName=cbFamily}" />
                                                 <TextBox x:Name="tbTel2" Style="{StaticResource ResourceKey=flatTextBox}" HorizontalAlignment="Left" Height="20" Margin="212,121,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="137" IsEnabled="True" Text="{Binding SelectedItem.TEL2, ElementName=cbFamily}" />
@@ -184,7 +184,7 @@
                                                 <TextBox x:Name="tbTelMedecin" Style="{StaticResource ResourceKey=flatTextBox}" HorizontalAlignment="Right" Height="26" Margin="0,11,231,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="130"/>
                                                 <TextBox x:Name="tbAllergies2" Style="{StaticResource ResourceKey=flatTextBoxMultiLine}" HorizontalAlignment="Right" Height="60" Margin="0,45,232,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="475"/>
                                                 <Label Content="Famille :" HorizontalAlignment="Left" Margin="12,14,0,0" VerticalAlignment="Top" HorizontalContentAlignment="Right" />
-                                                <Label Content="Adresse :" HorizontalAlignment="Left" Margin="7,41,0,0" VerticalAlignment="Top" HorizontalContentAlignment="Right" />
+                                                <Label Content="ADDRESSe :" HorizontalAlignment="Left" Margin="7,41,0,0" VerticalAlignment="Top" HorizontalContentAlignment="Right" />
                                                 <Label Content="Téls. :" HorizontalAlignment="Left" Margin="24,117,0,0" VerticalAlignment="Top" HorizontalContentAlignment="Right" />
                                                 <Label Content="Email :" HorizontalAlignment="Left" Margin="19,143,0,0" VerticalAlignment="Top" HorizontalContentAlignment="Right" />
                                                 <Label Content="Médecin :" Margin="0,11,712,0" VerticalAlignment="Top" HorizontalAlignment="Right" />
@@ -278,7 +278,7 @@
                                     </DataGridTemplateColumn.CellEditingTemplate>
 
                                 </DataGridTemplateColumn>-->
-                                <!--<DataGridTextColumn Binding="{Binding Path=FAMILIES.ADRESS, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Header="Family Address" Width="250" CanUserSort="True" />
+                                <!--<DataGridTextColumn Binding="{Binding Path=FAMILIES.ADDRESS, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Header="Family Address" Width="250" CanUserSort="True" />
                                 <DataGridTextColumn Binding="{Binding Path=FAMILIES.CITIES.CITY, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Header="CITYNAME" Width="120" CanUserSort="True" />-->
                             </DataGrid.Columns>
                         </DataGrid>
@@ -314,7 +314,7 @@
                                 <ExtendedColumn:ExtendedDataGridTextColumn x:Name="LastName" Binding="{Binding LASTNAME, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Header="Nom" Width="170" CanUserSort="True" />
                                 <ExtendedColumn:ExtendedDataGridTextColumn x:Name="FirstName" Binding="{Binding FIRSTNAME, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Header="Prénom" Width="170" CanUserSort="True" />
 
-                                <ExtendedColumn:ExtendedDataGridTextColumn x:Name="Adress"  Binding="{Binding ADRESS, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Header="Adresse" Width="220" CanUserSort="True" >
+                                <ExtendedColumn:ExtendedDataGridTextColumn x:Name="ADDRESS"  Binding="{Binding ADDRESS, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Header="ADDRESSe" Width="220" CanUserSort="True" >
                                     <ExtendedColumn:ExtendedDataGridTextColumn.ElementStyle>
                                         <Style TargetType="TextBlock">
                                             <Setter Property="TextWrapping" Value="Wrap" />
@@ -359,7 +359,7 @@
                                                 <Grid>
                                                     <DataGrid x:Name="FamilyChildren" HeadersVisibility="Column" Background="{StaticResource ResourceKey=GenBtcColorBrush}" RowBackground="Snow" BorderBrush="#FF889BB1"
                                                             HorizontalAlignment="Stretch" VerticalAlignment="Stretch" AutoGenerateColumns="False" BorderThickness="1,2,1,1"
-                                                            ItemsSource="{Binding SelectedItem.CHILDRENS, ElementName=FamilyDataGrid2}" Margin="4,4,4,0">
+                                                            ItemsSource="{Binding SelectedItem.CHILDRENS, ElementName=FamilyDataGrid}" Margin="4,4,4,0">
                                                         <DataGrid.Columns>
                                                             <DataGridTextColumn Binding="{Binding ID}" Header="Id" Width="0" IsReadOnly="True" CanUserSort="True" />
                                                             <DataGridTextColumn Binding="{Binding Path=LASTNAME, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Header="Nom" Width="200" CanUserSort="True" />
@@ -395,7 +395,7 @@
                                                     <TextBox x:Name="tbPartnerLastName" Style="{StaticResource ResourceKey=flatTextBox}" Text="{Binding PARTNERLASTNAME, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" HorizontalAlignment="Left" Height="20" Margin="82,46,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="445"/>
                                                     <Label Content="Prénom :" HorizontalAlignment="Left" Margin="16,70,0,0" VerticalAlignment="Top" Width="66" HorizontalContentAlignment="Right"  />
                                                     <TextBox x:Name="tbPartnerFirstName" Style="{StaticResource ResourceKey=flatTextBox}" Text="{Binding PARTNERFIRSTNAME, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" HorizontalAlignment="Left" Height="20" Margin="82,72,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="445"/>
-                                                    <Label Content="Adresse :" Width="60" Margin="22,97,0,0" HorizontalContentAlignment="Right" HorizontalAlignment="Left" Height="26" VerticalAlignment="Top"  />
+                                                    <Label Content="ADDRESSe :" Width="60" Margin="22,97,0,0" HorizontalContentAlignment="Right" HorizontalAlignment="Left" Height="26" VerticalAlignment="Top"  />
                                                     <TextBox x:Name="tbPartnerAddress" Style="{StaticResource ResourceKey=flatTextBox}" Text="{Binding PARTNERADDRESS, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Margin="82,97,0,0" TextWrapping="Wrap" Height="51" VerticalAlignment="Top" HorizontalAlignment="Left" Width="445" />
                                                     <TextBox x:Name="tbPartnerZipCode" Style="{StaticResource ResourceKey=flatTextBox}" Text="{Binding PARTNERCP, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" TextWrapping="Wrap" Width="120" Margin="82,153,0,0" VerticalAlignment="Top" HorizontalAlignment="Left" />
                                                     <ComboBox Style="{StaticResource ResourceKey=ComboBoxFlatStyle}" Margin="207,153,0,0" VerticalAlignment="Top" HorizontalAlignment="Left" Width="320" Height="20" />
@@ -415,7 +415,7 @@
                                                     <TextBox x:Name="tbPayerLastName" Style="{StaticResource ResourceKey=flatTextBox}" Text="{Binding PAYERLASTNAME, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" HorizontalAlignment="Left" Height="20" Margin="82,46,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="445"/>
                                                     <Label Content="Prénom :" HorizontalAlignment="Left" Margin="16,70,0,0" VerticalAlignment="Top" Width="66" HorizontalContentAlignment="Right"  />
                                                     <TextBox x:Name="tbPayerFirstName" Style="{StaticResource ResourceKey=flatTextBox}" Text="{Binding PAYERFIRSTNAME, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" HorizontalAlignment="Left" Height="20" Margin="82,72,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="445"/>
-                                                    <Label Content="Adresse :" Width="60" Margin="22,97,0,0" HorizontalContentAlignment="Right" HorizontalAlignment="Left" Height="26" VerticalAlignment="Top"  />
+                                                    <Label Content="ADDRESSe :" Width="60" Margin="22,97,0,0" HorizontalContentAlignment="Right" HorizontalAlignment="Left" Height="26" VerticalAlignment="Top"  />
                                                     <TextBox x:Name="tbPayerAddress" Style="{StaticResource ResourceKey=flatTextBox}" Text="{Binding PAYERADDRESS, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Margin="82,97,0,0" TextWrapping="Wrap" Height="51" VerticalAlignment="Top" HorizontalAlignment="Left" Width="445" />
                                                     <TextBox x:Name="tbPayerZipCode" Style="{StaticResource ResourceKey=flatTextBox}" Text="{Binding PAYERCP, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" TextWrapping="Wrap" Width="120" Margin="82,153,0,0" VerticalAlignment="Top" HorizontalAlignment="Left" />
                                                     <ComboBox Style="{StaticResource ResourceKey=ComboBoxFlatStyle}" Margin="207,153,0,0" VerticalAlignment="Top" HorizontalAlignment="Left" Width="320" Height="20" />
@@ -432,7 +432,7 @@
                                                 <Grid>
                                                     <DataGrid x:Name="DroitsDataGrid" HeadersVisibility="Column" Background="{StaticResource ResourceKey=GenBtcColorBrush}" RowBackground="Snow" BorderBrush="#FF889BB1"
                                                             HorizontalAlignment="Left" VerticalAlignment="Top" Height="228" Width="281"  AutoGenerateColumns="False" BorderThickness="1,2,1,1" Margin="30,20,0,0"
-                                                            ItemsSource="{Binding SelectedItem.FAMILYQUOTIENTS, ElementName=FamilyDataGrid2}" >
+                                                            ItemsSource="{Binding SelectedItem.FAMILYQUOTIENTS, ElementName=FamilyDataGrid}" >
                                                         <DataGrid.Columns>
                                                             <DataGridTextColumn Binding="{Binding ID}" Header="Id" Width="30" IsReadOnly="True" CanUserSort="True" />
                                                             <DataGridTextColumn Binding="{Binding YEAR}" Header="Year" Width="83" CanUserSort="True" />
