@@ -62,14 +62,14 @@ namespace WpfMvvmApplication1.ViewModels
 
         private ObservableCollection<FAMILYQUOTIENTS> _familyquotientsCollection;
 
-        public ObservableCollection<FAMILYQUOTIENTS> FAMILYQUOTIENTSCollection
+        public ObservableCollection<FAMILYQUOTIENTS> FamilyquotientsCollection
         {
             get { return _familyquotientsCollection; }
             set
             {
                 if (_familyquotientsCollection == value) return;
                 _familyquotientsCollection = value;
-                RaisePropertyChanged(() => FAMILYQUOTIENTSCollection);
+                RaisePropertyChanged(() => FamilyquotientsCollection);
             }
         }
 
@@ -88,40 +88,40 @@ namespace WpfMvvmApplication1.ViewModels
 
         private ObservableCollection<CIVILITIES> _civilitiesCollection;
 
-        public ObservableCollection<CIVILITIES> CIVILITIESCollection
+        public ObservableCollection<CIVILITIES> CivilitiesCollection
         {
             get { return _civilitiesCollection; }
             set
             {
                 if (_civilitiesCollection == value) return;
                 _civilitiesCollection = value;
-                RaisePropertyChanged(() => CIVILITIESCollection);
+                RaisePropertyChanged(() => CivilitiesCollection);
             }
         }
 
-        private ICollectionView _familiesViewSource;
+        //private CollectionView _familiesViewSource;
 
-        public ICollectionView FamiliesViewSource
-        {
-            get { return _familiesViewSource; }
-            set
-            {
-                _familiesViewSource = value;
-                RaisePropertyChanged(() => FamiliesViewSource);
-            }
-        }
+        //public CollectionView FamiliesViewSource
+        //{
+        //    get { return _familiesViewSource; }
+        //    set
+        //    {
+        //        _familiesViewSource = value;
+        //        RaisePropertyChanged(() => FamiliesViewSource);
+        //    }
+        //}
 
-        private ICollectionView _childrenViewSource;
+        //private CollectionView _childrenViewSource;
 
-        public ICollectionView ChildrenViewSource
-        {
-            get { return _childrenViewSource; }
-            set
-            {
-                _childrenViewSource = value;
-                RaisePropertyChanged(() => ChildrenViewSource);
-            }
-        }
+        //public CollectionView ChildrenViewSource
+        //{
+        //    get { return _childrenViewSource; }
+        //    set
+        //    {
+        //        _childrenViewSource = value;
+        //        RaisePropertyChanged(() => ChildrenViewSource);
+        //    }
+        //}
 
         #endregion
 
@@ -136,6 +136,11 @@ namespace WpfMvvmApplication1.ViewModels
         private void SortChildrenViewSource()
         {
             CollectionViewSource.GetDefaultView(ChildrensCollection)
+                .SortDescriptions.Add(new SortDescription("ID", ListSortDirection.Ascending));
+        }
+        private void SortCitiesViewSource()
+        {
+            CollectionViewSource.GetDefaultView(CitiesCollection)
                 .SortDescriptions.Add(new SortDescription("ID", ListSortDirection.Ascending));
         }
 
@@ -155,13 +160,15 @@ namespace WpfMvvmApplication1.ViewModels
             GetFamilyquotientsCollection();
             GetMedecinsCollection();
             GetCivilitiesCollection();
-            //Fill Views
-            SortChildrenViewSource();
-            SortFamiliesViewSource();
 
-            //call once to create a randomized database then comment out.
+            //create custom randomized specific data(edit the function-then comment out).
             //RandomizeData();
 
+            //Sort Views
+            SortChildrenViewSource();
+            SortFamiliesViewSource();
+            SortCitiesViewSource();
+            
             //tracks item additions and deletions, and saves to the database when that occurs.
             this.FamiliesCollection.CollectionChanged += ItemCollection_CollectionChanged;
             this.ChildrensCollection.CollectionChanged += ItemCollection_CollectionChanged;
@@ -177,7 +184,7 @@ namespace WpfMvvmApplication1.ViewModels
 
         private void GetCivilitiesCollection()
         {
-            CIVILITIESCollection = new ObservableCollection<CIVILITIES>(EF.agsEntities.CIVILITIES);
+            CivilitiesCollection = new ObservableCollection<CIVILITIES>(EF.agsEntities.CIVILITIES);
         }
 
         private void GetMedecinsCollection()
@@ -187,7 +194,7 @@ namespace WpfMvvmApplication1.ViewModels
 
         private void GetFamilyquotientsCollection()
         {
-            FAMILYQUOTIENTSCollection = new ObservableCollection<FAMILYQUOTIENTS>(EF.agsEntities.FAMILYQUOTIENTS);
+            FamilyquotientsCollection = new ObservableCollection<FAMILYQUOTIENTS>(EF.agsEntities.FAMILYQUOTIENTS);
         }
 
         private void GetCitiesCollection()
@@ -228,10 +235,22 @@ namespace WpfMvvmApplication1.ViewModels
         {
             get { return new DelegateCommand(RefreshViewDb); }
         }
-
+        public ICommand FillCollection
+        {
+            get { return new DelegateCommand(FillCollectionCommand); }
+        }
+    
         #endregion
 
         #region Commands
+
+        private void FillCollectionCommand()
+        {
+            foreach (CHILDRENS child in ChildrensCollection)
+            {
+                child.FIRSTNAME = "FILLTEST";
+            }
+        }
 
         private void RefreshViewDb()
         {
@@ -316,17 +335,65 @@ namespace WpfMvvmApplication1.ViewModels
         private void RandomizeData()
         {
             Random r = new Random();
-            string alphabet = "ABEFGHILMNOPUVabbcdefghijklmnooppqrstuvwyxzeeeiouea";
-            
+            char startletter = 'A';
+            for (int t = 0; t < 15; t++)
+            {
+                for (int f = 0; f < 26; f++)
+                {
+                    var fakechild = new CHILDRENS();
+
+                    //fakechild.LASTNAME = makeName(r.Next(7) + 7);
+                    //fakechild.FIRSTNAME = makeName(r.Next(5) + 5);
+                    var nextchar = ((char)(startletter + f)).ToString();
+                    var rnlength = RandomHelper.RandomInt(3, 15);
+                    fakechild.FIRSTNAME = "";
+                    fakechild.LASTNAME = "";
+                    for (int rn = 0; rn < rnlength; rn++) 
+                    { 
+                        fakechild.FIRSTNAME +=(nextchar).ToLower();
+                        fakechild.LASTNAME += nextchar;
+                    }
+                    fakechild.BIRTHDATE = RandomHelper.RandomDate(new DateTime(1980, 1, 1), DateTime.Now);
+                    fakechild.GENDERID = RandomHelper.RandomInt(1, 3);
+                    fakechild.FAMILYID = RandomHelper.RandomInt(1, 400);
+                    ChildrensCollection.Add(fakechild);
+                    this.EF.agsEntities.CHILDRENS.AddObject(fakechild);
+                }
+            }
+            this.EF.agsEntities.SaveChanges();
+            foreach (CHILDRENS child in ChildrensCollection)
+            {
+                child.BIRTHDATE = RandomHelper.RandomDate(new DateTime(1930, 1, 1), DateTime.Now);
+                child.ALLERGIES = Path.GetRandomFileName().Replace(".", "");
+                child.BEPHOTOGRAPHY = RandomHelper.RandomBool();
+                child.BIKEOUTINGS = RandomHelper.RandomBool();
+                child.BOATOUTINGS = RandomHelper.RandomBool();
+                child.CLINIC = RandomHelper.RandomBool();
+                child.EMT = RandomHelper.RandomBool();
+                child.FAMILYID = RandomHelper.RandomInt(1, 400);
+                child.GENDERID = RandomHelper.RandomInt(1, 3);
+                child.HOSPITAL = RandomHelper.RandomBool();
+                //child.MEDECINEID = 
+                child.OFFOUTPUTSSTRUCTURE = RandomHelper.RandomBool();
+                child.PUBLICATIONPHOTOGRAPHY = RandomHelper.RandomBool();
+                child.SPECIALARRANGEMENTS = Path.GetRandomFileName().Replace(".", "") + Path.GetRandomFileName().Replace(".", "");
+                child.SWIM = RandomHelper.RandomBool();
+                child.WITHOUTEGG = RandomHelper.RandomBool();
+                child.WITHOUTFISH = RandomHelper.RandomBool();
+                child.WITHOUTGLUTEN = RandomHelper.RandomBool();
+                child.WITHOUTMEAT = RandomHelper.RandomBool();
+                child.WITHOUTPORK = RandomHelper.RandomBool();
+            }
+            this.EF.agsEntities.SaveChanges();
             //RandomHelper.RandomString(10, true);
             //RandomHelper.RandomDate(new DateTime(1980, 1, 1), DateTime.Now);
             //RandomHelper.RandomInt(1, 3);
             //RandomHelper.RandomBool();
-
+/*
             for (int f = 0; f < 400; f++)
             {
                 var fakefamily = new FAMILIES();
-
+                string alphabet = "ABEFGHILMNOPUVabbcdefghijklmnooppqrstuvwyxzeeeiouea";
                 Func<char> randomLetter = () => alphabet[r.Next(alphabet.Length)];
                 Func<int, string> makeName =
                     (length) => new string(Enumerable.Range(0, length)
@@ -354,34 +421,11 @@ namespace WpfMvvmApplication1.ViewModels
                 fakefamily.ADDRESS += makeName(r.Next(7) + 7);
                 fakefamily.CITYID = RandomHelper.RandomInt(1, CitiesCollection.Count);
 
-//                FamiliesCollection.Add(fakefamily);
+                FamiliesCollection.Add(fakefamily);
                 this.EF.agsEntities.FAMILIES.AddObject(fakefamily);
             }
             this.EF.agsEntities.SaveChanges();
-            foreach (CHILDRENS child in ChildrensCollection)
-            {
-                //child.BIRTHDATE = RandomHelper.RandomDate(new DateTime(1950, 1, 1), DateTime.Now);
-                child.ALLERGIES = Path.GetRandomFileName().Replace(".", "");
-                child.BEPHOTOGRAPHY = RandomHelper.RandomBool();
-                child.BIKEOUTINGS = RandomHelper.RandomBool();
-                child.BOATOUTINGS = RandomHelper.RandomBool();
-                child.CLINIC = RandomHelper.RandomBool();
-                child.EMT = RandomHelper.RandomBool();
-                child.FAMILYID = RandomHelper.RandomInt(1, 400);
-                child.GENDERID = RandomHelper.RandomInt(1, 3);
-                child.HOSPITAL = RandomHelper.RandomBool();
-                //child.MEDECINEID = 
-                child.OFFOUTPUTSSTRUCTURE = RandomHelper.RandomBool();
-                child.PUBLICATIONPHOTOGRAPHY = RandomHelper.RandomBool();
-                child.SPECIALARRANGEMENTS = Path.GetRandomFileName().Replace(".", "") + Path.GetRandomFileName().Replace(".", "");
-                child.SWIM = RandomHelper.RandomBool();
-                child.WITHOUTEGG = RandomHelper.RandomBool();
-                child.WITHOUTFISH = RandomHelper.RandomBool();
-                child.WITHOUTGLUTEN = RandomHelper.RandomBool();
-                child.WITHOUTMEAT = RandomHelper.RandomBool();
-                child.WITHOUTPORK = RandomHelper.RandomBool();
-            }
-            this.EF.agsEntities.SaveChanges();
+
             foreach (FAMILIES family in FamiliesCollection)
             {
                 //
@@ -390,7 +434,7 @@ namespace WpfMvvmApplication1.ViewModels
             //RandomHelper.RandomDate(new DateTime(1980, 1, 1), DateTime.Now);
             //RandomHelper.RandomInt(1, 3);
             //RandomHelper.RandomBool();
- 
+*/ 
         }
     }
 }

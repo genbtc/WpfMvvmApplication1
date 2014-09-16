@@ -71,25 +71,22 @@ namespace WpfMvvmApplication1.Helpers
         private static void OnRoutedEventNameChanged(DependencyObject d, 
             DependencyPropertyChangedEventArgs e)
         {
-            String routedEvent = (String)e.NewValue;
+            var routedEvent = (String)e.NewValue;
             
             //If the RoutedEvent string is not null, create a new
             //dynamically created EventHandler that when run will execute
             //the actual bound ICommand instance (usually in the ViewModel)
-            if (!String.IsNullOrEmpty(routedEvent))
+            if (String.IsNullOrEmpty(routedEvent)) 
+                return;
+            var eventHooker = new EventHooker {ObjectWithAttachedCommand = d};
+
+            EventInfo eventInfo = d.GetType().GetEvent(routedEvent, BindingFlags.Public | BindingFlags.Instance);
+
+            //Hook up Dynamically created event handler
+            if (eventInfo != null)
             {
-                EventHooker eventHooker = new EventHooker();
-                eventHooker.ObjectWithAttachedCommand = d;
-
-                EventInfo eventInfo = d.GetType().GetEvent(routedEvent, 
-                    BindingFlags.Public | BindingFlags.Instance);
-
-                //Hook up Dynamically created event handler
-                if (eventInfo != null)
-                {
-                    eventInfo.AddEventHandler(d,
-                        eventHooker.GetNewEventHandlerToRunCommand(eventInfo));
-                }
+                eventInfo.AddEventHandler(d,
+                    eventHooker.GetNewEventHandlerToRunCommand(eventInfo));
             }
         }
         #endregion
@@ -125,13 +122,8 @@ namespace WpfMvvmApplication1.Helpers
             if (eventInfo.EventHandlerType == null)
                 throw new ArgumentException("EventHandlerType is null");
 
-            if (del == null)
-                del = Delegate.CreateDelegate(eventInfo.EventHandlerType, this,
-                      GetType().GetMethod("OnEventRaised",
-                        BindingFlags.NonPublic | 
-                        BindingFlags.Instance));
-
-            return del;
+            return del ?? (del = Delegate.CreateDelegate(eventInfo.EventHandlerType, this,
+                GetType().GetMethod("OnEventRaised",BindingFlags.NonPublic |BindingFlags.Instance)));
         }
         #endregion
 
@@ -142,7 +134,7 @@ namespace WpfMvvmApplication1.Helpers
         /// </summary>
         private void OnEventRaised(object sender, EventArgs e)
         {
-            ICommand command = (ICommand)(sender as DependencyObject).
+            var command = (ICommand)(sender as DependencyObject).
                 GetValue(CommandBehavior.TheCommandToRunProperty);
 
             if (command != null)

@@ -437,29 +437,29 @@ namespace WpfMvvmApplication1.Models
         partial void OnBIRTHDATEChanging(Nullable<global::System.DateTime> value);
         partial void OnBIRTHDATEChanged();
     
-        ///// <summary>
-        ///// No Metadata Documentation available.
-        ///// </summary>
-        //[EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
-        //[DataMemberAttribute()]
-        //public Nullable<global::System.Int32> FAMILYID
-        //{
-        //    get
-        //    {
-        //        return _FAMILYID;
-        //    }
-        //    set
-        //    {
-        //        OnFAMILYIDChanging(value);
-        //        ReportPropertyChanging("FAMILYID");
-        //        _FAMILYID = StructuralObject.SetValidValue(value);
-        //        ReportPropertyChanged("FAMILYID");
-        //        OnFAMILYIDChanged();
-        //    }
-        //}
-        //private Nullable<global::System.Int32> _FAMILYID;
-        //partial void OnFAMILYIDChanging(Nullable<global::System.Int32> value);
-        //partial void OnFAMILYIDChanged();
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [DataMemberAttribute()]
+        public Nullable<global::System.Int32> FAMILYID
+        {
+            get
+            {
+                return _FAMILYID;
+            }
+            set
+            {
+                OnFAMILYIDChanging(value);
+                ReportPropertyChanging("FAMILYID");
+                _FAMILYID = StructuralObject.SetValidValue(value);
+                ReportPropertyChanged("FAMILYID");
+                OnFAMILYIDChanged();
+            }
+        }
+        private Nullable<global::System.Int32> _FAMILYID;
+        partial void OnFAMILYIDChanging(Nullable<global::System.Int32> value);
+        partial void OnFAMILYIDChanged();
     
         /// <summary>
         /// No Metadata Documentation available.
@@ -1470,29 +1470,29 @@ namespace WpfMvvmApplication1.Models
         partial void OnADDRESSChanging(global::System.String value);
         partial void OnADDRESSChanged();
     
-        ///// <summary>
-        ///// No Metadata Documentation available.
-        ///// </summary>
-        //[EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
-        //[DataMemberAttribute()]
-        //public Nullable<global::System.Int32> CITYID
-        //{
-        //    get
-        //    {
-        //        return _CITYID;
-        //    }
-        //    set
-        //    {
-        //        OnCITYIDChanging(value);
-        //        ReportPropertyChanging("CITYID");
-        //        _CITYID = StructuralObject.SetValidValue(value);
-        //        ReportPropertyChanged("CITYID");
-        //        OnCITYIDChanged();
-        //    }
-        //}
-        //private Nullable<global::System.Int32> _CITYID;
-        //partial void OnCITYIDChanging(Nullable<global::System.Int32> value);
-        //partial void OnCITYIDChanged();
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [DataMemberAttribute()]
+        public Nullable<global::System.Int32> CITYID
+        {
+            get
+            {
+                return _CITYID;
+            }
+            set
+            {
+                OnCITYIDChanging(value);
+                ReportPropertyChanging("CITYID");
+                _CITYID = StructuralObject.SetValidValue(value);
+                ReportPropertyChanged("CITYID");
+                OnCITYIDChanged();
+            }
+        }
+        private Nullable<global::System.Int32> _CITYID;
+        partial void OnCITYIDChanging(Nullable<global::System.Int32> value);
+        partial void OnCITYIDChanged();
     
         /// <summary>
         /// No Metadata Documentation available.
