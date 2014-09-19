@@ -19,17 +19,11 @@ using System.Xml.Serialization;
 [assembly: EdmSchemaAttribute()]
 #region EDM Relationship Metadata
 
-[assembly: EdmRelationshipAttribute("agsModel", "family2fk", "FAMILIES2", System.Data.Metadata.Edm.RelationshipMultiplicity.ZeroOrOne, typeof(WpfMvvmApplication1.Models.FAMILIES2), "CHILDRENS", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(WpfMvvmApplication1.Models.CHILDRENS), true)]
-[assembly: EdmRelationshipAttribute("agsModel", "familyfk1", "FAMILIES", System.Data.Metadata.Edm.RelationshipMultiplicity.ZeroOrOne, typeof(WpfMvvmApplication1.Models.FAMILIES), "CHILDRENS", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(WpfMvvmApplication1.Models.CHILDRENS), true)]
+[assembly: EdmRelationshipAttribute("agsModel", "familyfk", "FAMILIES", System.Data.Metadata.Edm.RelationshipMultiplicity.ZeroOrOne, typeof(WpfMvvmApplication1.Models.FAMILIES), "CHILDRENS", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(WpfMvvmApplication1.Models.CHILDRENS), true)]
 [assembly: EdmRelationshipAttribute("agsModel", "medecinefk", "MEDECINES", System.Data.Metadata.Edm.RelationshipMultiplicity.ZeroOrOne, typeof(WpfMvvmApplication1.Models.MEDECINES), "CHILDRENS", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(WpfMvvmApplication1.Models.CHILDRENS), true)]
 [assembly: EdmRelationshipAttribute("agsModel", "cityfk", "CITIES", System.Data.Metadata.Edm.RelationshipMultiplicity.ZeroOrOne, typeof(WpfMvvmApplication1.Models.CITIES), "FAMILIES", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(WpfMvvmApplication1.Models.FAMILIES), true)]
-[assembly: EdmRelationshipAttribute("agsModel", "cityfk1", "CITIES", System.Data.Metadata.Edm.RelationshipMultiplicity.ZeroOrOne, typeof(WpfMvvmApplication1.Models.CITIES), "FAMILIES2", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(WpfMvvmApplication1.Models.FAMILIES2), true)]
 [assembly: EdmRelationshipAttribute("agsModel", "civilityfk", "CIVILITIES", System.Data.Metadata.Edm.RelationshipMultiplicity.ZeroOrOne, typeof(WpfMvvmApplication1.Models.CIVILITIES), "FAMILIES", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(WpfMvvmApplication1.Models.FAMILIES), true)]
-[assembly: EdmRelationshipAttribute("agsModel", "civilityfk1", "CIVILITIES", System.Data.Metadata.Edm.RelationshipMultiplicity.ZeroOrOne, typeof(WpfMvvmApplication1.Models.CIVILITIES), "FAMILIES2", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(WpfMvvmApplication1.Models.FAMILIES2), true)]
-[assembly: EdmRelationshipAttribute("agsModel", "familyfk", "FAMILIES", System.Data.Metadata.Edm.RelationshipMultiplicity.ZeroOrOne, typeof(WpfMvvmApplication1.Models.FAMILIES), "FAMILYQUOTIENTS", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(WpfMvvmApplication1.Models.FAMILYQUOTIENTS), true)]
-[assembly: EdmRelationshipAttribute("agsModel", "partner", "PERSON", System.Data.Metadata.Edm.RelationshipMultiplicity.ZeroOrOne, typeof(WpfMvvmApplication1.Models.PERSON), "FAMILIES2", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(WpfMvvmApplication1.Models.FAMILIES2), true)]
-[assembly: EdmRelationshipAttribute("agsModel", "payer", "PERSON", System.Data.Metadata.Edm.RelationshipMultiplicity.ZeroOrOne, typeof(WpfMvvmApplication1.Models.PERSON), "FAMILIES2", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(WpfMvvmApplication1.Models.FAMILIES2), true)]
-[assembly: EdmRelationshipAttribute("agsModel", "family2fk1", "FAMILIES2", System.Data.Metadata.Edm.RelationshipMultiplicity.ZeroOrOne, typeof(WpfMvvmApplication1.Models.FAMILIES2), "FAMILYQUOTIENTS", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(WpfMvvmApplication1.Models.FAMILYQUOTIENTS), true)]
+[assembly: EdmRelationshipAttribute("agsModel", "familyfk1", "FAMILIES", System.Data.Metadata.Edm.RelationshipMultiplicity.ZeroOrOne, typeof(WpfMvvmApplication1.Models.FAMILIES), "FAMILYQUOTIENTS", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(WpfMvvmApplication1.Models.FAMILYQUOTIENTS), true)]
 
 #endregion
 
@@ -148,22 +142,6 @@ namespace WpfMvvmApplication1.Models
         /// <summary>
         /// No Metadata Documentation available.
         /// </summary>
-        public ObjectSet<FAMILIES2> FAMILIES2
-        {
-            get
-            {
-                if ((_FAMILIES2 == null))
-                {
-                    _FAMILIES2 = base.CreateObjectSet<FAMILIES2>("FAMILIES2");
-                }
-                return _FAMILIES2;
-            }
-        }
-        private ObjectSet<FAMILIES2> _FAMILIES2;
-    
-        /// <summary>
-        /// No Metadata Documentation available.
-        /// </summary>
         public ObjectSet<FAMILYQUOTIENTS> FAMILYQUOTIENTS
         {
             get
@@ -192,22 +170,6 @@ namespace WpfMvvmApplication1.Models
             }
         }
         private ObjectSet<MEDECINES> _MEDECINES;
-    
-        /// <summary>
-        /// No Metadata Documentation available.
-        /// </summary>
-        public ObjectSet<PERSON> PERSON
-        {
-            get
-            {
-                if ((_PERSON == null))
-                {
-                    _PERSON = base.CreateObjectSet<PERSON>("PERSON");
-                }
-                return _PERSON;
-            }
-        }
-        private ObjectSet<PERSON> _PERSON;
 
         #endregion
 
@@ -246,14 +208,6 @@ namespace WpfMvvmApplication1.Models
         }
     
         /// <summary>
-        /// Deprecated Method for adding a new object to the FAMILIES2 EntitySet. Consider using the .Add method of the associated ObjectSet&lt;T&gt; property instead.
-        /// </summary>
-        public void AddToFAMILIES2(FAMILIES2 fAMILIES2)
-        {
-            base.AddObject("FAMILIES2", fAMILIES2);
-        }
-    
-        /// <summary>
         /// Deprecated Method for adding a new object to the FAMILYQUOTIENTS EntitySet. Consider using the .Add method of the associated ObjectSet&lt;T&gt; property instead.
         /// </summary>
         public void AddToFAMILYQUOTIENTS(FAMILYQUOTIENTS fAMILYQUOTIENTS)
@@ -267,14 +221,6 @@ namespace WpfMvvmApplication1.Models
         public void AddToMEDECINES(MEDECINES mEDECINES)
         {
             base.AddObject("MEDECINES", mEDECINES);
-        }
-    
-        /// <summary>
-        /// Deprecated Method for adding a new object to the PERSON EntitySet. Consider using the .Add method of the associated ObjectSet&lt;T&gt; property instead.
-        /// </summary>
-        public void AddToPERSON(PERSON pERSON)
-        {
-            base.AddObject("PERSON", pERSON);
         }
 
         #endregion
@@ -904,54 +850,16 @@ namespace WpfMvvmApplication1.Models
         [XmlIgnoreAttribute()]
         [SoapIgnoreAttribute()]
         [DataMemberAttribute()]
-        [EdmRelationshipNavigationPropertyAttribute("agsModel", "family2fk", "FAMILIES2")]
-        public FAMILIES2 FAMILIES2
-        {
-            get
-            {
-                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<FAMILIES2>("agsModel.family2fk", "FAMILIES2").Value;
-            }
-            set
-            {
-                ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<FAMILIES2>("agsModel.family2fk", "FAMILIES2").Value = value;
-            }
-        }
-        /// <summary>
-        /// No Metadata Documentation available.
-        /// </summary>
-        [BrowsableAttribute(false)]
-        [DataMemberAttribute()]
-        public EntityReference<FAMILIES2> FAMILIES2Reference
-        {
-            get
-            {
-                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<FAMILIES2>("agsModel.family2fk", "FAMILIES2");
-            }
-            set
-            {
-                if ((value != null))
-                {
-                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedReference<FAMILIES2>("agsModel.family2fk", "FAMILIES2", value);
-                }
-            }
-        }
-    
-        /// <summary>
-        /// No Metadata Documentation available.
-        /// </summary>
-        [XmlIgnoreAttribute()]
-        [SoapIgnoreAttribute()]
-        [DataMemberAttribute()]
-        [EdmRelationshipNavigationPropertyAttribute("agsModel", "familyfk1", "FAMILIES")]
+        [EdmRelationshipNavigationPropertyAttribute("agsModel", "familyfk", "FAMILIES")]
         public FAMILIES FAMILIES
         {
             get
             {
-                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<FAMILIES>("agsModel.familyfk1", "FAMILIES").Value;
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<FAMILIES>("agsModel.familyfk", "FAMILIES").Value;
             }
             set
             {
-                ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<FAMILIES>("agsModel.familyfk1", "FAMILIES").Value = value;
+                ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<FAMILIES>("agsModel.familyfk", "FAMILIES").Value = value;
             }
         }
         /// <summary>
@@ -963,13 +871,13 @@ namespace WpfMvvmApplication1.Models
         {
             get
             {
-                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<FAMILIES>("agsModel.familyfk1", "FAMILIES");
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<FAMILIES>("agsModel.familyfk", "FAMILIES");
             }
             set
             {
                 if ((value != null))
                 {
-                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedReference<FAMILIES>("agsModel.familyfk1", "FAMILIES", value);
+                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedReference<FAMILIES>("agsModel.familyfk", "FAMILIES", value);
                 }
             }
         }
@@ -1166,28 +1074,6 @@ namespace WpfMvvmApplication1.Models
                 }
             }
         }
-    
-        /// <summary>
-        /// No Metadata Documentation available.
-        /// </summary>
-        [XmlIgnoreAttribute()]
-        [SoapIgnoreAttribute()]
-        [DataMemberAttribute()]
-        [EdmRelationshipNavigationPropertyAttribute("agsModel", "cityfk1", "FAMILIES2")]
-        public EntityCollection<FAMILIES2> FAMILIES2
-        {
-            get
-            {
-                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedCollection<FAMILIES2>("agsModel.cityfk1", "FAMILIES2");
-            }
-            set
-            {
-                if ((value != null))
-                {
-                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedCollection<FAMILIES2>("agsModel.cityfk1", "FAMILIES2", value);
-                }
-            }
-        }
 
         #endregion
 
@@ -1292,28 +1178,6 @@ namespace WpfMvvmApplication1.Models
                 if ((value != null))
                 {
                     ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedCollection<FAMILIES>("agsModel.civilityfk", "FAMILIES", value);
-                }
-            }
-        }
-    
-        /// <summary>
-        /// No Metadata Documentation available.
-        /// </summary>
-        [XmlIgnoreAttribute()]
-        [SoapIgnoreAttribute()]
-        [DataMemberAttribute()]
-        [EdmRelationshipNavigationPropertyAttribute("agsModel", "civilityfk1", "FAMILIES2")]
-        public EntityCollection<FAMILIES2> FAMILIES2
-        {
-            get
-            {
-                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedCollection<FAMILIES2>("agsModel.civilityfk1", "FAMILIES2");
-            }
-            set
-            {
-                if ((value != null))
-                {
-                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedCollection<FAMILIES2>("agsModel.civilityfk1", "FAMILIES2", value);
                 }
             }
         }
@@ -2081,18 +1945,18 @@ namespace WpfMvvmApplication1.Models
         [XmlIgnoreAttribute()]
         [SoapIgnoreAttribute()]
         [DataMemberAttribute()]
-        [EdmRelationshipNavigationPropertyAttribute("agsModel", "familyfk1", "CHILDRENS")]
+        [EdmRelationshipNavigationPropertyAttribute("agsModel", "familyfk", "CHILDRENS")]
         public EntityCollection<CHILDRENS> CHILDRENS
         {
             get
             {
-                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedCollection<CHILDRENS>("agsModel.familyfk1", "CHILDRENS");
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedCollection<CHILDRENS>("agsModel.familyfk", "CHILDRENS");
             }
             set
             {
                 if ((value != null))
                 {
-                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedCollection<CHILDRENS>("agsModel.familyfk1", "CHILDRENS", value);
+                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedCollection<CHILDRENS>("agsModel.familyfk", "CHILDRENS", value);
                 }
             }
         }
@@ -2179,18 +2043,18 @@ namespace WpfMvvmApplication1.Models
         [XmlIgnoreAttribute()]
         [SoapIgnoreAttribute()]
         [DataMemberAttribute()]
-        [EdmRelationshipNavigationPropertyAttribute("agsModel", "familyfk", "FAMILYQUOTIENTS")]
+        [EdmRelationshipNavigationPropertyAttribute("agsModel", "familyfk1", "FAMILYQUOTIENTS")]
         public EntityCollection<FAMILYQUOTIENTS> FAMILYQUOTIENTS
         {
             get
             {
-                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedCollection<FAMILYQUOTIENTS>("agsModel.familyfk", "FAMILYQUOTIENTS");
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedCollection<FAMILYQUOTIENTS>("agsModel.familyfk1", "FAMILYQUOTIENTS");
             }
             set
             {
                 if ((value != null))
                 {
-                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedCollection<FAMILYQUOTIENTS>("agsModel.familyfk", "FAMILYQUOTIENTS", value);
+                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedCollection<FAMILYQUOTIENTS>("agsModel.familyfk1", "FAMILYQUOTIENTS", value);
                 }
             }
         }
@@ -2202,22 +2066,22 @@ namespace WpfMvvmApplication1.Models
     /// <summary>
     /// No Metadata Documentation available.
     /// </summary>
-    [EdmEntityTypeAttribute(NamespaceName="agsModel", Name="FAMILIES2")]
+    [EdmEntityTypeAttribute(NamespaceName="agsModel", Name="FAMILYQUOTIENTS")]
     [Serializable()]
     [DataContractAttribute(IsReference=true)]
-    public partial class FAMILIES2 : EntityObject
+    public partial class FAMILYQUOTIENTS : EntityObject
     {
         #region Factory Method
     
         /// <summary>
-        /// Create a new FAMILIES2 object.
+        /// Create a new FAMILYQUOTIENTS object.
         /// </summary>
         /// <param name="id">Initial value of the ID property.</param>
-        public static FAMILIES2 CreateFAMILIES2(global::System.Int32 id)
+        public static FAMILYQUOTIENTS CreateFAMILYQUOTIENTS(global::System.Int32 id)
         {
-            FAMILIES2 fAMILIES2 = new FAMILIES2();
-            fAMILIES2.ID = id;
-            return fAMILIES2;
+            FAMILYQUOTIENTS fAMILYQUOTIENTS = new FAMILYQUOTIENTS();
+            fAMILYQUOTIENTS.ID = id;
+            return fAMILYQUOTIENTS;
         }
 
         #endregion
@@ -2249,575 +2113,6 @@ namespace WpfMvvmApplication1.Models
         }
         private global::System.Int32 _ID;
         partial void OnIDChanging(global::System.Int32 value);
-        partial void OnIDChanged();
-    
-        /// <summary>
-        /// No Metadata Documentation available.
-        /// </summary>
-        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
-        [DataMemberAttribute()]
-        public Nullable<global::System.Int32> CIVILITYID
-        {
-            get
-            {
-                return _CIVILITYID;
-            }
-            set
-            {
-                OnCIVILITYIDChanging(value);
-                ReportPropertyChanging("CIVILITYID");
-                _CIVILITYID = StructuralObject.SetValidValue(value);
-                ReportPropertyChanged("CIVILITYID");
-                OnCIVILITYIDChanged();
-            }
-        }
-        private Nullable<global::System.Int32> _CIVILITYID;
-        partial void OnCIVILITYIDChanging(Nullable<global::System.Int32> value);
-        partial void OnCIVILITYIDChanged();
-    
-        /// <summary>
-        /// No Metadata Documentation available.
-        /// </summary>
-        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
-        [DataMemberAttribute()]
-        public global::System.String LASTNAME
-        {
-            get
-            {
-                return _LASTNAME;
-            }
-            set
-            {
-                OnLASTNAMEChanging(value);
-                ReportPropertyChanging("LASTNAME");
-                _LASTNAME = StructuralObject.SetValidValue(value, true);
-                ReportPropertyChanged("LASTNAME");
-                OnLASTNAMEChanged();
-            }
-        }
-        private global::System.String _LASTNAME;
-        partial void OnLASTNAMEChanging(global::System.String value);
-        partial void OnLASTNAMEChanged();
-    
-        /// <summary>
-        /// No Metadata Documentation available.
-        /// </summary>
-        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
-        [DataMemberAttribute()]
-        public global::System.String FIRSTNAME
-        {
-            get
-            {
-                return _FIRSTNAME;
-            }
-            set
-            {
-                OnFIRSTNAMEChanging(value);
-                ReportPropertyChanging("FIRSTNAME");
-                _FIRSTNAME = StructuralObject.SetValidValue(value, true);
-                ReportPropertyChanged("FIRSTNAME");
-                OnFIRSTNAMEChanged();
-            }
-        }
-        private global::System.String _FIRSTNAME;
-        partial void OnFIRSTNAMEChanging(global::System.String value);
-        partial void OnFIRSTNAMEChanged();
-    
-        /// <summary>
-        /// No Metadata Documentation available.
-        /// </summary>
-        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
-        [DataMemberAttribute()]
-        public global::System.String ADDRESS
-        {
-            get
-            {
-                return _ADDRESS;
-            }
-            set
-            {
-                OnADDRESSChanging(value);
-                ReportPropertyChanging("ADDRESS");
-                _ADDRESS = StructuralObject.SetValidValue(value, true);
-                ReportPropertyChanged("ADDRESS");
-                OnADDRESSChanged();
-            }
-        }
-        private global::System.String _ADDRESS;
-        partial void OnADDRESSChanging(global::System.String value);
-        partial void OnADDRESSChanged();
-    
-        /// <summary>
-        /// No Metadata Documentation available.
-        /// </summary>
-        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
-        [DataMemberAttribute()]
-        public Nullable<global::System.Int32> CITYID
-        {
-            get
-            {
-                return _CITYID;
-            }
-            set
-            {
-                OnCITYIDChanging(value);
-                ReportPropertyChanging("CITYID");
-                _CITYID = StructuralObject.SetValidValue(value);
-                ReportPropertyChanged("CITYID");
-                OnCITYIDChanged();
-            }
-        }
-        private Nullable<global::System.Int32> _CITYID;
-        partial void OnCITYIDChanging(Nullable<global::System.Int32> value);
-        partial void OnCITYIDChanged();
-    
-        /// <summary>
-        /// No Metadata Documentation available.
-        /// </summary>
-        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
-        [DataMemberAttribute()]
-        public global::System.String TEL1
-        {
-            get
-            {
-                return _TEL1;
-            }
-            set
-            {
-                OnTEL1Changing(value);
-                ReportPropertyChanging("TEL1");
-                _TEL1 = StructuralObject.SetValidValue(value, true);
-                ReportPropertyChanged("TEL1");
-                OnTEL1Changed();
-            }
-        }
-        private global::System.String _TEL1;
-        partial void OnTEL1Changing(global::System.String value);
-        partial void OnTEL1Changed();
-    
-        /// <summary>
-        /// No Metadata Documentation available.
-        /// </summary>
-        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
-        [DataMemberAttribute()]
-        public global::System.String TEL2
-        {
-            get
-            {
-                return _TEL2;
-            }
-            set
-            {
-                OnTEL2Changing(value);
-                ReportPropertyChanging("TEL2");
-                _TEL2 = StructuralObject.SetValidValue(value, true);
-                ReportPropertyChanged("TEL2");
-                OnTEL2Changed();
-            }
-        }
-        private global::System.String _TEL2;
-        partial void OnTEL2Changing(global::System.String value);
-        partial void OnTEL2Changed();
-    
-        /// <summary>
-        /// No Metadata Documentation available.
-        /// </summary>
-        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
-        [DataMemberAttribute()]
-        public global::System.String TEL3
-        {
-            get
-            {
-                return _TEL3;
-            }
-            set
-            {
-                OnTEL3Changing(value);
-                ReportPropertyChanging("TEL3");
-                _TEL3 = StructuralObject.SetValidValue(value, true);
-                ReportPropertyChanged("TEL3");
-                OnTEL3Changed();
-            }
-        }
-        private global::System.String _TEL3;
-        partial void OnTEL3Changing(global::System.String value);
-        partial void OnTEL3Changed();
-    
-        /// <summary>
-        /// No Metadata Documentation available.
-        /// </summary>
-        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
-        [DataMemberAttribute()]
-        public global::System.String EMAIL
-        {
-            get
-            {
-                return _EMAIL;
-            }
-            set
-            {
-                OnEMAILChanging(value);
-                ReportPropertyChanging("EMAIL");
-                _EMAIL = StructuralObject.SetValidValue(value, true);
-                ReportPropertyChanged("EMAIL");
-                OnEMAILChanged();
-            }
-        }
-        private global::System.String _EMAIL;
-        partial void OnEMAILChanging(global::System.String value);
-        partial void OnEMAILChanged();
-    
-        /// <summary>
-        /// No Metadata Documentation available.
-        /// </summary>
-        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
-        [DataMemberAttribute()]
-        public Nullable<global::System.Int64> PARTNERID
-        {
-            get
-            {
-                return _PARTNERID;
-            }
-            set
-            {
-                OnPARTNERIDChanging(value);
-                ReportPropertyChanging("PARTNERID");
-                _PARTNERID = StructuralObject.SetValidValue(value);
-                ReportPropertyChanged("PARTNERID");
-                OnPARTNERIDChanged();
-            }
-        }
-        private Nullable<global::System.Int64> _PARTNERID;
-        partial void OnPARTNERIDChanging(Nullable<global::System.Int64> value);
-        partial void OnPARTNERIDChanged();
-    
-        /// <summary>
-        /// No Metadata Documentation available.
-        /// </summary>
-        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
-        [DataMemberAttribute()]
-        public Nullable<global::System.Int64> PAYERID
-        {
-            get
-            {
-                return _PAYERID;
-            }
-            set
-            {
-                OnPAYERIDChanging(value);
-                ReportPropertyChanging("PAYERID");
-                _PAYERID = StructuralObject.SetValidValue(value);
-                ReportPropertyChanged("PAYERID");
-                OnPAYERIDChanged();
-            }
-        }
-        private Nullable<global::System.Int64> _PAYERID;
-        partial void OnPAYERIDChanging(Nullable<global::System.Int64> value);
-        partial void OnPAYERIDChanged();
-    
-        /// <summary>
-        /// No Metadata Documentation available.
-        /// </summary>
-        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
-        [DataMemberAttribute()]
-        public Nullable<global::System.Int32> SOCIALSECURITYID
-        {
-            get
-            {
-                return _SOCIALSECURITYID;
-            }
-            set
-            {
-                OnSOCIALSECURITYIDChanging(value);
-                ReportPropertyChanging("SOCIALSECURITYID");
-                _SOCIALSECURITYID = StructuralObject.SetValidValue(value);
-                ReportPropertyChanged("SOCIALSECURITYID");
-                OnSOCIALSECURITYIDChanged();
-            }
-        }
-        private Nullable<global::System.Int32> _SOCIALSECURITYID;
-        partial void OnSOCIALSECURITYIDChanging(Nullable<global::System.Int32> value);
-        partial void OnSOCIALSECURITYIDChanged();
-    
-        /// <summary>
-        /// No Metadata Documentation available.
-        /// </summary>
-        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
-        [DataMemberAttribute()]
-        public global::System.String RECIPIENTNUMBER
-        {
-            get
-            {
-                return _RECIPIENTNUMBER;
-            }
-            set
-            {
-                OnRECIPIENTNUMBERChanging(value);
-                ReportPropertyChanging("RECIPIENTNUMBER");
-                _RECIPIENTNUMBER = StructuralObject.SetValidValue(value, true);
-                ReportPropertyChanged("RECIPIENTNUMBER");
-                OnRECIPIENTNUMBERChanged();
-            }
-        }
-        private global::System.String _RECIPIENTNUMBER;
-        partial void OnRECIPIENTNUMBERChanging(global::System.String value);
-        partial void OnRECIPIENTNUMBERChanged();
-
-        #endregion
-
-    
-        #region Navigation Properties
-    
-        /// <summary>
-        /// No Metadata Documentation available.
-        /// </summary>
-        [XmlIgnoreAttribute()]
-        [SoapIgnoreAttribute()]
-        [DataMemberAttribute()]
-        [EdmRelationshipNavigationPropertyAttribute("agsModel", "family2fk", "CHILDRENS")]
-        public EntityCollection<CHILDRENS> CHILDRENS
-        {
-            get
-            {
-                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedCollection<CHILDRENS>("agsModel.family2fk", "CHILDRENS");
-            }
-            set
-            {
-                if ((value != null))
-                {
-                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedCollection<CHILDRENS>("agsModel.family2fk", "CHILDRENS", value);
-                }
-            }
-        }
-    
-        /// <summary>
-        /// No Metadata Documentation available.
-        /// </summary>
-        [XmlIgnoreAttribute()]
-        [SoapIgnoreAttribute()]
-        [DataMemberAttribute()]
-        [EdmRelationshipNavigationPropertyAttribute("agsModel", "cityfk1", "CITIES")]
-        public CITIES CITIES
-        {
-            get
-            {
-                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<CITIES>("agsModel.cityfk1", "CITIES").Value;
-            }
-            set
-            {
-                ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<CITIES>("agsModel.cityfk1", "CITIES").Value = value;
-            }
-        }
-        /// <summary>
-        /// No Metadata Documentation available.
-        /// </summary>
-        [BrowsableAttribute(false)]
-        [DataMemberAttribute()]
-        public EntityReference<CITIES> CITIESReference
-        {
-            get
-            {
-                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<CITIES>("agsModel.cityfk1", "CITIES");
-            }
-            set
-            {
-                if ((value != null))
-                {
-                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedReference<CITIES>("agsModel.cityfk1", "CITIES", value);
-                }
-            }
-        }
-    
-        /// <summary>
-        /// No Metadata Documentation available.
-        /// </summary>
-        [XmlIgnoreAttribute()]
-        [SoapIgnoreAttribute()]
-        [DataMemberAttribute()]
-        [EdmRelationshipNavigationPropertyAttribute("agsModel", "civilityfk1", "CIVILITIES")]
-        public CIVILITIES CIVILITIES
-        {
-            get
-            {
-                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<CIVILITIES>("agsModel.civilityfk1", "CIVILITIES").Value;
-            }
-            set
-            {
-                ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<CIVILITIES>("agsModel.civilityfk1", "CIVILITIES").Value = value;
-            }
-        }
-        /// <summary>
-        /// No Metadata Documentation available.
-        /// </summary>
-        [BrowsableAttribute(false)]
-        [DataMemberAttribute()]
-        public EntityReference<CIVILITIES> CIVILITIESReference
-        {
-            get
-            {
-                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<CIVILITIES>("agsModel.civilityfk1", "CIVILITIES");
-            }
-            set
-            {
-                if ((value != null))
-                {
-                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedReference<CIVILITIES>("agsModel.civilityfk1", "CIVILITIES", value);
-                }
-            }
-        }
-    
-        /// <summary>
-        /// No Metadata Documentation available.
-        /// </summary>
-        [XmlIgnoreAttribute()]
-        [SoapIgnoreAttribute()]
-        [DataMemberAttribute()]
-        [EdmRelationshipNavigationPropertyAttribute("agsModel", "partner", "PERSON")]
-        public PERSON PARTNER
-        {
-            get
-            {
-                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<PERSON>("agsModel.partner", "PERSON").Value;
-            }
-            set
-            {
-                ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<PERSON>("agsModel.partner", "PERSON").Value = value;
-            }
-        }
-        /// <summary>
-        /// No Metadata Documentation available.
-        /// </summary>
-        [BrowsableAttribute(false)]
-        [DataMemberAttribute()]
-        public EntityReference<PERSON> PARTNERReference
-        {
-            get
-            {
-                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<PERSON>("agsModel.partner", "PERSON");
-            }
-            set
-            {
-                if ((value != null))
-                {
-                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedReference<PERSON>("agsModel.partner", "PERSON", value);
-                }
-            }
-        }
-    
-        /// <summary>
-        /// No Metadata Documentation available.
-        /// </summary>
-        [XmlIgnoreAttribute()]
-        [SoapIgnoreAttribute()]
-        [DataMemberAttribute()]
-        [EdmRelationshipNavigationPropertyAttribute("agsModel", "payer", "PERSON")]
-        public PERSON PAYER
-        {
-            get
-            {
-                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<PERSON>("agsModel.payer", "PERSON").Value;
-            }
-            set
-            {
-                ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<PERSON>("agsModel.payer", "PERSON").Value = value;
-            }
-        }
-        /// <summary>
-        /// No Metadata Documentation available.
-        /// </summary>
-        [BrowsableAttribute(false)]
-        [DataMemberAttribute()]
-        public EntityReference<PERSON> PAYERReference
-        {
-            get
-            {
-                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<PERSON>("agsModel.payer", "PERSON");
-            }
-            set
-            {
-                if ((value != null))
-                {
-                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedReference<PERSON>("agsModel.payer", "PERSON", value);
-                }
-            }
-        }
-    
-        /// <summary>
-        /// No Metadata Documentation available.
-        /// </summary>
-        [XmlIgnoreAttribute()]
-        [SoapIgnoreAttribute()]
-        [DataMemberAttribute()]
-        [EdmRelationshipNavigationPropertyAttribute("agsModel", "family2fk1", "FAMILYQUOTIENTS")]
-        public EntityCollection<FAMILYQUOTIENTS> FAMILYQUOTIENTS
-        {
-            get
-            {
-                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedCollection<FAMILYQUOTIENTS>("agsModel.family2fk1", "FAMILYQUOTIENTS");
-            }
-            set
-            {
-                if ((value != null))
-                {
-                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedCollection<FAMILYQUOTIENTS>("agsModel.family2fk1", "FAMILYQUOTIENTS", value);
-                }
-            }
-        }
-
-        #endregion
-
-    }
-    
-    /// <summary>
-    /// No Metadata Documentation available.
-    /// </summary>
-    [EdmEntityTypeAttribute(NamespaceName="agsModel", Name="FAMILYQUOTIENTS")]
-    [Serializable()]
-    [DataContractAttribute(IsReference=true)]
-    public partial class FAMILYQUOTIENTS : EntityObject
-    {
-        #region Factory Method
-    
-        /// <summary>
-        /// Create a new FAMILYQUOTIENTS object.
-        /// </summary>
-        /// <param name="id">Initial value of the ID property.</param>
-        public static FAMILYQUOTIENTS CreateFAMILYQUOTIENTS(global::System.Int64 id)
-        {
-            FAMILYQUOTIENTS fAMILYQUOTIENTS = new FAMILYQUOTIENTS();
-            fAMILYQUOTIENTS.ID = id;
-            return fAMILYQUOTIENTS;
-        }
-
-        #endregion
-
-        #region Primitive Properties
-    
-        /// <summary>
-        /// No Metadata Documentation available.
-        /// </summary>
-        [EdmScalarPropertyAttribute(EntityKeyProperty=true, IsNullable=false)]
-        [DataMemberAttribute()]
-        public global::System.Int64 ID
-        {
-            get
-            {
-                return _ID;
-            }
-            set
-            {
-                if (_ID != value)
-                {
-                    OnIDChanging(value);
-                    ReportPropertyChanging("ID");
-                    _ID = StructuralObject.SetValidValue(value);
-                    ReportPropertyChanged("ID");
-                    OnIDChanged();
-                }
-            }
-        }
-        private global::System.Int64 _ID;
-        partial void OnIDChanging(global::System.Int64 value);
         partial void OnIDChanged();
     
         /// <summary>
@@ -2903,16 +2198,16 @@ namespace WpfMvvmApplication1.Models
         [XmlIgnoreAttribute()]
         [SoapIgnoreAttribute()]
         [DataMemberAttribute()]
-        [EdmRelationshipNavigationPropertyAttribute("agsModel", "familyfk", "FAMILIES")]
+        [EdmRelationshipNavigationPropertyAttribute("agsModel", "familyfk1", "FAMILIES")]
         public FAMILIES FAMILIES
         {
             get
             {
-                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<FAMILIES>("agsModel.familyfk", "FAMILIES").Value;
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<FAMILIES>("agsModel.familyfk1", "FAMILIES").Value;
             }
             set
             {
-                ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<FAMILIES>("agsModel.familyfk", "FAMILIES").Value = value;
+                ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<FAMILIES>("agsModel.familyfk1", "FAMILIES").Value = value;
             }
         }
         /// <summary>
@@ -2924,51 +2219,13 @@ namespace WpfMvvmApplication1.Models
         {
             get
             {
-                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<FAMILIES>("agsModel.familyfk", "FAMILIES");
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<FAMILIES>("agsModel.familyfk1", "FAMILIES");
             }
             set
             {
                 if ((value != null))
                 {
-                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedReference<FAMILIES>("agsModel.familyfk", "FAMILIES", value);
-                }
-            }
-        }
-    
-        /// <summary>
-        /// No Metadata Documentation available.
-        /// </summary>
-        [XmlIgnoreAttribute()]
-        [SoapIgnoreAttribute()]
-        [DataMemberAttribute()]
-        [EdmRelationshipNavigationPropertyAttribute("agsModel", "family2fk1", "FAMILIES2")]
-        public FAMILIES2 FAMILIES2
-        {
-            get
-            {
-                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<FAMILIES2>("agsModel.family2fk1", "FAMILIES2").Value;
-            }
-            set
-            {
-                ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<FAMILIES2>("agsModel.family2fk1", "FAMILIES2").Value = value;
-            }
-        }
-        /// <summary>
-        /// No Metadata Documentation available.
-        /// </summary>
-        [BrowsableAttribute(false)]
-        [DataMemberAttribute()]
-        public EntityReference<FAMILIES2> FAMILIES2Reference
-        {
-            get
-            {
-                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<FAMILIES2>("agsModel.family2fk1", "FAMILIES2");
-            }
-            set
-            {
-                if ((value != null))
-                {
-                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedReference<FAMILIES2>("agsModel.family2fk1", "FAMILIES2", value);
+                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedReference<FAMILIES>("agsModel.familyfk1", "FAMILIES", value);
                 }
             }
         }
@@ -3100,327 +2357,6 @@ namespace WpfMvvmApplication1.Models
                 if ((value != null))
                 {
                     ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedCollection<CHILDRENS>("agsModel.medecinefk", "CHILDRENS", value);
-                }
-            }
-        }
-
-        #endregion
-
-    }
-    
-    /// <summary>
-    /// No Metadata Documentation available.
-    /// </summary>
-    [EdmEntityTypeAttribute(NamespaceName="agsModel", Name="PERSON")]
-    [Serializable()]
-    [DataContractAttribute(IsReference=true)]
-    public partial class PERSON : EntityObject
-    {
-        #region Factory Method
-    
-        /// <summary>
-        /// Create a new PERSON object.
-        /// </summary>
-        /// <param name="id">Initial value of the ID property.</param>
-        public static PERSON CreatePERSON(global::System.Int64 id)
-        {
-            PERSON pERSON = new PERSON();
-            pERSON.ID = id;
-            return pERSON;
-        }
-
-        #endregion
-
-        #region Primitive Properties
-    
-        /// <summary>
-        /// No Metadata Documentation available.
-        /// </summary>
-        [EdmScalarPropertyAttribute(EntityKeyProperty=true, IsNullable=false)]
-        [DataMemberAttribute()]
-        public global::System.Int64 ID
-        {
-            get
-            {
-                return _ID;
-            }
-            set
-            {
-                if (_ID != value)
-                {
-                    OnIDChanging(value);
-                    ReportPropertyChanging("ID");
-                    _ID = StructuralObject.SetValidValue(value);
-                    ReportPropertyChanged("ID");
-                    OnIDChanged();
-                }
-            }
-        }
-        private global::System.Int64 _ID;
-        partial void OnIDChanging(global::System.Int64 value);
-        partial void OnIDChanged();
-    
-        /// <summary>
-        /// No Metadata Documentation available.
-        /// </summary>
-        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
-        [DataMemberAttribute()]
-        public Nullable<global::System.Int32> CIVILITYID
-        {
-            get
-            {
-                return _CIVILITYID;
-            }
-            set
-            {
-                OnCIVILITYIDChanging(value);
-                ReportPropertyChanging("CIVILITYID");
-                _CIVILITYID = StructuralObject.SetValidValue(value);
-                ReportPropertyChanged("CIVILITYID");
-                OnCIVILITYIDChanged();
-            }
-        }
-        private Nullable<global::System.Int32> _CIVILITYID;
-        partial void OnCIVILITYIDChanging(Nullable<global::System.Int32> value);
-        partial void OnCIVILITYIDChanged();
-    
-        /// <summary>
-        /// No Metadata Documentation available.
-        /// </summary>
-        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
-        [DataMemberAttribute()]
-        public global::System.String LASTNAME
-        {
-            get
-            {
-                return _LASTNAME;
-            }
-            set
-            {
-                OnLASTNAMEChanging(value);
-                ReportPropertyChanging("LASTNAME");
-                _LASTNAME = StructuralObject.SetValidValue(value, true);
-                ReportPropertyChanged("LASTNAME");
-                OnLASTNAMEChanged();
-            }
-        }
-        private global::System.String _LASTNAME;
-        partial void OnLASTNAMEChanging(global::System.String value);
-        partial void OnLASTNAMEChanged();
-    
-        /// <summary>
-        /// No Metadata Documentation available.
-        /// </summary>
-        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
-        [DataMemberAttribute()]
-        public global::System.String FIRSTNAME
-        {
-            get
-            {
-                return _FIRSTNAME;
-            }
-            set
-            {
-                OnFIRSTNAMEChanging(value);
-                ReportPropertyChanging("FIRSTNAME");
-                _FIRSTNAME = StructuralObject.SetValidValue(value, true);
-                ReportPropertyChanged("FIRSTNAME");
-                OnFIRSTNAMEChanged();
-            }
-        }
-        private global::System.String _FIRSTNAME;
-        partial void OnFIRSTNAMEChanging(global::System.String value);
-        partial void OnFIRSTNAMEChanged();
-    
-        /// <summary>
-        /// No Metadata Documentation available.
-        /// </summary>
-        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
-        [DataMemberAttribute()]
-        public global::System.String ADDRESS
-        {
-            get
-            {
-                return _ADDRESS;
-            }
-            set
-            {
-                OnADDRESSChanging(value);
-                ReportPropertyChanging("ADDRESS");
-                _ADDRESS = StructuralObject.SetValidValue(value, true);
-                ReportPropertyChanged("ADDRESS");
-                OnADDRESSChanged();
-            }
-        }
-        private global::System.String _ADDRESS;
-        partial void OnADDRESSChanging(global::System.String value);
-        partial void OnADDRESSChanged();
-    
-        /// <summary>
-        /// No Metadata Documentation available.
-        /// </summary>
-        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
-        [DataMemberAttribute()]
-        public Nullable<global::System.Int32> CITYID
-        {
-            get
-            {
-                return _CITYID;
-            }
-            set
-            {
-                OnCITYIDChanging(value);
-                ReportPropertyChanging("CITYID");
-                _CITYID = StructuralObject.SetValidValue(value);
-                ReportPropertyChanged("CITYID");
-                OnCITYIDChanged();
-            }
-        }
-        private Nullable<global::System.Int32> _CITYID;
-        partial void OnCITYIDChanging(Nullable<global::System.Int32> value);
-        partial void OnCITYIDChanged();
-    
-        /// <summary>
-        /// No Metadata Documentation available.
-        /// </summary>
-        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
-        [DataMemberAttribute()]
-        public global::System.String TEL1
-        {
-            get
-            {
-                return _TEL1;
-            }
-            set
-            {
-                OnTEL1Changing(value);
-                ReportPropertyChanging("TEL1");
-                _TEL1 = StructuralObject.SetValidValue(value, true);
-                ReportPropertyChanged("TEL1");
-                OnTEL1Changed();
-            }
-        }
-        private global::System.String _TEL1;
-        partial void OnTEL1Changing(global::System.String value);
-        partial void OnTEL1Changed();
-    
-        /// <summary>
-        /// No Metadata Documentation available.
-        /// </summary>
-        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
-        [DataMemberAttribute()]
-        public global::System.String TEL2
-        {
-            get
-            {
-                return _TEL2;
-            }
-            set
-            {
-                OnTEL2Changing(value);
-                ReportPropertyChanging("TEL2");
-                _TEL2 = StructuralObject.SetValidValue(value, true);
-                ReportPropertyChanged("TEL2");
-                OnTEL2Changed();
-            }
-        }
-        private global::System.String _TEL2;
-        partial void OnTEL2Changing(global::System.String value);
-        partial void OnTEL2Changed();
-    
-        /// <summary>
-        /// No Metadata Documentation available.
-        /// </summary>
-        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
-        [DataMemberAttribute()]
-        public global::System.String TEL3
-        {
-            get
-            {
-                return _TEL3;
-            }
-            set
-            {
-                OnTEL3Changing(value);
-                ReportPropertyChanging("TEL3");
-                _TEL3 = StructuralObject.SetValidValue(value, true);
-                ReportPropertyChanged("TEL3");
-                OnTEL3Changed();
-            }
-        }
-        private global::System.String _TEL3;
-        partial void OnTEL3Changing(global::System.String value);
-        partial void OnTEL3Changed();
-    
-        /// <summary>
-        /// No Metadata Documentation available.
-        /// </summary>
-        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
-        [DataMemberAttribute()]
-        public global::System.String EMAIL
-        {
-            get
-            {
-                return _EMAIL;
-            }
-            set
-            {
-                OnEMAILChanging(value);
-                ReportPropertyChanging("EMAIL");
-                _EMAIL = StructuralObject.SetValidValue(value, true);
-                ReportPropertyChanged("EMAIL");
-                OnEMAILChanged();
-            }
-        }
-        private global::System.String _EMAIL;
-        partial void OnEMAILChanging(global::System.String value);
-        partial void OnEMAILChanged();
-
-        #endregion
-
-    
-        #region Navigation Properties
-    
-        /// <summary>
-        /// No Metadata Documentation available.
-        /// </summary>
-        [XmlIgnoreAttribute()]
-        [SoapIgnoreAttribute()]
-        [DataMemberAttribute()]
-        [EdmRelationshipNavigationPropertyAttribute("agsModel", "partner", "FAMILIES2")]
-        public EntityCollection<FAMILIES2> FAMILIES2
-        {
-            get
-            {
-                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedCollection<FAMILIES2>("agsModel.partner", "FAMILIES2");
-            }
-            set
-            {
-                if ((value != null))
-                {
-                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedCollection<FAMILIES2>("agsModel.partner", "FAMILIES2", value);
-                }
-            }
-        }
-    
-        /// <summary>
-        /// No Metadata Documentation available.
-        /// </summary>
-        [XmlIgnoreAttribute()]
-        [SoapIgnoreAttribute()]
-        [DataMemberAttribute()]
-        [EdmRelationshipNavigationPropertyAttribute("agsModel", "payer", "FAMILIES2")]
-        public EntityCollection<FAMILIES2> FAMILIES21
-        {
-            get
-            {
-                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedCollection<FAMILIES2>("agsModel.payer", "FAMILIES2");
-            }
-            set
-            {
-                if ((value != null))
-                {
-                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedCollection<FAMILIES2>("agsModel.payer", "FAMILIES2", value);
                 }
             }
         }

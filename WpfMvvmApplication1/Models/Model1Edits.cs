@@ -15,6 +15,20 @@ namespace WpfMvvmApplication1.Models
         {
             OnPropertyChanged("CITIES");
         }
-    }
 
+        partial void OnCIVILITYIDChanged()
+        {
+            OnPropertyChanged("CIVILITIES");
+        }
+
+        partial void OnPARTNERCIVILITYIDChanged()
+        {
+            OnPropertyChanged("CIVILITIES");
+        }
+
+        partial void OnPAYERCIVILITYIDChanged()
+        {
+            OnPropertyChanged("CIVILITIES");
+        }
+    }
 }

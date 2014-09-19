@@ -142,6 +142,7 @@
     <Compile Include="Helpers\DelegateCommand.cs" />
     <Compile Include="Helpers\NotificationObject.cs" />
     <Compile Include="Models\EF.cs" />
+    <Compile Include="Models\Civilities.cs" />
     <Compile Include="Models\Model1.Designer.cs">
       <DependentUpon>Model1.edmx</DependentUpon>
       <DesignTime>True</DesignTime>
