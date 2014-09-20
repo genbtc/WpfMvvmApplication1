@@ -235,22 +235,10 @@ namespace WpfMvvmApplication1.ViewModels
         {
             get { return new DelegateCommand(RefreshViewDb); }
         }
-        public ICommand FillCollection
-        {
-            get { return new DelegateCommand(FillCollectionCommand); }
-        }
     
         #endregion
 
         #region Commands
-
-        private void FillCollectionCommand()
-        {
-            foreach (CHILDRENS child in ChildrensCollection)
-            {
-                child.FIRSTNAME = "FILLTEST";
-            }
-        }
 
         private void RefreshViewDb()
         {
@@ -336,60 +324,7 @@ namespace WpfMvvmApplication1.ViewModels
         {
             Random r = new Random();
             char startletter = 'A';
-            for (int t = 0; t < 15; t++)
-            {
-                for (int f = 0; f < 26; f++)
-                {
-                    var fakechild = new CHILDRENS();
 
-                    //fakechild.LASTNAME = makeName(r.Next(7) + 7);
-                    //fakechild.FIRSTNAME = makeName(r.Next(5) + 5);
-                    var nextchar = ((char)(startletter + f)).ToString();
-                    var rnlength = RandomHelper.RandomInt(3, 15);
-                    fakechild.FIRSTNAME = "";
-                    fakechild.LASTNAME = "";
-                    for (int rn = 0; rn < rnlength; rn++) 
-                    { 
-                        fakechild.FIRSTNAME +=(nextchar).ToLower();
-                        fakechild.LASTNAME += nextchar;
-                    }
-                    fakechild.BIRTHDATE = RandomHelper.RandomDate(new DateTime(1980, 1, 1), DateTime.Now);
-                    fakechild.GENDERID = RandomHelper.RandomInt(1, 3);
-                    fakechild.FAMILYID = RandomHelper.RandomInt(1, 400);
-                    ChildrensCollection.Add(fakechild);
-                    this.EF.agsEntities.CHILDRENS.AddObject(fakechild);
-                }
-            }
-            this.EF.agsEntities.SaveChanges();
-            foreach (CHILDRENS child in ChildrensCollection)
-            {
-                child.BIRTHDATE = RandomHelper.RandomDate(new DateTime(1930, 1, 1), DateTime.Now);
-                child.ALLERGIES = Path.GetRandomFileName().Replace(".", "");
-                child.BEPHOTOGRAPHY = RandomHelper.RandomBool();
-                child.BIKEOUTINGS = RandomHelper.RandomBool();
-                child.BOATOUTINGS = RandomHelper.RandomBool();
-                child.CLINIC = RandomHelper.RandomBool();
-                child.EMT = RandomHelper.RandomBool();
-                child.FAMILYID = RandomHelper.RandomInt(1, 400);
-                child.GENDERID = RandomHelper.RandomInt(1, 3);
-                child.HOSPITAL = RandomHelper.RandomBool();
-                //child.MEDECINEID = 
-                child.OFFOUTPUTSSTRUCTURE = RandomHelper.RandomBool();
-                child.PUBLICATIONPHOTOGRAPHY = RandomHelper.RandomBool();
-                child.SPECIALARRANGEMENTS = Path.GetRandomFileName().Replace(".", "") + Path.GetRandomFileName().Replace(".", "");
-                child.SWIM = RandomHelper.RandomBool();
-                child.WITHOUTEGG = RandomHelper.RandomBool();
-                child.WITHOUTFISH = RandomHelper.RandomBool();
-                child.WITHOUTGLUTEN = RandomHelper.RandomBool();
-                child.WITHOUTMEAT = RandomHelper.RandomBool();
-                child.WITHOUTPORK = RandomHelper.RandomBool();
-            }
-            this.EF.agsEntities.SaveChanges();
-            //RandomHelper.RandomString(10, true);
-            //RandomHelper.RandomDate(new DateTime(1980, 1, 1), DateTime.Now);
-            //RandomHelper.RandomInt(1, 3);
-            //RandomHelper.RandomBool();
-/*
             for (int f = 0; f < 400; f++)
             {
                 var fakefamily = new FAMILIES();
@@ -399,7 +334,7 @@ namespace WpfMvvmApplication1.ViewModels
                     (length) => new string(Enumerable.Range(0, length)
                         .Select(x => x == 0 ? char.ToUpper(randomLetter()) : randomLetter())
                         .ToArray());
-                
+
                 fakefamily.CIVILITYID = RandomHelper.RandomInt(1, 3);
                 fakefamily.LASTNAME = makeName(r.Next(7) + 7);
                 fakefamily.FIRSTNAME = makeName(r.Next(5) + 5);
@@ -424,17 +359,72 @@ namespace WpfMvvmApplication1.ViewModels
                 FamiliesCollection.Add(fakefamily);
                 this.EF.agsEntities.FAMILIES.AddObject(fakefamily);
             }
-            this.EF.agsEntities.SaveChanges();
 
-            foreach (FAMILIES family in FamiliesCollection)
-            {
-                //
-            }
+            this.EF.SaveToDb();
+
             //RandomHelper.RandomString(10, true);
             //RandomHelper.RandomDate(new DateTime(1980, 1, 1), DateTime.Now);
             //RandomHelper.RandomInt(1, 3);
             //RandomHelper.RandomBool();
-*/ 
+            for (int t = 0; t < 15; t++)
+            {
+                for (int f = 0; f < 26; f++)
+                {
+                    var fakechild = new CHILDRENS();
+
+                    //fakechild.LASTNAME = makeName(r.Next(7) + 7);
+                    //fakechild.FIRSTNAME = makeName(r.Next(5) + 5);
+                    var nextchar = ((char)(startletter + f)).ToString();
+                    var rnlength = RandomHelper.RandomInt(3, 15);
+                    fakechild.FIRSTNAME = "";
+                    fakechild.LASTNAME = "";
+                    for (int rn = 0; rn < rnlength; rn++) 
+                    { 
+                        fakechild.FIRSTNAME +=(nextchar).ToLower();
+                        fakechild.LASTNAME += nextchar;
+                    }
+                    fakechild.BIRTHDATE = RandomHelper.RandomDate(new DateTime(1980, 1, 1), DateTime.Now);
+                    fakechild.GENDERID = RandomHelper.RandomInt(1, 3);
+                    fakechild.FAMILYID = RandomHelper.RandomInt(1, 400);
+                    ChildrensCollection.Add(fakechild);
+                    this.EF.agsEntities.CHILDRENS.AddObject(fakechild);
+                }
+            }
+
+            this.EF.SaveToDb();
+
+            foreach (CHILDRENS child in ChildrensCollection)
+            {
+                child.BIRTHDATE = RandomHelper.RandomDate(new DateTime(1930, 1, 1), DateTime.Now);
+                child.ALLERGIES = Path.GetRandomFileName().Replace(".", "");
+                child.BEPHOTOGRAPHY = RandomHelper.RandomBool();
+                child.BIKEOUTINGS = RandomHelper.RandomBool();
+                child.BOATOUTINGS = RandomHelper.RandomBool();
+                child.CLINIC = RandomHelper.RandomBool();
+                child.EMT = RandomHelper.RandomBool();
+                child.FAMILYID = RandomHelper.RandomInt(1, 400);
+                child.GENDERID = RandomHelper.RandomInt(1, 3);
+                child.HOSPITAL = RandomHelper.RandomBool();
+                //child.MEDECINEID = 
+                child.OFFOUTPUTSSTRUCTURE = RandomHelper.RandomBool();
+                child.PUBLICATIONPHOTOGRAPHY = RandomHelper.RandomBool();
+                child.SPECIALARRANGEMENTS = Path.GetRandomFileName().Replace(".", "") + Path.GetRandomFileName().Replace(".", "");
+                child.SWIM = RandomHelper.RandomBool();
+                child.WITHOUTEGG = RandomHelper.RandomBool();
+                child.WITHOUTFISH = RandomHelper.RandomBool();
+                child.WITHOUTGLUTEN = RandomHelper.RandomBool();
+                child.WITHOUTMEAT = RandomHelper.RandomBool();
+                child.WITHOUTPORK = RandomHelper.RandomBool();
+            }
+
+            this.EF.SaveToDb();
+            //RandomHelper.RandomString(10, true);
+            //RandomHelper.RandomDate(new DateTime(1980, 1, 1), DateTime.Now);
+            //RandomHelper.RandomInt(1, 3);
+            //RandomHelper.RandomBool();
+
+
+
         }
     }
 }

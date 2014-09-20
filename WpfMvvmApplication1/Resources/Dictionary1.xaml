@@ -5,7 +5,11 @@
     <Color x:Key="GenBtcColor">#FFEAF0FF</Color>
     <SolidColorBrush x:Key="GenBtcColorBrush" Color="{StaticResource ResourceKey=GenBtcColor}" />
 
-    
+
+    <!--<LinearGradientBrush x:Key="DynamicCurrentRowBackgroundBrush" StartPoint="0.5,0.0" EndPoint="0.5,1.0">
+        <GradientStop Color="#0F9113" Offset="0.3"/>
+        <GradientStop Color="#FF8D463F" Offset="0.98"/>
+    </LinearGradientBrush>-->
     
     <Color x:Key="detailMark">#FFA1A9B3</Color>
     <SolidColorBrush x:Key="detailMarkBrush" Color="{StaticResource ResourceKey=detailMark}" />

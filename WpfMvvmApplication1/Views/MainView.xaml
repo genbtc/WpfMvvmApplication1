@@ -283,7 +283,7 @@
                                     </DataGridTemplateColumn.CellTemplate>
                                 </DataGridTemplateColumn>
                                 <DataGridTextColumn Binding="{Binding Path=FAMILIES.ID, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Header="FAMILYID" Width="65" IsReadOnly="True" CanUserSort="True" />
-                                <!--<DataGridTemplateColumn Header="Family" Width="184" CanUserSort="True">
+                                <DataGridTemplateColumn Header="Family" Width="184" CanUserSort="True">
                                     <DataGridTemplateColumn.CellTemplate>
                                         <DataTemplate>
                                             <StackPanel Orientation="Horizontal">
@@ -295,7 +295,7 @@
                                     </DataGridTemplateColumn.CellTemplate>
                                     <DataGridTemplateColumn.CellEditingTemplate>
                                         <DataTemplate>
-                                            ComboBox GRID Family
+                                            <!--ComboBox GRID Family-->
                                             <ComboBox Name="cbFamilygrid" HorizontalAlignment="Stretch" Width="Auto" Style="{StaticResource ResourceKey=ComboBoxFlatStyle}"
                                                       DisplayMemberPath="LASTNAME" SelectedValuePath="ID" IsSynchronizedWithCurrentItem="True"
                                                       SelectedValue="{Binding Path=FAMILYID, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}">
@@ -317,9 +317,9 @@
                                             </ComboBox>
                                         </DataTemplate>
                                     </DataGridTemplateColumn.CellEditingTemplate>
-                                </DataGridTemplateColumn>-->
-                                <!--<DataGridTextColumn Binding="{Binding Path=FAMILIES.ADDRESS, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Header="Family Address" Width="250" CanUserSort="True" />
-                                <DataGridTextColumn Binding="{Binding Path=FAMILIES.CITIES.CITY, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Header="CITYNAME" Width="120" CanUserSort="True" />-->
+                                </DataGridTemplateColumn>
+                                <DataGridTextColumn Binding="{Binding Path=FAMILIES.ADDRESS, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Header="Family Address" Width="250" CanUserSort="True" />
+                                <DataGridTextColumn Binding="{Binding Path=FAMILIES.CITIES.CITY, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Header="CITYNAME" Width="120" CanUserSort="True" />
                             </DataGrid.Columns>
                         </DataGrid>
                     </Grid>
@@ -398,7 +398,7 @@
                                                     <Label Content="Nom :" Margin="30,43,0,0" HorizontalContentAlignment="Right" VerticalAlignment="Top" HorizontalAlignment="Left" Width="52" />
                                                     <TextBox x:Name="tbFLastName" Style="{StaticResource ResourceKey=flatTextBox}" Text="{Binding LASTNAME,  Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" HorizontalAlignment="Left" Height="23" Margin="82,42,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="445" />
                                                     <Label Content="Prénom :" HorizontalAlignment="Left" Margin="16,70,0,0" VerticalAlignment="Top" Width="66" HorizontalContentAlignment="Right" />
-                                                    <TextBox x:Name="tbFFirstName" Style="{StaticResource ResourceKey=flatTextBox}" Text="{Binding FIRSTNAME,  Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" HorizontalAlignment="Left" Height="20" Margin="82,72,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="445" />
+                                                    <TextBox x:Name="tbFFirstName" Style="{StaticResource ResourceKey=flatTextBox}" Text="{Binding FIRSTNAME,  Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" HorizontalAlignment="Left" Height="23" Margin="82,69,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="445" />
                                                     <Label Content="Addresse :" Width="60" Margin="22,97,0,0" HorizontalContentAlignment="Right" HorizontalAlignment="Left" Height="26" VerticalAlignment="Top" />
                                                     <TextBox x:Name="tbFAddress" Style="{StaticResource ResourceKey=flatTextBox}" Text="{Binding ADDRESS,  Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Margin="82,97,0,0" TextWrapping="Wrap" Height="51" VerticalAlignment="Top" HorizontalAlignment="Left" Width="445" />
                                                     <TextBox x:Name="tbFZipCode" Style="{StaticResource ResourceKey=flatTextBox}" Text="{Binding CITIES.CP, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" TextWrapping="Wrap" Width="120" Margin="82,153,0,0" VerticalAlignment="Top" HorizontalAlignment="Left" />
@@ -460,7 +460,7 @@
                                                     <Label Content="Nom :" Margin="30,43,0,0" HorizontalContentAlignment="Right" VerticalAlignment="Top" HorizontalAlignment="Left" Width="52" />
                                                     <TextBox x:Name="tbPartnerLastName" Style="{StaticResource ResourceKey=flatTextBox}" Text="{Binding PARTNERLASTNAME, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" HorizontalAlignment="Left" Height="23" Margin="82,42,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="445" />
                                                     <Label Content="Prénom :" HorizontalAlignment="Left" Margin="16,70,0,0" VerticalAlignment="Top" Width="66" HorizontalContentAlignment="Right" />
-                                                    <TextBox x:Name="tbPartnerFirstName" Style="{StaticResource ResourceKey=flatTextBox}" Text="{Binding PARTNERFIRSTNAME, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" HorizontalAlignment="Left" Height="20" Margin="82,72,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="445" />
+                                                    <TextBox x:Name="tbPartnerFirstName" Style="{StaticResource ResourceKey=flatTextBox}" Text="{Binding PARTNERFIRSTNAME, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" HorizontalAlignment="Left" Height="23" Margin="82,69,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="445" />
                                                     <Label Content="Addresse :" Width="60" Margin="22,97,0,0" HorizontalContentAlignment="Right" HorizontalAlignment="Left" Height="26" VerticalAlignment="Top" />
                                                     <TextBox x:Name="tbPartnerAddress" Style="{StaticResource ResourceKey=flatTextBox}" Text="{Binding PARTNERADDRESS, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Margin="82,97,0,0" TextWrapping="Wrap" Height="51" VerticalAlignment="Top" HorizontalAlignment="Left" Width="445" />
 
@@ -501,7 +501,7 @@
                                                         <Label Content="Nom :" Margin="30,43,0,0" HorizontalContentAlignment="Right" VerticalAlignment="Top" HorizontalAlignment="Left" Width="52" />
                                                         <TextBox x:Name="tbPayerLastName" Style="{StaticResource ResourceKey=flatTextBox}" Text="{Binding PAYERLASTNAME, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" HorizontalAlignment="Left" Height="23" Margin="82,42,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="445" />
                                                         <Label Content="Prénom :" HorizontalAlignment="Left" Margin="16,70,0,0" VerticalAlignment="Top" Width="66" HorizontalContentAlignment="Right" />
-                                                        <TextBox x:Name="tbPayerFirstName" Style="{StaticResource ResourceKey=flatTextBox}" Text="{Binding PAYERFIRSTNAME, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" HorizontalAlignment="Left" Height="20" Margin="82,72,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="445" />
+                                                        <TextBox x:Name="tbPayerFirstName" Style="{StaticResource ResourceKey=flatTextBox}" Text="{Binding PAYERFIRSTNAME, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" HorizontalAlignment="Left" Height="23" Margin="82,69,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="445" />
                                                         <Label Content="Addresse :" Width="60" Margin="22,97,0,0" HorizontalContentAlignment="Right" HorizontalAlignment="Left" Height="26" VerticalAlignment="Top" />
                                                         <TextBox x:Name="tbPayerAddress" Style="{StaticResource ResourceKey=flatTextBox}" Text="{Binding PAYERADDRESS, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Margin="82,97,0,0" TextWrapping="Wrap" Height="51" VerticalAlignment="Top" HorizontalAlignment="Left" Width="445" />
 
@@ -580,6 +580,7 @@
                                 </DataTemplate>
                             </Controls:DataGrid.RowDetailsTemplate>
                         </ExtendedGridControl:ExtendedDataGrid>
+                        <Button Content="Show/Hide Details" Margin="1292,10,175,784" Click="Button_Click"/>
                         <Button Content="+" VerticalAlignment="Top" HorizontalAlignment="Right" Height="30" Width="35" Click="FamilyGridSelectLastRow_Click" Margin="0,6,3,0" />
                         <Button Content="Update!" x:Name="savefamily2" Command="{Binding SaveFamily}" Margin="1439,8,76,784" />
                         <Button BorderThickness="0" Style="{StaticResource {x:Static ToolBar.ButtonStyleKey}}" Click="ExcelExport_Click" Height="25" Margin="1521,9,42,786" Width="30">

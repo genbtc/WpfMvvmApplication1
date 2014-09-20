@@ -1,5 +1,6 @@
 ﻿using System.Windows;
 using System.Windows.Data;
+using ExtendedGrid.Microsoft.Windows.Controls;
 
 namespace WpfMvvmApplication1.Views
 {
@@ -65,6 +66,14 @@ namespace WpfMvvmApplication1.Views
             CitiesDataGrid.SelectedIndex = CitiesDataGrid.Items.Count - 1;
             CitiesDataGrid.SelectedIndex++; //has to be like this.
             CitiesDataGrid.ScrollIntoView(CollectionView.NewItemPlaceholder);
+        }
+
+        private void Button_Click(object sender, RoutedEventArgs e)
+        {
+            FamilyDataGrid.RowDetailsVisibilityMode = 
+                FamilyDataGrid.RowDetailsVisibilityMode != 
+                    DataGridRowDetailsVisibilityMode.Collapsed ? 
+                        DataGridRowDetailsVisibilityMode.Collapsed : DataGridRowDetailsVisibilityMode.VisibleWhenSelected;
         }
     }
 }
