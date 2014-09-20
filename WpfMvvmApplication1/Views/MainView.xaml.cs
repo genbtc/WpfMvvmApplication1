@@ -21,7 +21,7 @@ namespace WpfMvvmApplication1.Views
 
         private void ExcelExport_Click(object sender, System.Windows.RoutedEventArgs e)
         {
-            FamilyDataGrid.ExportToCsv("FamilyDataGrid", @"C:\Users\Activ-Design\Desktop\test.txt", true);
+            FamilyDataGrid.ExportToCsv("FamilyDataGrid", @"C:\Users\EOFL\Desktop\test.txt", true);
         }
 
         private void PresenceGridSelectLastRow_Click(object sender, RoutedEventArgs e)

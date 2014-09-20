@@ -334,9 +334,9 @@
 
                             <Controls:DataGrid.Columns>
                                 <!--<ExtendedColumn:ExtendedDataGridTextColumn Binding="{Binding ID}" Header="ID" Width="200" CanUserSort="True" SortDirection="Ascending" />-->
-                                <ExtendedColumn:ExtendedDataGridTextColumn Binding="{Binding CIVILITIES.CIVILITY, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Header="Civ2." Width="200" CanUserSort="True" SortDirection="Ascending" />
+                                <ExtendedColumn:ExtendedDataGridTextColumn x:Name="Civ" Binding="{Binding CIVILITIES.CIVILITY, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Header="Civ2." Width="80" CanUserSort="True" SortDirection="Ascending" />
 
-                                <Controls:DataGridTemplateColumn Header="Civ." Width="80" ClipboardContentBinding="{Binding CIVILITIES.CIVILITYID}">
+                                <!--<Controls:DataGridTemplateColumn Header="Civ." Width="80" ClipboardContentBinding="{Binding CIVILITIES.CIVILITY}">
                                     <Controls:DataGridTemplateColumn.CellTemplate>
                                         <DataTemplate>
                                             <ComboBox Height="20" Style="{StaticResource ResourceKey=ComboBoxFlatStyle}"  VerticalAlignment="Top"
@@ -344,7 +344,7 @@
                                                       ItemsSource ="{Binding ListCivilities, Source={StaticResource Civilities}}" />
                                         </DataTemplate>
                                     </Controls:DataGridTemplateColumn.CellTemplate>
-                                </Controls:DataGridTemplateColumn>
+                                </Controls:DataGridTemplateColumn>-->
 
                                 <ExtendedColumn:ExtendedDataGridTextColumn x:Name="LastName" Binding="{Binding LASTNAME, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Header="Nom" Width="170" CanUserSort="True" />
                                 <ExtendedColumn:ExtendedDataGridTextColumn x:Name="FirstName" Binding="{Binding FIRSTNAME, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Header="Prénom" Width="170" CanUserSort="True" />
@@ -365,7 +365,7 @@
 
                                 <ExtendedColumn:ExtendedDataGridTextColumn Binding="{Binding CITIES.CP, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Header="CP" Width="70" IsReadOnly="true" CanUserSort="True" />
 
-                                <Controls:DataGridTemplateColumn Header="Commune" Width="200">
+                                <Controls:DataGridTemplateColumn ClipboardContentBinding="{Binding CITIES.CITY}" Header="Commune" Width="200">
                                     <Controls:DataGridTemplateColumn.CellTemplate>
                                         <DataTemplate>
                                             <ComboBox Height="20" Style="{StaticResource ResourceKey=ComboBoxFlatStyle}" SelectedIndex="{Binding CITYID}" DisplayMemberPath="CITY" SelectedValuePath="ID" VerticalAlignment="Top">
