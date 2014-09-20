@@ -335,7 +335,7 @@
                             <Controls:DataGrid.Columns>
                                 <!--<ExtendedColumn:ExtendedDataGridTextColumn Binding="{Binding ID}" Header="ID" Width="200" CanUserSort="True" SortDirection="Ascending" />-->
                                 <ExtendedColumn:ExtendedDataGridTextColumn Binding="{Binding CIVILITIES.CIVILITY, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Header="Civ2." Width="200" CanUserSort="True" SortDirection="Ascending" />
-                                
+
                                 <Controls:DataGridTemplateColumn Header="Civ." Width="80" ClipboardContentBinding="{Binding CIVILITIES.CIVILITYID}">
                                     <Controls:DataGridTemplateColumn.CellTemplate>
                                         <DataTemplate>
@@ -463,9 +463,19 @@
                                                     <TextBox x:Name="tbPartnerFirstName" Style="{StaticResource ResourceKey=flatTextBox}" Text="{Binding PARTNERFIRSTNAME, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" HorizontalAlignment="Left" Height="20" Margin="82,72,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="445" />
                                                     <Label Content="Addresse :" Width="60" Margin="22,97,0,0" HorizontalContentAlignment="Right" HorizontalAlignment="Left" Height="26" VerticalAlignment="Top" />
                                                     <TextBox x:Name="tbPartnerAddress" Style="{StaticResource ResourceKey=flatTextBox}" Text="{Binding PARTNERADDRESS, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Margin="82,97,0,0" TextWrapping="Wrap" Height="51" VerticalAlignment="Top" HorizontalAlignment="Left" Width="445" />
-                                                    <TextBox x:Name="tbPartnerZipCode" Style="{StaticResource ResourceKey=flatTextBox}" Text="{Binding CITIES.CP, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" TextWrapping="Wrap" Width="120" Margin="82,153,0,0" VerticalAlignment="Top" HorizontalAlignment="Left" />
-                                                    <ComboBox Style="{StaticResource ResourceKey=ComboBoxFlatStyle}" SelectedIndex="{Binding CITYID}" DisplayMemberPath="CITY" SelectedValuePath="ID"
-                                                              Margin="207,153,0,0" VerticalAlignment="Top" HorizontalAlignment="Left" Width="320" Height="20">
+
+                                                    <ComboBox Style="{StaticResource ResourceKey=ComboBoxFlatStyle}" SelectedIndex="{Binding PARTNERCITYID}" DisplayMemberPath="CP" SelectedValuePath="ID"
+                                                               Width="120" Margin="82,153,0,0" VerticalAlignment="Top" HorizontalAlignment="Left" IsEditable="True">
+                                                        <ComboBox.ItemsSource>
+                                                            <CompositeCollection>
+                                                                <ComboBoxItem Content="Aucun" />
+                                                                <CollectionContainer Collection="{Binding Source={StaticResource citysorted}}" />
+                                                            </CompositeCollection>
+                                                        </ComboBox.ItemsSource>
+                                                    </ComboBox>
+                                                    <!--<TextBox x:Name="tbPartnerZipCode" Style="{StaticResource ResourceKey=flatTextBox}" Text="{Binding CITIES.CP, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" TextWrapping="Wrap" Width="120" Margin="82,153,0,0" VerticalAlignment="Top" HorizontalAlignment="Left" />-->
+                                                    <ComboBox Style="{StaticResource ResourceKey=ComboBoxFlatStyle}" SelectedIndex="{Binding PARTNERCITYID}" DisplayMemberPath="CITY" SelectedValuePath="ID"
+                                                              Margin="207,153,0,0" VerticalAlignment="Top" HorizontalAlignment="Left" Width="320" >
                                                         <ComboBox.ItemsSource>
                                                             <CompositeCollection>
                                                                 <ComboBoxItem Content="Aucun" />
@@ -494,9 +504,19 @@
                                                         <TextBox x:Name="tbPayerFirstName" Style="{StaticResource ResourceKey=flatTextBox}" Text="{Binding PAYERFIRSTNAME, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" HorizontalAlignment="Left" Height="20" Margin="82,72,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="445" />
                                                         <Label Content="Addresse :" Width="60" Margin="22,97,0,0" HorizontalContentAlignment="Right" HorizontalAlignment="Left" Height="26" VerticalAlignment="Top" />
                                                         <TextBox x:Name="tbPayerAddress" Style="{StaticResource ResourceKey=flatTextBox}" Text="{Binding PAYERADDRESS, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Margin="82,97,0,0" TextWrapping="Wrap" Height="51" VerticalAlignment="Top" HorizontalAlignment="Left" Width="445" />
-                                                        <TextBox x:Name="tbPayerZipCode" Style="{StaticResource ResourceKey=flatTextBox}" Text="{Binding CITIES.CP, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" TextWrapping="Wrap" Width="120" Margin="82,153,0,0" VerticalAlignment="Top" HorizontalAlignment="Left" />
-                                                        <ComboBox Style="{StaticResource ResourceKey=ComboBoxFlatStyle}" SelectedIndex="{Binding CITYID}" DisplayMemberPath="CITY" SelectedValuePath="ID"
-                                                              Margin="207,153,0,0" VerticalAlignment="Top" HorizontalAlignment="Left" Width="320" Height="20">
+
+                                                        <ComboBox Style="{StaticResource ResourceKey=ComboBoxFlatStyle}" SelectedIndex="{Binding PAYERCITYID}" DisplayMemberPath="CP" SelectedValuePath="ID"
+                                                               Width="120" Margin="82,153,0,0" VerticalAlignment="Top" HorizontalAlignment="Left" IsEditable="True">
+                                                            <ComboBox.ItemsSource>
+                                                                <CompositeCollection>
+                                                                    <ComboBoxItem Content="Aucun" />
+                                                                    <CollectionContainer Collection="{Binding Source={StaticResource citysorted}}" />
+                                                                </CompositeCollection>
+                                                            </ComboBox.ItemsSource>
+                                                        </ComboBox>
+                                                        <!--<TextBox x:Name="tbPartnerZipCode" Style="{StaticResource ResourceKey=flatTextBox}" Text="{Binding CITIES.CP, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" TextWrapping="Wrap" Width="120" Margin="82,153,0,0" VerticalAlignment="Top" HorizontalAlignment="Left" />-->
+                                                        <ComboBox Style="{StaticResource ResourceKey=ComboBoxFlatStyle}" SelectedIndex="{Binding PAYERCITYID}" DisplayMemberPath="CITY" SelectedValuePath="ID"
+                                                              Margin="207,153,0,0" VerticalAlignment="Top" HorizontalAlignment="Left" Width="320" >
                                                             <ComboBox.ItemsSource>
                                                                 <CompositeCollection>
                                                                     <ComboBoxItem Content="Aucun" />
