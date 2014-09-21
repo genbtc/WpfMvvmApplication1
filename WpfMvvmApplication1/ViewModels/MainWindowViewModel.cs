@@ -179,7 +179,7 @@ namespace WpfMvvmApplication1.ViewModels
         //{ }
 
         #endregion
-
+ 
         #region Fill Collections with EF Query
 
         private void GetCivilitiesCollection()
