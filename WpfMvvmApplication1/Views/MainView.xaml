@@ -336,7 +336,7 @@
                                 <Style TargetType="Controls:DataGridRow">
                                     <Setter Property="DetailsVisibility" Value="{Binding DetailsVisibility}" />
                                 </Style>
-                                <SolidColorBrush x:Key="{x:Static SystemColors.HighlightBrushKey}" Color="#FF0000" />
+                                <SolidColorBrush x:Key="{x:Static SystemColors.HighlightBrushKey}" Color="#FF5390AC"/>
                             </ExtendedGridControl:ExtendedDataGrid.Resources>
                             <Controls:DataGrid.Columns>
                                 <Controls:DataGridTemplateColumn Header="Show/Hide" Width="70">
