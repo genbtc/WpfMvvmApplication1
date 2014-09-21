@@ -132,6 +132,7 @@
     </Compile>
     <Compile Include="Converters\CaptionButtonRectToMarginConverter.cs" />
     <Compile Include="Converters\AddOne.cs" />
+    <Compile Include="Converters\BooltoString.cs" />
     <Compile Include="Converters\EFtoIEnum.cs" />
     <Compile Include="Converters\DateConverter.cs" />
     <Compile Include="Converters\DebugConverter.cs" />

@@ -1,6 +1,7 @@
 ﻿using System.Windows;
+using System.Windows.Controls;
 using System.Windows.Data;
-using ExtendedGrid.Microsoft.Windows.Controls;
+using DataGridRowDetailsVisibilityMode = ExtendedGrid.Microsoft.Windows.Controls.DataGridRowDetailsVisibilityMode;
 
 namespace WpfMvvmApplication1.Views
 {
@@ -68,12 +69,9 @@ namespace WpfMvvmApplication1.Views
             CitiesDataGrid.ScrollIntoView(CollectionView.NewItemPlaceholder);
         }
 
-        private void Button_Click(object sender, RoutedEventArgs e)
+        private void Button_Click_ShowHide(object sender, RoutedEventArgs e)
         {
-            FamilyDataGrid.RowDetailsVisibilityMode = 
-                FamilyDataGrid.RowDetailsVisibilityMode != 
-                    DataGridRowDetailsVisibilityMode.Collapsed ? 
-                        DataGridRowDetailsVisibilityMode.Collapsed : DataGridRowDetailsVisibilityMode.VisibleWhenSelected;
+            ((Button)sender).Content = ((Button)sender).Content.ToString() == "-" ? "+" : "-";
         }
     }
 }

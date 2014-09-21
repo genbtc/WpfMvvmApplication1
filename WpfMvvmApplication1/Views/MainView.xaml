@@ -62,6 +62,7 @@
             <converters:DateConverter x:Key="dateConverter" />
             <converters:DebugConverter x:Key="DebugConverter" />
             <converters:EFtoIEnum x:Key="EFtoIEnum" />
+            <converters:BooltoString x:Key="BooltoString" />
             <BitmapImage x:Key="ExcelImage" UriSource="../Resources/excel.png" />
         </ResourceDictionary>
     </Window.Resources>
@@ -328,19 +329,21 @@
                 <!--NEW FAM TAB-->
                 <TabItem Header="Famille">
                     <Grid Height="820" Width="1593">
-                        <ExtendedGridControl:ExtendedDataGrid x:Name="FamilyDataGrid" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Margin="4,4,2,-2" BorderThickness="1,2,1,1"
+                        <ExtendedGridControl:ExtendedDataGrid x:Name="FamilyDataGrid" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Margin="4,36,2,-2" BorderThickness="1,2,1,1"
                                 Background="{StaticResource ResourceKey=GenBtcColorBrush}" BorderBrush="#FF889BB1" RowBackground="Snow" IsSynchronizedWithCurrentItem="True" SelectionUnit="Cell"
-                                ItemsSource="{Binding Path=FamiliesCollection,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}" HeadersVisibility="Column"  AutoGenerateColumns="False" RowHeight="50">
+                                ItemsSource="{Binding Path=FamiliesCollection,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}" HeadersVisibility="Column"  AutoGenerateColumns="False" RowHeight="22" GroupByControlVisibility="Collapsed">
                             <ExtendedGridControl:ExtendedDataGrid.Resources>
                                 <Style TargetType="Controls:DataGridRow">
                                     <Setter Property="DetailsVisibility" Value="{Binding DetailsVisibility}" />
                                 </Style>
                             </ExtendedGridControl:ExtendedDataGrid.Resources>
                             <Controls:DataGrid.Columns>
-                                <Controls:DataGridTemplateColumn Header="Show/Hide" Width="80">
+                                <Controls:DataGridTemplateColumn Header="Show/Hide" Width="70">
                                     <Controls:DataGridTemplateColumn.CellTemplate>
                                         <DataTemplate>
-                                            <CheckBox Content="Details" Margin="12,16,8,16" IsChecked="{Binding ETISelected, Mode=OneWayToSource}" />
+                                            <!--<CheckBox Content="Details" Margin="12,16,8,16" IsChecked="{Binding ETISelected, Mode=OneWayToSource}" />-->
+                                            <Button Content="{Binding ETISelected, Mode=TwoWay,Converter={StaticResource BooltoString}}" Click="Button_Click_ShowHide" Margin="10,0,7,0" />
+                                            
                                         </DataTemplate>
                                     </Controls:DataGridTemplateColumn.CellTemplate>
                                 </Controls:DataGridTemplateColumn>
@@ -375,8 +378,9 @@
                                 </ExtendedColumn:ExtendedDataGridTextColumn>
 
                                 <ExtendedColumn:ExtendedDataGridTextColumn Binding="{Binding CITIES.CP, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Header="CP" Width="70" IsReadOnly="true" CanUserSort="True" />
+                                <ExtendedColumn:ExtendedDataGridTextColumn Binding="{Binding CITIES.CITY, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Header="City" Width="250" IsReadOnly="true" CanUserSort="True" />
 
-                                <Controls:DataGridTemplateColumn ClipboardContentBinding="{Binding CITIES.CITY}" Header="Commune" Width="200">
+                                <!--<Controls:DataGridTemplateColumn ClipboardContentBinding="{Binding CITIES.CITY}" Header="Commune" Width="200">
                                     <Controls:DataGridTemplateColumn.CellTemplate>
                                         <DataTemplate>
                                             <ComboBox Height="20" Style="{StaticResource ResourceKey=ComboBoxFlatStyle}" SelectedIndex="{Binding CITYID}" DisplayMemberPath="CITY" SelectedValuePath="ID" VerticalAlignment="Top">
@@ -389,7 +393,7 @@
                                             </ComboBox>
                                         </DataTemplate>
                                     </Controls:DataGridTemplateColumn.CellTemplate>
-                                </Controls:DataGridTemplateColumn>
+                                </Controls:DataGridTemplateColumn>-->
                                 <ExtendedColumn:ExtendedDataGridTextColumn Binding="{Binding TEL1, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Header="Tel 1" Width="100" CanUserSort="True" />
                                 <ExtendedColumn:ExtendedDataGridTextColumn Binding="{Binding TEL2, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Header="Tel 2" Width="100" CanUserSort="True" />
                                 <ExtendedColumn:ExtendedDataGridTextColumn Binding="{Binding TEL3, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Header="Tel 3" Width="100" CanUserSort="True" />
@@ -399,7 +403,7 @@
                             <Controls:DataGrid.RowDetailsTemplate>
                                 <DataTemplate>
                                     <Border BorderThickness="0" Background="#FF464545" Padding="10">
-                                        <TabControl Margin="10,10,10,10" Height="300">
+                                        <TabControl Height="260" TabStripPlacement="Bottom" >
                                             <TabItem Header="Family">
                                                 <Grid>
                                                     <Label Content="Civilité :" HorizontalAlignment="Left" Margin="30,13,0,0" VerticalAlignment="Top" Width="52" HorizontalContentAlignment="Right" />
@@ -548,7 +552,7 @@
                                             <TabItem Header="Quotient Familial">
                                                 <Grid>
                                                     <DataGrid x:Name="DroitsDataGrid" HeadersVisibility="Column" Background="{StaticResource ResourceKey=GenBtcColorBrush}" RowBackground="Snow" BorderBrush="#FF889BB1"
-                                                            HorizontalAlignment="Left" VerticalAlignment="Top" Height="228" Width="281"  AutoGenerateColumns="False" BorderThickness="1,2,1,1" Margin="30,20,0,0"
+                                                            HorizontalAlignment="Left" VerticalAlignment="Stretch" Width="281"  AutoGenerateColumns="False" BorderThickness="1,2,1,1" Margin="30,20,0,0"
                                                             ItemsSource="{Binding SelectedItem.FAMILYQUOTIENTS, ElementName=FamilyDataGrid}">
                                                         <DataGrid.Columns>
                                                             <DataGridTextColumn Binding="{Binding ID}" Header="Id" Width="30" IsReadOnly="True" CanUserSort="True" />
@@ -591,10 +595,9 @@
                                 </DataTemplate>
                             </Controls:DataGrid.RowDetailsTemplate>
                         </ExtendedGridControl:ExtendedDataGrid>
-                        <Button Content="Show/Hide Details" Margin="1292,10,175,784" Click="Button_Click"/>
-                        <Button Content="+" VerticalAlignment="Top" HorizontalAlignment="Right" Height="30" Width="35" Click="FamilyGridSelectLastRow_Click" Margin="0,6,3,0" />
-                        <Button Content="Update!" x:Name="savefamily2" Command="{Binding SaveFamily}" Margin="1439,8,76,784" />
-                        <Button BorderThickness="0" Style="{StaticResource {x:Static ToolBar.ButtonStyleKey}}" Click="ExcelExport_Click" Height="25" Margin="1521,9,42,786" Width="30">
+                        <Button Content="+" VerticalAlignment="Top" HorizontalAlignment="Right" Height="30" Width="35" Click="FamilyGridSelectLastRow_Click" Margin="0,0,3,0" />
+                        <Button Content="Update!" x:Name="savefamily2" Command="{Binding SaveFamily}" Margin="1439,2,76,790" />
+                        <Button BorderThickness="0" Style="{StaticResource {x:Static ToolBar.ButtonStyleKey}}" Click="ExcelExport_Click" Height="25" Margin="1521,3,42,792" Width="30">
                             <Image Source="{StaticResource ExcelImage}" Height="23" />
                         </Button>
                     </Grid>
