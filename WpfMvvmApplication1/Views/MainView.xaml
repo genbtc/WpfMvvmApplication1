@@ -330,24 +330,25 @@
                 <TabItem Header="Famille">
                     <Grid Height="820" Width="1593">
                         <ExtendedGridControl:ExtendedDataGrid x:Name="FamilyDataGrid" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Margin="4,36,2,-2" BorderThickness="1,2,1,1"
-                                Background="{StaticResource ResourceKey=GenBtcColorBrush}" BorderBrush="#FF889BB1" RowBackground="Snow" IsSynchronizedWithCurrentItem="True" SelectionUnit="Cell"
-                                ItemsSource="{Binding Path=FamiliesCollection,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}" HeadersVisibility="Column"  AutoGenerateColumns="False" RowHeight="22" GroupByControlVisibility="Collapsed">
+                                Background="{StaticResource ResourceKey=GenBtcColorBrush}" BorderBrush="#FF889BB1" RowBackground="Snow" IsSynchronizedWithCurrentItem="True" SelectionUnit="FullRow"
+                                ItemsSource="{Binding Path=FamiliesCollection,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}" HeadersVisibility="Column"  AutoGenerateColumns="False" RowHeight="21" GroupByControlVisibility="Collapsed" GridLinesVisibility="None" AlternatingRowBackground="#FFE6E6E6">
                             <ExtendedGridControl:ExtendedDataGrid.Resources>
                                 <Style TargetType="Controls:DataGridRow">
                                     <Setter Property="DetailsVisibility" Value="{Binding DetailsVisibility}" />
                                 </Style>
+                                <SolidColorBrush x:Key="{x:Static SystemColors.HighlightBrushKey}" Color="#FF0000" />
                             </ExtendedGridControl:ExtendedDataGrid.Resources>
                             <Controls:DataGrid.Columns>
                                 <Controls:DataGridTemplateColumn Header="Show/Hide" Width="70">
                                     <Controls:DataGridTemplateColumn.CellTemplate>
                                         <DataTemplate>
                                             <!--<CheckBox Content="Details" Margin="12,16,8,16" IsChecked="{Binding ETISelected, Mode=OneWayToSource}" />-->
-                                            <Button Content="{Binding ETISelected, Mode=TwoWay,Converter={StaticResource BooltoString}}" Click="Button_Click_ShowHide" Margin="10,0,7,0" />
-                                            
+                                            <Button Content="{Binding ETISelected, Mode=TwoWay,Converter={StaticResource BooltoString}}" Click="Button_Click_ShowHide" Margin="8,0,8,0" />
+
                                         </DataTemplate>
                                     </Controls:DataGridTemplateColumn.CellTemplate>
                                 </Controls:DataGridTemplateColumn>
-                                        <!--<ExtendedColumn:ExtendedDataGridTextColumn Binding="{Binding ID}" Header="ID" Width="200" CanUserSort="True" SortDirection="Ascending" />-->
+                                <!--<ExtendedColumn:ExtendedDataGridTextColumn Binding="{Binding ID}" Header="ID" Width="200" CanUserSort="True" SortDirection="Ascending" />-->
                                 <ExtendedColumn:ExtendedDataGridTextColumn x:Name="Civ" Binding="{Binding CIVILITIES.CIVILITY, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Header="Civ2." Width="80" CanUserSort="True" SortDirection="Ascending" />
 
                                 <!--<Controls:DataGridTemplateColumn Header="Civ." Width="80" ClipboardContentBinding="{Binding CIVILITIES.CIVILITY}">
