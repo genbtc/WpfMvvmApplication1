@@ -34,16 +34,16 @@ namespace WpfMvvmApplication1.ViewModels
             }
         }
 
-        private ObservableCollection<CHILDRENS> _childrensCollection;
+        private ObservableCollection<CHILDREN> _childrenCollection;
 
-        public ObservableCollection<CHILDRENS> ChildrensCollection
+        public ObservableCollection<CHILDREN> ChildrenCollection
         {
-            get { return _childrensCollection; }
+            get { return _childrenCollection; }
             set
             {
-                if (_childrensCollection == value) return;
-                _childrensCollection = value;
-                RaisePropertyChanged(() => ChildrensCollection);
+                if (_childrenCollection == value) return;
+                _childrenCollection = value;
+                RaisePropertyChanged(() => ChildrenCollection);
             }
         }
 
@@ -73,29 +73,16 @@ namespace WpfMvvmApplication1.ViewModels
             }
         }
 
-        private ObservableCollection<MEDECINES> _medecinsCollection;
+        private ObservableCollection<DOCTORS> _doctorsCollection;
 
-        public ObservableCollection<MEDECINES> MedecinsCollection
+        public ObservableCollection<DOCTORS> DoctorsCollection
         {
-            get { return _medecinsCollection; }
+            get { return _doctorsCollection; }
             set
             {
-                if (_medecinsCollection == value) return;
-                _medecinsCollection = value;
-                RaisePropertyChanged(() => MedecinsCollection);
-            }
-        }
-
-        private ObservableCollection<CIVILITIES> _civilitiesCollection;
-
-        public ObservableCollection<CIVILITIES> CivilitiesCollection
-        {
-            get { return _civilitiesCollection; }
-            set
-            {
-                if (_civilitiesCollection == value) return;
-                _civilitiesCollection = value;
-                RaisePropertyChanged(() => CivilitiesCollection);
+                if (_doctorsCollection == value) return;
+                _doctorsCollection = value;
+                RaisePropertyChanged(() => DoctorsCollection);
             }
         }
 
@@ -135,7 +122,7 @@ namespace WpfMvvmApplication1.ViewModels
 
         private void SortChildrenViewSource()
         {
-            CollectionViewSource.GetDefaultView(ChildrensCollection)
+            CollectionViewSource.GetDefaultView(ChildrenCollection)
                 .SortDescriptions.Add(new SortDescription("ID", ListSortDirection.Ascending));
         }
         private void SortCitiesViewSource()
@@ -156,10 +143,9 @@ namespace WpfMvvmApplication1.ViewModels
             //Fill Collections
             GetCitiesCollection();
             GetFamiliesCollection();
-            GetChildrensCollection();
+            GetChildrenCollection();
             GetFamilyquotientsCollection();
-            GetMedecinsCollection();
-            GetCivilitiesCollection();
+            GetDoctorsCollection();
 
             //create custom randomized specific data(edit the function-then comment out).
             //RandomizeData();
@@ -171,7 +157,7 @@ namespace WpfMvvmApplication1.ViewModels
             
             //tracks item additions and deletions, and saves to the database when that occurs.
             this.FamiliesCollection.CollectionChanged += ItemCollection_CollectionChanged;
-            this.ChildrensCollection.CollectionChanged += ItemCollection_CollectionChanged;
+            this.ChildrenCollection.CollectionChanged += ItemCollection_CollectionChanged;
             //_selectRowCommand = new RelayCommand(SelectionHasChanged);    //not used yet.
         }
 
@@ -182,14 +168,10 @@ namespace WpfMvvmApplication1.ViewModels
  
         #region Fill Collections with EF Query
 
-        private void GetCivilitiesCollection()
-        {
-            CivilitiesCollection = new ObservableCollection<CIVILITIES>(EF.agsEntities.CIVILITIES);
-        }
 
-        private void GetMedecinsCollection()
+        private void GetDoctorsCollection()
         {
-            MedecinsCollection = new ObservableCollection<MEDECINES>(EF.agsEntities.MEDECINES);
+            DoctorsCollection = new ObservableCollection<DOCTORS>(EF.agsEntities.DOCTORS);
         }
 
         private void GetFamilyquotientsCollection()
@@ -207,9 +189,9 @@ namespace WpfMvvmApplication1.ViewModels
             FamiliesCollection = new ObservableCollection<FAMILIES>(EF.agsEntities.FAMILIES);
         }
 
-        private void GetChildrensCollection()
+        private void GetChildrenCollection()
         {
-            ChildrensCollection = new ObservableCollection<CHILDRENS>(EF.agsEntities.CHILDRENS);
+            ChildrenCollection = new ObservableCollection<CHILDREN>(EF.agsEntities.CHILDREN);
         }
 
         #endregion
@@ -242,8 +224,8 @@ namespace WpfMvvmApplication1.ViewModels
 
         private void RefreshViewDb()
         {
-            EF.Refresh(ChildrensCollection, FamiliesCollection);
-            RaisePropertyChanged(() => ChildrensCollection);
+            EF.Refresh(ChildrenCollection, FamiliesCollection);
+            RaisePropertyChanged(() => ChildrenCollection);
             RaisePropertyChanged(() => FamiliesCollection);
         }
 
@@ -254,7 +236,7 @@ namespace WpfMvvmApplication1.ViewModels
 
         private void SaveChildrentoDb()
         {
-            EF.SaveChildrentoDB(ChildrensCollection);
+            EF.SaveChildrentoDB(ChildrenCollection);
         }
 
         private void SaveToDb()
@@ -299,21 +281,21 @@ namespace WpfMvvmApplication1.ViewModels
                 FamiliesBox = new ObservableCollection<FAMILIES>((ObservableCollection<FAMILIES>)sender);
                 RaisePropertyChanged(() => FamiliesBox);
             }
-            else if (nodeType == typeof (ObservableCollection<CHILDRENS>))
+            else if (nodeType == typeof (ObservableCollection<CHILDREN>))
             {
-                var typedcollection = (ObservableCollection<CHILDRENS>)sender;
+                var typedcollection = (ObservableCollection<CHILDREN>)sender;
                 if (e.Action == NotifyCollectionChangedAction.Add)
                 {
-                    foreach (CHILDRENS somenew in typedcollection.Where(some => some.ID == 0))
+                    foreach (CHILDREN somenew in typedcollection.Where(some => some.ID == 0))
                     {
-                        EF.agsEntities.CHILDRENS.AddObject(somenew);
+                        EF.agsEntities.CHILDREN.AddObject(somenew);
                     }
                 }
                 else if (e.Action == NotifyCollectionChangedAction.Remove)
                 {
-                    foreach (CHILDRENS removeitems in e.OldItems)
+                    foreach (CHILDREN removeitems in e.OldItems)
                     {
-                        EF.agsEntities.CHILDRENS.DeleteObject(removeitems);
+                        EF.agsEntities.CHILDREN.DeleteObject(removeitems);
                     }
                 }
                 EF.SaveToDb();
@@ -370,7 +352,7 @@ namespace WpfMvvmApplication1.ViewModels
             {
                 for (int f = 0; f < 26; f++)
                 {
-                    var fakechild = new CHILDRENS();
+                    var fakechild = new CHILDREN();
 
                     //fakechild.LASTNAME = makeName(r.Next(7) + 7);
                     //fakechild.FIRSTNAME = makeName(r.Next(5) + 5);
@@ -386,14 +368,14 @@ namespace WpfMvvmApplication1.ViewModels
                     fakechild.BIRTHDATE = RandomHelper.RandomDate(new DateTime(1980, 1, 1), DateTime.Now);
                     fakechild.GENDERID = RandomHelper.RandomInt(1, 3);
                     fakechild.FAMILYID = RandomHelper.RandomInt(1, 400);
-                    ChildrensCollection.Add(fakechild);
-                    this.EF.agsEntities.CHILDRENS.AddObject(fakechild);
+                    ChildrenCollection.Add(fakechild);
+                    this.EF.agsEntities.CHILDREN.AddObject(fakechild);
                 }
             }
 
             this.EF.SaveToDb();
 
-            foreach (CHILDRENS child in ChildrensCollection)
+            foreach (CHILDREN child in ChildrenCollection)
             {
                 child.BIRTHDATE = RandomHelper.RandomDate(new DateTime(1930, 1, 1), DateTime.Now);
                 child.ALLERGIES = Path.GetRandomFileName().Replace(".", "");
