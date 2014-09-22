@@ -171,11 +171,7 @@ namespace WpfMvvmApplication1.Models
         private ObjectSet<RATES> _RATES;
     
         /// <summary>
-<<<<<<< Updated upstream
-        /// No Metadata Documentation available.
-=======
         /// Aucune documentation sur les métadonnées n'est disponible.
->>>>>>> Stashed changes
         /// </summary>
         public ObjectSet<YEARS> YEARS
         {
@@ -195,11 +191,7 @@ namespace WpfMvvmApplication1.Models
         #region Méthodes AddTo
     
         /// <summary>
-<<<<<<< Updated upstream
-        /// Deprecated Method for adding a new object to the CHILDREN EntitySet. Consider using the .Add method of the associated ObjectSet&lt;T&gt; property instead.
-=======
         /// Méthode déconseillée pour ajouter un nouvel objet à l'EntitySet CHILDREN. Utilisez la méthode .Add de la propriété ObjectSet&lt;T&gt; associée à la place.
->>>>>>> Stashed changes
         /// </summary>
         public void AddToCHILDREN(CHILDREN cHILDREN)
         {
@@ -215,11 +207,7 @@ namespace WpfMvvmApplication1.Models
         }
     
         /// <summary>
-<<<<<<< Updated upstream
-        /// Deprecated Method for adding a new object to the DOCTORS EntitySet. Consider using the .Add method of the associated ObjectSet&lt;T&gt; property instead.
-=======
         /// Méthode déconseillée pour ajouter un nouvel objet à l'EntitySet DOCTORS. Utilisez la méthode .Add de la propriété ObjectSet&lt;T&gt; associée à la place.
->>>>>>> Stashed changes
         /// </summary>
         public void AddToDOCTORS(DOCTORS dOCTORS)
         {
@@ -243,20 +231,6 @@ namespace WpfMvvmApplication1.Models
         }
     
         /// <summary>
-<<<<<<< Updated upstream
-        /// Deprecated Method for adding a new object to the RATES EntitySet. Consider using the .Add method of the associated ObjectSet&lt;T&gt; property instead.
-        /// </summary>
-        public void AddToRATES(RATES rATES)
-        {
-            base.AddObject("RATES", rATES);
-        }
-    
-        /// <summary>
-        /// Deprecated Method for adding a new object to the YEARS EntitySet. Consider using the .Add method of the associated ObjectSet&lt;T&gt; property instead.
-        /// </summary>
-        public void AddToYEARS(YEARS yEARS)
-        {
-=======
         /// Méthode déconseillée pour ajouter un nouvel objet à l'EntitySet RATES. Utilisez la méthode .Add de la propriété ObjectSet&lt;T&gt; associée à la place.
         /// </summary>
         public void AddToRATES(RATES rATES)
@@ -269,7 +243,6 @@ namespace WpfMvvmApplication1.Models
         /// </summary>
         public void AddToYEARS(YEARS yEARS)
         {
->>>>>>> Stashed changes
             base.AddObject("YEARS", yEARS);
         }
 
@@ -289,28 +262,6 @@ namespace WpfMvvmApplication1.Models
     [DataContractAttribute(IsReference=true)]
     public partial class CHILDREN : EntityObject
     {
-<<<<<<< Updated upstream
-        #region Factory Method
-    
-        /// <summary>
-        /// Create a new CHILDREN object.
-        /// </summary>
-        /// <param name="id">Initial value of the ID property.</param>
-        /// <param name="eMT">Initial value of the EMT property.</param>
-        /// <param name="hOSPITAL">Initial value of the HOSPITAL property.</param>
-        /// <param name="cLINIC">Initial value of the CLINIC property.</param>
-        /// <param name="bEPHOTOGRAPHY">Initial value of the BEPHOTOGRAPHY property.</param>
-        /// <param name="pUBLICATIONPHOTOGRAPHY">Initial value of the PUBLICATIONPHOTOGRAPHY property.</param>
-        /// <param name="oFFOUTPUTSSTRUCTURE">Initial value of the OFFOUTPUTSSTRUCTURE property.</param>
-        /// <param name="sWIM">Initial value of the SWIM property.</param>
-        /// <param name="bIKEOUTINGS">Initial value of the BIKEOUTINGS property.</param>
-        /// <param name="bOATOUTINGS">Initial value of the BOATOUTINGS property.</param>
-        /// <param name="wITHOUTGLUTEN">Initial value of the WITHOUTGLUTEN property.</param>
-        /// <param name="wITHOUTEGG">Initial value of the WITHOUTEGG property.</param>
-        /// <param name="wITHOUTFISH">Initial value of the WITHOUTFISH property.</param>
-        /// <param name="wITHOUTPORK">Initial value of the WITHOUTPORK property.</param>
-        /// <param name="wITHOUTMEAT">Initial value of the WITHOUTMEAT property.</param>
-=======
         #region Méthode de fabrique
     
         /// <summary>
@@ -331,7 +282,6 @@ namespace WpfMvvmApplication1.Models
         /// <param name="wITHOUTFISH">Valeur initiale de la propriété WITHOUTFISH.</param>
         /// <param name="wITHOUTPORK">Valeur initiale de la propriété WITHOUTPORK.</param>
         /// <param name="wITHOUTMEAT">Valeur initiale de la propriété WITHOUTMEAT.</param>
->>>>>>> Stashed changes
         public static CHILDREN CreateCHILDREN(global::System.Int32 id, global::System.Boolean eMT, global::System.Boolean hOSPITAL, global::System.Boolean cLINIC, global::System.Boolean bEPHOTOGRAPHY, global::System.Boolean pUBLICATIONPHOTOGRAPHY, global::System.Boolean oFFOUTPUTSSTRUCTURE, global::System.Boolean sWIM, global::System.Boolean bIKEOUTINGS, global::System.Boolean bOATOUTINGS, global::System.Boolean wITHOUTGLUTEN, global::System.Boolean wITHOUTEGG, global::System.Boolean wITHOUTFISH, global::System.Boolean wITHOUTPORK, global::System.Boolean wITHOUTMEAT)
         {
             CHILDREN cHILDREN = new CHILDREN();
@@ -913,11 +863,7 @@ namespace WpfMvvmApplication1.Models
         partial void OnSPECIALARRANGEMENTSChanged();
     
         /// <summary>
-<<<<<<< Updated upstream
-        /// No Metadata Documentation available.
-=======
         /// Aucune documentation sur les métadonnées n'est disponible.
->>>>>>> Stashed changes
         /// </summary>
         [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
         [DataMemberAttribute()]
@@ -1191,15 +1137,9 @@ namespace WpfMvvmApplication1.Models
         #region Méthode de fabrique
     
         /// <summary>
-<<<<<<< Updated upstream
-        /// Create a new DOCTORS object.
-        /// </summary>
-        /// <param name="id">Initial value of the ID property.</param>
-=======
         /// Créez un nouvel objet DOCTORS.
         /// </summary>
         /// <param name="id">Valeur initiale de la propriété ID.</param>
->>>>>>> Stashed changes
         public static DOCTORS CreateDOCTORS(global::System.Int32 id)
         {
             DOCTORS dOCTORS = new DOCTORS();
@@ -1267,33 +1207,6 @@ namespace WpfMvvmApplication1.Models
         /// </summary>
         [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
         [DataMemberAttribute()]
-<<<<<<< Updated upstream
-        public global::System.String FULLNAME
-        {
-            get
-            {
-                return _FULLNAME;
-            }
-            set
-            {
-                OnFULLNAMEChanging(value);
-                ReportPropertyChanging("FULLNAME");
-                _FULLNAME = StructuralObject.SetValidValue(value, true);
-                ReportPropertyChanged("FULLNAME");
-                OnFULLNAMEChanged();
-            }
-        }
-        private global::System.String _FULLNAME;
-        partial void OnFULLNAMEChanging(global::System.String value);
-        partial void OnFULLNAMEChanged();
-    
-        /// <summary>
-        /// No Metadata Documentation available.
-        /// </summary>
-        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
-        [DataMemberAttribute()]
-=======
->>>>>>> Stashed changes
         public global::System.String TEL
         {
             get
@@ -2158,11 +2071,7 @@ namespace WpfMvvmApplication1.Models
         }
     
         /// <summary>
-<<<<<<< Updated upstream
-        /// No Metadata Documentation available.
-=======
         /// Aucune documentation sur les métadonnées n'est disponible.
->>>>>>> Stashed changes
         /// </summary>
         [XmlIgnoreAttribute()]
         [SoapIgnoreAttribute()]
@@ -2200,11 +2109,7 @@ namespace WpfMvvmApplication1.Models
         /// <summary>
         /// Créez un nouvel objet FAMILYQUOTIENTS.
         /// </summary>
-<<<<<<< Updated upstream
-        /// <param name="id">Initial value of the ID property.</param>
-=======
         /// <param name="id">Valeur initiale de la propriété ID.</param>
->>>>>>> Stashed changes
         public static FAMILYQUOTIENTS CreateFAMILYQUOTIENTS(global::System.Int64 id)
         {
             FAMILYQUOTIENTS fAMILYQUOTIENTS = new FAMILYQUOTIENTS();
@@ -2316,11 +2221,7 @@ namespace WpfMvvmApplication1.Models
         partial void OnFAMILYQUOTIENTChanged();
     
         /// <summary>
-<<<<<<< Updated upstream
-        /// No Metadata Documentation available.
-=======
         /// Aucune documentation sur les métadonnées n'est disponible.
->>>>>>> Stashed changes
         /// </summary>
         [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
         [DataMemberAttribute()]
@@ -2401,15 +2302,9 @@ namespace WpfMvvmApplication1.Models
         #region Méthode de fabrique
     
         /// <summary>
-<<<<<<< Updated upstream
-        /// Create a new RATES object.
-        /// </summary>
-        /// <param name="id">Initial value of the ID property.</param>
-=======
         /// Créez un nouvel objet RATES.
         /// </summary>
         /// <param name="id">Valeur initiale de la propriété ID.</param>
->>>>>>> Stashed changes
         public static RATES CreateRATES(global::System.Int32 id)
         {
             RATES rATES = new RATES();
@@ -2502,43 +2397,18 @@ namespace WpfMvvmApplication1.Models
     }
     
     /// <summary>
-<<<<<<< Updated upstream
-    /// No Metadata Documentation available.
-=======
     /// Aucune documentation sur les métadonnées n'est disponible.
->>>>>>> Stashed changes
     /// </summary>
     [EdmEntityTypeAttribute(NamespaceName="agsModel", Name="YEARS")]
     [Serializable()]
     [DataContractAttribute(IsReference=true)]
     public partial class YEARS : EntityObject
     {
-<<<<<<< Updated upstream
-        #region Factory Method
-    
-        /// <summary>
-        /// Create a new YEARS object.
-        /// </summary>
-        /// <param name="id">Initial value of the ID property.</param>
-        public static YEARS CreateYEARS(global::System.Int32 id)
-        {
-            YEARS yEARS = new YEARS();
-            yEARS.ID = id;
-            return yEARS;
-        }
-
-        #endregion
-
-        #region Primitive Properties
-=======
         #region Méthode de fabrique
->>>>>>> Stashed changes
     
         /// <summary>
         /// Créez un nouvel objet YEARS.
         /// </summary>
-<<<<<<< Updated upstream
-=======
         /// <param name="id">Valeur initiale de la propriété ID.</param>
         public static YEARS CreateYEARS(global::System.Int32 id)
         {
@@ -2554,7 +2424,6 @@ namespace WpfMvvmApplication1.Models
         /// <summary>
         /// Aucune documentation sur les métadonnées n'est disponible.
         /// </summary>
->>>>>>> Stashed changes
         [EdmScalarPropertyAttribute(EntityKeyProperty=true, IsNullable=false)]
         [DataMemberAttribute()]
         public global::System.Int32 ID
@@ -2580,11 +2449,7 @@ namespace WpfMvvmApplication1.Models
         partial void OnIDChanged();
     
         /// <summary>
-<<<<<<< Updated upstream
-        /// No Metadata Documentation available.
-=======
         /// Aucune documentation sur les métadonnées n'est disponible.
->>>>>>> Stashed changes
         /// </summary>
         [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
         [DataMemberAttribute()]

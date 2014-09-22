@@ -96,11 +96,6 @@
           <Property Name="FAMILYQUOTIENT" Type="float4" />
           <Property Name="RATEID" Type="int4" />
         </EntityType>
-<<<<<<< Updated upstream
-        <!--Errors Found During Generation:
-warning 6002: The table/view 'ags.public.RATES' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
-=======
->>>>>>> Stashed changes
         <EntityType Name="RATES">
           <Key>
             <PropertyRef Name="ID" />
@@ -109,11 +104,6 @@ warning 6002: The table/view 'ags.public.RATES' does not have a primary key defi
           <Property Name="RATE" Type="text" />
           <Property Name="PRICE" Type="float4" />
         </EntityType>
-<<<<<<< Updated upstream
-        <!--Errors Found During Generation:
-warning 6002: The table/view 'ags.public.YEARS' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
-=======
->>>>>>> Stashed changes
         <EntityType Name="YEARS">
           <Key>
             <PropertyRef Name="ID" />
@@ -175,17 +165,8 @@ warning 6002: The table/view 'ags.public.YEARS' does not have a primary key defi
           <EntitySet Name="DOCTORS" EntityType="Self.DOCTORS" Schema="public" store:Type="Tables" />
           <EntitySet Name="FAMILIES" EntityType="Self.FAMILIES" Schema="public" store:Type="Tables" />
           <EntitySet Name="FAMILYQUOTIENTS" EntityType="Self.FAMILYQUOTIENTS" Schema="public" store:Type="Tables" />
-<<<<<<< Updated upstream
-          <EntitySet Name="RATES" EntityType="Self.RATES" store:Type="Tables" store:Schema="public">
-            <DefiningQuery>SELECT "RATES"."ID", "RATES"."RATE", "RATES"."PRICE" FROM "public"."RATES" AS "RATES"</DefiningQuery>
-          </EntitySet>
-          <EntitySet Name="YEARS" EntityType="Self.YEARS" store:Type="Tables" store:Schema="public">
-            <DefiningQuery>SELECT "YEARS"."ID", "YEARS"."YEAR" FROM "public"."YEARS" AS "YEARS"</DefiningQuery>
-          </EntitySet>
-=======
           <EntitySet Name="RATES" EntityType="Self.RATES" Schema="public" store:Type="Tables" />
           <EntitySet Name="YEARS" EntityType="Self.YEARS" Schema="public" store:Type="Tables" />
->>>>>>> Stashed changes
           <AssociationSet Name="cityfk" Association="Self.cityfk">
             <End Role="CITIES" EntitySet="CITIES" />
             <End Role="FAMILIES" EntitySet="FAMILIES" />
@@ -537,7 +518,6 @@ warning 6002: The table/view 'ags.public.YEARS' does not have a primary key defi
     <!-- Diagram content (shape and connector positions) -->
     <Diagrams >
       <Diagram Name="Model1" ZoomLevel="85">
-<<<<<<< Updated upstream
         <EntityTypeShape EntityType="agsModel.CHILDREN" Width="1.5" PointX="8.25" PointY="2.75" />
         <EntityTypeShape EntityType="agsModel.CITIES" Width="1.5" PointX="0.75" PointY="4.75" />
         <EntityTypeShape EntityType="agsModel.DOCTORS" Width="1.5" PointX="6" PointY="1.875" />
@@ -545,15 +525,6 @@ warning 6002: The table/view 'ags.public.YEARS' does not have a primary key defi
         <EntityTypeShape EntityType="agsModel.FAMILYQUOTIENTS" Width="1.5" PointX="5.25" PointY="4.625" />
         <EntityTypeShape EntityType="agsModel.RATES" Width="1.5" PointX="5.75" PointY="9.75" />
         <EntityTypeShape EntityType="agsModel.YEARS" Width="1.5" PointX="7.75" PointY="9.75" />
-=======
-        <EntityTypeShape EntityType="agsModel.CHILDREN" Width="1.5" PointX="5.25" PointY="2.75" />
-        <EntityTypeShape EntityType="agsModel.CITIES" Width="1.5" PointX="0.75" PointY="4.75" />
-        <EntityTypeShape EntityType="agsModel.DOCTORS" Width="1.5" PointX="3" PointY="11.875" />
-        <EntityTypeShape EntityType="agsModel.FAMILIES" Width="1.5" PointX="3" PointY="2" />
-        <EntityTypeShape EntityType="agsModel.FAMILYQUOTIENTS" Width="3.125" PointX="5.25" PointY="11.375" />
-        <EntityTypeShape EntityType="agsModel.RATES" Width="1.5" PointX="7.75" PointY="0.75" />
-        <EntityTypeShape EntityType="agsModel.YEARS" Width="1.5" PointX="7.75" PointY="3.75" />
->>>>>>> Stashed changes
         <AssociationConnector Association="agsModel.doctorfk" />
         <AssociationConnector Association="agsModel.familyfk" />
         <AssociationConnector Association="agsModel.cityfk" />

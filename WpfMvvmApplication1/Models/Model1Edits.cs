@@ -1,11 +1,7 @@
 ﻿
 namespace WpfMvvmApplication1.Models
 {
-<<<<<<< Updated upstream
     public partial class CHILDREN 
-=======
-    public partial class CHILDREN
->>>>>>> Stashed changes
     {
         partial void OnFAMILYIDChanged()
         {
