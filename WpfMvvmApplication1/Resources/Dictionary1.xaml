@@ -13,7 +13,17 @@
     
     <Color x:Key="detailMark">#FFA1A9B3</Color>
     <SolidColorBrush x:Key="detailMarkBrush" Color="{StaticResource ResourceKey=detailMark}" />
-
+    
+    <Style x:Key="ColumnHeaderStyle" TargetType="{x:Type DataGridColumnHeader}" >
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="DataGridColumnHeader">
+                    <Label Background="Green" Content="{TemplateBinding Content}"/>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+    
     <Style x:Key="flatTextBox" TargetType="{x:Type TextBox}">
         <Setter Property="Template">
             <Setter.Value>

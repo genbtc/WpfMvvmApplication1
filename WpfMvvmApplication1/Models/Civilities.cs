@@ -14,13 +14,11 @@ namespace WpfMvvmApplication1.Models
             return _listCivilities[i].Value;
         }
         
-        private enum civilitiesenum { None = 0, M = 1, Mme = 2 }
-
         /// <summary>
         /// for initially populate checkbox with possible values
         /// </summary>
-        private static readonly List<Gender> _listCivilities = new List<Gender> { new Gender { Id = 0, Value = "" }, new Gender { Id = 1, Value = "M." }, new Gender { Id = 2, Value = "Mme." } };
-        public ObservableCollection<Gender> ListCivilities
+        private static readonly List<Civilities> _listCivilities = new List<Civilities> { new Civilities { Id = 0, Value = "" }, new Civilities { Id = 1, Value = "M." }, new Civilities { Id = 2, Value = "Mme." } };
+        public ObservableCollection<Civilities> ListCivilities
         {
             get { return _listCivilities.ToObservableCollection(); }
         }
