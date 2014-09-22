@@ -153,6 +153,7 @@
     </Compile>
     <Compile Include="Models\Model1Edits.cs" />
     <Compile Include="Models\Gender.cs" />
+    <Compile Include="Models\ProtocolAccueil.cs" />
     <Compile Include="Models\SQL.cs" />
     <Compile Include="Helpers\ToObsvCollection.cs" />
     <Compile Include="ViewModels\MainWindowViewModel.cs" />
