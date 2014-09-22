@@ -1,7 +1,7 @@
 ﻿
 namespace WpfMvvmApplication1.Models
 {
-    public partial class CHILDRENS 
+    public partial class CHILDREN 
     {
         partial void OnFAMILYIDChanged()
         {

@@ -19,10 +19,9 @@ using System.Xml.Serialization;
 [assembly: EdmSchemaAttribute()]
 #region EDM Relationship Metadata
 
-[assembly: EdmRelationshipAttribute("agsModel", "familyfk", "FAMILIES", System.Data.Metadata.Edm.RelationshipMultiplicity.ZeroOrOne, typeof(WpfMvvmApplication1.Models.FAMILIES), "CHILDRENS", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(WpfMvvmApplication1.Models.CHILDRENS), true)]
-[assembly: EdmRelationshipAttribute("agsModel", "medecinefk", "MEDECINES", System.Data.Metadata.Edm.RelationshipMultiplicity.ZeroOrOne, typeof(WpfMvvmApplication1.Models.MEDECINES), "CHILDRENS", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(WpfMvvmApplication1.Models.CHILDRENS), true)]
+[assembly: EdmRelationshipAttribute("agsModel", "doctorfk", "DOCTORS", System.Data.Metadata.Edm.RelationshipMultiplicity.ZeroOrOne, typeof(WpfMvvmApplication1.Models.DOCTORS), "CHILDREN", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(WpfMvvmApplication1.Models.CHILDREN), true)]
+[assembly: EdmRelationshipAttribute("agsModel", "familyfk", "FAMILIES", System.Data.Metadata.Edm.RelationshipMultiplicity.ZeroOrOne, typeof(WpfMvvmApplication1.Models.FAMILIES), "CHILDREN", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(WpfMvvmApplication1.Models.CHILDREN), true)]
 [assembly: EdmRelationshipAttribute("agsModel", "cityfk", "CITIES", System.Data.Metadata.Edm.RelationshipMultiplicity.ZeroOrOne, typeof(WpfMvvmApplication1.Models.CITIES), "FAMILIES", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(WpfMvvmApplication1.Models.FAMILIES), true)]
-[assembly: EdmRelationshipAttribute("agsModel", "civilityfk", "CIVILITIES", System.Data.Metadata.Edm.RelationshipMultiplicity.ZeroOrOne, typeof(WpfMvvmApplication1.Models.CIVILITIES), "FAMILIES", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(WpfMvvmApplication1.Models.FAMILIES), true)]
 [assembly: EdmRelationshipAttribute("agsModel", "familyfk1", "FAMILIES", System.Data.Metadata.Edm.RelationshipMultiplicity.ZeroOrOne, typeof(WpfMvvmApplication1.Models.FAMILIES), "FAMILYQUOTIENTS", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(WpfMvvmApplication1.Models.FAMILYQUOTIENTS), true)]
 
 #endregion
@@ -78,18 +77,18 @@ namespace WpfMvvmApplication1.Models
         /// <summary>
         /// No Metadata Documentation available.
         /// </summary>
-        public ObjectSet<CHILDRENS> CHILDRENS
+        public ObjectSet<CHILDREN> CHILDREN
         {
             get
             {
-                if ((_CHILDRENS == null))
+                if ((_CHILDREN == null))
                 {
-                    _CHILDRENS = base.CreateObjectSet<CHILDRENS>("CHILDRENS");
+                    _CHILDREN = base.CreateObjectSet<CHILDREN>("CHILDREN");
                 }
-                return _CHILDRENS;
+                return _CHILDREN;
             }
         }
-        private ObjectSet<CHILDRENS> _CHILDRENS;
+        private ObjectSet<CHILDREN> _CHILDREN;
     
         /// <summary>
         /// No Metadata Documentation available.
@@ -110,18 +109,18 @@ namespace WpfMvvmApplication1.Models
         /// <summary>
         /// No Metadata Documentation available.
         /// </summary>
-        public ObjectSet<CIVILITIES> CIVILITIES
+        public ObjectSet<DOCTORS> DOCTORS
         {
             get
             {
-                if ((_CIVILITIES == null))
+                if ((_DOCTORS == null))
                 {
-                    _CIVILITIES = base.CreateObjectSet<CIVILITIES>("CIVILITIES");
+                    _DOCTORS = base.CreateObjectSet<DOCTORS>("DOCTORS");
                 }
-                return _CIVILITIES;
+                return _DOCTORS;
             }
         }
-        private ObjectSet<CIVILITIES> _CIVILITIES;
+        private ObjectSet<DOCTORS> _DOCTORS;
     
         /// <summary>
         /// No Metadata Documentation available.
@@ -158,29 +157,45 @@ namespace WpfMvvmApplication1.Models
         /// <summary>
         /// No Metadata Documentation available.
         /// </summary>
-        public ObjectSet<MEDECINES> MEDECINES
+        public ObjectSet<RATES> RATES
         {
             get
             {
-                if ((_MEDECINES == null))
+                if ((_RATES == null))
                 {
-                    _MEDECINES = base.CreateObjectSet<MEDECINES>("MEDECINES");
+                    _RATES = base.CreateObjectSet<RATES>("RATES");
                 }
-                return _MEDECINES;
+                return _RATES;
             }
         }
-        private ObjectSet<MEDECINES> _MEDECINES;
+        private ObjectSet<RATES> _RATES;
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        public ObjectSet<YEARS> YEARS
+        {
+            get
+            {
+                if ((_YEARS == null))
+                {
+                    _YEARS = base.CreateObjectSet<YEARS>("YEARS");
+                }
+                return _YEARS;
+            }
+        }
+        private ObjectSet<YEARS> _YEARS;
 
         #endregion
 
         #region AddTo Methods
     
         /// <summary>
-        /// Deprecated Method for adding a new object to the CHILDRENS EntitySet. Consider using the .Add method of the associated ObjectSet&lt;T&gt; property instead.
+        /// Deprecated Method for adding a new object to the CHILDREN EntitySet. Consider using the .Add method of the associated ObjectSet&lt;T&gt; property instead.
         /// </summary>
-        public void AddToCHILDRENS(CHILDRENS cHILDRENS)
+        public void AddToCHILDREN(CHILDREN cHILDREN)
         {
-            base.AddObject("CHILDRENS", cHILDRENS);
+            base.AddObject("CHILDREN", cHILDREN);
         }
     
         /// <summary>
@@ -192,11 +207,11 @@ namespace WpfMvvmApplication1.Models
         }
     
         /// <summary>
-        /// Deprecated Method for adding a new object to the CIVILITIES EntitySet. Consider using the .Add method of the associated ObjectSet&lt;T&gt; property instead.
+        /// Deprecated Method for adding a new object to the DOCTORS EntitySet. Consider using the .Add method of the associated ObjectSet&lt;T&gt; property instead.
         /// </summary>
-        public void AddToCIVILITIES(CIVILITIES cIVILITIES)
+        public void AddToDOCTORS(DOCTORS dOCTORS)
         {
-            base.AddObject("CIVILITIES", cIVILITIES);
+            base.AddObject("DOCTORS", dOCTORS);
         }
     
         /// <summary>
@@ -216,11 +231,19 @@ namespace WpfMvvmApplication1.Models
         }
     
         /// <summary>
-        /// Deprecated Method for adding a new object to the MEDECINES EntitySet. Consider using the .Add method of the associated ObjectSet&lt;T&gt; property instead.
+        /// Deprecated Method for adding a new object to the RATES EntitySet. Consider using the .Add method of the associated ObjectSet&lt;T&gt; property instead.
         /// </summary>
-        public void AddToMEDECINES(MEDECINES mEDECINES)
+        public void AddToRATES(RATES rATES)
         {
-            base.AddObject("MEDECINES", mEDECINES);
+            base.AddObject("RATES", rATES);
+        }
+    
+        /// <summary>
+        /// Deprecated Method for adding a new object to the YEARS EntitySet. Consider using the .Add method of the associated ObjectSet&lt;T&gt; property instead.
+        /// </summary>
+        public void AddToYEARS(YEARS yEARS)
+        {
+            base.AddObject("YEARS", yEARS);
         }
 
         #endregion
@@ -234,15 +257,15 @@ namespace WpfMvvmApplication1.Models
     /// <summary>
     /// No Metadata Documentation available.
     /// </summary>
-    [EdmEntityTypeAttribute(NamespaceName="agsModel", Name="CHILDRENS")]
+    [EdmEntityTypeAttribute(NamespaceName="agsModel", Name="CHILDREN")]
     [Serializable()]
     [DataContractAttribute(IsReference=true)]
-    public partial class CHILDRENS : EntityObject
+    public partial class CHILDREN : EntityObject
     {
         #region Factory Method
     
         /// <summary>
-        /// Create a new CHILDRENS object.
+        /// Create a new CHILDREN object.
         /// </summary>
         /// <param name="id">Initial value of the ID property.</param>
         /// <param name="eMT">Initial value of the EMT property.</param>
@@ -259,25 +282,25 @@ namespace WpfMvvmApplication1.Models
         /// <param name="wITHOUTFISH">Initial value of the WITHOUTFISH property.</param>
         /// <param name="wITHOUTPORK">Initial value of the WITHOUTPORK property.</param>
         /// <param name="wITHOUTMEAT">Initial value of the WITHOUTMEAT property.</param>
-        public static CHILDRENS CreateCHILDRENS(global::System.Int32 id, global::System.Boolean eMT, global::System.Boolean hOSPITAL, global::System.Boolean cLINIC, global::System.Boolean bEPHOTOGRAPHY, global::System.Boolean pUBLICATIONPHOTOGRAPHY, global::System.Boolean oFFOUTPUTSSTRUCTURE, global::System.Boolean sWIM, global::System.Boolean bIKEOUTINGS, global::System.Boolean bOATOUTINGS, global::System.Boolean wITHOUTGLUTEN, global::System.Boolean wITHOUTEGG, global::System.Boolean wITHOUTFISH, global::System.Boolean wITHOUTPORK, global::System.Boolean wITHOUTMEAT)
+        public static CHILDREN CreateCHILDREN(global::System.Int32 id, global::System.Boolean eMT, global::System.Boolean hOSPITAL, global::System.Boolean cLINIC, global::System.Boolean bEPHOTOGRAPHY, global::System.Boolean pUBLICATIONPHOTOGRAPHY, global::System.Boolean oFFOUTPUTSSTRUCTURE, global::System.Boolean sWIM, global::System.Boolean bIKEOUTINGS, global::System.Boolean bOATOUTINGS, global::System.Boolean wITHOUTGLUTEN, global::System.Boolean wITHOUTEGG, global::System.Boolean wITHOUTFISH, global::System.Boolean wITHOUTPORK, global::System.Boolean wITHOUTMEAT)
         {
-            CHILDRENS cHILDRENS = new CHILDRENS();
-            cHILDRENS.ID = id;
-            cHILDRENS.EMT = eMT;
-            cHILDRENS.HOSPITAL = hOSPITAL;
-            cHILDRENS.CLINIC = cLINIC;
-            cHILDRENS.BEPHOTOGRAPHY = bEPHOTOGRAPHY;
-            cHILDRENS.PUBLICATIONPHOTOGRAPHY = pUBLICATIONPHOTOGRAPHY;
-            cHILDRENS.OFFOUTPUTSSTRUCTURE = oFFOUTPUTSSTRUCTURE;
-            cHILDRENS.SWIM = sWIM;
-            cHILDRENS.BIKEOUTINGS = bIKEOUTINGS;
-            cHILDRENS.BOATOUTINGS = bOATOUTINGS;
-            cHILDRENS.WITHOUTGLUTEN = wITHOUTGLUTEN;
-            cHILDRENS.WITHOUTEGG = wITHOUTEGG;
-            cHILDRENS.WITHOUTFISH = wITHOUTFISH;
-            cHILDRENS.WITHOUTPORK = wITHOUTPORK;
-            cHILDRENS.WITHOUTMEAT = wITHOUTMEAT;
-            return cHILDRENS;
+            CHILDREN cHILDREN = new CHILDREN();
+            cHILDREN.ID = id;
+            cHILDREN.EMT = eMT;
+            cHILDREN.HOSPITAL = hOSPITAL;
+            cHILDREN.CLINIC = cLINIC;
+            cHILDREN.BEPHOTOGRAPHY = bEPHOTOGRAPHY;
+            cHILDREN.PUBLICATIONPHOTOGRAPHY = pUBLICATIONPHOTOGRAPHY;
+            cHILDREN.OFFOUTPUTSSTRUCTURE = oFFOUTPUTSSTRUCTURE;
+            cHILDREN.SWIM = sWIM;
+            cHILDREN.BIKEOUTINGS = bIKEOUTINGS;
+            cHILDREN.BOATOUTINGS = bOATOUTINGS;
+            cHILDREN.WITHOUTGLUTEN = wITHOUTGLUTEN;
+            cHILDREN.WITHOUTEGG = wITHOUTEGG;
+            cHILDREN.WITHOUTFISH = wITHOUTFISH;
+            cHILDREN.WITHOUTPORK = wITHOUTPORK;
+            cHILDREN.WITHOUTMEAT = wITHOUTMEAT;
+            return cHILDREN;
         }
 
         #endregion
@@ -652,24 +675,24 @@ namespace WpfMvvmApplication1.Models
         /// </summary>
         [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
         [DataMemberAttribute()]
-        public Nullable<global::System.Int32> MEDECINEID
+        public Nullable<global::System.Int32> DOCTORID
         {
             get
             {
-                return _MEDECINEID;
+                return _DOCTORID;
             }
             set
             {
-                OnMEDECINEIDChanging(value);
-                ReportPropertyChanging("MEDECINEID");
-                _MEDECINEID = StructuralObject.SetValidValue(value);
-                ReportPropertyChanged("MEDECINEID");
-                OnMEDECINEIDChanged();
+                OnDOCTORIDChanging(value);
+                ReportPropertyChanging("DOCTORID");
+                _DOCTORID = StructuralObject.SetValidValue(value);
+                ReportPropertyChanged("DOCTORID");
+                OnDOCTORIDChanged();
             }
         }
-        private Nullable<global::System.Int32> _MEDECINEID;
-        partial void OnMEDECINEIDChanging(Nullable<global::System.Int32> value);
-        partial void OnMEDECINEIDChanged();
+        private Nullable<global::System.Int32> _DOCTORID;
+        partial void OnDOCTORIDChanging(Nullable<global::System.Int32> value);
+        partial void OnDOCTORIDChanged();
     
         /// <summary>
         /// No Metadata Documentation available.
@@ -838,11 +861,73 @@ namespace WpfMvvmApplication1.Models
         private global::System.String _SPECIALARRANGEMENTS;
         partial void OnSPECIALARRANGEMENTSChanging(global::System.String value);
         partial void OnSPECIALARRANGEMENTSChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [DataMemberAttribute()]
+        public Nullable<global::System.Int32> PROTOCOLWELCOMEID
+        {
+            get
+            {
+                return _PROTOCOLWELCOMEID;
+            }
+            set
+            {
+                OnPROTOCOLWELCOMEIDChanging(value);
+                ReportPropertyChanging("PROTOCOLWELCOMEID");
+                _PROTOCOLWELCOMEID = StructuralObject.SetValidValue(value);
+                ReportPropertyChanged("PROTOCOLWELCOMEID");
+                OnPROTOCOLWELCOMEIDChanged();
+            }
+        }
+        private Nullable<global::System.Int32> _PROTOCOLWELCOMEID;
+        partial void OnPROTOCOLWELCOMEIDChanging(Nullable<global::System.Int32> value);
+        partial void OnPROTOCOLWELCOMEIDChanged();
 
         #endregion
 
     
         #region Navigation Properties
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [XmlIgnoreAttribute()]
+        [SoapIgnoreAttribute()]
+        [DataMemberAttribute()]
+        [EdmRelationshipNavigationPropertyAttribute("agsModel", "doctorfk", "DOCTORS")]
+        public DOCTORS DOCTORS
+        {
+            get
+            {
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<DOCTORS>("agsModel.doctorfk", "DOCTORS").Value;
+            }
+            set
+            {
+                ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<DOCTORS>("agsModel.doctorfk", "DOCTORS").Value = value;
+            }
+        }
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [BrowsableAttribute(false)]
+        [DataMemberAttribute()]
+        public EntityReference<DOCTORS> DOCTORSReference
+        {
+            get
+            {
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<DOCTORS>("agsModel.doctorfk", "DOCTORS");
+            }
+            set
+            {
+                if ((value != null))
+                {
+                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedReference<DOCTORS>("agsModel.doctorfk", "DOCTORS", value);
+                }
+            }
+        }
     
         /// <summary>
         /// No Metadata Documentation available.
@@ -878,44 +963,6 @@ namespace WpfMvvmApplication1.Models
                 if ((value != null))
                 {
                     ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedReference<FAMILIES>("agsModel.familyfk", "FAMILIES", value);
-                }
-            }
-        }
-    
-        /// <summary>
-        /// No Metadata Documentation available.
-        /// </summary>
-        [XmlIgnoreAttribute()]
-        [SoapIgnoreAttribute()]
-        [DataMemberAttribute()]
-        [EdmRelationshipNavigationPropertyAttribute("agsModel", "medecinefk", "MEDECINES")]
-        public MEDECINES MEDECINES
-        {
-            get
-            {
-                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<MEDECINES>("agsModel.medecinefk", "MEDECINES").Value;
-            }
-            set
-            {
-                ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<MEDECINES>("agsModel.medecinefk", "MEDECINES").Value = value;
-            }
-        }
-        /// <summary>
-        /// No Metadata Documentation available.
-        /// </summary>
-        [BrowsableAttribute(false)]
-        [DataMemberAttribute()]
-        public EntityReference<MEDECINES> MEDECINESReference
-        {
-            get
-            {
-                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<MEDECINES>("agsModel.medecinefk", "MEDECINES");
-            }
-            set
-            {
-                if ((value != null))
-                {
-                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedReference<MEDECINES>("agsModel.medecinefk", "MEDECINES", value);
                 }
             }
         }
@@ -1082,22 +1129,22 @@ namespace WpfMvvmApplication1.Models
     /// <summary>
     /// No Metadata Documentation available.
     /// </summary>
-    [EdmEntityTypeAttribute(NamespaceName="agsModel", Name="CIVILITIES")]
+    [EdmEntityTypeAttribute(NamespaceName="agsModel", Name="DOCTORS")]
     [Serializable()]
     [DataContractAttribute(IsReference=true)]
-    public partial class CIVILITIES : EntityObject
+    public partial class DOCTORS : EntityObject
     {
         #region Factory Method
     
         /// <summary>
-        /// Create a new CIVILITIES object.
+        /// Create a new DOCTORS object.
         /// </summary>
         /// <param name="id">Initial value of the ID property.</param>
-        public static CIVILITIES CreateCIVILITIES(global::System.Int32 id)
+        public static DOCTORS CreateDOCTORS(global::System.Int32 id)
         {
-            CIVILITIES cIVILITIES = new CIVILITIES();
-            cIVILITIES.ID = id;
-            return cIVILITIES;
+            DOCTORS dOCTORS = new DOCTORS();
+            dOCTORS.ID = id;
+            return dOCTORS;
         }
 
         #endregion
@@ -1136,24 +1183,48 @@ namespace WpfMvvmApplication1.Models
         /// </summary>
         [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
         [DataMemberAttribute()]
-        public global::System.String CIVILITY
+        public global::System.String FULLNAME
         {
             get
             {
-                return _CIVILITY;
+                return _FULLNAME;
             }
             set
             {
-                OnCIVILITYChanging(value);
-                ReportPropertyChanging("CIVILITY");
-                _CIVILITY = StructuralObject.SetValidValue(value, true);
-                ReportPropertyChanged("CIVILITY");
-                OnCIVILITYChanged();
+                OnFULLNAMEChanging(value);
+                ReportPropertyChanging("FULLNAME");
+                _FULLNAME = StructuralObject.SetValidValue(value, true);
+                ReportPropertyChanged("FULLNAME");
+                OnFULLNAMEChanged();
             }
         }
-        private global::System.String _CIVILITY;
-        partial void OnCIVILITYChanging(global::System.String value);
-        partial void OnCIVILITYChanged();
+        private global::System.String _FULLNAME;
+        partial void OnFULLNAMEChanging(global::System.String value);
+        partial void OnFULLNAMEChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [DataMemberAttribute()]
+        public global::System.String TEL
+        {
+            get
+            {
+                return _TEL;
+            }
+            set
+            {
+                OnTELChanging(value);
+                ReportPropertyChanging("TEL");
+                _TEL = StructuralObject.SetValidValue(value, true);
+                ReportPropertyChanged("TEL");
+                OnTELChanged();
+            }
+        }
+        private global::System.String _TEL;
+        partial void OnTELChanging(global::System.String value);
+        partial void OnTELChanged();
 
         #endregion
 
@@ -1166,18 +1237,18 @@ namespace WpfMvvmApplication1.Models
         [XmlIgnoreAttribute()]
         [SoapIgnoreAttribute()]
         [DataMemberAttribute()]
-        [EdmRelationshipNavigationPropertyAttribute("agsModel", "civilityfk", "FAMILIES")]
-        public EntityCollection<FAMILIES> FAMILIES
+        [EdmRelationshipNavigationPropertyAttribute("agsModel", "doctorfk", "CHILDREN")]
+        public EntityCollection<CHILDREN> CHILDREN
         {
             get
             {
-                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedCollection<FAMILIES>("agsModel.civilityfk", "FAMILIES");
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedCollection<CHILDREN>("agsModel.doctorfk", "CHILDREN");
             }
             set
             {
                 if ((value != null))
                 {
-                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedCollection<FAMILIES>("agsModel.civilityfk", "FAMILIES", value);
+                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedCollection<CHILDREN>("agsModel.doctorfk", "CHILDREN", value);
                 }
             }
         }
@@ -1945,18 +2016,18 @@ namespace WpfMvvmApplication1.Models
         [XmlIgnoreAttribute()]
         [SoapIgnoreAttribute()]
         [DataMemberAttribute()]
-        [EdmRelationshipNavigationPropertyAttribute("agsModel", "familyfk", "CHILDRENS")]
-        public EntityCollection<CHILDRENS> CHILDRENS
+        [EdmRelationshipNavigationPropertyAttribute("agsModel", "familyfk", "CHILDREN")]
+        public EntityCollection<CHILDREN> CHILDREN
         {
             get
             {
-                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedCollection<CHILDRENS>("agsModel.familyfk", "CHILDRENS");
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedCollection<CHILDREN>("agsModel.familyfk", "CHILDREN");
             }
             set
             {
                 if ((value != null))
                 {
-                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedCollection<CHILDRENS>("agsModel.familyfk", "CHILDRENS", value);
+                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedCollection<CHILDREN>("agsModel.familyfk", "CHILDREN", value);
                 }
             }
         }
@@ -2005,44 +2076,6 @@ namespace WpfMvvmApplication1.Models
         [XmlIgnoreAttribute()]
         [SoapIgnoreAttribute()]
         [DataMemberAttribute()]
-        [EdmRelationshipNavigationPropertyAttribute("agsModel", "civilityfk", "CIVILITIES")]
-        public CIVILITIES CIVILITIES
-        {
-            get
-            {
-                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<CIVILITIES>("agsModel.civilityfk", "CIVILITIES").Value;
-            }
-            set
-            {
-                ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<CIVILITIES>("agsModel.civilityfk", "CIVILITIES").Value = value;
-            }
-        }
-        /// <summary>
-        /// No Metadata Documentation available.
-        /// </summary>
-        [BrowsableAttribute(false)]
-        [DataMemberAttribute()]
-        public EntityReference<CIVILITIES> CIVILITIESReference
-        {
-            get
-            {
-                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<CIVILITIES>("agsModel.civilityfk", "CIVILITIES");
-            }
-            set
-            {
-                if ((value != null))
-                {
-                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedReference<CIVILITIES>("agsModel.civilityfk", "CIVILITIES", value);
-                }
-            }
-        }
-    
-        /// <summary>
-        /// No Metadata Documentation available.
-        /// </summary>
-        [XmlIgnoreAttribute()]
-        [SoapIgnoreAttribute()]
-        [DataMemberAttribute()]
         [EdmRelationshipNavigationPropertyAttribute("agsModel", "familyfk1", "FAMILYQUOTIENTS")]
         public EntityCollection<FAMILYQUOTIENTS> FAMILYQUOTIENTS
         {
@@ -2077,7 +2110,7 @@ namespace WpfMvvmApplication1.Models
         /// Create a new FAMILYQUOTIENTS object.
         /// </summary>
         /// <param name="id">Initial value of the ID property.</param>
-        public static FAMILYQUOTIENTS CreateFAMILYQUOTIENTS(global::System.Int32 id)
+        public static FAMILYQUOTIENTS CreateFAMILYQUOTIENTS(global::System.Int64 id)
         {
             FAMILYQUOTIENTS fAMILYQUOTIENTS = new FAMILYQUOTIENTS();
             fAMILYQUOTIENTS.ID = id;
@@ -2093,7 +2126,7 @@ namespace WpfMvvmApplication1.Models
         /// </summary>
         [EdmScalarPropertyAttribute(EntityKeyProperty=true, IsNullable=false)]
         [DataMemberAttribute()]
-        public global::System.Int32 ID
+        public global::System.Int64 ID
         {
             get
             {
@@ -2111,8 +2144,8 @@ namespace WpfMvvmApplication1.Models
                 }
             }
         }
-        private global::System.Int32 _ID;
-        partial void OnIDChanging(global::System.Int32 value);
+        private global::System.Int64 _ID;
+        partial void OnIDChanging(global::System.Int64 value);
         partial void OnIDChanged();
     
         /// <summary>
@@ -2186,6 +2219,30 @@ namespace WpfMvvmApplication1.Models
         private Nullable<global::System.Single> _FAMILYQUOTIENT;
         partial void OnFAMILYQUOTIENTChanging(Nullable<global::System.Single> value);
         partial void OnFAMILYQUOTIENTChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [DataMemberAttribute()]
+        public Nullable<global::System.Int32> RATEID
+        {
+            get
+            {
+                return _RATEID;
+            }
+            set
+            {
+                OnRATEIDChanging(value);
+                ReportPropertyChanging("RATEID");
+                _RATEID = StructuralObject.SetValidValue(value);
+                ReportPropertyChanged("RATEID");
+                OnRATEIDChanged();
+            }
+        }
+        private Nullable<global::System.Int32> _RATEID;
+        partial void OnRATEIDChanging(Nullable<global::System.Int32> value);
+        partial void OnRATEIDChanged();
 
         #endregion
 
@@ -2237,22 +2294,22 @@ namespace WpfMvvmApplication1.Models
     /// <summary>
     /// No Metadata Documentation available.
     /// </summary>
-    [EdmEntityTypeAttribute(NamespaceName="agsModel", Name="MEDECINES")]
+    [EdmEntityTypeAttribute(NamespaceName="agsModel", Name="RATES")]
     [Serializable()]
     [DataContractAttribute(IsReference=true)]
-    public partial class MEDECINES : EntityObject
+    public partial class RATES : EntityObject
     {
         #region Factory Method
     
         /// <summary>
-        /// Create a new MEDECINES object.
+        /// Create a new RATES object.
         /// </summary>
         /// <param name="id">Initial value of the ID property.</param>
-        public static MEDECINES CreateMEDECINES(global::System.Int32 id)
+        public static RATES CreateRATES(global::System.Int32 id)
         {
-            MEDECINES mEDECINES = new MEDECINES();
-            mEDECINES.ID = id;
-            return mEDECINES;
+            RATES rATES = new RATES();
+            rATES.ID = id;
+            return rATES;
         }
 
         #endregion
@@ -2291,78 +2348,133 @@ namespace WpfMvvmApplication1.Models
         /// </summary>
         [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
         [DataMemberAttribute()]
-        public global::System.String FULLNAME
+        public global::System.String RATE
         {
             get
             {
-                return _FULLNAME;
+                return _RATE;
             }
             set
             {
-                OnFULLNAMEChanging(value);
-                ReportPropertyChanging("FULLNAME");
-                _FULLNAME = StructuralObject.SetValidValue(value, true);
-                ReportPropertyChanged("FULLNAME");
-                OnFULLNAMEChanged();
+                OnRATEChanging(value);
+                ReportPropertyChanging("RATE");
+                _RATE = StructuralObject.SetValidValue(value, true);
+                ReportPropertyChanged("RATE");
+                OnRATEChanged();
             }
         }
-        private global::System.String _FULLNAME;
-        partial void OnFULLNAMEChanging(global::System.String value);
-        partial void OnFULLNAMEChanged();
+        private global::System.String _RATE;
+        partial void OnRATEChanging(global::System.String value);
+        partial void OnRATEChanged();
     
         /// <summary>
         /// No Metadata Documentation available.
         /// </summary>
         [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
         [DataMemberAttribute()]
-        public global::System.String TEL
+        public Nullable<global::System.Single> PRICE
         {
             get
             {
-                return _TEL;
+                return _PRICE;
             }
             set
             {
-                OnTELChanging(value);
-                ReportPropertyChanging("TEL");
-                _TEL = StructuralObject.SetValidValue(value, true);
-                ReportPropertyChanged("TEL");
-                OnTELChanged();
+                OnPRICEChanging(value);
+                ReportPropertyChanging("PRICE");
+                _PRICE = StructuralObject.SetValidValue(value);
+                ReportPropertyChanged("PRICE");
+                OnPRICEChanged();
             }
         }
-        private global::System.String _TEL;
-        partial void OnTELChanging(global::System.String value);
-        partial void OnTELChanged();
+        private Nullable<global::System.Single> _PRICE;
+        partial void OnPRICEChanging(Nullable<global::System.Single> value);
+        partial void OnPRICEChanged();
 
         #endregion
 
     
-        #region Navigation Properties
+    }
+    
+    /// <summary>
+    /// No Metadata Documentation available.
+    /// </summary>
+    [EdmEntityTypeAttribute(NamespaceName="agsModel", Name="YEARS")]
+    [Serializable()]
+    [DataContractAttribute(IsReference=true)]
+    public partial class YEARS : EntityObject
+    {
+        #region Factory Method
+    
+        /// <summary>
+        /// Create a new YEARS object.
+        /// </summary>
+        /// <param name="id">Initial value of the ID property.</param>
+        public static YEARS CreateYEARS(global::System.Int32 id)
+        {
+            YEARS yEARS = new YEARS();
+            yEARS.ID = id;
+            return yEARS;
+        }
+
+        #endregion
+
+        #region Primitive Properties
     
         /// <summary>
         /// No Metadata Documentation available.
         /// </summary>
-        [XmlIgnoreAttribute()]
-        [SoapIgnoreAttribute()]
+        [EdmScalarPropertyAttribute(EntityKeyProperty=true, IsNullable=false)]
         [DataMemberAttribute()]
-        [EdmRelationshipNavigationPropertyAttribute("agsModel", "medecinefk", "CHILDRENS")]
-        public EntityCollection<CHILDRENS> CHILDRENS
+        public global::System.Int32 ID
         {
             get
             {
-                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedCollection<CHILDRENS>("agsModel.medecinefk", "CHILDRENS");
+                return _ID;
             }
             set
             {
-                if ((value != null))
+                if (_ID != value)
                 {
-                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedCollection<CHILDRENS>("agsModel.medecinefk", "CHILDRENS", value);
+                    OnIDChanging(value);
+                    ReportPropertyChanging("ID");
+                    _ID = StructuralObject.SetValidValue(value);
+                    ReportPropertyChanged("ID");
+                    OnIDChanged();
                 }
             }
         }
+        private global::System.Int32 _ID;
+        partial void OnIDChanging(global::System.Int32 value);
+        partial void OnIDChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [DataMemberAttribute()]
+        public Nullable<global::System.Int32> YEAR
+        {
+            get
+            {
+                return _YEAR;
+            }
+            set
+            {
+                OnYEARChanging(value);
+                ReportPropertyChanging("YEAR");
+                _YEAR = StructuralObject.SetValidValue(value);
+                ReportPropertyChanged("YEAR");
+                OnYEARChanged();
+            }
+        }
+        private Nullable<global::System.Int32> _YEAR;
+        partial void OnYEARChanging(Nullable<global::System.Int32> value);
+        partial void OnYEARChanged();
 
         #endregion
 
+    
     }
 
     #endregion

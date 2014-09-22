@@ -119,7 +119,7 @@
 
                         <ExtendedGridControl:ExtendedDataGrid Grid.Row="1" Grid.RowSpan="3" Name="PresenceDataGrid" AutoGenerateColumns="False" HeadersVisibility="Column"  Margin="4,33,4,2" BorderThickness="1,2,1,1" GroupByControlVisibility="Collapsed"
                                   Background="{StaticResource ResourceKey=GenBtcColorBrush}" BorderBrush="#FF889BB1" RowBackground="Snow" IsSynchronizedWithCurrentItem="True" AlternatingRowBackground="#FFE6E6E6"
-                                  ItemsSource="{Binding Path=ChildrensCollection,Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}">
+                                  ItemsSource="{Binding Path=ChildrenCollection,Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}">
                             <ExtendedGridControl:ExtendedDataGrid.Resources>
                                 <SolidColorBrush x:Key="{x:Static SystemColors.HighlightBrushKey}" Color="#FF5390AC"/>
                             </ExtendedGridControl:ExtendedDataGrid.Resources>
@@ -169,7 +169,7 @@
                         <!--ChildrenDataGrid-->
                         <ExtendedGridControl:ExtendedDataGrid Grid.Row="1" Grid.RowSpan="3" Name="ChildrenDataGrid" AutoGenerateColumns="False" Margin="4,1,4,2" IsSynchronizedWithCurrentItem="True" GroupByControlVisibility="Collapsed"
                                 BorderThickness="1,2,1,1" Background="{StaticResource ResourceKey=GenBtcColorBrush}" BorderBrush="#FF889BB1" RowBackground="Snow" RowHeight="20" HeadersVisibility="Column" AlternatingRowBackground="#FFE6E6E6" CanUserSortColumns="True"
-                                ItemsSource="{Binding Path=ChildrensCollection, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}">
+                                ItemsSource="{Binding Path=ChildrenCollection, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}">
                             <ExtendedGridControl:ExtendedDataGrid.Resources>
                                 <Style TargetType="Controls:DataGridRow">
                                     <Setter Property="DetailsVisibility" Value="{Binding DetailsVisibility}" />
@@ -467,7 +467,7 @@
                                                 <Grid>
                                                     <DataGrid x:Name="FamilyChildren" HeadersVisibility="Column" Background="{StaticResource ResourceKey=GenBtcColorBrush}" RowBackground="Snow" BorderBrush="#FF889BB1"
                                                             HorizontalAlignment="Stretch" VerticalAlignment="Stretch" AutoGenerateColumns="False" BorderThickness="1,2,1,1"
-                                                            ItemsSource="{Binding SelectedItem.CHILDRENS, ElementName=FamilyDataGrid}" Margin="4,4,4,0">
+                                                            ItemsSource="{Binding SelectedItem.CHILDREN, ElementName=FamilyDataGrid}" Margin="4,4,4,0">
                                                         <DataGrid.Columns>
                                                             <DataGridTextColumn Binding="{Binding ID}" Header="Id" Width="0" IsReadOnly="True" CanUserSort="True" />
                                                             <DataGridTextColumn Binding="{Binding Path=LASTNAME, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Header="Nom" Width="200" CanUserSort="True" />
