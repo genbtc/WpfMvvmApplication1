@@ -118,8 +118,11 @@
                         <Button Content="Refresh..." Command="{Binding Path=RefreshDb}" Margin="0,0,152,0" VerticalAlignment="Top" HorizontalAlignment="Right" Width="84"  Height="30" />
 
                         <ExtendedGridControl:ExtendedDataGrid Grid.Row="1" Grid.RowSpan="3" Name="PresenceDataGrid" AutoGenerateColumns="False" HeadersVisibility="Column"  Margin="4,33,4,2" BorderThickness="1,2,1,1" GroupByControlVisibility="Collapsed"
-                                  Background="{StaticResource ResourceKey=GenBtcColorBrush}" BorderBrush="#FF889BB1" RowBackground="Snow" IsSynchronizedWithCurrentItem="True"
+                                  Background="{StaticResource ResourceKey=GenBtcColorBrush}" BorderBrush="#FF889BB1" RowBackground="Snow" IsSynchronizedWithCurrentItem="True" AlternatingRowBackground="#FFE6E6E6"
                                   ItemsSource="{Binding Path=ChildrensCollection,Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}">
+                            <ExtendedGridControl:ExtendedDataGrid.Resources>
+                                <SolidColorBrush x:Key="{x:Static SystemColors.HighlightBrushKey}" Color="#FF5390AC"/>
+                            </ExtendedGridControl:ExtendedDataGrid.Resources>
                             <ExtendedGridControl:ExtendedDataGrid.Columns>
                                 <ExtendedColumn:ExtendedDataGridTextColumn Binding="{Binding Path=ID}" Header="Id" Width="30" IsReadOnly="True" CanUserSort="True" />
                                 <ExtendedColumn:ExtendedDataGridTextColumn Binding="{Binding Path=LASTNAME}" Header="Nom" Width="200" CanUserSort="True" />
