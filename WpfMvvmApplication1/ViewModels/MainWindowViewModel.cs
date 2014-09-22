@@ -16,7 +16,7 @@ namespace WpfMvvmApplication1.ViewModels
     {
 
         #region Properties
-
+        
         //purposefully doesnt have an INotify.
         public ObservableCollection<FAMILIES> FamiliesBox { get; set; }
 
@@ -154,7 +154,7 @@ namespace WpfMvvmApplication1.ViewModels
             SortChildrenViewSource();
             SortFamiliesViewSource();
             SortCitiesViewSource();
-
+            
             //tracks item additions and deletions, and saves to the database when that occurs.
             this.FamiliesCollection.CollectionChanged += ItemCollection_CollectionChanged;
             this.ChildrenCollection.CollectionChanged += ItemCollection_CollectionChanged;
@@ -165,7 +165,7 @@ namespace WpfMvvmApplication1.ViewModels
         //{ }
 
         #endregion
-
+ 
         #region Fill Collections with EF Query
 
 
@@ -217,7 +217,7 @@ namespace WpfMvvmApplication1.ViewModels
         {
             get { return new DelegateCommand(RefreshViewDb); }
         }
-
+    
         #endregion
 
         #region Commands
@@ -259,7 +259,7 @@ namespace WpfMvvmApplication1.ViewModels
         private void ItemCollection_CollectionChanged(object sender, NotifyCollectionChangedEventArgs e)
         {
             Type nodeType = sender.GetType();
-            if (nodeType == typeof(ObservableCollection<FAMILIES>))
+            if (nodeType == typeof (ObservableCollection<FAMILIES>))
             {
                 var typedcollection = (ObservableCollection<FAMILIES>)sender;
                 if (e.Action == NotifyCollectionChangedAction.Add)
@@ -281,11 +281,7 @@ namespace WpfMvvmApplication1.ViewModels
                 FamiliesBox = new ObservableCollection<FAMILIES>((ObservableCollection<FAMILIES>)sender);
                 RaisePropertyChanged(() => FamiliesBox);
             }
-<<<<<<< Updated upstream
             else if (nodeType == typeof (ObservableCollection<CHILDREN>))
-=======
-            else if (nodeType == typeof(ObservableCollection<CHILDREN>))
->>>>>>> Stashed changes
             {
                 var typedcollection = (ObservableCollection<CHILDREN>)sender;
                 if (e.Action == NotifyCollectionChangedAction.Add)
@@ -364,9 +360,9 @@ namespace WpfMvvmApplication1.ViewModels
                     var rnlength = RandomHelper.RandomInt(3, 15);
                     fakechild.FIRSTNAME = "";
                     fakechild.LASTNAME = "";
-                    for (int rn = 0; rn < rnlength; rn++)
-                    {
-                        fakechild.FIRSTNAME += (nextchar).ToLower();
+                    for (int rn = 0; rn < rnlength; rn++) 
+                    { 
+                        fakechild.FIRSTNAME +=(nextchar).ToLower();
                         fakechild.LASTNAME += nextchar;
                     }
                     fakechild.BIRTHDATE = RandomHelper.RandomDate(new DateTime(1980, 1, 1), DateTime.Now);
