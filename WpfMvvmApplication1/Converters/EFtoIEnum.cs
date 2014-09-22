@@ -19,9 +19,9 @@ namespace WpfMvvmApplication1.Converters
             {
                 return new List<FAMILIES> {(FAMILIES)value};
             }
-            else if (classtype == typeof (CHILDREN))
+            else if (classtype == typeof (CHILDRENS))
             {
-                return new List<CHILDREN> {(CHILDREN)value};
+                return new List<CHILDRENS> {(CHILDRENS)value};
             }
             return new List<FAMILIES> {new FAMILIES()};
         }
@@ -37,9 +37,9 @@ namespace WpfMvvmApplication1.Converters
                 var e = value as IEnumerable<FAMILIES>;
                 return e != null ? e.First() : null;
             }
-            else if (classtype == typeof(CHILDREN))
+            else if (classtype == typeof(CHILDRENS))
             {
-                var e = value as IEnumerable<CHILDREN>;
+                var e = value as IEnumerable<CHILDRENS>;
                 return e != null ? e.First() : null;
             }
             return new FAMILIES() ;

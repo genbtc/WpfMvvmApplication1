@@ -130,7 +130,6 @@
       <DependentUpon>App.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="Converters\CivilityConverter.cs" />
     <Compile Include="Converters\CaptionButtonRectToMarginConverter.cs" />
     <Compile Include="Converters\AddOne.cs" />
     <Compile Include="Converters\BooltoString.cs" />
@@ -143,7 +142,6 @@
     <Compile Include="Helpers\ToAge.cs" />
     <Compile Include="Helpers\DelegateCommand.cs" />
     <Compile Include="Helpers\NotificationObject.cs" />
-    <Compile Include="Models\ProtocolAccueil.cs" />
     <Compile Include="Models\EF.cs" />
     <Compile Include="Models\Civilities.cs" />
     <Compile Include="Models\Model1.Designer.cs">

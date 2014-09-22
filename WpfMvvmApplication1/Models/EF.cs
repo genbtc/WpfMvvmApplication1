@@ -20,18 +20,18 @@ namespace WpfMvvmApplication1.Models
             this.agsEntities.SaveChanges();
         }
 
-        internal void Refresh(ObservableCollection<CHILDREN> ChildrenCollection,
+        internal void Refresh(ObservableCollection<CHILDRENS> ChildrensCollection,
             ObservableCollection<FAMILIES> FamiliesCollection)
         {
-            this.agsEntities.Refresh(RefreshMode.StoreWins, this.agsEntities.CHILDREN);
+            this.agsEntities.Refresh(RefreshMode.StoreWins, this.agsEntities.CHILDRENS);
             this.agsEntities.Refresh(RefreshMode.StoreWins, this.agsEntities.FAMILIES);
         }
 
-        internal void SaveChildrentoDB(ObservableCollection<CHILDREN> ChildrenCollection)
+        internal void SaveChildrentoDB(ObservableCollection<CHILDRENS> ChildrensCollection)
         {
-            foreach (CHILDREN some in ChildrenCollection.Where(some => some.ID == 0))
+            foreach (CHILDRENS some in ChildrensCollection.Where(some => some.ID == 0))
             {
-                this.agsEntities.CHILDREN.AddObject(some);
+                this.agsEntities.CHILDRENS.AddObject(some);
             }
             this.agsEntities.SaveChanges();
         }

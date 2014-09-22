@@ -27,7 +27,7 @@
 //                                                    ""SWIM"",
 //                                                    ""BIKEOUTINGS"",
 //                                                    ""BOATOUTINGS""
-//                                             FROM ""CHILDREN"" ORDER BY ""ID"";";
+//                                             FROM ""CHILDRENS"" ORDER BY ""ID"";";
 
 //        private const string sSQLfamilies = @"SELECT ""FAMILIES"".""ID"",
 //                                                    ""FAMILIES"".""LASTNAME"",
@@ -223,7 +223,7 @@
 //                                        ""SWIM"",
 //                                        ""BIKEOUTINGS"",
 //                                        ""BOATOUTINGS""
-//                                 FROM ""CHILDREN""
+//                                 FROM ""CHILDRENS""
 //                                 WHERE ""ID""=" + iChildren + "; ";
 //            var reader = readSQL(sSQLchildren);
 //            foreach (DataRow row in reader.Rows)
@@ -331,7 +331,7 @@
 //            return oneFamily;
 //        }
 
-//        private const string updateChildstring = @"UPDATE ""CHILDREN""
+//        private const string updateChildstring = @"UPDATE ""CHILDRENS""
 //                            SET ""LASTNAME""                  =  @lastName,
 //                                ""FIRSTNAME""                 =  @firstName,
 //                                ""BIRTHDATE""                 =  @birthDate,
@@ -376,7 +376,7 @@
 
 //        }
 
-//        private const string insertChildstring = @"INSERT INTO ""CHILDREN""(""LASTNAME"",
+//        private const string insertChildstring = @"INSERT INTO ""CHILDRENS""(""LASTNAME"",
 //                                                     ""FIRSTNAME"",
 //                                                     ""BIRTHDATE"",
 //                                                     ""GENDERID"",
