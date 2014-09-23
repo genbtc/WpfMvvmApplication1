@@ -281,11 +281,7 @@ namespace WpfMvvmApplication1.ViewModels
                 FamiliesBox = new ObservableCollection<FAMILIES>((ObservableCollection<FAMILIES>)sender);
                 RaisePropertyChanged(() => FamiliesBox);
             }
-<<<<<<< Updated upstream
-            else if (nodeType == typeof (ObservableCollection<CHILDREN>))
-=======
             else if (nodeType == typeof(ObservableCollection<CHILDREN>))
->>>>>>> Stashed changes
             {
                 var typedcollection = (ObservableCollection<CHILDREN>)sender;
                 if (e.Action == NotifyCollectionChangedAction.Add)

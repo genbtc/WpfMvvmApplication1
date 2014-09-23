@@ -106,21 +106,12 @@
                 <TabItem Header="Presence">
                     <Grid Height="820" Width="1593">
                         <Grid.RowDefinitions>
-                            <RowDefinition Height="31" />
-                            <RowDefinition Height="2*" />
-                            <RowDefinition Height="37" />
+                            <RowDefinition Height="30" />
                             <RowDefinition Height="1*" />
                         </Grid.RowDefinitions>
-                        <Label Content="Recherche :" Margin="0,0,0,0" VerticalAlignment="Top" HorizontalAlignment="Left" />
-                        <TextBox Grid.Row="0" Margin="80,0,0,0" Name="Recherche2" HorizontalAlignment="Left" Style="{StaticResource ResourceKey=flatTextBox}" Height="24" TextWrapping="Wrap" Width="716" />
-                        <!--Buttons-->
-                        <Button Grid.Row="0" Content="+" Margin="0,0,10,0" VerticalAlignment="Top" HorizontalAlignment="Right" Height="30" Width="35" Click="PresenceGridSelectLastRow_Click" />
-                        <Button Content="Update!" Command="{Binding Path=SaveAll}" VerticalAlignment="Top" HorizontalAlignment="Right" Margin="0,0,56,0" Width="84" Height="30" />
-                        <Button Content="Refresh..." Command="{Binding Path=RefreshDb}" Margin="0,0,152,0" VerticalAlignment="Top" HorizontalAlignment="Right" Width="84"  Height="30" />
-
-                        <ExtendedGridControl:ExtendedDataGrid Grid.Row="1" Grid.RowSpan="3" Name="PresenceDataGrid" AutoGenerateColumns="False" HeadersVisibility="Column"  Margin="4,33,4,2" BorderThickness="1,2,1,1" GroupByControlVisibility="Collapsed"
-                                  Background="{StaticResource ResourceKey=GenBtcColorBrush}" BorderBrush="#FF889BB1" RowBackground="Snow" IsSynchronizedWithCurrentItem="True" AlternatingRowBackground="#FFE6E6E6"
-                                  ItemsSource="{Binding Path=ChildrenCollection,Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}">
+                        <ExtendedGridControl:ExtendedDataGrid  Grid.Row="1" x:Name="PresenceDataGrid" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Margin="4,4,2,-2" BorderThickness="1,2,1,1"
+                                                               Background="{StaticResource ResourceKey=GenBtcColorBrush}" BorderBrush="#FF889BB1" RowBackground="Snow" IsSynchronizedWithCurrentItem="True" SelectionUnit="FullRow" RowHeight="21"
+                                                               ItemsSource="{Binding Path=ChildrenCollection, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" HeadersVisibility="Column" AutoGenerateColumns="False"  GroupByControlVisibility="Collapsed" GridLinesVisibility="None" AlternatingRowBackground="#FFE6E6E6">
                             <ExtendedGridControl:ExtendedDataGrid.Resources>
                                 <SolidColorBrush x:Key="{x:Static SystemColors.HighlightBrushKey}" Color="#FF5390AC"/>
                             </ExtendedGridControl:ExtendedDataGrid.Resources>
@@ -140,57 +131,32 @@
                                 <!--Binding="{Binding Path=VENDREDI}"-->
                             </ExtendedGridControl:ExtendedDataGrid.Columns>
                         </ExtendedGridControl:ExtendedDataGrid>
-                        <Grid Grid.Row="3">
-                            <Label Content="Secteur :" HorizontalAlignment="Left" Margin="8,-536,0,0" VerticalAlignment="Top" Width="57" />
-                            <Label Content="Groupe :" HorizontalAlignment="Left" Height="26" Margin="311,-536,0,0" VerticalAlignment="Top" Width="56" />
-                            <Label Content="Période :" HorizontalAlignment="Left" Margin="581,-536,0,0" VerticalAlignment="Top" />
-                            <Label Content="Activité :" HorizontalAlignment="Left" Margin="935,-536,0,0" VerticalAlignment="Top" />
-                            <ComboBox HorizontalAlignment="Left" Height="26" Margin="80,-536,0,0" VerticalAlignment="Top" Width="187" Style="{StaticResource ResourceKey=ComboBoxFlatStyle}">
+                        <Grid Grid.Row="0">
+                            <Label Content="Secteur :" HorizontalAlignment="Left" Margin="8,0,0,0" VerticalAlignment="Top" Width="57" />
+                            <Label Content="Groupe :" HorizontalAlignment="Left" Height="26" Margin="311,0,0,0" VerticalAlignment="Top" Width="56" />
+                            <Label Content="Période :" HorizontalAlignment="Left" Margin="581,0,0,0" VerticalAlignment="Top" />
+                            <Label Content="Activité :" HorizontalAlignment="Left" Margin="935,0,0,0" VerticalAlignment="Top" />
+                            <ComboBox HorizontalAlignment="Left" Height="26" Margin="80,0,0,0" VerticalAlignment="Top" Width="187" Style="{StaticResource ResourceKey=ComboBoxFlatStyle}">
                                 <ComboBoxItem Name="cbi1">Item1</ComboBoxItem>
                             </ComboBox>
-                            <ComboBox HorizontalAlignment="Left" Height="26" Margin="367,-536,0,0" VerticalAlignment="Top" Width="167" Style="{StaticResource ResourceKey=ComboBoxFlatStyle}" />
-                            <ComboBox HorizontalAlignment="Left" Height="26" Margin="642,-536,0,0" VerticalAlignment="Top" Width="249" Style="{StaticResource ResourceKey=ComboBoxFlatStyle}" />
-                            <ComboBox HorizontalAlignment="Left" Height="26" Margin="995,-536,0,0" VerticalAlignment="Top" Width="240" Style="{StaticResource ResourceKey=ComboBoxFlatStyle}" />
+                            <ComboBox HorizontalAlignment="Left" Height="26" Margin="367,0,0,0" VerticalAlignment="Top" Width="167" Style="{StaticResource ResourceKey=ComboBoxFlatStyle}" />
+                            <ComboBox HorizontalAlignment="Left" Height="26" Margin="642,0,0,0" VerticalAlignment="Top" Width="249" Style="{StaticResource ResourceKey=ComboBoxFlatStyle}" />
+                            <ComboBox HorizontalAlignment="Left" Height="26" Margin="995,0,0,0" VerticalAlignment="Top" Width="240" Style="{StaticResource ResourceKey=ComboBoxFlatStyle}" />
                         </Grid>
                     </Grid>
                 </TabItem>
                 <!--Children Tab-->
                 <TabItem Header="Enfants">
                     <Grid Height="820" Width="1593">
-<<<<<<< Updated upstream
                         <Grid.RowDefinitions>
-                            <RowDefinition Height="31" />
+                            <RowDefinition Height="30" />
                             <RowDefinition Height="1*" />
                         </Grid.RowDefinitions>
-                        <Label Content="Recherche :" Margin="0,0,0,0" VerticalAlignment="Top" HorizontalAlignment="Left" />
-                        <TextBox Grid.Row="0" Margin="80,0,0,0" Name="Recherche" HorizontalAlignment="Left" Style="{StaticResource ResourceKey=flatTextBox}" Height="24" TextWrapping="Wrap" Width="716" />
-                        <!--Buttons-->
-                        <Button Content="Update!" Command="{Binding Path=SaveAll}" VerticalAlignment="Top" HorizontalAlignment="Right" Margin="0,0,56,0" Width="84" Height="30" />
-                        <Button Content="Refresh..." Command="{Binding Path=RefreshDb}" Margin="0,0,152,0" VerticalAlignment="Top" HorizontalAlignment="Right" Width="84"  Height="30" />
-                        <Button Content="+" Margin="0,0,10,0" VerticalAlignment="Top" HorizontalAlignment="Right" Height="30" Width="35" Click="ChildrenGridSelectLastRow_Click" />
                         <!--ChildrenDataGrid-->
-                        <ExtendedGridControl:ExtendedDataGrid Grid.Row="1" Grid.RowSpan="3" Name="ChildrenDataGrid" AutoGenerateColumns="False" Margin="4,1,4,2" IsSynchronizedWithCurrentItem="True" GroupByControlVisibility="Collapsed"
-                                BorderThickness="1,2,1,1" Background="{StaticResource ResourceKey=GenBtcColorBrush}" BorderBrush="#FF889BB1" RowBackground="Snow" RowHeight="20" HeadersVisibility="Column" AlternatingRowBackground="#FFE6E6E6" CanUserSortColumns="True"
-                                ItemsSource="{Binding Path=ChildrenCollection, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}">
-=======
-
-
-
-
-
-
-
-
-
-
-
-
-                        <ExtendedGridControl:ExtendedDataGrid  x:Name="ChildrenDataGrid" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Margin="4,36,2,-2" BorderThickness="1,2,1,1"
-                                                               Background="{StaticResource ResourceKey=GenBtcColorBrush}" BorderBrush="#FF889BB1" RowBackground="Snow" IsSynchronizedWithCurrentItem="True" SelectionUnit="FullRow"
-                                                               ItemsSource="{Binding Path=ChildrenCollection, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" HeadersVisibility="Column" AutoGenerateColumns="False" RowHeight="21" GroupByControlVisibility="Collapsed" GridLinesVisibility="None" AlternatingRowBackground="#FFE6E6E6">
-
+                        <ExtendedGridControl:ExtendedDataGrid  x:Name="ChildrenDataGrid"  Grid.Row="1" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Margin="4,4,2,-2" BorderThickness="1,2,1,1"
+                                                               Background="{StaticResource ResourceKey=GenBtcColorBrush}" BorderBrush="#FF889BB1" RowBackground="Snow" IsSynchronizedWithCurrentItem="True" SelectionUnit="FullRow" RowHeight="21"
+                                                               ItemsSource="{Binding Path=ChildrenCollection, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" HeadersVisibility="Column" AutoGenerateColumns="False"  GroupByControlVisibility="Collapsed" GridLinesVisibility="None" AlternatingRowBackground="#FFE6E6E6">
                             <!--Ressources-->
->>>>>>> Stashed changes
                             <ExtendedGridControl:ExtendedDataGrid.Resources>
                                 <Style TargetType="Controls:DataGridRow">
                                     <Setter Property="DetailsVisibility" Value="{Binding DetailsVisibility}" />
@@ -198,47 +164,40 @@
                                 <SolidColorBrush x:Key="{x:Static SystemColors.HighlightBrushKey}" Color="#FF5390AC"/>
                             </ExtendedGridControl:ExtendedDataGrid.Resources>
 
-
-
-
-
-
                             <!--Row Details-->
                             <Controls:DataGrid.Columns>
                                 <Controls:DataGridTemplateColumn Header="" Width="30">
                                     <Controls:DataGridTemplateColumn.CellTemplate>
                                         <DataTemplate>
-                                            <!--<CheckBox Content="Details" Margin="12,16,8,16" IsChecked="{Binding ETISelected, Mode=OneWayToSource}" />-->
-                                            <Button Content="{Binding ETISelected, Mode=TwoWay,Converter={StaticResource BooltoString}}" Click="Button_Click_ShowHide" Margin="2,0,2,0" />
-
+                                            <Button Content="{Binding ETISelected, Mode=TwoWay,Converter={StaticResource BooltoString}}" Click="Button_Click_ShowHide" />
                                         </DataTemplate>
                                     </Controls:DataGridTemplateColumn.CellTemplate>
                                 </Controls:DataGridTemplateColumn>
                                 <ExtendedColumn:ExtendedDataGridTextColumn Binding="{Binding Path=ID}" Header="Id" Width="30" CanUserSort="True" IsReadOnly="True" Visibility="Hidden" />
                                 <ExtendedColumn:ExtendedDataGridTextColumn Binding="{Binding Path=LASTNAME}" Header="Nom" Width="200" CanUserSort="True" />
                                 <ExtendedColumn:ExtendedDataGridTextColumn Binding="{Binding Path=FIRSTNAME}" Header="Prénom" Width="200" CanUserSort="True" />
-                                <ExtendedColumn:ExtendedDataGridTemplateColumn Header="Date Naissance" CanUserSort="True">
-                                    <ExtendedColumn:ExtendedDataGridTemplateColumn.CellTemplate>
+                                <Controls:DataGridTemplateColumn Header="Date Naissance" CanUserSort="True">
+                                    <Controls:DataGridTemplateColumn.CellTemplate>
                                         <DataTemplate>
                                             <xctk:DateTimePicker Name="dtpNaissance" HorizontalAlignment="Center" Margin="1,0,0,0" Width="101" Format="ShortDate"
                                                                 AllowDrop="False" IsManipulationEnabled="True" ShowButtonSpinner="True" TimePickerVisibility="Hidden" Background="Snow"
                                                                 Value="{Binding Path=BIRTHDATE, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
                                         </DataTemplate>
-                                    </ExtendedColumn:ExtendedDataGridTemplateColumn.CellTemplate>
-                                </ExtendedColumn:ExtendedDataGridTemplateColumn>
+                                    </Controls:DataGridTemplateColumn.CellTemplate>
+                                </Controls:DataGridTemplateColumn>
                                 <ExtendedColumn:ExtendedDataGridTextColumn Header="Age" Binding="{Binding BIRTHDATE, BindsDirectlyToSource=True, Converter={StaticResource dateConverter}}" Width="40" CanUserSort="True" IsReadOnly="True" />
-                                <ExtendedColumn:ExtendedDataGridTemplateColumn Header="Gender" Width="111" CanUserSort="True">
-                                    <ExtendedColumn:ExtendedDataGridTemplateColumn.CellTemplate>
+                                <Controls:DataGridTemplateColumn Header="Gender" Width="111" CanUserSort="True">
+                                    <Controls:DataGridTemplateColumn.CellTemplate>
                                         <DataTemplate>
                                             <ComboBox Name="cbGender" HorizontalAlignment="Stretch" Style="{StaticResource ResourceKey=ComboBoxFlatStyle}"
                                                     ItemsSource="{Binding Source={StaticResource Gender}, Path=ListGenders}"  DisplayMemberPath="Value" SelectedValuePath="Id"
                                                     SelectedIndex="{Binding Path=GENDERID, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
                                         </DataTemplate>
-                                    </ExtendedColumn:ExtendedDataGridTemplateColumn.CellTemplate>
-                                </ExtendedColumn:ExtendedDataGridTemplateColumn>
+                                    </Controls:DataGridTemplateColumn.CellTemplate>
+                                </Controls:DataGridTemplateColumn>
                                 <ExtendedColumn:ExtendedDataGridTextColumn Binding="{Binding Path=FAMILIES.ID, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Header="FAMILYID" Visibility="Hidden" Width="65" IsReadOnly="True" CanUserSort="True" />
-                                <ExtendedColumn:ExtendedDataGridTemplateColumn Header="Family" Width="184" CanUserSort="True">
-                                    <ExtendedColumn:ExtendedDataGridTemplateColumn.CellTemplate>
+                                <Controls:DataGridTemplateColumn Header="Family" Width="184" CanUserSort="True">
+                                    <Controls:DataGridTemplateColumn.CellTemplate>
                                         <DataTemplate>
                                             <StackPanel Orientation="Horizontal">
                                                 <TextBlock Text="{Binding FAMILIES.LASTNAME}" />
@@ -246,8 +205,8 @@
                                                 <TextBlock Text="{Binding FAMILIES.FIRSTNAME}" />
                                             </StackPanel>
                                         </DataTemplate>
-                                    </ExtendedColumn:ExtendedDataGridTemplateColumn.CellTemplate>
-                                    <ExtendedColumn:ExtendedDataGridTemplateColumn.CellEditingTemplate>
+                                    </Controls:DataGridTemplateColumn.CellTemplate>
+                                    <Controls:DataGridTemplateColumn.CellEditingTemplate>
                                         <DataTemplate>
                                             <!--ComboBox GRID Family-->
                                             <ComboBox Name="cbFamilygrid" HorizontalAlignment="Stretch" Width="Auto" Style="{StaticResource ResourceKey=ComboBoxFlatStyle}"
@@ -270,8 +229,8 @@
                                                 </ComboBox.ItemTemplate>
                                             </ComboBox>
                                         </DataTemplate>
-                                    </ExtendedColumn:ExtendedDataGridTemplateColumn.CellEditingTemplate>
-                                </ExtendedColumn:ExtendedDataGridTemplateColumn>
+                                    </Controls:DataGridTemplateColumn.CellEditingTemplate>
+                                </Controls:DataGridTemplateColumn>
                                 <ExtendedColumn:ExtendedDataGridTextColumn Binding="{Binding Path=FAMILIES.ADDRESS, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Header="Family Address" Width="250" CanUserSort="True" />
                                 <ExtendedColumn:ExtendedDataGridTextColumn Binding="{Binding Path=FAMILIES.CITIES.CITY, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Header="CITYNAME" Width="120" CanUserSort="True" />
                             </Controls:DataGrid.Columns>
@@ -421,119 +380,34 @@
                                                 <TextBox x:Name="tbPartnerEmail" Style="{StaticResource ResourceKey=flatTextBox}" Text="{Binding PARTNEREMAIL, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" HorizontalAlignment="Left" Height="20" Margin="920,193,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="445" />
                                             </Grid>
                                         </TabItem>
-
                                     </TabControl>
                                 </DataTemplate>
                             </ExtendedGridControl:ExtendedDataGrid.RowDetailsTemplate>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
                         </ExtendedGridControl:ExtendedDataGrid>
-                        <!--<Grid.RowDefinitions>
-                            <RowDefinition Height="31" />
-                            <RowDefinition Height="1*" />
-                        </Grid.RowDefinitions>-->
-                        <!--Buttons-->
-                        <!--<Button Content="Update!" Command="{Binding Path=SaveAll}" VerticalAlignment="Top" HorizontalAlignment="Right" Margin="0,0,56,0" Width="84" Height="30" />
-                        <Button Content="Refresh..." Command="{Binding Path=RefreshDb}" Margin="0,0,152,0" VerticalAlignment="Top" HorizontalAlignment="Right" Width="84"  Height="30" />
-                        <Button Content="+" Margin="0,0,10,0" VerticalAlignment="Top" HorizontalAlignment="Right" Height="30" Width="35" Click="ChildrenGridSelectLastRow_Click" />-->
-                        <!--ChildrenDataGrid-->
-                        <Button Content="+" VerticalAlignment="Top" HorizontalAlignment="Right" Height="30" Width="35" Click="FamilyGridSelectLastRow_Click" Margin="0,0,3,0" />
-                        <Button Content="Update!" x:Name="saveChildren" Command="{Binding SaveAll}" Margin="1439,2,76,790" />
-                        <Button BorderThickness="0" Style="{StaticResource {x:Static ToolBar.ButtonStyleKey}}" Click="ExcelExport_Click" Height="25" Margin="1521,3,42,792" Width="30">
+                        <Button Content="Update!" Command="{Binding Path=SaveAll}" VerticalAlignment="Top" HorizontalAlignment="Right" Margin="0,0,76,0" Width="84" Height="30" />
+                        <Button Content="Refresh..." Command="{Binding Path=RefreshDb}" Margin="0,0,170,0" VerticalAlignment="Top" HorizontalAlignment="Right" Width="84"  Height="30" />
+                        <Button Content="+" Margin="0,0,10,0" VerticalAlignment="Top" HorizontalAlignment="Right" Height="30" Width="35" Click="ChildrenGridSelectLastRow_Click" />
+                        <Button BorderThickness="0" Style="{StaticResource {x:Static ToolBar.ButtonStyleKey}}" Click="ExcelExport_Click" Height="26"  Width="30" Margin="1516,2,47,0" VerticalAlignment="Top">
                             <Image Source="{StaticResource ExcelImage}" Height="23" />
                         </Button>
-
-
-
                     </Grid>
                 </TabItem>
-
-
+                <!--FamilyTab-->
                 <TabItem Header="Famille">
                     <Grid Height="820" Width="1593">
-
-                        <ExtendedGridControl:ExtendedDataGrid x:Name="FamilyDataGrid" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Margin="4,36,2,-2" BorderThickness="1,2,1,1"
-                                Background="{StaticResource ResourceKey=GenBtcColorBrush}" BorderBrush="#FF889BB1" RowBackground="Snow" IsSynchronizedWithCurrentItem="True" SelectionUnit="FullRow"
-                                ItemsSource="{Binding Path=FamiliesCollection,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}" HeadersVisibility="Column"  AutoGenerateColumns="False" RowHeight="21" GroupByControlVisibility="Collapsed" GridLinesVisibility="None" AlternatingRowBackground="#FFE6E6E6">
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="30" />
+                            <RowDefinition Height="1*" />
+                        </Grid.RowDefinitions>
+                        <ExtendedGridControl:ExtendedDataGrid x:Name="FamilyDataGrid" Grid.Row="1" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Margin="4,4,2,-2" BorderThickness="1,2,1,1"
+                                Background="{StaticResource ResourceKey=GenBtcColorBrush}" BorderBrush="#FF889BB1" RowBackground="Snow" IsSynchronizedWithCurrentItem="True" SelectionUnit="FullRow" RowHeight="21"
+                                ItemsSource="{Binding Path=FamiliesCollection,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}" HeadersVisibility="Column"  AutoGenerateColumns="False"  GroupByControlVisibility="Collapsed" GridLinesVisibility="None" AlternatingRowBackground="#FFE6E6E6">
                             <ExtendedGridControl:ExtendedDataGrid.Resources>
                                 <Style TargetType="Controls:DataGridRow">
                                     <Setter Property="DetailsVisibility" Value="{Binding DetailsVisibility}" />
                                 </Style>
                                 <SolidColorBrush x:Key="{x:Static SystemColors.HighlightBrushKey}" Color="#FF5390AC"/>
                             </ExtendedGridControl:ExtendedDataGrid.Resources>
-
-
-
-
 
                             <Controls:DataGrid.Columns>
                                 <Controls:DataGridTemplateColumn Header="" Width="30">
@@ -546,33 +420,12 @@
                                     </Controls:DataGridTemplateColumn.CellTemplate>
                                 </Controls:DataGridTemplateColumn>
                                 <!--<ExtendedColumn:ExtendedDataGridTextColumn Binding="{Binding ID}" Header="ID" Width="200" CanUserSort="True" SortDirection="Ascending" />-->
-                                <ExtendedColumn:ExtendedDataGridTextColumn x:Name="Civ" Binding="{Binding CIVILITYID, Mode=OneWay,Converter={StaticResource CivilityConverter}}" Header="Civ." Width="50" CanUserSort="True" SortDirection="Ascending" />
-
-
-
-
-
-
-
-
-
+                                <ExtendedColumn:ExtendedDataGridTextColumn x:Name="Civ" Binding="{Binding CIVILITYID, Mode=OneWay,Converter={StaticResource CivilityConverter}}" Header="Civ." Width="50" CanUserSort="True" IsReadOnly="True" />
 
                                 <ExtendedColumn:ExtendedDataGridTextColumn x:Name="LastName" Binding="{Binding LASTNAME, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Header="Nom" Width="170" CanUserSort="True" IsReadOnly="True" />
                                 <ExtendedColumn:ExtendedDataGridTextColumn x:Name="FirstName" Binding="{Binding FIRSTNAME, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Header="Prénom" Width="170" CanUserSort="True" IsReadOnly="True" />
 
                                 <ExtendedColumn:ExtendedDataGridTextColumn x:Name="Address"  Binding="{Binding ADDRESS, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Header="Addresse" Width="220" CanUserSort="True" IsReadOnly="True"/>
-
-
-
-
-
-
-
-
-
-
-
-
 
                                 <ExtendedColumn:ExtendedDataGridTextColumn Binding="{Binding CITIES.CP, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Header="CP" Width="70" IsReadOnly="true" CanUserSort="True" />
                                 <ExtendedColumn:ExtendedDataGridTextColumn Binding="{Binding CITIES.CITY, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Header="City" Width="250" IsReadOnly="true" CanUserSort="True" />
@@ -801,9 +654,10 @@
                                 </DataTemplate>
                             </Controls:DataGrid.RowDetailsTemplate>
                         </ExtendedGridControl:ExtendedDataGrid>
-                        <Button Content="+" VerticalAlignment="Top" HorizontalAlignment="Right" Height="30" Width="35" Click="FamilyGridSelectLastRow_Click" Margin="0,0,3,0" />
-                        <Button Content="Update!" x:Name="savefamily2" Command="{Binding SaveFamily}" Margin="1439,2,76,790" />
-                        <Button BorderThickness="0" Style="{StaticResource {x:Static ToolBar.ButtonStyleKey}}" Click="ExcelExport_Click" Height="25" Margin="1521,3,42,792" Width="30">
+                        <Button Content="Update!" Command="{Binding Path=SaveAll}" VerticalAlignment="Top" HorizontalAlignment="Right" Margin="0,0,76,0" Width="84" Height="30" />
+                        <Button Content="Refresh..." Command="{Binding Path=RefreshDb}" Margin="0,0,170,0" VerticalAlignment="Top" HorizontalAlignment="Right" Width="84"  Height="30" />
+                        <Button Content="+" Margin="0,0,10,0" VerticalAlignment="Top" HorizontalAlignment="Right" Height="30" Width="35" Click="FamilyGridSelectLastRow_Click" />
+                        <Button BorderThickness="0" Style="{StaticResource {x:Static ToolBar.ButtonStyleKey}}" Click="ExcelExport_Click" Height="26"  Width="30" Margin="1516,2,47,0" VerticalAlignment="Top">
                             <Image Source="{StaticResource ExcelImage}" Height="23" />
                         </Button>
                     </Grid>
@@ -811,23 +665,15 @@
                 <TabItem Header="Communes">
                     <Grid Height="820" Width="1593">
                         <Grid.RowDefinitions>
-                            <RowDefinition Height="31" />
-                            <RowDefinition Height="2*" />
-                            <RowDefinition Height="37" />
+                            <RowDefinition Height="30" />
                             <RowDefinition Height="1*" />
                         </Grid.RowDefinitions>
-                        <StackPanel Orientation="Horizontal" Height="28" VerticalAlignment="Top" Margin="10,2,0,0" HorizontalAlignment="Left" Width="Auto">
-                            <Label Content="Recherche :" />
-                            <TextBox x:Name="SearchCity" Style="{StaticResource ResourceKey=flatTextBox}" Height="24" TextWrapping="Wrap" Text="" Width="716" />
-                            <Separator Height="6" Width="626" Visibility="Hidden" />
-                        </StackPanel>
                         <!-- region DataGrid_Cities -->
-                        <ExtendedGridControl:ExtendedDataGrid x:Name="CitiesDataGrid" Grid.Row="1" Grid.RowSpan="3" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Margin="4,4,4,2" AutoGenerateColumns="False"
-                                                              BorderThickness="1,2,1,1" Background="{StaticResource ResourceKey=GenBtcColorBrush}" BorderBrush="#FF889BB1" RowBackground="Snow"
-                                                              ItemsSource="{Binding Path=CitiesCollection,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}" HeadersVisibility="Column">
-
+                        <ExtendedGridControl:ExtendedDataGrid x:Name="CitiesDataGrid" Grid.Row="1" Margin="4,4,2,-2" AutoGenerateColumns="False" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" BorderThickness="1,2,1,1"
+                                Background="{StaticResource ResourceKey=GenBtcColorBrush}" BorderBrush="#FF889BB1" RowBackground="Snow" IsSynchronizedWithCurrentItem="True" SelectionUnit="FullRow" RowHeight="21"
+                                ItemsSource="{Binding Path=CitiesCollection,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}" HeadersVisibility="Column" GroupByControlVisibility="Collapsed" GridLinesVisibility="None" AlternatingRowBackground="#FFE6E6E6">
                             <ExtendedGridControl:ExtendedDataGrid.Resources>
-                                <SolidColorBrush x:Key="{x:Static SystemColors.HighlightBrushKey}" Color="#FF0000" />
+                                <SolidColorBrush x:Key="{x:Static SystemColors.HighlightBrushKey}" Color="#FF5390AC" />
                             </ExtendedGridControl:ExtendedDataGrid.Resources>
                             <Controls:DataGrid.Columns>
                                 <ExtendedColumn:ExtendedDataGridTextColumn Binding="{Binding ID}" Header="Id" Width="50" />
@@ -844,33 +690,36 @@
                         </ExtendedGridControl:ExtendedDataGrid>
 
                         <!-- endregion -->
-                        <Button Content="+" VerticalAlignment="Top" HorizontalAlignment="Right" Height="30" Width="35" Click="CitiesGridSelectLastRow_Click" Margin="0,0,2,0" />
-                        <Button Content="Update!" x:Name="saveCities" Command="{Binding SaveFamily}" Margin="1506,758,10,10" Width="84" />
+                        <Button Content="Update!" Command="{Binding Path=SaveAll}" VerticalAlignment="Top" HorizontalAlignment="Right" Margin="0,0,76,0" Width="84" Height="30" />
+                        <Button Content="+" Margin="0,0,10,0" VerticalAlignment="Top" HorizontalAlignment="Right" Height="30" Width="35" Click="CitiesGridSelectLastRow_Click" />
                     </Grid>
                 </TabItem>
-
+                <!--Doctor Tab-->
                 <TabItem Header="Médecins">
                     <Grid Height="820" Width="1593">
                         <Grid.RowDefinitions>
-                            <RowDefinition Height="31" />
-                            <RowDefinition Height="37" />
+                            <RowDefinition Height="30" />
                             <RowDefinition Height="1*" />
                         </Grid.RowDefinitions>
-                        <ExtendedGridControl:ExtendedDataGrid x:Name="DoctorsDataGrid" Grid.Row="1" Grid.RowSpan="3" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Margin="4,4,4,2" AutoGenerateColumns="False" 
-                                                              BorderThickness="1,2,1,1" Background="{StaticResource ResourceKey=GenBtcColorBrush}" BorderBrush="#FF889BB1" RowBackground="Snow" 
-                                                              ItemsSource="{Binding Path=CitiesCollection}" HeadersVisibility="Column" >
+                        <ExtendedGridControl:ExtendedDataGrid x:Name="DoctorsDataGrid" Grid.Row="1" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Margin="4,4,2,-2" AutoGenerateColumns="False"  IsSynchronizedWithCurrentItem="True"
+                                                              BorderThickness="1,2,1,1" Background="{StaticResource ResourceKey=GenBtcColorBrush}" BorderBrush="#FF889BB1" RowBackground="Snow" RowHeight="21" SelectionUnit="FullRow"
+                                                              ItemsSource="{Binding Path=DoctorsCollection}" HeadersVisibility="Column" GroupByControlVisibility="Collapsed" GridLinesVisibility="None" AlternatingRowBackground="#FFE6E6E6">
+                            <ExtendedGridControl:ExtendedDataGrid.Resources>
+                                <SolidColorBrush x:Key="{x:Static SystemColors.HighlightBrushKey}" Color="#FF5390AC" />
+                            </ExtendedGridControl:ExtendedDataGrid.Resources>
                             <Controls:DataGrid.Columns>
                                 <ExtendedColumn:ExtendedDataGridTextColumn Binding="{Binding ID}" Header="Id" Width="50"/>
-                                <ExtendedColumn:ExtendedDataGridTextColumn Binding="{Binding DOCTOR, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Header="Médecin" Width="600"  />
+                                <ExtendedColumn:ExtendedDataGridTextColumn Binding="{Binding FULLNAME, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Header="Médecin" Width="600"  />
                                 <ExtendedColumn:ExtendedDataGridTextColumn Binding="{Binding TEL, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Header="Tel" Width="200"  />
                             </Controls:DataGrid.Columns>
                         </ExtendedGridControl:ExtendedDataGrid>
 
                         <!-- endregion -->
-                        <Button Content="Update!" x:Name="saveDoctors" Command="{Binding SaveDoctor}" Margin="1506,758,10,10" Width="84" />
+                        <Button Content="Update!" Command="{Binding Path=SaveAll}" VerticalAlignment="Top" HorizontalAlignment="Right" Margin="0,0,76,0" Width="84" Height="30" />
+                        <Button Content="+" Margin="0,0,10,0" VerticalAlignment="Top" HorizontalAlignment="Right" Height="30" Width="35" Click="DoctorsGridSelectLastRow_Click" />
                     </Grid>
-                </TabItem>                
-                
+                </TabItem>
+
             </TabControl>
         </Viewbox>
     </Grid>

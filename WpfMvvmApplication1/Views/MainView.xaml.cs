@@ -62,6 +62,13 @@ namespace WpfMvvmApplication1.Views
             ChildrenDataGrid.ScrollIntoView(CollectionView.NewItemPlaceholder);
         }
 
+        private void DoctorsGridSelectLastRow_Click(object sender, RoutedEventArgs e)
+        {
+            DoctorsDataGrid.SelectedIndex = ChildrenDataGrid.Items.Count - 1;
+            DoctorsDataGrid.SelectedIndex++; //has to be like this.
+            DoctorsDataGrid.ScrollIntoView(CollectionView.NewItemPlaceholder);
+        }
+
         private void CitiesGridSelectLastRow_Click(object sender, RoutedEventArgs e)
         {
             CitiesDataGrid.SelectedIndex = CitiesDataGrid.Items.Count - 1;
